@@ -1,8 +1,10 @@
-# voodoo
+# cliphou.se
 
-voodoo is a gallery of AI-generated Remotion videos. Users can find videos with faceted filters and change their text and colors in the browser without an AI call.
+cliphou.se is a gallery of AI-generated Remotion videos. Users can find videos with faceted filters, edit text and colors inline, and keep private starred collections through Google sign-in.
 
-The live site is at https://sunmer.github.io/voodoo/. Each push to `main` deploys it through GitHub Pages.
+The Firebase-hosted site is at https://cliphouse-app.web.app/. The production domain is https://cliphou.se/ after the Loopia DNS cutover. Pushes to `main` deploy through keyless GitHub Actions. The previous https://sunmer.github.io/voodoo/ address is retained.
+
+See [deployment.md](docs/deployment.md) for configuration and the Loopia cutover checklist.
 
 ## Run
 
@@ -12,6 +14,16 @@ npm run dev                 # http://localhost:5180/voodoo/
 npm run studio              # Remotion Studio
 node scripts/previews.mjs   # rebuild gallery posters and MP4 loops in public/previews
 ```
+
+## Accounts And Analytics
+
+Use `.env.example` to configure the public Firebase web settings and GA4 measurement ID. Never put a service-account key or OAuth client secret in a `VITE_` variable. Missing configuration leaves browsing and editing available but does not pretend to save bookmarks.
+
+Stars use `users/{uid}/bookmarks/{variantId}` in Firestore. Rules restrict all access to the account owner and validate the payload. Sign-out clears the visible collection. Existing `voodoo:` local-storage keys are intentionally retained so the rebrand does not discard edits on the same origin. Local edits cannot automatically transfer from the GitHub Pages origin to cliphou.se.
+
+Analytics loads automatically when configured, without a consent banner. The site sends explicit hash-route page views and a small set of actions, without account IDs or editable text. Disable automatic enhanced measurement on the GA4 web stream to avoid duplicate page views or automatic collection. Review consent obligations before public launch; this configuration is not a compliance guarantee.
+
+Google pop-ups can be blocked inside social apps. The error state permits retrying in a regular browser. Native iPhone sign-in still needs a real-device acceptance test before launch.
 
 ## Taxonomy
 
@@ -59,6 +71,8 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 
 ```bash
 npm run build
+npm test
+npm run test:rules          # requires Java 21 on PATH
 node scripts/smoke.cjs
 node scripts/smoke-ios.cjs
 node scripts/smoke-media.cjs
@@ -69,6 +83,20 @@ node scripts/smoke-editor-layout.cjs
 node scripts/smoke-editor-layout.cjs --ios
 node scripts/smoke-editor-layout.cjs --mobile
 ```
+
+Additional integration checks:
+
+```bash
+# Run a separate Vite server with VITE_GA_MEASUREMENT_ID=G-TEST123.
+URL=http://127.0.0.1:5181/voodoo/ node scripts/smoke-analytics.cjs
+
+# Start local emulators with project demo-cliphouse, then start Vite with
+# VITE_FIREBASE_EMULATORS=true and demo Firebase settings.
+firebase emulators:start --project demo-cliphouse --only auth,firestore
+URL=http://127.0.0.1:5182/voodoo/ node scripts/smoke-sync.cjs
+```
+
+The emulator switch is ignored in production builds. Security tests cover unauthenticated access, cross-account access, payload validation, and owner writes.
 
 Run the browser checks against the dev server, or set `URL` to the deployed site. Media checks cover viewport autoplay, background cleanup, blocked autoplay, reduced motion, complete editor loops, and Flex text fitting. Screenshots are viewport-sized and written under `/tmp/voodoo-*`.
 

@@ -1,4 +1,4 @@
-import {Download, Repeat2, Search, SlidersHorizontal, Wand2, X} from 'lucide-react';
+import {Download, Repeat2, Search, SlidersHorizontal, Star, Wand2, X} from 'lucide-react';
 import {useMemo, useState} from 'react';
 import {searchText, templates, variants, vocab, type Format, type Tone, type Variant} from '../catalog/catalog';
 import {SCENE_TYPES} from '../videos/vocab';
@@ -6,6 +6,7 @@ import {applyKit, kitActive, useBrandKit} from './brandKit';
 import {BrandKitPanel} from './BrandKitPanel';
 import {Header} from './Header';
 import {Media} from './Media';
+import {StarButton, useAccount} from './Account';
 
 type Sort = 'popular' | 'new' | 'remixed';
 type Energy = 'Calm' | 'Medium' | 'High';
@@ -36,6 +37,8 @@ function matches(v: Variant, f: Filters, skip?: keyof Filters) {
 }
 
 export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
+  const account = useAccount();
+  const [savedOnly, setSavedOnly] = useState(false);
   const kit = useBrandKit();
   const applied = kitActive(kit);
   const [kitOpen, setKitOpen] = useState(false);
@@ -53,8 +56,8 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
 
   const searched = useMemo(() => {
     const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-    return variants.filter((v) => terms.every((t) => searchText(v).includes(t)));
-  }, [q]);
+    return variants.filter((v) => (!savedOnly || account.saved.has(v.id)) && terms.every((t) => searchText(v).includes(t)));
+  }, [q, savedOnly, account.saved]);
 
   const count = (skip: keyof Filters, pred: (v: Variant) => boolean) => searched.filter((v) => matches(v, f, skip) && pred(v)).length;
 
@@ -168,6 +171,10 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
 
         <main>
           <div className="results-bar">
+            <div className="segmented collection-tabs" role="group" aria-label="Collection">
+              <button className={!savedOnly ? 'on' : ''} aria-pressed={!savedOnly} onClick={() => setSavedOnly(false)}>All videos</button>
+              <button className={savedOnly ? 'on' : ''} aria-pressed={savedOnly} onClick={() => setSavedOnly(true)}><Star size={14} /> Saved {account.user && <span>{account.saved.size}</span>}</button>
+            </div>
             <div className="results-count">
               <button className={`filters-toggle ${filtersOpen ? 'on' : ''}`} onClick={() => setFiltersOpen((o) => !o)} title="Filters">
                 <SlidersHorizontal size={15} />
@@ -189,11 +196,17 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
             </div>
           </div>
 
-          {results.length === 0 ? (
+          {savedOnly && !account.user ? (
+            <div className="empty"><Star size={24} /><span>Your starred videos live here.</span><button className="account-action" onClick={account.openAccount}>Sign in</button></div>
+          ) : savedOnly && !account.savedReady ? (
+            <div className="empty" role="status">{account.savedError || 'Connecting to your saved videos...'}
+              {account.savedError && <button className="link-btn" onClick={account.retry}>Try again</button>}
+            </div>
+          ) : results.length === 0 ? (
             <div className="empty">
-              No videos match.
-              <button className="link-btn" onClick={clear}>
-                Clear filters
+              {savedOnly && !active ? 'No starred videos yet.' : 'No videos match.'}
+              <button className="link-btn" onClick={savedOnly && !active ? () => setSavedOnly(false) : clear}>
+                {savedOnly && !active ? 'Browse videos' : 'Clear filters'}
               </button>
             </div>
           ) : (
@@ -202,11 +215,8 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                 const props = applied ? applyKit(v.props, kit) : null;
                 const theme = (props ?? v.props).theme;
                 return (
-                  <a
-                    key={v.id}
-                    href={`#/v/${v.id}`}
-                    className="card"
-                  >
+                  <article key={v.id} className="card">
+                    <a href={`#/v/${v.id}`} className="card-link" aria-label={`Edit ${v.title}`}>
                     <div className="card-media">
                       <Media variant={v} props={props} />
                       <span className="badge">
@@ -246,7 +256,9 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                         <span className="tag">{energyOf(v.energy)}</span>
                       </div>
                     </div>
-                  </a>
+                    </a>
+                    <StarButton id={v.id} title={v.title} />
+                  </article>
                 );
               })}
             </div>

@@ -1,0 +1,185 @@
+import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, type User} from 'firebase/auth';
+import {collection, deleteDoc, doc, onSnapshot, serverTimestamp, setDoc} from 'firebase/firestore';
+import {LogOut, Star, UserRound, X} from 'lucide-react';
+import {createContext, useContext, useEffect, useRef, useState, type ReactNode} from 'react';
+import {auth, db, firebaseConfigured} from '../services/firebase';
+import {track} from '../services/analytics';
+
+type AccountState = {
+  user: User | null;
+  ready: boolean;
+  savedReady: boolean;
+  savedError: string;
+  saved: Set<string>;
+  pending: Set<string>;
+  openAccount: () => void;
+  toggle: (id: string) => void;
+  retry: () => void;
+};
+const AccountContext = createContext<AccountState | null>(null);
+export function useAccount() {
+  const value = useContext(AccountContext);
+  if (!value) throw new Error('AccountProvider is required');
+  return value;
+}
+
+function messageFor(error: unknown) {
+  const code = (error as {code?: string})?.code;
+  if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return 'Sign-in was cancelled. You can try again.';
+  if (code === 'auth/popup-blocked') return 'Allow pop-ups for this site, then try again.';
+  if (code === 'auth/unauthorized-domain') return 'Google sign-in is not enabled for this domain yet.';
+  if (code === 'auth/network-request-failed' || code === 'unavailable') return 'Connection lost. Please reconnect and try again.';
+  if (code === 'permission-denied') return 'Your saved videos could not be accessed. Please sign out and sign in again.';
+  return 'Something went wrong. Please try again.';
+}
+
+export function AccountProvider({children}: {children: ReactNode}) {
+  const [user, setUser] = useState<User | null>(null);
+  const [ready, setReady] = useState(!firebaseConfigured);
+  const [saved, setSaved] = useState<Set<string>>(new Set());
+  const [savedReady, setSavedReady] = useState(false);
+  const [savedError, setSavedError] = useState('');
+  const [pending, setPending] = useState<Set<string>>(new Set());
+  const pendingKeys = useRef(new Set<string>());
+  const [revision, setRevision] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [intent, setIntent] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const dialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (!auth) return;
+    return onAuthStateChanged(auth, (next) => {
+      setUser(next);
+      setSaved(new Set());
+      setSavedReady(false);
+      setSavedError('');
+      setPending(new Set());
+      setReady(true);
+    }, (e) => { setError(messageFor(e)); setReady(true); });
+  }, []);
+
+  useEffect(() => {
+    if (!user || !db) return;
+    const uid = user.uid;
+    let active = true;
+    setSavedError('');
+    setSavedReady(false);
+    const stop = onSnapshot(collection(db, 'users', uid, 'bookmarks'), {includeMetadataChanges: true}, (snapshot) => {
+      if (!active || auth?.currentUser?.uid !== uid) return;
+      setSaved(new Set(snapshot.docs.map((item) => item.id)));
+      setSavedReady(!snapshot.metadata.fromCache);
+    }, (e) => {
+      if (!active) return;
+      setSavedError(messageFor(e));
+      setSavedReady(false);
+    });
+    return () => { active = false; stop(); };
+  }, [user, revision]);
+
+  useEffect(() => {
+    if (open) dialog.current?.showModal();
+    else dialog.current?.close();
+  }, [open]);
+
+  const close = () => { if (!busy) { setOpen(false); setIntent(null); setError(''); } };
+  const writeBookmark = async (id: string, add: boolean, uid: string) => {
+    if (!db || !navigator.onLine) {
+      setNotice('You are offline. Reconnect to save videos to your account.');
+      return;
+    }
+    const key = `${uid}/${id}`;
+    if (pendingKeys.current.has(key)) return;
+    pendingKeys.current.add(key);
+    setPending((old) => new Set(old).add(id));
+    setNotice('');
+    try {
+      const ref = doc(db, 'users', uid, 'bookmarks', id);
+      if (add) await setDoc(ref, {variantId: id, savedAt: serverTimestamp()});
+      else await deleteDoc(ref);
+      if (auth?.currentUser?.uid === uid) track(add ? 'bookmark_add' : 'bookmark_remove', {variant_id: id});
+    } catch (e) {
+      if (auth?.currentUser?.uid === uid) setNotice(messageFor(e));
+    } finally {
+      pendingKeys.current.delete(key);
+      if (auth?.currentUser?.uid === uid) {
+        setPending((old) => { const next = new Set(old); next.delete(id); return next; });
+      }
+    }
+  };
+  const toggle = (id: string) => {
+    if (!ready) return;
+    if (!user) { setIntent(id); setOpen(true); return; }
+    if (!savedReady) { setNotice(savedError || 'Saved videos are still connecting. Please try again shortly.'); return; }
+    void writeBookmark(id, !saved.has(id), user.uid);
+  };
+  const login = async () => {
+    if (!auth || busy) return;
+    setBusy(true);
+    setError('');
+    const selected = intent;
+    try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({prompt: 'select_account'});
+      const result = await signInWithPopup(auth, provider);
+      track('login', {method: 'Google'});
+      setOpen(false);
+      setIntent(null);
+      if (selected) void writeBookmark(selected, true, result.user.uid);
+    } catch (e) { setError(messageFor(e)); }
+    finally { setBusy(false); }
+  };
+  const logout = async () => {
+    if (!auth || busy) return;
+    setBusy(true);
+    setError('');
+    try { await signOut(auth); setOpen(false); }
+    catch (e) { setError(messageFor(e)); }
+    finally { setBusy(false); }
+  };
+
+  return (
+    <AccountContext.Provider value={{user, ready, savedReady, savedError, saved, pending, toggle,
+      retry: () => setRevision((n) => n + 1), openAccount: () => { setIntent(null); setOpen(true); }}}>
+      {children}
+      {notice && <div className="account-notice" role="status">{notice}<button className="icon-btn ghost" aria-label="Dismiss notification" onClick={() => setNotice('')}><X size={16} /></button></div>}
+      <dialog className="account-dialog" ref={dialog} aria-labelledby="account-title"
+        onCancel={(event) => { event.preventDefault(); close(); }} onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+        <div className="dialog-heading">
+          <h2 id="account-title">{user ? 'Your account' : 'Save your favorites'}</h2>
+          <button className="icon-btn ghost" aria-label="Close account" disabled={busy} onClick={close}><X size={18} /></button>
+        </div>
+        {user ? <>
+          <p className="account-name">{user.displayName || 'Google account'}</p>
+          <p className="muted account-email">{user.email}</p>
+          <p>{saved.size} starred {saved.size === 1 ? 'video' : 'videos'}</p>
+          <button className="account-action" onClick={logout} disabled={busy}><LogOut size={17} />{busy ? 'Signing out...' : 'Sign out'}</button>
+        </> : firebaseConfigured ? <>
+          <p className="muted">Sign in to keep your starred videos across devices.</p>
+          <button className="google-signin" onClick={login} disabled={busy}>{busy ? 'Signing in...' : 'Sign in with Google'}</button>
+        </> : <p className="muted">Google sign-in is not available yet. You can still browse and edit every video.</p>}
+        {error && <p className="account-error" role="alert">{error}</p>}
+        <a className="privacy-link" href="#/privacy" onClick={close}>Privacy</a>
+      </dialog>
+    </AccountContext.Provider>
+  );
+}
+
+export function AccountButton() {
+  const {user, ready, openAccount} = useAccount();
+  return <button className="account-button" onClick={openAccount} disabled={!ready}
+    title={user ? `Account: ${user.email}` : 'Sign in'} aria-label={user ? 'Your account' : 'Sign in'}>
+    <UserRound size={18} /><span>{user ? 'Account' : 'Sign in'}</span>
+  </button>;
+}
+
+export function StarButton({id, title, overlay = false}: {id: string; title: string; overlay?: boolean}) {
+  const {saved, pending, ready, toggle} = useAccount();
+  const active = saved.has(id);
+  const label = `${active ? 'Unstar' : 'Star'} ${title}`;
+  return <button className={`${overlay ? 'overlay-btn' : 'card-star'} star-button ${active ? 'starred' : ''}`}
+    title={label} aria-label={label} aria-pressed={active} aria-busy={pending.has(id)} disabled={!ready || pending.has(id)}
+    onClick={() => toggle(id)}><Star size={19} fill={active ? 'currentColor' : 'none'} /></button>;
+}

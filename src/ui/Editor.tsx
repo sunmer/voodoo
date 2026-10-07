@@ -8,6 +8,8 @@ import {applyKit, kitHasValues, useBrandKit} from './brandKit';
 import {derivePalettes} from './palettes';
 import {TextCanvas} from './TextCanvas';
 import {Timeline} from './Timeline';
+import {StarButton} from './Account';
+import {track} from '../services/analytics';
 
 const storageKey = (id: string) => `voodoo:v2:${id}`;
 type LockableOrientation = ScreenOrientation & {lock?: (orientation: 'landscape') => Promise<void>};
@@ -123,6 +125,7 @@ export function Editor({variant}: {variant: Variant}) {
     }
   };
   const download = () => {
+    track('download_props', {variant_id: variant.id});
     const blob = new Blob([JSON.stringify({template: variant.template, parent: variant.id, props}, null, 2)], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -168,6 +171,7 @@ export function Editor({variant}: {variant: Variant}) {
           </div>
         </div>
         <nav className="editor-tools" aria-label="Video tools">
+          <StarButton id={variant.id} title={variant.title} overlay />
           <button className="overlay-btn mobile-expand" title={expanded ? 'Exit fullscreen' : 'Fullscreen'} aria-label={expanded ? 'Exit fullscreen' : 'Fullscreen'}
             disabled={!!editing} onClick={toggleExpanded}>{expanded ? <Minimize size={20} /> : <Maximize size={20} />}</button>
           {kitDiffers && <button className="overlay-btn kit-apply" title="Apply brand kit" aria-label="Apply brand kit"

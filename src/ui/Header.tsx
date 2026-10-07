@@ -1,14 +1,16 @@
-import {Sparkles} from 'lucide-react';
+import {Scissors} from 'lucide-react';
 import type {ReactNode} from 'react';
+import {AccountButton} from './Account';
 
 export function Header({children}: {children?: ReactNode}) {
   return (
     <header className="topbar">
       <a className="logo" href="#/">
-        <Sparkles size={18} />
-        voodoo
+        <Scissors size={22} />
+        cliphou.se
       </a>
       <div className="topbar-slot">{children}</div>
+      <AccountButton />
     </header>
   );
 }
