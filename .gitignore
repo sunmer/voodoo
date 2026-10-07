@@ -1,6 +1,7 @@
 node_modules
 dist
 out
+render-bundle
 .env
 .env.*
 !.env.example

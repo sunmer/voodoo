@@ -1,5 +1,5 @@
 import {Player, type PlayerRef} from '@remotion/player';
-import {ArrowLeft, Check, Copy, Download, Maximize, Minimize, Pause, Play, Redo2, RotateCcw, Shuffle, Undo2, Wand2} from 'lucide-react';
+import {ArrowLeft, Check, Copy, Maximize, Minimize, Pause, Play, Redo2, RotateCcw, Shuffle, Undo2, Wand2} from 'lucide-react';
 import {useCallback, useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import type {Variant} from '../catalog/catalog';
 import {THEME_LABELS, THEME_ROLES, type Role, type VideoProps} from '../videos/contract';
@@ -9,7 +9,7 @@ import {derivePalettes} from './palettes';
 import {TextCanvas} from './TextCanvas';
 import {Timeline} from './Timeline';
 import {StarButton} from './Account';
-import {track} from '../services/analytics';
+import {ShareButton} from './Share';
 
 const storageKey = (id: string) => `voodoo:v2:${id}`;
 type LockableOrientation = ScreenOrientation & {lock?: (orientation: 'landscape') => Promise<void>};
@@ -28,15 +28,16 @@ function useHistory(initial: VideoProps) {
   return {props: state.now, set, undo, redo, canUndo: state.past.length > 0, canRedo: state.future.length > 0};
 }
 
-export function Editor({variant}: {variant: Variant}) {
+export function Editor({variant, sharedProps, shareId}: {variant: Variant; sharedProps?: VideoProps; shareId?: string}) {
   const c = compositions[variant.template];
   const kit = useBrandKit();
   const initial = useMemo(() => {
+    if (sharedProps) return sharedProps;
     try {
       const result = c.schema.safeParse(JSON.parse(localStorage.getItem(storageKey(variant.id)) ?? 'null'));
       return result.success ? result.data as VideoProps : variant.props;
     } catch { return variant.props; }
-  }, [c, variant]);
+  }, [c, variant, sharedProps]);
   const h = useHistory(initial);
   const {props} = h;
   const player = useRef<PlayerRef>(null);
@@ -53,9 +54,9 @@ export function Editor({variant}: {variant: Variant}) {
 
   useEffect(() => {
     setHexes(props.theme);
-    try { localStorage.setItem(storageKey(variant.id), JSON.stringify(props)); }
-    catch { setNotice('Changes could not be saved on this device. Download a copy to keep them.'); }
-  }, [props, variant.id]);
+    try { localStorage.setItem(storageKey(shareId ? `share:${shareId}` : variant.id), JSON.stringify(props)); }
+    catch { setNotice('Changes could not be saved on this device. Share this edit to keep a copy.'); }
+  }, [props, variant.id, shareId]);
   useEffect(() => {
     const p = player.current;
     const on = () => setPlaying(true);
@@ -124,23 +125,13 @@ export function Editor({variant}: {variant: Variant}) {
       }
     }
   };
-  const download = () => {
-    track('download_props', {variant_id: variant.id});
-    const blob = new Blob([JSON.stringify({template: variant.template, parent: variant.id, props}, null, 2)], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${variant.id}.props.json`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
   const copyRender = async () => {
     const json = JSON.stringify(props).replace(/'/g, `'\\''`);
     try {
       await navigator.clipboard.writeText(`npx remotion render src/remotion/index.ts ${variant.template} out/${variant.id}.mp4 --props='${json}'`);
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
-    } catch { setNotice('Clipboard is unavailable. Download your edits instead.'); }
+    } catch { setNotice('Clipboard is unavailable. Use Share to keep a copy of your edit.'); }
   };
   const changeHex = (key: typeof THEME_ROLES[number], value: string) => {
     setHexes((old) => ({...old, [key]: value}));
@@ -151,7 +142,7 @@ export function Editor({variant}: {variant: Variant}) {
     <main className="editor-page">
       <div ref={immersive} className={`immersive-editor ${c.width > c.height ? 'landscape-video' : ''} ${expanded ? 'expanded' : ''}`} style={{'--video-ratio': c.width / c.height} as CSSProperties}>
         <header className="editor-top">
-          <a className="overlay-btn" href="#/" title="All videos" aria-label="All videos"><ArrowLeft size={20} /></a>
+          <a className="overlay-btn" href={`${import.meta.env.BASE_URL}#/`} title="All videos" aria-label="All videos"><ArrowLeft size={20} /></a>
           <h1>{variant.title}</h1>
           <div className="editor-history">
             <button className="overlay-btn" title="Undo" aria-label="Undo" disabled={!h.canUndo || !!editing} onClick={h.undo}><Undo2 size={18} /></button>
@@ -178,7 +169,8 @@ export function Editor({variant}: {variant: Variant}) {
             disabled={!!editing} onClick={() => h.set(kitProps!)}><Wand2 size={20} /></button>}
           <button className="overlay-btn" title="Reset to original" aria-label="Reset to original"
             disabled={!!editing || JSON.stringify(props) === JSON.stringify(variant.props)} onClick={() => h.set(variant.props)}><RotateCcw size={20} /></button>
-          <button className="overlay-btn" title="Download props JSON" aria-label="Download props JSON" disabled={!!editing} onClick={download}><Download size={20} /></button>
+          <ShareButton variant={variant} props={props} disabled={!!editing}
+            beforeOpen={() => { player.current?.pause(); if (document.fullscreenElement) void document.exitFullscreen().catch(() => {}); }} />
           <button className={`overlay-btn ${copied ? 'confirmed' : ''}`} title="Copy render command" aria-label="Copy render command" disabled={!!editing} onClick={copyRender}>
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>

@@ -1,0 +1,16 @@
+*
+!package.json
+!package-lock.json
+!src
+!src/**
+!public
+!public/**
+!scripts
+!scripts/build-share.mjs
+!server
+!server/**
+!dist
+!dist/**
+!dist/.vite
+!dist/.vite/**
+!Dockerfile

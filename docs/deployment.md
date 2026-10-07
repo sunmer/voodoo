@@ -8,6 +8,8 @@
 - GA4 loads automatically without a consent banner, as requested by the operator.
 - GitHub remains the source repository: `sunmer/voodoo`.
 
+The saved-video sharing service is implemented but needs billing approval before activation. See [sharing.md](sharing.md). Keep `VITE_SHARE_API_ORIGIN` unset until that service is deployed; the workflow then retains static hosting.
+
 Project ID: `cliphouse-app`. Firestore is in `europe-north1`. GA4 property: `558014868`; web stream: `16063585293`; measurement ID: `G-P7DHJKS5RW`. Use an explicit `--project` argument for every cloud operation. Do not change the global gcloud project or use the existing Autorank backend.
 
 ## Launch Gate

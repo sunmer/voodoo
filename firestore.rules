@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Publishing and public access pass through the validated share service.
+    match /users/{uid}/shares/{shareId} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+    }
     match /users/{uid}/bookmarks/{variantId} {
       function owner() {
         return request.auth != null && request.auth.uid == uid;

@@ -49,3 +49,24 @@ test('invalid payloads, forged timestamps, extra fields and unrelated paths are 
   await assertFails(setDoc(doc(db, 'users/alice'), {admin: true}));
   await assertFails(getDocs(collection(db, 'users')));
 });
+
+test('share metadata is private and publishing cannot bypass the backend', async () => {
+  await env.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users/alice/shares/test-share'), {id: 'test-share', title: 'Private list', createdAt: 1});
+    await setDoc(doc(context.firestore(), 'shares/test-share'), {owner: 'alice', props: {}});
+  });
+  const alice = env.authenticatedContext('alice').firestore();
+  await assertSucceeds(getDocs(collection(alice, 'users/alice/shares')));
+  for (const context of [env.authenticatedContext('alice'), env.authenticatedContext('bob'), env.unauthenticatedContext()]) {
+    const db = context.firestore();
+    await assertFails(getDoc(doc(db, 'shares/test-share')));
+    await assertFails(setDoc(doc(db, 'shares/test-share'), {owner: 'alice', props: {}}));
+    await assertFails(setDoc(doc(db, 'users/alice/shares/test-share'), {title: 'Forged'}));
+    await assertFails(deleteDoc(doc(db, 'users/alice/shares/test-share')));
+    await assertFails(getDocs(collection(db, 'shareJobs')));
+    await assertFails(setDoc(doc(db, 'shareQuota/today'), {count: 0}));
+  }
+  for (const context of [env.authenticatedContext('bob'), env.unauthenticatedContext()]) {
+    await assertFails(getDocs(collection(context.firestore(), 'users/alice/shares')));
+  }
+});

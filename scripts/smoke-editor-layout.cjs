@@ -62,9 +62,9 @@ async function check(engine, options, name) {
     await input.waitFor();
     await page.getByRole('button', {name: 'Cancel edit', exact: true}).click();
     assert(await page.getByRole('button', {name: 'Play', exact: true}).isVisible());
-    const downloadPromise = page.waitForEvent('download');
-    await page.getByRole('button', {name: 'Download props JSON', exact: true}).click();
-    assert.equal((await downloadPromise).suggestedFilename(), 'drop-sale.props.json');
+    await page.getByRole('button', {name: 'Share video', exact: true}).click();
+    await page.getByRole('dialog', {name: 'Share video'}).waitFor({state: 'visible'});
+    await page.getByRole('button', {name: 'Close share', exact: true}).click();
     await page.getByRole('textbox', {name: 'Background hex', exact: true}).fill('#123456');
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('voodoo:v2:drop-sale')).theme.background), '#123456');
     await page.getByRole('button', {name: 'Undo', exact: true}).click();
@@ -113,7 +113,7 @@ async function check(engine, options, name) {
     assert.equal(texts.point2, 'Only this one');
     assert.equal(texts.point3, 'Shared');
     assert.deepEqual(errors, []);
-    console.log(`${name}: layout, fullscreen fallback, live click, validation, cancel, save, download, theme undo, duplicate text roles passed`);
+    console.log(`${name}: layout, fullscreen fallback, live click, validation, cancel, save, share, theme undo, duplicate text roles passed`);
   } finally { await browser.close(); }
 }
 

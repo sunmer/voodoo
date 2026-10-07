@@ -105,9 +105,9 @@ h1, h2, h3 { margin: 0; }
 .card-title > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .palette { display: flex; flex: none; }
 .palette span { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--panel); margin-left: -5px; }
-.card-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 12.5px; }
-.stats { display: flex; gap: 12px; }
-.stats span { display: inline-flex; align-items: center; gap: 4px; }
+.card-edit { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; margin: 0 14px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); font-weight: 600; }
+.card-edit:hover { border-color: var(--accent); }
+.card-edit:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .tag { padding: 2px 7px; border-radius: 4px; background: var(--panel-2); color: var(--muted); font-size: 11.5px; }
 .tag.strong { color: var(--text); }
@@ -295,11 +295,25 @@ h1, h2, h3 { margin: 0; }
   background: var(--panel); color: var(--text); box-shadow: 0 16px 80px #0008;
 }
 .account-dialog::backdrop { background: #0009; }
+.share-dialog { width: min(460px, calc(100vw - 32px)); }
+.share-preview { display: block; width: 100%; max-height: 38dvh; aspect-ratio: 16 / 9; object-fit: contain; background: #000; margin-top: 18px; }
+.share-link-label { display: block; margin: 18px 0 6px; color: var(--muted); font-size: 12px; }
+.share-link { width: 100%; min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--text); font-size: 14px; }
+.share-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.shared-status { min-height: 70dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; gap: 16px; text-align: center; }
+.shared-status h1 { font-size: 22px; }
+.spin { animation: share-spin 1s linear infinite; }
+@keyframes share-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
 .dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .dialog-heading h2 { font-size: 19px; }
 .account-dialog p { line-height: 1.6; }
 .account-name { margin-bottom: 0; font-weight: 600; }
 .account-email { margin-top: 4px; overflow-wrap: anywhere; }
+.account-shares { margin: 18px 0; }
+.account-shares h3 { font-size: 13px; margin-bottom: 8px; color: var(--muted); }
+.account-share { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 42px; border-bottom: 1px solid var(--line); }
+.account-share a { overflow-wrap: anywhere; }
 .google-signin { width: 100%; margin: 8px 0 20px; background: #f2f2f2; color: #1f1f1f; font-family: Arial, sans-serif; font-weight: 500; }
 .privacy-link { display: block; margin-top: 18px; width: fit-content; color: var(--muted); text-decoration: underline; }
 .account-error { color: var(--danger); }

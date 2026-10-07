@@ -1,4 +1,4 @@
-import {Download, Repeat2, Search, SlidersHorizontal, Star, Wand2, X} from 'lucide-react';
+import {Pencil, Search, SlidersHorizontal, Star, Wand2, X} from 'lucide-react';
 import {useMemo, useState} from 'react';
 import {searchText, templates, variants, vocab, type Format, type Tone, type Variant} from '../catalog/catalog';
 import {SCENE_TYPES} from '../videos/vocab';
@@ -8,7 +8,7 @@ import {Header} from './Header';
 import {Media} from './Media';
 import {StarButton, useAccount} from './Account';
 
-type Sort = 'popular' | 'new' | 'remixed';
+type Sort = 'featured' | 'new';
 type Energy = 'Calm' | 'Medium' | 'High';
 type Filters = {
   template: string | null;
@@ -21,7 +21,6 @@ type Filters = {
 };
 
 export const energyOf = (n: number): Energy => (n <= 2 ? 'Calm' : n === 3 ? 'Medium' : 'High');
-const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
 const FORMATS: Format[] = ['16:9', '9:16', '1:1', '4:5'];
 const SCENE_FILTERS = Object.entries(SCENE_TYPES).filter(([k]) => k !== 'transition');
 
@@ -43,7 +42,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
   const applied = kitActive(kit);
   const [kitOpen, setKitOpen] = useState(false);
   const [q, setQ] = useState('');
-  const [sort, setSort] = useState<Sort>('popular');
+  const [sort, setSort] = useState<Sort>('featured');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [f, setF] = useState<Filters>({template: initialTemplate, purpose: null, formats: [], styles: [], tones: [], energy: null, scenes: []});
 
@@ -62,12 +61,8 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
   const count = (skip: keyof Filters, pred: (v: Variant) => boolean) => searched.filter((v) => matches(v, f, skip) && pred(v)).length;
 
   const results = useMemo(() => {
-    const key: Record<Sort, (v: Variant) => number> = {
-      popular: (v) => v.stats.exports,
-      remixed: (v) => v.stats.remixes,
-      new: (v) => Date.parse(v.createdAt),
-    };
-    return searched.filter((v) => matches(v, f)).sort((a, b) => key[sort](b) - key[sort](a));
+    const matching = searched.filter((v) => matches(v, f));
+    return sort === 'new' ? matching.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) : matching;
   }, [searched, f, sort]);
 
   const active = Boolean(q || f.template || f.purpose || f.formats.length || f.styles.length || f.tones.length || f.energy || f.scenes.length);
@@ -159,7 +154,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                 return (
                   <button key={t.id} className={`row-btn ${f.template === t.id ? 'on' : ''}`} onClick={() => set('template', f.template === t.id ? null : t.id)}>
                     <span>
-                      {t.title} <span className="muted small">@{t.creator}</span>
+                      {t.title}
                     </span>
                     <span className="count">{n}</span>
                   </button>
@@ -187,10 +182,10 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                 </button>
               )}
             </div>
-            <div className="segmented" role="tablist">
-              {(['popular', 'new', 'remixed'] as Sort[]).map((s) => (
-                <button key={s} className={sort === s ? 'on' : ''} onClick={() => setSort(s)}>
-                  {s === 'popular' ? 'Popular' : s === 'new' ? 'Newest' : 'Most remixed'}
+            <div className="segmented" role="group" aria-label="Sort videos">
+              {(['featured', 'new'] as Sort[]).map((s) => (
+                <button key={s} className={sort === s ? 'on' : ''} aria-pressed={sort === s} onClick={() => setSort(s)}>
+                  {s === 'featured' ? 'Featured' : 'Newest'}
                 </button>
               ))}
             </div>
@@ -232,19 +227,6 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                           ))}
                         </div>
                       </div>
-                      <div className="card-meta">
-                        <span>
-                          @{v.creator} · {v.tmpl.title}
-                        </span>
-                        <span className="stats">
-                          <span title="Exports">
-                            <Download size={13} /> {fmt(v.stats.exports)}
-                          </span>
-                          <span title="Remixes">
-                            <Repeat2 size={13} /> {fmt(v.stats.remixes)}
-                          </span>
-                        </span>
-                      </div>
                       <div className="tags">
                         <span className="tag strong">{v.purpose}</span>
                         <span className="tag">{v.placement[0]}</span>
@@ -257,6 +239,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                       </div>
                     </div>
                     </a>
+                    <a className="card-edit" href={`#/v/${v.id}`} aria-label={`Edit ${v.title}`}><Pencil size={15} />Edit</a>
                     <StarButton id={v.id} title={v.title} />
                   </article>
                 );

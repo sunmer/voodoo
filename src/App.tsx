@@ -4,10 +4,13 @@ import {Editor} from './ui/Editor';
 import {Gallery} from './ui/Gallery';
 import {SiteFooter, PrivacyPage} from './ui/Privacy';
 import {trackPage} from './services/analytics';
+import {SharedVideo} from './ui/SharedVideo';
 
-type Route = {view: 'editor'; id: string} | {view: 'gallery'; params: URLSearchParams} | {view: 'privacy'};
+type Route = {view: 'editor'; id: string} | {view: 'shared'; id: string} | {view: 'gallery'; params: URLSearchParams} | {view: 'privacy'};
 
 function readRoute(): Route {
+  const shared = location.pathname.match(/^\/s\/([A-Za-z0-9_-]{24,64})\/?$/);
+  if (shared && !location.hash) return {view: 'shared', id: shared[1]};
   const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
   if (hash === 'privacy') return {view: 'privacy'};
   const m = hash.match(/^v\/([^?]+)/);
@@ -26,13 +29,13 @@ export function App() {
   const variant = route.view === 'editor' ? variants.find((v) => v.id === route.id) : undefined;
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = variant ? `${variant.title} | cliphou.se` : route.view === 'privacy' ? 'Privacy | cliphou.se' : 'cliphou.se';
-    trackPage(route.view === 'privacy' ? 'privacy' : variant?.id);
+    if (route.view !== 'shared') document.title = variant ? `${variant.title} | cliphou.se` : route.view === 'privacy' ? 'Privacy | cliphou.se' : 'cliphou.se';
+    trackPage(route.view === 'shared' ? 'shared-video' : route.view === 'privacy' ? 'privacy' : variant?.id);
   }, [variant?.id, route.view]);
 
   const template = route.view === 'gallery' ? route.params.get('template') : null;
   return <>
-    {variant ? <Editor key={variant.id} variant={variant} /> : route.view === 'privacy' ? <PrivacyPage /> : <Gallery key={template ?? 'all'} initialTemplate={template} />}
+    {route.view === 'shared' ? <SharedVideo key={route.id} id={route.id} /> : variant ? <Editor key={variant.id} variant={variant} /> : route.view === 'privacy' ? <PrivacyPage /> : <Gallery key={template ?? 'all'} initialTemplate={template} />}
     <SiteFooter />
   </>;
 }

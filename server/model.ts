@@ -1,0 +1,92 @@
+import {createHash} from 'node:crypto';
+import manifest from '../src/catalog/manifest.json' with {type: 'json'};
+import {templateMeta} from '../src/videos/meta.ts';
+import {ROLES, THEME_ROLES} from '../src/videos/vocab.ts';
+import type {VideoProps} from '../src/videos/vocab.ts';
+
+export class HttpError extends Error {
+  constructor(public status: number, message: string) { super(message); }
+}
+export const validId = (id: string) => /^[A-Za-z0-9_-]{24,64}$/.test(id);
+const object = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object' && !Array.isArray(value);
+function exactKeys(value: unknown, keys: string[]): value is Record<string, unknown> {
+  return object(value) && Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
+}
+
+export function validateShare(body: unknown) {
+  if (!exactKeys(body, ['variantId', 'props'])) throw new HttpError(400, 'Invalid video.');
+  const variant = manifest.variants.find((v) => v.id === body.variantId);
+  if (!variant || !exactKeys(body.props, ['texts', 'theme'])) throw new HttpError(400, 'Invalid video.');
+  const {texts, theme} = body.props;
+  const roles = Object.keys(variant.props.texts) as (keyof typeof ROLES)[];
+  if (!exactKeys(texts, roles) || !exactKeys(theme, [...THEME_ROLES])) throw new HttpError(400, 'Invalid video fields.');
+  for (const role of roles) {
+    const text = texts[role];
+    if (typeof text !== 'string' || !text.trim() || text.length > ROLES[role].max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(text)) {
+      throw new HttpError(400, 'Video text is invalid or too long.');
+    }
+  }
+  for (const role of THEME_ROLES) {
+    if (typeof theme[role] !== 'string' || !/^#[a-f0-9]{6}$/i.test(theme[role] as string)) throw new HttpError(400, 'Invalid video color.');
+  }
+  // Canonical key order makes retries of an identical edit idempotent.
+  const props = {
+    texts: Object.fromEntries(roles.map((role) => [role, texts[role]])),
+    theme: Object.fromEntries(THEME_ROLES.map((role) => [role, theme[role]])),
+  } as VideoProps;
+  return {variantId: variant.id, template: variant.template, props,
+    title: props.texts.headline || props.texts.brand || variant.title, meta: templateMeta[variant.template]};
+}
+export type Snapshot = ReturnType<typeof validateShare>;
+export type Published = Omit<Snapshot, 'meta'> & {id: string; owner: string; status: string; createdAt: number};
+export const fingerprint = (uid: string, value: Snapshot, version: string) =>
+  createHash('sha256').update(JSON.stringify([uid, version, value.variantId, value.props])).digest('hex');
+
+export function publicVideo(video: Published, origin: string) {
+  return {id: video.id, variantId: video.variantId, props: video.props, title: video.title,
+    url: `${origin}/s/${video.id}`, image: `${origin}/s/${video.id}/preview.jpg`, video: `${origin}/s/${video.id}/video.mp4`};
+}
+const escape = (text: string) => text.replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]!));
+export function shareHtml(video: Published, origin: string, assets: {file: string; css?: string[]}) {
+  const data = publicVideo(video, origin);
+  const meta = templateMeta[video.template];
+  const description = video.props.texts.subhead || 'Watch this video or make your own edit.';
+  const imageHeight = Math.round(meta.height * 900 / meta.width);
+  const scale = 640 / Math.max(meta.width, meta.height);
+  const videoWidth = Math.round(meta.width * scale / 2) * 2;
+  const videoHeight = Math.round(meta.height * scale / 2) * 2;
+  const tag = (property: string, value: string | number) => `<meta property="${property}" content="${escape(String(value))}">`;
+  return `<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><meta name="theme-color" content="#0e0f12">
+<title>${escape(data.title)} | cliphou.se</title>
+<meta name="description" content="${escape(description)}">
+<link rel="canonical" href="${data.url}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+${tag('og:type', 'video.other')}${tag('og:site_name', 'cliphou.se')}${tag('og:title', data.title)}
+${tag('og:description', description)}${tag('og:url', data.url)}
+${tag('og:image', data.image)}${tag('og:image:secure_url', data.image)}${tag('og:image:type', 'image/jpeg')}
+${tag('og:image:width', 900)}${tag('og:image:height', imageHeight)}${tag('og:image:alt', data.title)}
+${tag('og:video', data.video)}${tag('og:video:secure_url', data.video)}${tag('og:video:type', 'video/mp4')}
+${tag('og:video:width', videoWidth)}${tag('og:video:height', videoHeight)}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escape(data.title)}">
+<meta name="twitter:image" content="${data.image}">
+<meta name="twitter:image:alt" content="${escape(data.title)}">
+${(assets.css || []).map((file) => `<link rel="stylesheet" href="/${escape(file)}">`).join('')}
+<script type="module" crossorigin src="/${escape(assets.file)}"></script>
+</head><body><div id="root"></div><noscript>
+<h1>${escape(data.title)}</h1><video controls playsinline poster="${data.image}" src="${data.video}" style="max-width:100%;max-height:80vh"></video>
+<p><a href="/">Browse cliphou.se</a></p></noscript></body></html>`;
+}
+
+export function byteRange(header: string | undefined, size: number) {
+  if (!header) return null;
+  const match = /^bytes=(\d*)-(\d*)$/.exec(header);
+  if (!match || (!match[1] && !match[2])) throw new HttpError(416, 'Invalid byte range.');
+  const start = match[1] ? Number(match[1]) : Math.max(0, size - Number(match[2]));
+  const end = match[1] && match[2] ? Math.min(Number(match[2]), size - 1) : size - 1;
+  if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= size) throw new HttpError(416, 'Invalid byte range.');
+  return {start, end};
+}

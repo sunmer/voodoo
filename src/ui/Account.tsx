@@ -1,9 +1,10 @@
 import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, type User} from 'firebase/auth';
-import {collection, deleteDoc, doc, onSnapshot, serverTimestamp, setDoc} from 'firebase/firestore';
-import {LogOut, Star, UserRound, X} from 'lucide-react';
+import {collection, deleteDoc, doc, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc} from 'firebase/firestore';
+import {LogOut, Star, Trash2, UserRound, X} from 'lucide-react';
 import {createContext, useContext, useEffect, useRef, useState, type ReactNode} from 'react';
 import {auth, db, firebaseConfigured} from '../services/firebase';
 import {track} from '../services/analytics';
+import {deleteSharedVideo} from '../services/sharing';
 
 type AccountState = {
   user: User | null;
@@ -47,6 +48,9 @@ export function AccountProvider({children}: {children: ReactNode}) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [shares, setShares] = useState<{id: string; title: string}[]>([]);
+  const [sharesError, setSharesError] = useState('');
+  const [deleting, setDeleting] = useState('');
   const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -83,6 +87,22 @@ export function AccountProvider({children}: {children: ReactNode}) {
     if (open) dialog.current?.showModal();
     else dialog.current?.close();
   }, [open]);
+  useEffect(() => {
+    setShares([]);
+    setSharesError('');
+    if (!open || !user || !db) return;
+    return onSnapshot(query(collection(db, 'users', user.uid, 'shares'), orderBy('createdAt', 'desc'), limit(20)), (snapshot) => {
+      setShares(snapshot.docs.map((item) => ({id: item.id, title: String(item.data().title)})));
+    }, () => setSharesError('Published links could not be loaded.'));
+  }, [open, user]);
+  const removeShare = async (id: string) => {
+    if (deleting || !window.confirm('Remove this public link? Copies already saved by other apps may remain.')) return;
+    setDeleting(id);
+    setSharesError('');
+    try { await deleteSharedVideo(id); }
+    catch (e) { setSharesError((e as Error).message); }
+    finally { setDeleting(''); }
+  };
 
   const close = () => { if (!busy) { setOpen(false); setIntent(null); setError(''); } };
   const writeBookmark = async (id: string, add: boolean, uid: string) => {
@@ -148,16 +168,25 @@ export function AccountProvider({children}: {children: ReactNode}) {
       <dialog className="account-dialog" ref={dialog} aria-labelledby="account-title"
         onCancel={(event) => { event.preventDefault(); close(); }} onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
         <div className="dialog-heading">
-          <h2 id="account-title">{user ? 'Your account' : 'Save your favorites'}</h2>
+          <h2 id="account-title">{user ? 'Your account' : 'Sign in'}</h2>
           <button className="icon-btn ghost" aria-label="Close account" disabled={busy} onClick={close}><X size={18} /></button>
         </div>
         {user ? <>
           <p className="account-name">{user.displayName || 'Google account'}</p>
           <p className="muted account-email">{user.email}</p>
           <p>{saved.size} starred {saved.size === 1 ? 'video' : 'videos'}</p>
+          {shares.length > 0 && <section className="account-shares" aria-label="Published links">
+            <h3>Published links</h3>
+            {shares.map((share) => <div className="account-share" key={share.id}>
+              <a href={`/s/${share.id}`} onClick={close}>{share.title}</a>
+              <button className="icon-btn ghost" title={`Remove ${share.title}`} aria-label={`Remove ${share.title}`}
+                disabled={!!deleting} onClick={() => void removeShare(share.id)}><Trash2 size={16} /></button>
+            </div>)}
+          </section>}
+          {sharesError && <p className="account-error" role="alert">{sharesError}</p>}
           <button className="account-action" onClick={logout} disabled={busy}><LogOut size={17} />{busy ? 'Signing out...' : 'Sign out'}</button>
         </> : firebaseConfigured ? <>
-          <p className="muted">Sign in to keep your starred videos across devices.</p>
+          <p className="muted">Keep your starred videos and published links in your account.</p>
           <button className="google-signin" onClick={login} disabled={busy}>{busy ? 'Signing in...' : 'Sign in with Google'}</button>
         </> : <p className="muted">Google sign-in is not available yet. You can still browse and edit every video.</p>}
         {error && <p className="account-error" role="alert">{error}</p>}

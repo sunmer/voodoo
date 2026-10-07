@@ -24,6 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run test:sharing
+      - run: npx tsc -p tsconfig.server.json
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -37,10 +39,25 @@ jobs:
           VITE_FIREBASE_PROJECT_ID: ${{ vars.VITE_FIREBASE_PROJECT_ID }}
           VITE_FIREBASE_APP_ID: ${{ vars.VITE_FIREBASE_APP_ID }}
           VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
+          VITE_SHARE_API_ORIGIN: ${{ vars.VITE_SHARE_API_ORIGIN }}
       - uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: projects/879081005056/locations/global/workloadIdentityPools/github/providers/github
           service_account: cliphouse-deploy@cliphouse-app.iam.gserviceaccount.com
-      - run: npx firebase deploy --project cliphouse-app --only firestore:rules,hosting --non-interactive
+      - name: Deploy share service
+        if: ${{ vars.VITE_SHARE_API_ORIGIN != '' }}
+        run: >-
+          gcloud run deploy cliphouse-share --source . --project cliphouse-app
+          --region europe-west1 --service-account cliphouse-share@cliphouse-app.iam.gserviceaccount.com
+          --allow-unauthenticated --cpu 2 --memory 2Gi --concurrency 8
+          --min-instances 0 --max-instances 2 --timeout 300
+          --set-env-vars GOOGLE_CLOUD_PROJECT=cliphouse-app,SHARE_BUCKET=cliphouse-app-shares,PUBLIC_ORIGIN=https://cliphou.se,RENDER_VERSION=${{ github.sha }}
+          --quiet
+      - name: Deploy Hosting and rules
+        run: |
+          CONFIG=firebase.json
+          if [ -n "$SHARE_API_ORIGIN" ]; then CONFIG=firebase.sharing.json; fi
+          npx firebase deploy --project cliphouse-app --config "$CONFIG" --only firestore:rules,hosting --non-interactive
         env:
           GOOGLE_CLOUD_QUOTA_PROJECT: cliphouse-app
+          SHARE_API_ORIGIN: ${{ vars.VITE_SHARE_API_ORIGIN }}

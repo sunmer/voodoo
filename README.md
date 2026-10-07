@@ -5,6 +5,7 @@ cliphou.se is a gallery of AI-generated Remotion videos. Users can find videos w
 The Firebase-hosted site is at https://cliphouse-app.web.app/. The production domain is https://cliphou.se/ after the Loopia DNS cutover. Pushes to `main` deploy through keyless GitHub Actions. The previous https://sunmer.github.io/voodoo/ address is retained.
 
 See [deployment.md](docs/deployment.md) for configuration and the Loopia cutover checklist.
+See [sharing.md](docs/sharing.md) for saved video links, rendering, and the pending paid-service activation.
 
 ## Run
 
@@ -31,7 +32,7 @@ The catalog uses three levels:
 
 - **Template:** code in `src/videos/<id>/`. It sets the scenes, motion, and timing. Its technical facts, such as size, fps, duration, scenes, and motion, are in `meta.ts`.
 - **Variant:** an entry in `manifest.json`. It is a template plus preset text and theme values, plus curated facets: purpose, style, energy, and keywords. Users browse variants.
-- **Remix:** a user's edit of a variant. A downloaded props file records its `template` and `parent`.
+- **Remix:** a user's edit of a variant. Publishing saves its composition, MP4, and preview image behind an immutable share link.
 
 Facets come from different sources:
 
@@ -60,6 +61,7 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 - Click or tap visible text to pause and edit that role in place. Confirm to save one undo step, or cancel. Scene buttons expose later text without a separate text panel.
 - Theme controls sit below the video. Descriptions, template prompts, related videos, and taxonomy are not part of the editor.
 - Saved props are validated before loading. Invalid text cannot be committed. Changes remain available after reloading.
+- Share replaces the JSON download. Publishing requires Google sign-in; recipients can view without it. Live publishing stays unavailable until the rendering service is configured.
 
 ## Notes
 

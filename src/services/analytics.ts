@@ -8,6 +8,14 @@ type AnalyticsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
 };
 const target = window as AnalyticsWindow;
+function pageContext() {
+  const page = location.pathname.startsWith('/s/') ? 'shared-video' : location.hash.startsWith('#/v/') ? 'editor' : location.hash === '#/privacy' ? 'privacy' : 'gallery';
+  return {
+    page_title: `cliphou.se | ${page}`,
+    page_location: `${location.origin}${import.meta.env.BASE_URL}#/${page}`,
+    page_referrer: document.referrer ? new URL(document.referrer).origin : '',
+  };
+}
 
 export function startAnalytics() {
   if (loaded || !analyticsConfigured) return;
@@ -22,6 +30,7 @@ export function startAnalytics() {
   target.gtag('config', measurementId, {
     send_page_view: false, allow_google_signals: false,
     allow_ad_personalization_signals: false,
+    ...pageContext(),
   });
   const script = document.createElement('script');
   script.async = true;
@@ -29,11 +38,11 @@ export function startAnalytics() {
   document.head.append(script);
 }
 
-export function track(name: 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'download_props', params: Record<string, string> = {}) {
+export function track(name: 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'share_publish', params: Record<string, string> = {}) {
   if (!analyticsConfigured) return;
   startAnalytics();
   // No account identifiers, search queries, or edited text enter Analytics.
-  target.gtag?.('event', name, params);
+  target.gtag?.('event', name, {...pageContext(), ...params});
 }
 
 export function trackPage(id?: string) {
