@@ -1,4 +1,4 @@
-import React, {useId} from 'react';
+import React from 'react';
 import {
   AbsoluteFill,
   Easing,
@@ -52,18 +52,26 @@ const Backdrop: React.FC<{theme: Theme}> = ({theme}) => {
   );
 };
 
+// A small noise tile rasterized once; shifting it each frame reads as film grain
+// without re-running a full-frame SVG filter (too heavy for mobile Safari).
+const NOISE_TILE = `url("data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/></filter><rect width="240" height="240" filter="url(#n)"/></svg>',
+)}")`;
+
 const Grain: React.FC = () => {
   const frame = useCurrentFrame();
-  const id = useId().replace(/:/g, '');
+  const step = frame % 6;
   return (
-    <AbsoluteFill style={{opacity: 0.1, mixBlendMode: 'overlay', pointerEvents: 'none'}}>
-      <svg width="100%" height="100%">
-        <filter id={`grain${id}`}>
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves={2} seed={frame % 6} />
-        </filter>
-        <rect width="100%" height="100%" filter={`url(#grain${id})`} />
-      </svg>
-    </AbsoluteFill>
+    <AbsoluteFill
+      style={{
+        opacity: 0.1,
+        mixBlendMode: 'overlay',
+        pointerEvents: 'none',
+        backgroundImage: NOISE_TILE,
+        backgroundSize: '240px 240px',
+        backgroundPosition: `${(step * 97) % 240}px ${(step * 53) % 240}px`,
+      }}
+    />
   );
 };
 

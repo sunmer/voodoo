@@ -2,7 +2,7 @@
 const {chromium} = require('playwright');
 
 (async () => {
-  const base = process.env.URL || 'http://localhost:5180/';
+  const base = process.env.URL || 'http://localhost:5180/voodoo/';
   const browser = await chromium.launch();
   const errs = [];
   for (const vp of [{width: 1440, height: 900, n: 'desktop'}, {width: 390, height: 844, n: 'mobile'}]) {
