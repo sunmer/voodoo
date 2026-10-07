@@ -2,13 +2,13 @@ import type {IncomingMessage, ServerResponse} from 'node:http';
 import {pipeline} from 'node:stream/promises';
 import {HttpError, byteRange, fingerprint, publicVideo, shareHtml, validId, validateShare} from './model.ts';
 import type {createStore} from './store.ts';
-import type {renderVideo} from './render.ts';
+import type {renderThumbnail} from './render.ts';
 
 type Dependencies = {
   origin: string; origins: Set<string>; version: string;
   assets: {file: string; css?: string[]};
   store: ReturnType<typeof createStore>;
-  render: typeof renderVideo;
+  render: typeof renderThumbnail;
   verify: (token: string) => Promise<{uid: string; email_verified?: boolean; firebase?: {sign_in_provider: string}}>;
 };
 async function readBody(req: IncomingMessage) {
@@ -79,7 +79,7 @@ export function createHandler(deps: Dependencies) {
       }
       const api = pathname.match(/^\/api\/shares\/([^/]+)$/);
       const page = pathname.match(/^\/s\/([^/]+)\/?$/);
-      const asset = pathname.match(/^\/s\/([^/]+)\/(preview\.jpg|video\.mp4)$/);
+      const asset = pathname.match(/^\/s\/([^/]+)\/(preview\.jpg)$/);
       const id = api?.[1] || page?.[1] || asset?.[1];
       if (!id || !validId(id)) throw new HttpError(404, 'This shared video is unavailable.');
       if (api && req.method === 'DELETE') {
@@ -98,7 +98,7 @@ export function createHandler(deps: Dependencies) {
       }
       const file = await deps.store.asset(id, asset![2]);
       res.setHeader('Accept-Ranges', 'bytes');
-      res.setHeader('Content-Type', asset![2] === 'video.mp4' ? 'video/mp4' : 'image/jpeg');
+      res.setHeader('Content-Type', 'image/jpeg');
       let range;
       try { range = byteRange(req.headers.range, file.size); }
       catch (e) { res.setHeader('Content-Range', `bytes */${file.size}`); throw e; }

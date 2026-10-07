@@ -8,7 +8,7 @@
 - GA4 loads automatically without a consent banner, as requested by the operator.
 - GitHub remains the source repository: `sunmer/voodoo`.
 
-The saved-video sharing service is implemented but needs billing approval before activation. See [sharing.md](sharing.md). Keep `VITE_SHARE_API_ORIGIN` unset until that service is deployed; the workflow then retains static hosting.
+The saved-video sharing service is implemented but needs verified credit coverage before activation under the operator's conditional USD 1,000 launch budget. See [sharing.md](sharing.md) and [cost-budget.md](cost-budget.md). Keep `VITE_SHARE_API_ORIGIN` unset until that service is deployed; the workflow then retains static hosting.
 
 Project ID: `cliphouse-app`. Firestore is in `europe-north1`. GA4 property: `558014868`; web stream: `16063585293`; measurement ID: `G-P7DHJKS5RW`. Use an explicit `--project` argument for every cloud operation. Do not change the global gcloud project or use the existing Autorank backend.
 
@@ -68,6 +68,8 @@ Both domains are registered with Firebase Hosting. `www` redirects to the apex. 
 
 Wait until Firebase shows **Connected** and both domains pass HTTPS checks. Certificate provisioning can take up to 24 hours after correct DNS propagation. Start the cutover before the public launch.
 
+On October 8, 2026 (Europe/Stockholm), both domains passed strict Node TLS validation with Google Trust Services certificates listing their correct hostnames. `https://cliphou.se/` returned HTTP 200; `https://www.cliphou.se/` redirected to it over valid HTTPS. Firebase reported `HOST_ACTIVE`, `OWNERSHIP_ACTIVE`, and `CERT_PROPAGATING`; propagation can continue after one edge begins serving a valid certificate. No DNS or certificate configuration changes were needed.
+
 ## Quotas
 
 This is a video gallery, so watch Hosting data transfer as well as Firestore reads. The free Spark plan can stop serving after its allowance is exhausted. Do not assume a social launch will remain inside that allowance. Enabling paid usage is a separate billing decision; configure budget alerts first. Budget alerts are not spending caps.
@@ -83,7 +85,7 @@ This is a video gallery, so watch Hosting data transfer as well as Firestore rea
 - Real iPhone Safari and social in-app browser checks
 - Verify Analytics page views and actions in GA4 Realtime after deployment
 
-Review the published privacy notice before launch. Account deletion requests currently require operator handling: delete that user's bookmark documents as well as the Firebase Auth user. Deleting only the Auth user does not automatically delete Firestore documents.
+Review the published privacy notice before launch. Account deletion requests currently require operator handling: delete that user's bookmarks, private drafts, published share records, link index, and stored thumbnails as well as the Firebase Auth user. Deleting only the Auth user does not automatically delete Firestore documents or Cloud Storage objects.
 
 The operator requested automatic Analytics without a consent screen. Google Analytics policies and applicable local laws can still require consent or other controls. This implementation should not be represented as privacy-law compliant without review.
 

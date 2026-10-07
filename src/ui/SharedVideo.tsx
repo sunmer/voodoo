@@ -4,7 +4,7 @@ import {compositions} from '../videos/registry';
 import {loadSharedVideo, type SharedVideo as SharedVideoData} from '../services/sharing';
 import {Editor} from './Editor';
 
-export function SharedVideo({id}: {id: string}) {
+export function SharedVideo({id, openShare}: {id: string; openShare?: boolean}) {
   const [video, setVideo] = useState<SharedVideoData | null>(null);
   const [error, setError] = useState('');
   const [attempt, setAttempt] = useState(0);
@@ -20,7 +20,7 @@ export function SharedVideo({id}: {id: string}) {
     return () => controller.abort();
   }, [id, attempt]);
   const variant = video && variants.find((v) => v.id === video.variantId);
-  if (video && variant) return <Editor key={id} variant={variant} sharedProps={video.props} shareId={id} />;
+  if (video && variant) return <Editor key={id} variant={variant} sharedProps={video.props} shareId={id} published={video} openShare={openShare} />;
   return <main className="shared-status">
     <h1>{error ? 'Video unavailable' : 'Opening video...'}</h1>
     {error && <><p role="alert">{error}</p><button className="account-action" onClick={() => setAttempt((n) => n + 1)}>Try again</button></>}

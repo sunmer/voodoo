@@ -5,6 +5,7 @@ import {createContext, useContext, useEffect, useRef, useState, type ReactNode} 
 import {auth, db, firebaseConfigured} from '../services/firebase';
 import {track} from '../services/analytics';
 import {deleteSharedVideo} from '../services/sharing';
+import {deleteDraft} from '../services/drafts';
 
 type AccountState = {
   user: User | null;
@@ -14,6 +15,7 @@ type AccountState = {
   saved: Set<string>;
   pending: Set<string>;
   openAccount: () => void;
+  requireSignIn: () => Promise<User>;
   toggle: (id: string) => void;
   retry: () => void;
 };
@@ -51,6 +53,10 @@ export function AccountProvider({children}: {children: ReactNode}) {
   const [shares, setShares] = useState<{id: string; title: string}[]>([]);
   const [sharesError, setSharesError] = useState('');
   const [deleting, setDeleting] = useState('');
+  const [drafts, setDrafts] = useState<{id: string; title: string}[]>([]);
+  const [draftsError, setDraftsError] = useState('');
+  const [draftLimit, setDraftLimit] = useState(50);
+  const signInRequest = useRef<{resolve: (user: User) => void; reject: (error: Error) => void} | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -95,6 +101,22 @@ export function AccountProvider({children}: {children: ReactNode}) {
       setShares(snapshot.docs.map((item) => ({id: item.id, title: String(item.data().title)})));
     }, () => setSharesError('Published links could not be loaded.'));
   }, [open, user]);
+  useEffect(() => {
+    setDrafts([]);
+    setDraftsError('');
+    if (!open || !user || !db) return;
+    return onSnapshot(query(collection(db, 'users', user.uid, 'drafts'), orderBy('updatedAt', 'desc'), limit(draftLimit)), (snapshot) => {
+      setDrafts(snapshot.docs.map((item) => ({id: item.id, title: String(item.data().title)})));
+    }, () => setDraftsError('Saved videos could not be loaded.'));
+  }, [open, user, draftLimit]);
+  const removeDraft = async (id: string) => {
+    if (!user || deleting || !window.confirm('Delete this private saved video? Published links will remain unchanged.')) return;
+    setDeleting(id);
+    setDraftsError('');
+    try { await deleteDraft(user.uid, id); }
+    catch (e) { setDraftsError((e as Error).message); }
+    finally { setDeleting(''); }
+  };
   const removeShare = async (id: string) => {
     if (deleting || !window.confirm('Remove this public link? Copies already saved by other apps may remain.')) return;
     setDeleting(id);
@@ -104,7 +126,18 @@ export function AccountProvider({children}: {children: ReactNode}) {
     finally { setDeleting(''); }
   };
 
-  const close = () => { if (!busy) { setOpen(false); setIntent(null); setError(''); } };
+  const close = () => {
+    if (busy) return;
+    setOpen(false); setIntent(null); setError('');
+    signInRequest.current?.reject(new Error('Sign-in was cancelled. Your edits are still here.'));
+    signInRequest.current = null;
+  };
+  const requireSignIn = () => {
+    if (auth?.currentUser) return Promise.resolve(auth.currentUser);
+    if (signInRequest.current) return Promise.reject(new Error('Sign-in is already in progress.'));
+    setIntent(null); setError(''); setOpen(true);
+    return new Promise<User>((resolve, reject) => { signInRequest.current = {resolve, reject}; });
+  };
   const writeBookmark = async (id: string, add: boolean, uid: string) => {
     if (!db || !navigator.onLine) {
       setNotice('You are offline. Reconnect to save videos to your account.');
@@ -148,6 +181,8 @@ export function AccountProvider({children}: {children: ReactNode}) {
       setOpen(false);
       setIntent(null);
       if (selected) void writeBookmark(selected, true, result.user.uid);
+      signInRequest.current?.resolve(result.user);
+      signInRequest.current = null;
     } catch (e) { setError(messageFor(e)); }
     finally { setBusy(false); }
   };
@@ -161,7 +196,7 @@ export function AccountProvider({children}: {children: ReactNode}) {
   };
 
   return (
-    <AccountContext.Provider value={{user, ready, savedReady, savedError, saved, pending, toggle,
+    <AccountContext.Provider value={{user, ready, savedReady, savedError, saved, pending, toggle, requireSignIn,
       retry: () => setRevision((n) => n + 1), openAccount: () => { setIntent(null); setOpen(true); }}}>
       {children}
       {notice && <div className="account-notice" role="status">{notice}<button className="icon-btn ghost" aria-label="Dismiss notification" onClick={() => setNotice('')}><X size={16} /></button></div>}
@@ -175,6 +210,16 @@ export function AccountProvider({children}: {children: ReactNode}) {
           <p className="account-name">{user.displayName || 'Google account'}</p>
           <p className="muted account-email">{user.email}</p>
           <p>{saved.size} starred {saved.size === 1 ? 'video' : 'videos'}</p>
+          {drafts.length > 0 && <section className="account-shares" aria-label="Saved videos">
+            <h3>Saved videos</h3>
+            {drafts.map((draft) => <div className="account-share" key={draft.id}>
+              <a href={`${import.meta.env.BASE_URL}#/d/${draft.id}`} onClick={close}>{draft.title}</a>
+              <button className="icon-btn ghost" title={`Delete ${draft.title}`} aria-label={`Delete ${draft.title}`}
+                disabled={!!deleting} onClick={() => void removeDraft(draft.id)}><Trash2 size={16} /></button>
+            </div>)}
+            {drafts.length >= draftLimit && <button className="link-btn" onClick={() => setDraftLimit((n) => n + 50)}>Load more</button>}
+          </section>}
+          {draftsError && <p className="account-error" role="alert">{draftsError}</p>}
           {shares.length > 0 && <section className="account-shares" aria-label="Published links">
             <h3>Published links</h3>
             {shares.map((share) => <div className="account-share" key={share.id}>
@@ -186,7 +231,7 @@ export function AccountProvider({children}: {children: ReactNode}) {
           {sharesError && <p className="account-error" role="alert">{sharesError}</p>}
           <button className="account-action" onClick={logout} disabled={busy}><LogOut size={17} />{busy ? 'Signing out...' : 'Sign out'}</button>
         </> : firebaseConfigured ? <>
-          <p className="muted">Keep your starred videos and published links in your account.</p>
+          <p className="muted">Keep your saved videos, stars, and published links in your account.</p>
           <button className="google-signin" onClick={login} disabled={busy}>{busy ? 'Signing in...' : 'Sign in with Google'}</button>
         </> : <p className="muted">Google sign-in is not available yet. You can still browse and edit every video.</p>}
         {error && <p className="account-error" role="alert">{error}</p>}

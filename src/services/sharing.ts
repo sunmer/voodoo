@@ -3,7 +3,7 @@ import type {VideoProps} from '../videos/contract';
 
 const apiOrigin = (import.meta.env.VITE_SHARE_API_ORIGIN || '').replace(/\/$/, '');
 export const sharingConfigured = Boolean(apiOrigin);
-export type SharedVideo = {id: string; variantId: string; props: VideoProps; title: string; url: string; image: string; video: string};
+export type SharedVideo = {id: string; variantId: string; props: VideoProps; title: string; url: string; image: string};
 
 async function request(path: string, options: RequestInit = {}, authenticated = false) {
   const headers = new Headers(options.headers);

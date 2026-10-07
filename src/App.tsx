@@ -5,13 +5,18 @@ import {Gallery} from './ui/Gallery';
 import {SiteFooter, PrivacyPage} from './ui/Privacy';
 import {trackPage} from './services/analytics';
 import {SharedVideo} from './ui/SharedVideo';
+import {SavedVideo} from './ui/SavedVideo';
 
-type Route = {view: 'editor'; id: string} | {view: 'shared'; id: string} | {view: 'gallery'; params: URLSearchParams} | {view: 'privacy'};
+type Route = {view: 'editor'; id: string} | {view: 'shared'; id: string; openShare?: boolean} | {view: 'saved'; id: string} | {view: 'gallery'; params: URLSearchParams} | {view: 'privacy'};
 
 function readRoute(): Route {
   const shared = location.pathname.match(/^\/s\/([A-Za-z0-9_-]{24,64})\/?$/);
   if (shared && !location.hash) return {view: 'shared', id: shared[1]};
   const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  const saved = hash.match(/^d\/([A-Za-z0-9_-]{24,64})$/);
+  if (saved) return {view: 'saved', id: saved[1]};
+  const published = hash.match(/^s\/([A-Za-z0-9_-]{24,64})(\?share=1)?$/);
+  if (published) return {view: 'shared', id: published[1], openShare: !!published[2]};
   if (hash === 'privacy') return {view: 'privacy'};
   const m = hash.match(/^v\/([^?]+)/);
   if (m) return {view: 'editor', id: m[1]};
@@ -35,7 +40,7 @@ export function App() {
 
   const template = route.view === 'gallery' ? route.params.get('template') : null;
   return <>
-    {route.view === 'shared' ? <SharedVideo key={route.id} id={route.id} /> : variant ? <Editor key={variant.id} variant={variant} /> : route.view === 'privacy' ? <PrivacyPage /> : <Gallery key={template ?? 'all'} initialTemplate={template} />}
+    {route.view === 'saved' ? <SavedVideo key={route.id} id={route.id} /> : route.view === 'shared' ? <SharedVideo key={route.id} id={route.id} openShare={route.openShare} /> : variant ? <Editor key={variant.id} variant={variant} /> : route.view === 'privacy' ? <PrivacyPage /> : <Gallery key={template ?? 'all'} initialTemplate={template} />}
     <SiteFooter />
   </>;
 }

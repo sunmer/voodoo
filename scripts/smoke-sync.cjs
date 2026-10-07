@@ -42,7 +42,7 @@ async function logout(page) {
     await page.waitForFunction(() => document.querySelector('.card-star')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.card-star')?.getAttribute('aria-busy') === 'false');
     await page.reload();
     await page.waitForFunction(() => document.querySelector('.card-star')?.getAttribute('aria-pressed') === 'true');
-    await page.getByRole('button', {name: /^Saved/}).click();
+    await page.getByRole('button', {name: /^Starred/}).click();
     await page.waitForFunction(() => document.querySelectorAll('.card').length === 1);
     await logout(page);
     assert.equal(await page.locator('.card').count(), 0, 'signout clears private results');
@@ -57,10 +57,10 @@ async function logout(page) {
     await page.locator('.card-star').click();
     await page.locator('.empty', {hasText: 'No starred videos yet.'}).waitFor();
     await page.reload();
-    await page.getByRole('button', {name: /^Saved/}).click();
+    await page.getByRole('button', {name: /^Starred/}).click();
     await page.locator('.empty', {hasText: 'No starred videos yet.'}).waitFor();
     assert.deepEqual(errors, []);
-    console.log('Google emulator popup, first-click save, reload, Saved, sign-out, account isolation, and unstar persistence passed.');
+    console.log('Google emulator popup, first-click star, reload, Starred, sign-out, account isolation, and unstar persistence passed.');
     await context.close();
   } catch (error) {
     console.error(await page?.locator('body').innerText());

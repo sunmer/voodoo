@@ -39,7 +39,7 @@ const server = createServer(createHandler({
   render: async () => {
     renders++;
     if (failRender) throw new Error('render failed');
-    return {image: '/tmp/test.jpg', video: '/tmp/test.mp4', cleanup: async () => {}};
+    return {image: '/tmp/test.jpg', cleanup: async () => {}};
   },
 }));
 let origin: string;
@@ -63,6 +63,8 @@ test('fingerprints distinguish users and edits but not input property order', ()
   assert.equal(fingerprint('alice', a, '1'), fingerprint('alice', reordered, '1'));
   assert.notEqual(fingerprint('alice', a, '1'), fingerprint('bob', a, '1'));
   assert.notEqual(fingerprint('alice', a, '1'), fingerprint('alice', a, '2'));
+  const changed = validateShare({...payload, props: {...props, theme: {...props.theme, background: '#123456'}}});
+  assert.notEqual(fingerprint('alice', a, '1'), fingerprint('alice', changed, '1'));
 });
 test('publishing checks tokens, Google identity, origin, body size and schema before rendering', async () => {
   assert.equal((await fetch(`${origin}/api/shares`, {method: 'POST'})).status, 401);
@@ -87,12 +89,15 @@ test('anonymous crawlers get edit-specific metadata without JavaScript or authen
   const html = await response.text();
   assert.equal(response.status, 200);
   assert.match(html, /og:title" content="MY SHARED EDIT"/);
-  assert.match(html, new RegExp(`og:video" content="https://cliphou.se/s/${id}/video.mp4"`));
+  assert.ok(!html.includes('og:video'));
+  assert.ok(!html.includes('.mp4'));
   assert.match(html, new RegExp(`og:image" content="https://cliphou.se/s/${id}/preview.jpg"`));
   assert.ok(!html.includes('alice'));
   const fetched = await (await fetch(`${origin}/api/shares/${id}`)).json();
   assert.deepEqual(fetched.props, props);
   assert.equal(fetched.owner, undefined);
+  assert.equal(fetched.video, undefined);
+  assert.equal((await fetch(`${origin}/s/${id}/video.mp4`)).status, 404);
   assert.equal((await fetch(`${origin}/s/${'z'.repeat(32)}`)).status, 404);
 });
 test('untrusted copy cannot escape metadata or introduce scripts', () => {
@@ -100,10 +105,10 @@ test('untrusted copy cannot escape metadata or introduce scripts', () => {
   assert.ok(!html.includes('<script>alert'));
   assert.match(html, /&lt;script&gt;/);
 });
-test('video delivery supports HEAD, full files and Safari byte ranges', async () => {
-  const url = `${origin}/s/${id}/video.mp4`;
+test('thumbnail delivery supports HEAD, full files and byte ranges', async () => {
+  const url = `${origin}/s/${id}/preview.jpg`;
   const head = await fetch(url, {method: 'HEAD'});
-  assert.equal(head.headers.get('content-type'), 'video/mp4');
+  assert.equal(head.headers.get('content-type'), 'image/jpeg');
   assert.equal(head.headers.get('content-length'), '10');
   assert.equal(await head.text(), '');
   assert.equal(await (await fetch(url)).text(), '0123456789');

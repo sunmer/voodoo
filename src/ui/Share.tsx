@@ -5,17 +5,22 @@ import type {VideoProps} from '../videos/contract';
 import {publishVideo, sharingConfigured, type SharedVideo} from '../services/sharing';
 import {track} from '../services/analytics';
 import {useAccount} from './Account';
+import {Thumbnail} from '@remotion/player';
+import {compositions} from '../videos/registry';
 
-export function ShareButton({variant, props, disabled, beforeOpen}: {
-  variant: Variant; props: VideoProps; disabled: boolean; beforeOpen: () => void;
+export function ShareButton({variant, props, disabled, beforeOpen, save, publishedVideo, initiallyOpen}: {
+  variant: Variant; props: VideoProps; disabled: boolean; beforeOpen: () => void; save: () => Promise<string>;
+  publishedVideo?: SharedVideo; initiallyOpen?: boolean;
 }) {
   const account = useAccount();
   const dialog = useRef<HTMLDialogElement>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(!!initiallyOpen);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
-  const [result, setResult] = useState<{key: string; value: SharedVideo} | null>(null);
+  const [result, setResult] = useState<{key: string; value: SharedVideo} | null>(
+    publishedVideo ? {key: JSON.stringify(publishedVideo.props), value: publishedVideo} : null);
+  const composition = compositions[variant.template];
   const key = JSON.stringify(props);
   const published = result?.key === key ? result.value : null;
   const mounted = useRef(true);
@@ -29,10 +34,12 @@ export function ShareButton({variant, props, disabled, beforeOpen}: {
     setBusy(true);
     setError('');
     try {
+      await save();
       const value = await publishVideo(variant.id, props);
       if (!mounted.current) return;
       setResult({key, value});
       track('share_publish', {variant_id: variant.id});
+      location.hash = `/s/${value.id}?share=1`;
     } catch (e) {
       if (mounted.current) setError((e as Error).message);
     } finally { if (mounted.current) setBusy(false); }
@@ -58,7 +65,7 @@ export function ShareButton({variant, props, disabled, beforeOpen}: {
         <button className="icon-btn ghost" aria-label="Close share" disabled={busy} onClick={close}><X size={18} /></button>
       </div>
       {published ? <>
-        <video className="share-preview" src={published.video} poster={published.image} muted playsInline controls loop />
+        <img className="share-preview" src={published.image} alt={published.title} />
         <label className="share-link-label" htmlFor="share-link">Public link</label>
         <input id="share-link" className="share-link" value={published.url} readOnly onFocus={(e) => e.target.select()} />
         <div className="share-actions">
@@ -66,14 +73,17 @@ export function ShareButton({variant, props, disabled, beforeOpen}: {
           {typeof navigator.share === 'function' && <button className="account-action" onClick={share}><Share2 size={17} />Share</button>}
         </div>
       </> : <>
+        <Thumbnail component={composition.component} inputProps={props} frameToDisplay={composition.posterFrame}
+          durationInFrames={composition.durationInFrames} compositionWidth={composition.width}
+          compositionHeight={composition.height} fps={composition.fps}
+          style={{width: '100%', aspectRatio: `${composition.width} / ${composition.height}`, maxHeight: 220, objectFit: 'contain'}} />
         <p className="muted">Publishing makes a copy of this edit visible to anyone with the link.</p>
         {!sharingConfigured ? <p role="status">Publishing is not available yet. Your edits remain on this device.</p>
           : !account.ready ? <p role="status">Checking your account...</p>
-          : !account.user ? <button className="account-action" onClick={account.openAccount}>Sign in to publish</button>
           : <button className="account-action" disabled={busy} onClick={publish}>
-            {busy ? <LoaderCircle className="spin" size={17} /> : <Share2 size={17} />}{busy ? 'Preparing video...' : 'Publish link'}
+            {busy ? <LoaderCircle className="spin" size={17} /> : <Share2 size={17} />}{busy ? 'Preparing link...' : account.user ? 'Publish link' : 'Sign in to publish'}
           </button>}
-        {busy && <p className="muted" role="status">Rendering your video and preview. This can take a few minutes.</p>}
+        {busy && <p className="muted" role="status">Saving your edit and preparing its thumbnail.</p>}
       </>}
       {error && <p className="account-error" role="alert">{error}</p>}
     </dialog>

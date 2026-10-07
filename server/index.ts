@@ -4,7 +4,7 @@ import {initializeApp} from 'firebase-admin/app';
 import {getAuth} from 'firebase-admin/auth';
 import {createHandler} from './app.ts';
 import {createStore} from './store.ts';
-import {renderVideo} from './render.ts';
+import {renderThumbnail} from './render.ts';
 
 const projectId = process.env.GOOGLE_CLOUD_PROJECT;
 const bucket = process.env.SHARE_BUCKET;
@@ -19,8 +19,8 @@ const assets = manifest['index.html'];
 if (!assets) throw new Error('Build the frontend before starting the share server.');
 const handler = createHandler({
   origin, origins: new Set((process.env.ALLOWED_ORIGINS || `${origin},https://cliphouse-app.web.app,https://cliphouse-app.firebaseapp.com,https://www.cliphou.se`).split(',')),
-  version: process.env.RENDER_VERSION || '1', assets,
-  store: createStore(bucket), render: renderVideo,
+  version: `${process.env.RENDER_VERSION || '1'}-thumbnail`, assets,
+  store: createStore(bucket), render: renderThumbnail,
   verify: (token) => getAuth().verifyIdToken(token, true),
 });
 const server = createServer(handler);

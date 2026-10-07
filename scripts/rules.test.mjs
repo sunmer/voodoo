@@ -70,3 +70,36 @@ test('share metadata is private and publishing cannot bypass the backend', async
     await assertFails(getDocs(collection(context.firestore(), 'users/alice/shares')));
   }
 });
+
+const draftId = 'a'.repeat(32);
+const verified = {email_verified: true, firebase: {sign_in_provider: 'google.com'}};
+const draft = () => ({variantId: 'stack-orbit', propsJson: '{"texts":{},"theme":{}}', title: 'Private edit', updatedAt: serverTimestamp()});
+test('verified owners can save, reopen, update, list and delete private drafts', async () => {
+  const db = env.authenticatedContext('alice', verified).firestore();
+  const ref = doc(db, `users/alice/drafts/${draftId}`);
+  await assertSucceeds(setDoc(ref, draft()));
+  await assertSucceeds(getDoc(ref));
+  await assertSucceeds(getDocs(collection(db, 'users/alice/drafts')));
+  await assertSucceeds(setDoc(ref, {...draft(), title: 'Changed title'}));
+  await assertSucceeds(deleteDoc(ref));
+});
+test('drafts reject other users, anonymous visitors and unverified accounts', async () => {
+  await env.withSecurityRulesDisabled((context) => setDoc(doc(context.firestore(), `users/alice/drafts/${draftId}`), draft()));
+  for (const context of [env.authenticatedContext('bob', verified), env.unauthenticatedContext(), env.authenticatedContext('alice')]) {
+    const db = context.firestore();
+    const ref = doc(db, `users/alice/drafts/${draftId}`);
+    await assertFails(getDoc(ref));
+    await assertFails(getDocs(collection(db, 'users/alice/drafts')));
+    await assertFails(setDoc(ref, draft()));
+    await assertFails(deleteDoc(ref));
+  }
+});
+test('drafts reject oversized content, extra fields and forged timestamps', async () => {
+  const db = env.authenticatedContext('alice', verified).firestore();
+  const ref = doc(db, `users/alice/drafts/${draftId}`);
+  for (const value of [
+    {...draft(), propsJson: 'x'.repeat(12001)}, {...draft(), propsJson: {}},
+    {...draft(), title: ''}, {...draft(), title: 'x'.repeat(121)},
+    {...draft(), public: true}, {...draft(), updatedAt: new Date(0)},
+  ]) await assertFails(setDoc(ref, value));
+});

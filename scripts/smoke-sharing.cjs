@@ -8,8 +8,7 @@ const variant = manifest.variants[0];
 const props = structuredClone(variant.props);
 props.texts.headline = 'SHARED NOT LOCAL';
 const data = {id, variantId: variant.id, props, title: props.texts.headline,
-  url: `https://cliphou.se/s/${id}`, image: new URL(`previews/${variant.id}.jpg`, base).href,
-  video: new URL(`previews/${variant.id}.mp4`, base).href};
+  url: `https://cliphou.se/s/${id}`, image: new URL(`previews/${variant.id}.jpg`, base).href};
 
 (async () => {
   const browser = await (ios ? webkit : chromium).launch();
@@ -61,23 +60,26 @@ const data = {id, variantId: variant.id, props, title: props.texts.headline,
         if (attempts === 1) await route.fulfill({status: 503, json: {error: 'Please retry publishing.'}});
         else await route.fulfill({json: {...data, props: sent.props}});
       });
+      await page.route(`**/api/shares/${id}`, (route) => route.fulfill({json: {...data, props: sent?.props || props}}));
       await page.goto(`${base}#/v/${variant.id}`);
       await page.getByRole('button', {name: 'Share video', exact: true}).click();
       await page.getByRole('button', {name: 'Sign in to publish', exact: true}).click();
       const popupPromise = page.waitForEvent('popup');
       await page.getByRole('button', {name: 'Sign in with Google', exact: true}).click();
       const popup = await popupPromise;
+      await popup.waitForLoadState('networkidle');
       await popup.getByText('Add new account', {exact: true}).click();
       await popup.locator('#email-input').fill(`share-${Date.now()}@example.test`);
       await popup.locator('#display-name-input').fill('Share test');
       await popup.getByRole('button', {name: 'Sign in with Google.com', exact: true}).click();
-      await page.getByRole('button', {name: 'Publish link', exact: true}).click();
       await page.getByRole('alert').filter({hasText: 'Please retry publishing.'}).waitFor();
       await page.getByRole('button', {name: 'Publish link', exact: true}).click();
       await page.getByRole('textbox', {name: 'Public link', exact: true}).waitFor();
       assert.equal(await page.getByRole('textbox', {name: 'Public link', exact: true}).inputValue(), data.url);
       assert.deepEqual(sent, {variantId: variant.id, props: variant.props});
       assert.equal(attempts, 2);
+      assert.equal(new URL(page.url()).hash, `#/s/${id}?share=1`);
+      assert.equal(await page.locator('.share-preview').evaluate((el) => el.tagName), 'IMG');
       await page.screenshot({path: `/tmp/cliphouse-published-${ios ? 'ios' : 'chromium'}.png`, scale: 'css'});
       await context.close();
     }

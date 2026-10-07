@@ -1,6 +1,26 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /users/{uid}/drafts/{draftId} {
+      function owner() {
+        return request.auth != null && request.auth.uid == uid
+          && request.auth.token.email_verified == true
+          && request.auth.token.firebase.sign_in_provider == 'google.com';
+      }
+      allow read, delete: if owner();
+      allow create, update: if owner()
+        && draftId.matches('^[a-zA-Z0-9_-]{24,64}$')
+        && request.resource.data.keys().hasOnly(['variantId', 'propsJson', 'title', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['variantId', 'propsJson', 'title', 'updatedAt'])
+        && request.resource.data.variantId is string
+        && request.resource.data.variantId.matches('^[a-z0-9-]{1,100}$')
+        && request.resource.data.propsJson is string
+        && request.resource.data.propsJson.size() <= 12000
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 120
+        && request.resource.data.updatedAt == request.time;
+    }
     // Publishing and public access pass through the validated share service.
     match /users/{uid}/shares/{shareId} {
       allow read: if request.auth != null && request.auth.uid == uid;

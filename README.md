@@ -32,7 +32,7 @@ The catalog uses three levels:
 
 - **Template:** code in `src/videos/<id>/`. It sets the scenes, motion, and timing. Its technical facts, such as size, fps, duration, scenes, and motion, are in `meta.ts`.
 - **Variant:** an entry in `manifest.json`. It is a template plus preset text and theme values, plus curated facets: purpose, style, energy, and keywords. Users browse variants.
-- **Remix:** a user's edit of a variant. Publishing saves its composition, MP4, and preview image behind an immutable share link.
+- **Remix:** a user's edit of a variant. Save keeps a private account draft. Publishing saves an immutable composition and JPEG thumbnail behind a share link; the website animates the saved composition without a rendered MP4.
 
 Facets come from different sources:
 

@@ -19,7 +19,7 @@ const base = process.env.URL || 'http://127.0.0.1:5180/voodoo/';
       assert.equal(new URL(page.url()).hash, '', 'starring does not open editor');
       await page.keyboard.press('Escape');
       await page.getByRole('dialog').waitFor({state: 'hidden'});
-      await page.getByRole('button', {name: /^Saved/}).click();
+      await page.getByRole('button', {name: /^Starred/}).click();
       assert.match(await page.locator('.empty').innerText(), /starred videos/);
       await page.getByRole('button', {name: 'All videos', exact: true}).click();
       assert.equal(await page.locator('.card').count(), 28);
@@ -36,6 +36,6 @@ const base = process.env.URL || 'http://127.0.0.1:5180/voodoo/';
       assert.equal(errors.length, 0, errors.join('\n'));
       await context.close();
     }
-    console.log('Branding, star entry points, Saved, dialogs, privacy, and responsive layouts passed.');
+    console.log('Branding, star entry points, Starred, dialogs, privacy, and responsive layouts passed.');
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

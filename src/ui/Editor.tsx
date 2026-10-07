@@ -1,5 +1,5 @@
 import {Player, type PlayerRef} from '@remotion/player';
-import {ArrowLeft, Check, Copy, Maximize, Minimize, Pause, Play, Redo2, RotateCcw, Shuffle, Undo2, Wand2} from 'lucide-react';
+import {ArrowLeft, Check, Copy, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RotateCcw, Save, Shuffle, Undo2, Wand2} from 'lucide-react';
 import {useCallback, useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import type {Variant} from '../catalog/catalog';
 import {THEME_LABELS, THEME_ROLES, type Role, type VideoProps} from '../videos/contract';
@@ -8,8 +8,10 @@ import {applyKit, kitHasValues, useBrandKit} from './brandKit';
 import {derivePalettes} from './palettes';
 import {TextCanvas} from './TextCanvas';
 import {Timeline} from './Timeline';
-import {StarButton} from './Account';
+import {StarButton, useAccount} from './Account';
 import {ShareButton} from './Share';
+import {saveDraft} from '../services/drafts';
+import type {SharedVideo} from '../services/sharing';
 
 const storageKey = (id: string) => `voodoo:v2:${id}`;
 type LockableOrientation = ScreenOrientation & {lock?: (orientation: 'landscape') => Promise<void>};
@@ -28,7 +30,13 @@ function useHistory(initial: VideoProps) {
   return {props: state.now, set, undo, redo, canUndo: state.past.length > 0, canRedo: state.future.length > 0};
 }
 
-export function Editor({variant, sharedProps, shareId}: {variant: Variant; sharedProps?: VideoProps; shareId?: string}) {
+export function Editor({variant, sharedProps, shareId, draftId, published, openShare}: {
+  variant: Variant; sharedProps?: VideoProps; shareId?: string; draftId?: string; published?: SharedVideo; openShare?: boolean;
+}) {
+  const account = useAccount();
+  const draft = useRef<{uid: string; id: string} | null>(draftId && account.user ? {uid: account.user.uid, id: draftId} : null);
+  const [saving, setSaving] = useState(false);
+  const [savedKey, setSavedKey] = useState(draftId ? JSON.stringify(sharedProps) : '');
   const c = compositions[variant.template];
   const kit = useBrandKit();
   const initial = useMemo(() => {
@@ -54,9 +62,28 @@ export function Editor({variant, sharedProps, shareId}: {variant: Variant; share
 
   useEffect(() => {
     setHexes(props.theme);
+    // Account drafts remain private; do not copy them into anonymous browser storage.
+    if (draftId) return;
     try { localStorage.setItem(storageKey(shareId ? `share:${shareId}` : variant.id), JSON.stringify(props)); }
-    catch { setNotice('Changes could not be saved on this device. Share this edit to keep a copy.'); }
-  }, [props, variant.id, shareId]);
+    catch { setNotice('Changes could not be saved on this device. Save this edit to keep a copy.'); }
+  }, [props, variant.id, shareId, draftId]);
+  const save = async () => {
+    const user = await account.requireSignIn();
+    if (draft.current?.uid !== user.uid) draft.current = {uid: user.uid, id: crypto.randomUUID().replaceAll('-', '')};
+    const id = await saveDraft(user.uid, draft.current.id, variant, props);
+    setSavedKey(JSON.stringify(props));
+    return id;
+  };
+  const saveAndOpen = async () => {
+    if (saving) return;
+    setSaving(true); setNotice('');
+    player.current?.pause();
+    try {
+      const id = await save();
+      location.hash = `/d/${id}`;
+    } catch (e) { setNotice((e as Error).message); }
+    finally { setSaving(false); }
+  };
   useEffect(() => {
     const p = player.current;
     const on = () => setPlaying(true);
@@ -93,6 +120,7 @@ export function Editor({variant, sharedProps, shareId}: {variant: Variant; share
   }, [expanded]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (saving) return;
       const target = e.target as HTMLElement;
       if (['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) return;
       if (e.key === 'Escape' && expanded) {
@@ -139,7 +167,7 @@ export function Editor({variant, sharedProps, shareId}: {variant: Variant; share
   };
 
   return (
-    <main className="editor-page">
+    <main className="editor-page" inert={saving} aria-busy={saving}>
       <div ref={immersive} className={`immersive-editor ${c.width > c.height ? 'landscape-video' : ''} ${expanded ? 'expanded' : ''}`} style={{'--video-ratio': c.width / c.height} as CSSProperties}>
         <header className="editor-top">
           <a className="overlay-btn" href={`${import.meta.env.BASE_URL}#/`} title="All videos" aria-label="All videos"><ArrowLeft size={20} /></a>
@@ -169,7 +197,9 @@ export function Editor({variant, sharedProps, shareId}: {variant: Variant; share
             disabled={!!editing} onClick={() => h.set(kitProps!)}><Wand2 size={20} /></button>}
           <button className="overlay-btn" title="Reset to original" aria-label="Reset to original"
             disabled={!!editing || JSON.stringify(props) === JSON.stringify(variant.props)} onClick={() => h.set(variant.props)}><RotateCcw size={20} /></button>
-          <ShareButton variant={variant} props={props} disabled={!!editing}
+          <button className="overlay-btn" title="Save video" aria-label="Save video" disabled={!!editing || saving}
+            onClick={() => void saveAndOpen()}>{saving ? <LoaderCircle className="spin" size={20} /> : savedKey === JSON.stringify(props) ? <Check size={20} /> : <Save size={20} />}</button>
+          <ShareButton variant={variant} props={props} disabled={!!editing || saving} save={save} publishedVideo={published} initiallyOpen={openShare}
             beforeOpen={() => { player.current?.pause(); if (document.fullscreenElement) void document.exitFullscreen().catch(() => {}); }} />
           <button className={`overlay-btn ${copied ? 'confirmed' : ''}`} title="Copy render command" aria-label="Copy render command" disabled={!!editing} onClick={copyRender}>
             {copied ? <Check size={20} /> : <Copy size={20} />}
@@ -208,6 +238,15 @@ export function Editor({variant, sharedProps, shareId}: {variant: Variant; share
               </div>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="video-details" aria-labelledby="video-details-heading">
+        <h2 id="video-details-heading">Video details</h2>
+        <p>{variant.description}</p>
+        <div className="tags">
+          {[...new Set([variant.purpose, ...variant.placement, ...variant.style, variant.tone,
+            variant.energy <= 2 ? 'Calm' : variant.energy === 3 ? 'Medium' : 'High',
+            variant.format, `${variant.seconds}s`])].map((label) => <span className="tag" key={label}>{label}</span>)}
         </div>
       </section>
       {notice && <div className="editor-notice" role="status">{notice}<button className="link-btn" onClick={() => setNotice('')}>Dismiss</button></div>}

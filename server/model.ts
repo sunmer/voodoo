@@ -44,7 +44,7 @@ export const fingerprint = (uid: string, value: Snapshot, version: string) =>
 
 export function publicVideo(video: Published, origin: string) {
   return {id: video.id, variantId: video.variantId, props: video.props, title: video.title,
-    url: `${origin}/s/${video.id}`, image: `${origin}/s/${video.id}/preview.jpg`, video: `${origin}/s/${video.id}/video.mp4`};
+    url: `${origin}/s/${video.id}`, image: `${origin}/s/${video.id}/preview.jpg`};
 }
 const escape = (text: string) => text.replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]!));
 export function shareHtml(video: Published, origin: string, assets: {file: string; css?: string[]}) {
@@ -52,9 +52,6 @@ export function shareHtml(video: Published, origin: string, assets: {file: strin
   const meta = templateMeta[video.template];
   const description = video.props.texts.subhead || 'Watch this video or make your own edit.';
   const imageHeight = Math.round(meta.height * 900 / meta.width);
-  const scale = 640 / Math.max(meta.width, meta.height);
-  const videoWidth = Math.round(meta.width * scale / 2) * 2;
-  const videoHeight = Math.round(meta.height * scale / 2) * 2;
   const tag = (property: string, value: string | number) => `<meta property="${property}" content="${escape(String(value))}">`;
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,12 +61,10 @@ export function shareHtml(video: Published, origin: string, assets: {file: strin
 <link rel="canonical" href="${data.url}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-${tag('og:type', 'video.other')}${tag('og:site_name', 'cliphou.se')}${tag('og:title', data.title)}
+${tag('og:type', 'website')}${tag('og:site_name', 'cliphou.se')}${tag('og:title', data.title)}
 ${tag('og:description', description)}${tag('og:url', data.url)}
 ${tag('og:image', data.image)}${tag('og:image:secure_url', data.image)}${tag('og:image:type', 'image/jpeg')}
 ${tag('og:image:width', 900)}${tag('og:image:height', imageHeight)}${tag('og:image:alt', data.title)}
-${tag('og:video', data.video)}${tag('og:video:secure_url', data.video)}${tag('og:video:type', 'video/mp4')}
-${tag('og:video:width', videoWidth)}${tag('og:video:height', videoHeight)}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escape(data.title)}">
 <meta name="twitter:image" content="${data.image}">
@@ -77,7 +72,7 @@ ${tag('og:video:width', videoWidth)}${tag('og:video:height', videoHeight)}
 ${(assets.css || []).map((file) => `<link rel="stylesheet" href="/${escape(file)}">`).join('')}
 <script type="module" crossorigin src="/${escape(assets.file)}"></script>
 </head><body><div id="root"></div><noscript>
-<h1>${escape(data.title)}</h1><video controls playsinline poster="${data.image}" src="${data.video}" style="max-width:100%;max-height:80vh"></video>
+<h1>${escape(data.title)}</h1><img alt="${escape(data.title)}" src="${data.image}" style="max-width:100%;max-height:80vh">
 <p><a href="/">Browse cliphou.se</a></p></noscript></body></html>`;
 }
 

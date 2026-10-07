@@ -168,7 +168,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
           <div className="results-bar">
             <div className="segmented collection-tabs" role="group" aria-label="Collection">
               <button className={!savedOnly ? 'on' : ''} aria-pressed={!savedOnly} onClick={() => setSavedOnly(false)}>All videos</button>
-              <button className={savedOnly ? 'on' : ''} aria-pressed={savedOnly} onClick={() => setSavedOnly(true)}><Star size={14} /> Saved {account.user && <span>{account.saved.size}</span>}</button>
+              <button className={savedOnly ? 'on' : ''} aria-pressed={savedOnly} onClick={() => setSavedOnly(true)}><Star size={14} /> Starred {account.user && <span>{account.saved.size}</span>}</button>
             </div>
             <div className="results-count">
               <button className={`filters-toggle ${filtersOpen ? 'on' : ''}`} onClick={() => setFiltersOpen((o) => !o)} title="Filters">
@@ -194,7 +194,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
           {savedOnly && !account.user ? (
             <div className="empty"><Star size={24} /><span>Your starred videos live here.</span><button className="account-action" onClick={account.openAccount}>Sign in</button></div>
           ) : savedOnly && !account.savedReady ? (
-            <div className="empty" role="status">{account.savedError || 'Connecting to your saved videos...'}
+            <div className="empty" role="status">{account.savedError || 'Connecting to your starred videos...'}
               {account.savedError && <button className="link-btn" onClick={account.retry}>Try again</button>}
             </div>
           ) : results.length === 0 ? (
@@ -211,13 +211,16 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                 const theme = (props ?? v.props).theme;
                 return (
                   <article key={v.id} className="card">
-                    <a href={`#/v/${v.id}`} className="card-link" aria-label={`Edit ${v.title}`}>
                     <div className="card-media">
-                      <Media variant={v} props={props} />
+                      <a href={`#/v/${v.id}`} className="card-link" aria-label={`Open ${v.title}`}>
+                        <Media variant={v} props={props} />
+                      </a>
+                      <a className="card-edit" href={`#/v/${v.id}`} aria-label={`Edit ${v.title}`}><Pencil size={14} />Edit</a>
                       <span className="badge">
                         {v.format} · {v.seconds}s
                       </span>
                     </div>
+                    <a href={`#/v/${v.id}`} className="card-link" aria-label={`Open ${v.title} details`}>
                     <div className="card-body">
                       <div className="card-title">
                         <span>{v.title}</span>
@@ -227,19 +230,8 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                           ))}
                         </div>
                       </div>
-                      <div className="tags">
-                        <span className="tag strong">{v.purpose}</span>
-                        <span className="tag">{v.placement[0]}</span>
-                        {v.style.map((s) => (
-                          <span key={s} className="tag">
-                            {s}
-                          </span>
-                        ))}
-                        <span className="tag">{energyOf(v.energy)}</span>
-                      </div>
                     </div>
                     </a>
-                    <a className="card-edit" href={`#/v/${v.id}`} aria-label={`Edit ${v.title}`}><Pencil size={15} />Edit</a>
                     <StarButton id={v.id} title={v.title} />
                   </article>
                 );

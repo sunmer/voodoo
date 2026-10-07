@@ -33,13 +33,10 @@ export function createStore(bucketName: string) {
         return {video};
       });
     },
-    async finish(key: string, video: Published, paths: {image: string; video: string}) {
+    async finish(key: string, video: Published, paths: {image: string}) {
       const prefix = `shares/${video.id}`;
       try {
-        await Promise.all([
-          bucket.upload(paths.image, {destination: `${prefix}/preview.jpg`, metadata: {contentType: 'image/jpeg'}}),
-          bucket.upload(paths.video, {destination: `${prefix}/video.mp4`, metadata: {contentType: 'video/mp4'}}),
-        ]);
+        await bucket.upload(paths.image, {destination: `${prefix}/preview.jpg`, metadata: {contentType: 'image/jpeg'}});
         const batch = db.batch();
         batch.update(db.doc(`shares/${video.id}`), {status: 'ready'});
         batch.set(db.doc(`users/${video.owner}/shares/${video.id}`), {id: video.id, title: video.title, createdAt: video.createdAt});
