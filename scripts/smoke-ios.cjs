@@ -15,9 +15,21 @@ const {webkit, devices} = require('playwright');
     await page.evaluate(() => window.scrollBy(0, 500));
     await page.waitForTimeout(150);
   }
-  const imgs = await page.locator('.thumb img').evaluateAll((els) => els.filter((e) => e.complete && e.naturalWidth > 0).length);
-  const players = await page.locator('.thumb .__remotion-player').count();
+  const imgs = await page.locator('.media img').evaluateAll((els) => els.filter((e) => e.complete && e.naturalWidth > 0).length);
+  const players = await page.locator('.media .__remotion-player').count();
   await page.screenshot({path: '/tmp/voodoo-ios-gallery.png'});
+
+  // Brand kit mode renders static Remotion frames only for on-screen cards.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.locator('.kit-btn').click();
+  await page.locator('.kit-grid input').nth(0).fill('ACME');
+  await page.locator('.kit-btn').click();
+  for (let i = 0; i < 16; i++) {
+    await page.evaluate(() => window.scrollBy(0, 400));
+    await page.waitForTimeout(200);
+  }
+  await page.screenshot({path: '/tmp/voodoo-ios-kit.png'});
+
   await page.goto(base + '#/v/neon-summit');
   await page.waitForTimeout(2500);
   for (let i = 0; i < 8; i++) {

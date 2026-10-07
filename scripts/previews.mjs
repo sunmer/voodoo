@@ -5,6 +5,7 @@ import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import {templateMeta} from '../src/videos/meta.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
 const outDir = path.join(root, 'public/previews');
@@ -25,13 +26,16 @@ function findBrowser() {
 fs.mkdirSync(outDir, {recursive: true});
 const serveUrl = await bundle({entryPoint: path.join(root, 'src/remotion/index.ts')});
 const browserExecutable = findBrowser();
-const scale = 480 / 1920;
 
-for (const entry of manifest.entries) {
+
+for (const entry of manifest.variants) {
   if (only.length && !only.includes(entry.id)) continue;
-  const composition = await selectComposition({serveUrl, id: entry.composition, inputProps: entry.props, browserExecutable});
+  const composition = await selectComposition({serveUrl, id: entry.template, inputProps: entry.props, browserExecutable});
+  // Previews are ~480px on the long edge regardless of orientation.
+  const scale = 480 / Math.max(composition.width, composition.height);
+  const poster = templateMeta[entry.template].posterFrame;
   const base = {composition, serveUrl, inputProps: entry.props, browserExecutable, scale};
-  await renderStill({...base, output: path.join(outDir, `${entry.id}.jpg`), frame: 40, imageFormat: 'jpeg', jpegQuality: 80});
+  await renderStill({...base, output: path.join(outDir, `${entry.id}.jpg`), frame: poster, imageFormat: 'jpeg', jpegQuality: 80});
   await renderMedia({
     ...base,
     codec: 'h264',

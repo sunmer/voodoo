@@ -1,24 +1,9 @@
 import React from 'react';
-import {
-  AbsoluteFill,
-  Easing,
-  Sequence,
-  interpolate,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from 'remotion';
-import type {ShowreelProps, Theme} from './schema';
-
-const FONT = 'Inter, "Helvetica Neue", Helvetica, Arial, sans-serif';
-const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
-const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
-const easeIn = Easing.bezier(0.7, 0, 0.84, 0);
-const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
-
-// Fit a single line of text into a width, capped at a max size.
-const fit = (text: string, max: number, width: number, ratio = 0.6) =>
-  Math.min(max, width / (Math.max(text.length, 1) * ratio));
+import {AbsoluteFill, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import type {Theme} from '../contract';
+import {ArrowIcon, FONT, Grain, KineticLine, Vignette, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
+import {showreelMeta} from './meta';
+import type {ShowreelProps} from './schema';
 
 const Backdrop: React.FC<{theme: Theme}> = ({theme}) => {
   const frame = useCurrentFrame();
@@ -49,84 +34,6 @@ const Backdrop: React.FC<{theme: Theme}> = ({theme}) => {
         }}
       />
     </AbsoluteFill>
-  );
-};
-
-// A small noise tile rasterized once; shifting it each frame reads as film grain
-// without re-running a full-frame SVG filter (too heavy for mobile Safari).
-const NOISE_TILE = `url("data:image/svg+xml,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2"/></filter><rect width="240" height="240" filter="url(#n)"/></svg>',
-)}")`;
-
-const Grain: React.FC = () => {
-  const frame = useCurrentFrame();
-  const step = frame % 6;
-  return (
-    <AbsoluteFill
-      style={{
-        opacity: 0.1,
-        mixBlendMode: 'overlay',
-        pointerEvents: 'none',
-        backgroundImage: NOISE_TILE,
-        backgroundSize: '240px 240px',
-        backgroundPosition: `${(step * 97) % 240}px ${(step * 53) % 240}px`,
-      }}
-    />
-  );
-};
-
-const Vignette: React.FC = () => (
-  <AbsoluteFill
-    style={{
-      pointerEvents: 'none',
-      background: 'radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%)',
-    }}
-  />
-);
-
-const KineticLine: React.FC<{
-  text: string;
-  size: number;
-  color: string;
-  delay?: number;
-  stagger?: number;
-}> = ({text, size, color, delay = 0, stagger = 1.6}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  return (
-    <div
-      style={{
-        display: 'flex',
-        fontSize: size,
-        fontWeight: 850,
-        lineHeight: 1.05,
-        color,
-        whiteSpace: 'pre',
-        perspective: 900,
-      }}
-    >
-      {[...text].map((ch, i) => {
-        const s = spring({
-          frame: frame - delay - i * stagger,
-          fps,
-          config: {damping: 13, stiffness: 120, mass: 0.7},
-        });
-        return (
-          <span
-            key={i}
-            style={{
-              display: 'inline-block',
-              transformOrigin: '50% 100%',
-              transform: `translateY(${interpolate(s, [0, 1], [size * 0.8, 0])}px) rotateX(${interpolate(s, [0, 1], [-85, 0])}deg)`,
-              filter: `blur(${interpolate(s, [0, 1], [14, 0], clamp)}px)`,
-              opacity: Math.min(1, s * 1.5),
-            }}
-          >
-            {ch}
-          </span>
-        );
-      })}
-    </div>
   );
 };
 
@@ -204,7 +111,7 @@ const SceneTitle: React.FC<ShowreelProps> = ({texts, theme}) => {
 const ScenePillars: React.FC<ShowreelProps> = ({texts, theme}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const lines = [texts.line1, texts.line2, texts.line3];
+  const lines = [texts.point1, texts.point2, texts.point3];
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center'}}>
       <div
@@ -272,8 +179,8 @@ const SceneOrbit: React.FC<ShowreelProps> = ({texts, theme}) => {
   const frame = useCurrentFrame();
   const push = interpolate(frame, [0, 45], [1.35, 1], {...clamp, easing: easeOut});
   const rings = [260, 370, 480];
-  const words = texts.tagline.split(' ');
-  const size = Math.min(84, 2400 / Math.max(texts.tagline.length, 1));
+  const words = texts.subhead.split(' ');
+  const size = Math.min(84, 2400 / Math.max(texts.subhead.length, 1));
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', transform: `scale(${push})`}}>
       <svg width={1920} height={1080} style={{position: 'absolute'}} viewBox="-960 -540 1920 1080">
@@ -375,37 +282,34 @@ const SceneLockup: React.FC<ShowreelProps> = ({texts, theme}) => {
           }}
         >
           {texts.cta}
-          <svg width={40} height={40} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
+          <ArrowIcon size={40} />
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
-export const Showreel: React.FC<ShowreelProps> = (props) => {
-  const {theme} = props;
-  return (
-    <AbsoluteFill style={{background: theme.background, fontFamily: FONT, overflow: 'hidden'}}>
-      <Backdrop theme={theme} />
-      <Sequence durationInFrames={92}>
-        <SceneTitle {...props} />
-      </Sequence>
-      <Sequence from={68} durationInFrames={28}>
-        <Wipe theme={theme} />
-      </Sequence>
-      <Sequence from={82} durationInFrames={96}>
-        <ScenePillars {...props} />
-      </Sequence>
-      <Sequence from={164} durationInFrames={80}>
-        <SceneOrbit {...props} />
-      </Sequence>
-      <Sequence from={228} durationInFrames={72}>
-        <SceneLockup {...props} />
-      </Sequence>
-      <Grain />
-      <Vignette />
-    </AbsoluteFill>
-  );
-};
+// Scene timing lives in meta.ts so the taxonomy and the render never disagree.
+const SCENES: React.FC<ShowreelProps>[] = [
+  SceneTitle,
+  ({theme}) => <Wipe theme={theme} />,
+  ScenePillars,
+  SceneOrbit,
+  SceneLockup,
+];
+
+export const Showreel: React.FC<ShowreelProps> = (props) => (
+  <AbsoluteFill style={{background: props.theme.background, fontFamily: FONT, overflow: 'hidden'}}>
+    <Backdrop theme={props.theme} />
+    {showreelMeta.scenes.map((s, i) => {
+      const Scene = SCENES[i];
+      return (
+        <Sequence key={i} name={s.type} from={s.from} durationInFrames={s.duration}>
+          <Scene {...props} />
+        </Sequence>
+      );
+    })}
+    <Grain />
+    <Vignette />
+  </AbsoluteFill>
+);

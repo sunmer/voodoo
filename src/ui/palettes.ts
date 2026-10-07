@@ -1,6 +1,6 @@
-type Theme = Record<string, string>;
+import type {Theme} from '../videos/vocab';
 
-const PRESETS: {name: string; colors: Theme}[] = [
+export const PRESETS: {name: string; colors: Theme}[] = [
   {name: 'Ember', colors: {background: '#07070b', surface: '#15151f', foreground: '#f4f2ee', accent: '#ff4d2e', accent2: '#3dd6c6'}},
   {name: 'Paper', colors: {background: '#f3f4f6', surface: '#ffffff', foreground: '#111827', accent: '#2563eb', accent2: '#16a34a'}},
   {name: 'Neon', colors: {background: '#0b0420', surface: '#1c0d3d', foreground: '#fdf4ff', accent: '#ff2bd6', accent2: '#facc15'}},

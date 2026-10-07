@@ -1,9 +1,16 @@
 import {useEffect, useState} from 'react';
-import {Gallery} from './ui/Gallery';
+import {variants} from './catalog/catalog';
 import {Editor} from './ui/Editor';
-import {entries} from './catalog/catalog';
+import {Gallery} from './ui/Gallery';
 
-const readRoute = () => decodeURIComponent(location.hash.replace(/^#\/?v\//, '').replace(/^#\/?/, ''));
+type Route = {view: 'editor'; id: string} | {view: 'gallery'; params: URLSearchParams};
+
+function readRoute(): Route {
+  const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  const m = hash.match(/^v\/([^?]+)/);
+  if (m) return {view: 'editor', id: m[1]};
+  return {view: 'gallery', params: new URLSearchParams(hash.split('?')[1] ?? '')};
+}
 
 export function App() {
   const [route, setRoute] = useState(readRoute);
@@ -13,10 +20,12 @@ export function App() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  const entry = entries.find((e) => e.id === route);
+  const variant = route.view === 'editor' ? variants.find((v) => v.id === route.id) : undefined;
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [entry?.id]);
+  }, [variant?.id]);
 
-  return entry ? <Editor key={entry.id} entry={entry} /> : <Gallery />;
+  if (variant) return <Editor key={variant.id} variant={variant} />;
+  const template = route.view === 'gallery' ? route.params.get('template') : null;
+  return <Gallery key={template ?? 'all'} initialTemplate={template} />;
 }

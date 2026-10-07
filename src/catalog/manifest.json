@@ -1,207 +1,205 @@
 {
-  "version": 1,
+  "version": 2,
   "vocab": {
-    "useCase": ["Showreel", "Product launch", "Brand intro", "Event promo", "Social ad"],
-    "style": ["Kinetic type", "3D cards", "Minimal", "Neon", "Editorial"],
-    "mood": ["Energetic", "Bold", "Calm", "Playful", "Premium"]
+    "version": "2026-10",
+    "purpose": ["Showreel", "Product launch", "Brand intro", "Event promo", "Social ad", "Data recap"],
+    "style": ["Minimal", "Editorial", "Neon", "Bold", "Tech"],
+    "placement": {
+      "16:9": ["YouTube", "Website hero", "Slides"],
+      "9:16": ["Reels", "TikTok", "Stories"],
+      "1:1": ["Instagram feed", "LinkedIn"],
+      "4:5": ["Instagram feed"]
+    }
   },
-  "entries": [
+  "templates": [
+    {
+      "id": "showreel",
+      "title": "Showreel",
+      "creator": "stephanlivera",
+      "model": "Claude Opus 5.5",
+      "prompt": "Make a dynamic 15 second motion graphics video that shows off what an incredible motion designer you are. Imagine it's your showreel for a resume!",
+      "createdAt": "2026-09-19",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "stack",
+      "title": "Stack",
+      "creator": "ajith_io",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second vertical video for Reels: masked headline reveal, three stacked selling points sliding in, and a circular reveal to a CTA.",
+      "createdAt": "2026-10-03",
+      "license": "Remix with credit"
+    }
+  ],
+  "variants": [
     {
       "id": "showreel-nocturne",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Nocturne Showreel",
       "creator": "stephanlivera",
       "description": "Kinetic headline, 3D stat cards, orbit tagline and a circular brand reveal.",
-      "useCase": "Showreel",
-      "style": ["Kinetic type", "3D cards"],
-      "mood": ["Energetic", "Bold"],
+      "purpose": "Showreel",
+      "style": ["Bold"],
+      "energy": 5,
       "keywords": ["resume", "portfolio", "motion designer", "reel"],
-      "model": "Claude Opus 5.5",
-      "prompt": "Make a dynamic 15 second motion graphics video that shows off what an incredible motion designer you are. Imagine it's your showreel for a resume!",
       "createdAt": "2026-09-28",
       "stats": {"exports": 1840, "remixes": 312},
       "props": {
-        "texts": {
-          "brand": "NOCTURNE",
-          "headline": "Motion, mastered.",
-          "line1": "Kinetic type",
-          "line2": "3D systems",
-          "line3": "Brand stories",
-          "tagline": "Every frame designed to move people",
-          "cta": "See the reel"
-        },
-        "theme": {
-          "background": "#07070b",
-          "surface": "#15151f",
-          "foreground": "#f4f2ee",
-          "accent": "#ff4d2e",
-          "accent2": "#3dd6c6"
-        }
+        "texts": {"brand": "NOCTURNE", "headline": "Motion, mastered.", "point1": "Kinetic type", "point2": "3D systems", "point3": "Brand stories", "subhead": "Every frame designed to move people", "cta": "See the reel"},
+        "theme": {"background": "#07070b", "surface": "#15151f", "foreground": "#f4f2ee", "accent": "#ff4d2e", "accent2": "#3dd6c6"}
       }
     },
     {
       "id": "launch-orbit",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Orbit Launch",
       "creator": "ajith_io",
       "description": "SaaS launch teaser with feature pillars and a strong closing CTA.",
-      "useCase": "Product launch",
-      "style": ["3D cards", "Minimal"],
-      "mood": ["Premium", "Calm"],
+      "purpose": "Product launch",
+      "style": ["Minimal", "Tech"],
+      "energy": 3,
       "keywords": ["saas", "startup", "app", "release", "features"],
-      "model": "Claude Opus 5.5",
-      "prompt": "A premium 10 second launch teaser for a SaaS product: hero claim, three feature cards, and a call to action.",
       "createdAt": "2026-10-02",
       "stats": {"exports": 960, "remixes": 141},
       "props": {
-        "texts": {
-          "brand": "Orbit",
-          "headline": "Ship it faster.",
-          "line1": "Realtime sync",
-          "line2": "Zero config",
-          "line3": "Built-in AI",
-          "tagline": "The workspace your team will actually love",
-          "cta": "Start free"
-        },
-        "theme": {
-          "background": "#f3f4f6",
-          "surface": "#ffffff",
-          "foreground": "#111827",
-          "accent": "#2563eb",
-          "accent2": "#16a34a"
-        }
+        "texts": {"brand": "Orbit", "headline": "Ship it faster.", "point1": "Realtime sync", "point2": "Zero config", "point3": "Built-in AI", "subhead": "The workspace your team will actually love", "cta": "Start free"},
+        "theme": {"background": "#f3f4f6", "surface": "#ffffff", "foreground": "#111827", "accent": "#2563eb", "accent2": "#16a34a"}
       }
     },
     {
       "id": "neon-summit",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Neon Summit",
       "creator": "twoclipping",
       "description": "Conference promo with a neon palette and speaker-track pillars.",
-      "useCase": "Event promo",
-      "style": ["Neon", "Kinetic type"],
-      "mood": ["Energetic", "Playful"],
+      "purpose": "Event promo",
+      "style": ["Neon", "Bold"],
+      "energy": 5,
       "keywords": ["conference", "meetup", "festival", "tickets", "summit"],
-      "model": "Claude Opus 5.5",
-      "prompt": "Hype video for a tech conference. Neon, fast cuts, three tracks, end on ticket CTA.",
       "createdAt": "2026-09-19",
       "stats": {"exports": 1210, "remixes": 205},
       "props": {
-        "texts": {
-          "brand": "SUMMIT 26",
-          "headline": "Future, live.",
-          "line1": "40 speakers",
-          "line2": "3 stages",
-          "line3": "1 city",
-          "tagline": "Two days of builders, ideas and late nights",
-          "cta": "Get tickets"
-        },
-        "theme": {
-          "background": "#0b0420",
-          "surface": "#1c0d3d",
-          "foreground": "#fdf4ff",
-          "accent": "#ff2bd6",
-          "accent2": "#facc15"
-        }
+        "texts": {"brand": "SUMMIT 26", "headline": "Future, live.", "point1": "40 speakers", "point2": "3 stages", "point3": "1 city", "subhead": "Two days of builders, ideas and late nights", "cta": "Get tickets"},
+        "theme": {"background": "#0b0420", "surface": "#1c0d3d", "foreground": "#fdf4ff", "accent": "#ff2bd6", "accent2": "#facc15"}
       }
     },
     {
       "id": "fern-studio",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Fern Studio Intro",
       "creator": "LexnLin",
       "description": "Calm agency intro with an editorial green palette.",
-      "useCase": "Brand intro",
+      "purpose": "Brand intro",
       "style": ["Editorial", "Minimal"],
-      "mood": ["Calm", "Premium"],
+      "energy": 2,
       "keywords": ["agency", "studio", "about us", "sustainability"],
-      "model": "Claude Opus 5.5",
-      "prompt": "A calm, editorial intro for a design studio. Natural palette, confident type, three service pillars.",
       "createdAt": "2026-09-24",
       "stats": {"exports": 530, "remixes": 64},
       "props": {
-        "texts": {
-          "brand": "Fern Studio",
-          "headline": "Design that grows",
-          "line1": "Identity",
-          "line2": "Packaging",
-          "line3": "Spaces",
-          "tagline": "Considered work for brands with roots",
-          "cta": "Say hello"
-        },
-        "theme": {
-          "background": "#0f1f17",
-          "surface": "#183427",
-          "foreground": "#eef5ec",
-          "accent": "#9be15d",
-          "accent2": "#f2c14e"
-        }
+        "texts": {"brand": "Fern Studio", "headline": "Design that grows", "point1": "Identity", "point2": "Packaging", "point3": "Spaces", "subhead": "Considered work for brands with roots", "cta": "Say hello"},
+        "theme": {"background": "#0f1f17", "surface": "#183427", "foreground": "#eef5ec", "accent": "#9be15d", "accent2": "#f2c14e"}
       }
     },
     {
       "id": "drop-sale",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Weekend Drop",
       "creator": "notdwd",
       "description": "Loud retail ad for a limited drop or flash sale.",
-      "useCase": "Social ad",
-      "style": ["Kinetic type", "Neon"],
-      "mood": ["Bold", "Playful"],
+      "purpose": "Social ad",
+      "style": ["Bold", "Neon"],
+      "energy": 5,
       "keywords": ["ecommerce", "sale", "sneakers", "drop", "discount"],
-      "model": "Claude Opus 5.5",
-      "prompt": "Punchy 10s social ad for a sneaker drop. Big type, three selling points, urgent CTA.",
       "createdAt": "2026-10-05",
       "stats": {"exports": 2310, "remixes": 420},
       "props": {
-        "texts": {
-          "brand": "KICKLAB",
-          "headline": "The drop is here",
-          "line1": "Limited run",
-          "line2": "Free shipping",
-          "line3": "48h only",
-          "tagline": "Once they are gone they are gone for good",
-          "cta": "Shop now"
-        },
-        "theme": {
-          "background": "#111111",
-          "surface": "#1f1f1f",
-          "foreground": "#ffffff",
-          "accent": "#d4ff3a",
-          "accent2": "#ff5c39"
-        }
+        "texts": {"brand": "KICKLAB", "headline": "The drop is here", "point1": "Limited run", "point2": "Free shipping", "point3": "48h only", "subhead": "Once they are gone they are gone for good", "cta": "Shop now"},
+        "theme": {"background": "#111111", "surface": "#1f1f1f", "foreground": "#ffffff", "accent": "#d4ff3a", "accent2": "#ff5c39"}
       }
     },
     {
       "id": "ledger-report",
-      "composition": "showreel",
+      "template": "showreel",
       "title": "Ledger Year in Review",
       "creator": "emollick",
       "description": "Annual results recap with metric pillars and an editorial feel.",
-      "useCase": "Brand intro",
-      "style": ["Editorial", "3D cards"],
-      "mood": ["Premium", "Calm"],
+      "purpose": "Data recap",
+      "style": ["Editorial"],
+      "energy": 2,
       "keywords": ["annual report", "results", "investors", "finance", "recap"],
-      "model": "Claude Opus 5.5",
-      "prompt": "A year-in-review video for a fintech: headline, three key metrics, closing message.",
       "createdAt": "2026-09-30",
       "stats": {"exports": 410, "remixes": 38},
       "props": {
-        "texts": {
-          "brand": "LEDGER",
-          "headline": "2026 in review",
-          "line1": "2M customers",
-          "line2": "30 markets",
-          "line3": "4x revenue",
-          "tagline": "Thank you for building the future of money with us",
-          "cta": "Read report"
-        },
-        "theme": {
-          "background": "#f5efe6",
-          "surface": "#ffffff",
-          "foreground": "#1d1b19",
-          "accent": "#c2410c",
-          "accent2": "#0f766e"
-        }
+        "texts": {"brand": "LEDGER", "headline": "2026 in review", "point1": "2M customers", "point2": "30 markets", "point3": "4x revenue", "subhead": "Thank you for building the future of money with us", "cta": "Read report"},
+        "theme": {"background": "#f5efe6", "surface": "#ffffff", "foreground": "#1d1b19", "accent": "#c2410c", "accent2": "#0f766e"}
+      }
+    },
+    {
+      "id": "stack-kicklab",
+      "template": "stack",
+      "title": "Drop Reel",
+      "creator": "notdwd",
+      "description": "Vertical drop announcement with stacked selling points.",
+      "purpose": "Social ad",
+      "style": ["Bold"],
+      "energy": 4,
+      "keywords": ["ecommerce", "sneakers", "drop", "reels", "tiktok"],
+      "createdAt": "2026-10-06",
+      "stats": {"exports": 1980, "remixes": 377},
+      "props": {
+        "texts": {"brand": "KICKLAB", "headline": "The drop is here", "point1": "Limited run", "point2": "Free shipping", "point3": "48h only", "cta": "Shop now"},
+        "theme": {"background": "#111111", "surface": "#1f1f1f", "foreground": "#ffffff", "accent": "#d4ff3a", "accent2": "#ff5c39"}
+      }
+    },
+    {
+      "id": "stack-orbit",
+      "template": "stack",
+      "title": "Feature Stack",
+      "creator": "ajith_io",
+      "description": "Clean vertical feature list for app launches and stories.",
+      "purpose": "Product launch",
+      "style": ["Minimal", "Tech"],
+      "energy": 3,
+      "keywords": ["saas", "app", "features", "stories", "launch"],
+      "createdAt": "2026-10-04",
+      "stats": {"exports": 720, "remixes": 96},
+      "props": {
+        "texts": {"brand": "Orbit", "headline": "Ship it faster.", "point1": "Realtime sync", "point2": "Zero config", "point3": "Built-in AI", "cta": "Start free"},
+        "theme": {"background": "#f3f4f6", "surface": "#ffffff", "foreground": "#111827", "accent": "#2563eb", "accent2": "#16a34a"}
+      }
+    },
+    {
+      "id": "stack-summit",
+      "template": "stack",
+      "title": "Summit Countdown",
+      "creator": "twoclipping",
+      "description": "Vertical event teaser for stories with lineup highlights.",
+      "purpose": "Event promo",
+      "style": ["Neon", "Bold"],
+      "energy": 4,
+      "keywords": ["conference", "festival", "tickets", "stories", "countdown"],
+      "createdAt": "2026-10-01",
+      "stats": {"exports": 640, "remixes": 88},
+      "props": {
+        "texts": {"brand": "SUMMIT 26", "headline": "Future, live.", "point1": "40 speakers", "point2": "3 stages", "point3": "1 city", "cta": "Get tickets"},
+        "theme": {"background": "#0b0420", "surface": "#1c0d3d", "foreground": "#fdf4ff", "accent": "#ff2bd6", "accent2": "#facc15"}
+      }
+    },
+    {
+      "id": "stack-fern",
+      "template": "stack",
+      "title": "Studio Services",
+      "creator": "LexnLin",
+      "description": "Calm vertical service list for an agency profile.",
+      "purpose": "Brand intro",
+      "style": ["Editorial", "Minimal"],
+      "energy": 2,
+      "keywords": ["agency", "studio", "services", "stories"],
+      "createdAt": "2026-09-27",
+      "stats": {"exports": 310, "remixes": 41},
+      "props": {
+        "texts": {"brand": "Fern Studio", "headline": "Design that grows", "point1": "Identity", "point2": "Packaging", "point3": "Spaces", "cta": "Say hello"},
+        "theme": {"background": "#0f1f17", "surface": "#183427", "foreground": "#eef5ec", "accent": "#9be15d", "accent2": "#f2c14e"}
       }
     }
   ]

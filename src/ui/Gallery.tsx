@@ -1,48 +1,88 @@
-import {Download, Repeat2, Search, X} from 'lucide-react';
+import {Download, Repeat2, Search, SlidersHorizontal, Wand2, X} from 'lucide-react';
 import {useMemo, useState} from 'react';
-import {entries, searchText, technical, vocab, type Entry} from '../catalog/catalog';
+import {searchText, templates, variants, vocab, type Format, type Tone, type Variant} from '../catalog/catalog';
+import {SCENE_TYPES} from '../videos/vocab';
+import {applyKit, kitActive, useBrandKit} from './brandKit';
+import {BrandKitPanel} from './BrandKitPanel';
 import {Header} from './Header';
-import {Thumb} from './Thumb';
+import {Media} from './Media';
 
 type Sort = 'popular' | 'new' | 'remixed';
+type Energy = 'Calm' | 'Medium' | 'High';
+type Filters = {
+  template: string | null;
+  purpose: string | null;
+  formats: Format[];
+  styles: string[];
+  tones: Tone[];
+  energy: Energy | null;
+  scenes: string[];
+};
 
+export const energyOf = (n: number): Energy => (n <= 2 ? 'Calm' : n === 3 ? 'Medium' : 'High');
 const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
+const FORMATS: Format[] = ['16:9', '9:16', '1:1'];
+const SCENE_FILTERS = Object.entries(SCENE_TYPES).filter(([k]) => k !== 'transition');
 
-export function Gallery() {
+function matches(v: Variant, f: Filters, skip?: keyof Filters) {
+  if (skip !== 'template' && f.template && v.template !== f.template) return false;
+  if (skip !== 'purpose' && f.purpose && v.purpose !== f.purpose) return false;
+  if (skip !== 'formats' && f.formats.length && !f.formats.includes(v.format)) return false;
+  if (skip !== 'styles' && f.styles.length && !f.styles.every((s) => v.style.includes(s))) return false;
+  if (skip !== 'tones' && f.tones.length && !f.tones.includes(v.tone)) return false;
+  if (skip !== 'energy' && f.energy && energyOf(v.energy) !== f.energy) return false;
+  if (skip !== 'scenes' && f.scenes.length && !f.scenes.every((s) => v.tmpl.meta.scenes.some((x) => x.type === s))) return false;
+  return true;
+}
+
+export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
+  const kit = useBrandKit();
+  const applied = kitActive(kit);
+  const [kitOpen, setKitOpen] = useState(false);
   const [q, setQ] = useState('');
-  const [useCase, setUseCase] = useState<string | null>(null);
-  const [styles, setStyles] = useState<string[]>([]);
-  const [moods, setMoods] = useState<string[]>([]);
   const [sort, setSort] = useState<Sort>('popular');
   const [hover, setHover] = useState<string | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [f, setF] = useState<Filters>({template: initialTemplate, purpose: null, formats: [], styles: [], tones: [], energy: null, scenes: []});
 
-  const toggle = (list: string[], set: (v: string[]) => void, v: string) =>
-    set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
+  const set = <K extends keyof Filters>(k: K, v: Filters[K]) => setF((s) => ({...s, [k]: v}));
+  const toggle = <K extends 'formats' | 'styles' | 'tones' | 'scenes'>(k: K, v: Filters[K][number]) =>
+    setF((s) => {
+      const list = s[k] as string[];
+      return {...s, [k]: list.includes(v) ? list.filter((x) => x !== v) : [...list, v]};
+    });
+
+  const searched = useMemo(() => {
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    return variants.filter((v) => terms.every((t) => searchText(v).includes(t)));
+  }, [q]);
+
+  const count = (skip: keyof Filters, pred: (v: Variant) => boolean) => searched.filter((v) => matches(v, f, skip) && pred(v)).length;
 
   const results = useMemo(() => {
-    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-    const list = entries.filter((e) => {
-      if (useCase && e.useCase !== useCase) return false;
-      if (styles.length && !styles.every((s) => e.style.includes(s))) return false;
-      if (moods.length && !moods.every((m) => e.mood.includes(m))) return false;
-      const hay = searchText(e);
-      return terms.every((t) => hay.includes(t));
-    });
-    const key: Record<Sort, (e: Entry) => number> = {
-      popular: (e) => e.stats.exports,
-      remixed: (e) => e.stats.remixes,
-      new: (e) => Date.parse(e.createdAt),
+    const key: Record<Sort, (v: Variant) => number> = {
+      popular: (v) => v.stats.exports,
+      remixed: (v) => v.stats.remixes,
+      new: (v) => Date.parse(v.createdAt),
     };
-    return [...list].sort((a, b) => key[sort](b) - key[sort](a));
-  }, [q, useCase, styles, moods, sort]);
+    return searched.filter((v) => matches(v, f)).sort((a, b) => key[sort](b) - key[sort](a));
+  }, [searched, f, sort]);
 
-  const active = Boolean(q || useCase || styles.length || moods.length);
+  const active = Boolean(q || f.template || f.purpose || f.formats.length || f.styles.length || f.tones.length || f.energy || f.scenes.length);
+  const activeCount =
+    (f.template ? 1 : 0) + (f.purpose ? 1 : 0) + (f.energy ? 1 : 0) + f.formats.length + f.styles.length + f.tones.length + f.scenes.length;
   const clear = () => {
     setQ('');
-    setUseCase(null);
-    setStyles([]);
-    setMoods([]);
+    setF({template: null, purpose: null, formats: [], styles: [], tones: [], energy: null, scenes: []});
+    if (location.hash.includes('?')) location.hash = '#/';
   };
+
+  const chip = (on: boolean, label: string, n: number, onClick: () => void) => (
+    <button key={label} className={`chip ${on ? 'on' : ''}`} disabled={!on && n === 0} onClick={onClick}>
+      {label}
+      <span className="chip-count">{n}</span>
+    </button>
+  );
 
   return (
     <div className="page">
@@ -56,49 +96,73 @@ export function Gallery() {
             </button>
           )}
         </label>
+        <button className={`kit-btn ${kitOpen ? 'open' : ''} ${applied ? 'applied' : ''}`} onClick={() => setKitOpen((o) => !o)} title="Brand kit">
+          <Wand2 size={16} />
+          <span className="kit-btn-label">Brand kit</span>
+          {applied && <span className="dot" />}
+        </button>
       </Header>
 
+      {kitOpen && <BrandKitPanel />}
+
       <div className="gallery-layout">
-        <aside className="filters">
+        <aside className={`filters ${filtersOpen ? 'open' : ''}`}>
           <section>
-            <h3>Use case</h3>
+            <h3>Purpose</h3>
             <div className="list">
-              {vocab.useCase.map((u) => (
-                <button key={u} className={`row-btn ${useCase === u ? 'on' : ''}`} onClick={() => setUseCase(useCase === u ? null : u)}>
-                  <span>{u}</span>
-                  <span className="count">{entries.filter((e) => e.useCase === u).length}</span>
-                </button>
-              ))}
-            </div>
-          </section>
-          <section>
-            <h3>Style</h3>
-            <div className="chips">
-              {vocab.style.map((s) => (
-                <button key={s} className={`chip ${styles.includes(s) ? 'on' : ''}`} onClick={() => toggle(styles, setStyles, s)}>
-                  {s}
-                </button>
-              ))}
-            </div>
-          </section>
-          <section>
-            <h3>Mood</h3>
-            <div className="chips">
-              {vocab.mood.map((m) => (
-                <button key={m} className={`chip ${moods.includes(m) ? 'on' : ''}`} onClick={() => toggle(moods, setMoods, m)}>
-                  {m}
-                </button>
-              ))}
+              {vocab.purpose.map((p) => {
+                const n = count('purpose', (v) => v.purpose === p);
+                return (
+                  <button key={p} className={`row-btn ${f.purpose === p ? 'on' : ''}`} disabled={!n && f.purpose !== p} onClick={() => set('purpose', f.purpose === p ? null : p)}>
+                    <span>{p}</span>
+                    <span className="count">{n}</span>
+                  </button>
+                );
+              })}
             </div>
           </section>
           <section>
             <h3>Format</h3>
+            <div className="chips">{FORMATS.map((x) => chip(f.formats.includes(x), x, count('formats', (v) => v.format === x), () => toggle('formats', x)))}</div>
+          </section>
+          <section>
+            <h3>Style</h3>
+            <div className="chips">{vocab.style.map((s) => chip(f.styles.includes(s), s, count('styles', (v) => v.style.includes(s)), () => toggle('styles', s)))}</div>
+          </section>
+          <section>
+            <h3>Energy</h3>
             <div className="chips">
-              {['16:9', '9:16', '1:1'].map((f) => (
-                <span key={f} className={`chip static ${f === '16:9' ? '' : 'disabled'}`}>
-                  {f}
-                </span>
-              ))}
+              {(['Calm', 'Medium', 'High'] as Energy[]).map((e) =>
+                chip(f.energy === e, e, count('energy', (v) => energyOf(v.energy) === e), () => set('energy', f.energy === e ? null : e)),
+              )}
+            </div>
+          </section>
+          <section>
+            <h3>Tone</h3>
+            <div className="chips">{(['Dark', 'Light'] as Tone[]).map((t) => chip(f.tones.includes(t), t, count('tones', (v) => v.tone === t), () => toggle('tones', t)))}</div>
+          </section>
+          <section>
+            <h3>Includes scene</h3>
+            <div className="chips">
+              {SCENE_FILTERS.map(([k, label]) =>
+                chip(f.scenes.includes(k), label, count('scenes', (v) => v.tmpl.meta.scenes.some((s) => s.type === k)), () => toggle('scenes', k)),
+              )}
+            </div>
+          </section>
+          <section>
+            <h3>Template</h3>
+            <div className="list">
+              {templates.map((t) => {
+                const n = count('template', (v) => v.template === t.id);
+                return (
+                  <button key={t.id} className={`row-btn ${f.template === t.id ? 'on' : ''}`} onClick={() => set('template', f.template === t.id ? null : t.id)}>
+                    <span>
+                      {t.title} <span className="muted small">@{t.creator}</span>
+                    </span>
+                    <span className="count">{n}</span>
+                  </button>
+                );
+              })}
             </div>
           </section>
         </aside>
@@ -106,6 +170,10 @@ export function Gallery() {
         <main>
           <div className="results-bar">
             <div className="results-count">
+              <button className={`filters-toggle ${filtersOpen ? 'on' : ''}`} onClick={() => setFiltersOpen((o) => !o)} title="Filters">
+                <SlidersHorizontal size={15} />
+                {activeCount > 0 && <span className="badge-count">{activeCount}</span>}
+              </button>
               {results.length} {results.length === 1 ? 'video' : 'videos'}
               {active && (
                 <button className="link-btn" onClick={clear}>
@@ -131,51 +199,56 @@ export function Gallery() {
             </div>
           ) : (
             <div className="grid">
-              {results.map((e) => {
-                const t = technical(e);
+              {results.map((v) => {
+                const props = applied ? applyKit(v.props, kit) : null;
+                const theme = (props ?? v.props).theme;
                 return (
                   <a
-                    key={e.id}
-                    href={`#/v/${e.id}`}
+                    key={v.id}
+                    href={`#/v/${v.id}`}
                     className="card"
-                    onMouseEnter={() => setHover(e.id)}
+                    onMouseEnter={() => setHover(v.id)}
                     onMouseLeave={() => setHover(null)}
-                    onFocus={() => setHover(e.id)}
+                    onFocus={() => setHover(v.id)}
                     onBlur={() => setHover(null)}
                   >
                     <div className="card-media">
-                      <Thumb entry={e} playing={hover === e.id} />
+                      <Media variant={v} props={props} playing={!props && hover === v.id} />
                       <span className="badge">
-                        {t.format} · {t.seconds}s
+                        {v.format} · {v.seconds}s
                       </span>
                     </div>
                     <div className="card-body">
                       <div className="card-title">
-                        <span>{e.title}</span>
+                        <span>{v.title}</span>
                         <div className="palette">
-                          {Object.values(e.props.theme).map((c, i) => (
+                          {Object.values(theme).map((c: string, i) => (
                             <span key={i} style={{background: c}} />
                           ))}
                         </div>
                       </div>
                       <div className="card-meta">
-                        <span>@{e.creator}</span>
+                        <span>
+                          @{v.creator} · {v.tmpl.title}
+                        </span>
                         <span className="stats">
                           <span title="Exports">
-                            <Download size={13} /> {fmt(e.stats.exports)}
+                            <Download size={13} /> {fmt(v.stats.exports)}
                           </span>
                           <span title="Remixes">
-                            <Repeat2 size={13} /> {fmt(e.stats.remixes)}
+                            <Repeat2 size={13} /> {fmt(v.stats.remixes)}
                           </span>
                         </span>
                       </div>
                       <div className="tags">
-                        <span className="tag strong">{e.useCase}</span>
-                        {[...e.style, ...e.mood].map((s) => (
+                        <span className="tag strong">{v.purpose}</span>
+                        <span className="tag">{v.placement[0]}</span>
+                        {v.style.map((s) => (
                           <span key={s} className="tag">
                             {s}
                           </span>
                         ))}
+                        <span className="tag">{energyOf(v.energy)}</span>
                       </div>
                     </div>
                   </a>

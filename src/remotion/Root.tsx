@@ -15,7 +15,7 @@ export const RemotionRoot: React.FC = () => (
         height={c.height}
         fps={c.fps}
         durationInFrames={c.durationInFrames}
-        defaultProps={manifest.entries.find((e) => e.composition === id)!.props}
+        defaultProps={manifest.variants.find((v) => v.template === id)!.props as never}
       />
     ))}
   </>

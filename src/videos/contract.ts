@@ -1,42 +1,35 @@
 import {z} from 'zod';
+import type {Role, ThemeRole} from './vocab.ts';
+import {ROLES, THEME_ROLES} from './vocab.ts';
+
+export * from './vocab.ts';
 
 // The editing contract every generated composition must follow:
-// all copy comes from `texts`, all color comes from `theme`.
-export const textSlot = (label: string, max: number) =>
-  z.string().min(1, 'Required').max(max).meta({label});
+// all copy comes from `texts` (using shared roles), all color from `theme`.
+export function textsSchema<R extends Role>(roles: readonly R[]) {
+  const shape = Object.fromEntries(
+    roles.map((r) => [r, z.string().min(1, 'Required').max(ROLES[r].max).meta({role: r})]),
+  );
+  return z.object(shape) as unknown as z.ZodObject<{[K in R]: z.ZodString}>;
+}
 
-export const colorSlot = (label: string) =>
-  z
-    .string()
-    .regex(/^#[0-9a-fA-F]{6}$/, 'Use a 6-digit hex color')
-    .meta({label});
+const hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Use a 6-digit hex color');
 
-export type VideoProps = {
-  texts: Record<string, string>;
-  theme: Record<string, string>;
-};
-
-export type TextField = {key: string; label: string; max: number};
-export type ColorField = {key: string; label: string};
+export const themeSchema = z.object(
+  Object.fromEntries(THEME_ROLES.map((r) => [r, hex.meta({role: r})])) as {[K in ThemeRole]: typeof hex},
+);
 
 export type VideoSchema = z.ZodObject<{
   texts: z.ZodObject<Record<string, z.ZodString>>;
-  theme: z.ZodObject<Record<string, z.ZodString>>;
+  theme: typeof themeSchema;
 }>;
 
+export type TextField = {key: Role; label: string; max: number};
+
 // Derive editor fields from the schema so new compositions need no UI code.
-export function describeSchema(schema: VideoSchema): {
-  texts: TextField[];
-  colors: ColorField[];
-} {
-  const texts = Object.entries(schema.shape.texts.shape).map(([key, s]) => ({
-    key,
-    label: (s.meta()?.label as string) ?? key,
-    max: s.maxLength ?? 80,
-  }));
-  const colors = Object.entries(schema.shape.theme.shape).map(([key, s]) => ({
-    key,
-    label: (s.meta()?.label as string) ?? key,
-  }));
-  return {texts, colors};
+export function describeSchema(schema: VideoSchema): TextField[] {
+  return Object.keys(schema.shape.texts.shape).map((key) => {
+    const role = key as Role;
+    return {key: role, label: ROLES[role].label, max: ROLES[role].max};
+  });
 }

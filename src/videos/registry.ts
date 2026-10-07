@@ -1,25 +1,18 @@
 import type React from 'react';
-import type {VideoSchema} from './contract';
+import type {TemplateMeta, VideoSchema} from './contract';
+import {templateMeta} from './meta';
 import {Showreel} from './showreel/Showreel';
 import {showreelSchema} from './showreel/schema';
+import {Stack} from './stack/Stack';
+import {stackSchema} from './stack/schema';
 
-export type CompositionDef = {
+export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
   schema: VideoSchema;
-  width: number;
-  height: number;
-  fps: number;
-  durationInFrames: number;
 };
 
-// One entry per generated composition. Catalog entries reference these by id.
+// One entry per template. Catalog variants reference these by id.
 export const compositions: Record<string, CompositionDef> = {
-  showreel: {
-    component: Showreel,
-    schema: showreelSchema as unknown as VideoSchema,
-    width: 1920,
-    height: 1080,
-    fps: 30,
-    durationInFrames: 300,
-  },
+  showreel: {...templateMeta.showreel, component: Showreel, schema: showreelSchema as unknown as VideoSchema},
+  stack: {...templateMeta.stack, component: Stack, schema: stackSchema as unknown as VideoSchema},
 };
