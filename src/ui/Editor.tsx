@@ -214,7 +214,7 @@ export function Editor({variant}: {variant: Variant}) {
             <div className="related-grid">
               {related.map((v) => (
                 <a key={v.id} href={`#/v/${v.id}`} className="related-card">
-                  <Media variant={v} props={null} playing={false} />
+                  <Media variant={v} props={null} autoplay={false} />
                   <span className="related-title">{v.title}</span>
                   <span className="muted small">
                     {v.tmpl.title} · {v.format}

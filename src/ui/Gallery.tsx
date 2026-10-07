@@ -41,7 +41,6 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
   const [kitOpen, setKitOpen] = useState(false);
   const [q, setQ] = useState('');
   const [sort, setSort] = useState<Sort>('popular');
-  const [hover, setHover] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [f, setF] = useState<Filters>({template: initialTemplate, purpose: null, formats: [], styles: [], tones: [], energy: null, scenes: []});
 
@@ -207,13 +206,9 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
                     key={v.id}
                     href={`#/v/${v.id}`}
                     className="card"
-                    onMouseEnter={() => setHover(v.id)}
-                    onMouseLeave={() => setHover(null)}
-                    onFocus={() => setHover(v.id)}
-                    onBlur={() => setHover(null)}
                   >
                     <div className="card-media">
-                      <Media variant={v} props={props} playing={!props && hover === v.id} />
+                      <Media variant={v} props={props} />
                       <span className="badge">
                         {v.format} · {v.seconds}s
                       </span>

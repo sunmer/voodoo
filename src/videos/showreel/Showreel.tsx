@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Theme} from '../contract';
-import {ArrowIcon, FONT, Grain, KineticLine, Vignette, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
+import {ArrowIcon, FONT, Grain, KineticLine, LITE, Vignette, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
 import {showreelMeta} from './meta';
 import type {ShowreelProps} from './schema';
 
@@ -23,14 +23,15 @@ const Backdrop: React.FC<{theme: Theme}> = ({theme}) => {
           right: '-50%',
           top: '48%',
           height: '110%',
-          transform: 'perspective(700px) rotateX(70deg)',
+          // The 3D floor is a 3840px layer; on iOS draw it flat.
+          transform: LITE ? undefined : 'perspective(700px) rotateX(70deg)',
           transformOrigin: '50% 0%',
           backgroundImage: `linear-gradient(${theme.foreground}1f 2px, transparent 2px), linear-gradient(90deg, ${theme.foreground}1f 2px, transparent 2px)`,
           backgroundSize: '120px 120px',
           backgroundPosition: `0 ${shift}px`,
-          maskImage: 'linear-gradient(to bottom, transparent, black 25%, black 55%, transparent)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, transparent, black 25%, black 55%, transparent)',
+          maskImage: LITE ? undefined : 'linear-gradient(to bottom, transparent, black 25%, black 55%, transparent)',
+          WebkitMaskImage: LITE ? undefined : 'linear-gradient(to bottom, transparent, black 25%, black 55%, transparent)',
+          opacity: LITE ? 0.35 : 1,
         }}
       />
     </AbsoluteFill>
@@ -74,7 +75,7 @@ const SceneTitle: React.FC<ShowreelProps> = ({texts, theme}) => {
         alignItems: 'center',
         transform: `translateY(${exit * -90}px) scale(${1 + exit * 0.08})`,
         opacity: 1 - exit,
-        filter: `blur(${exit * 10}px)`,
+        filter: LITE ? undefined : `blur(${exit * 10}px)`,
       }}
     >
       <div style={{position: 'absolute', top: 110, left: 140, display: 'flex', alignItems: 'center', gap: 24}}>

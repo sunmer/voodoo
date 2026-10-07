@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, interpolate, random, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Theme} from '../contract';
-import {ArrowIcon, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
+import {ArrowIcon, LITE, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
 import {MONO_FONT, SANS_FONT, loadTemplateFonts} from '../shared/fonts';
 import {terminalMeta} from './meta';
 import type {TerminalProps} from './schema';
@@ -93,8 +93,8 @@ const Glitch: React.FC<{text: string; size: number; theme: Theme; amount: number
   const base: React.CSSProperties = {position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap', fontSize: size, fontWeight: weight, lineHeight: 1.05, fontFamily: font};
   return (
     <div style={{position: 'relative', height: size * 1.1}}>
-      <div style={{...base, color: theme.accent2, transform: `translateX(${-8 * amount + jitter}px)`, opacity: amount ? 0.85 : 0, mixBlendMode: 'screen'}}>{text}</div>
-      <div style={{...base, color: theme.accent, transform: `translateX(${8 * amount - jitter}px)`, opacity: amount ? 0.85 : 0, mixBlendMode: 'screen'}}>{text}</div>
+      <div style={{...base, color: theme.accent2, transform: `translateX(${-8 * amount + jitter}px)`, opacity: amount ? 0.85 : 0, mixBlendMode: LITE ? undefined : 'screen'}}>{text}</div>
+      <div style={{...base, color: theme.accent, transform: `translateX(${8 * amount - jitter}px)`, opacity: amount ? 0.85 : 0, mixBlendMode: LITE ? undefined : 'screen'}}>{text}</div>
       <div style={{...base, color: theme.foreground, clipPath: amount ? `inset(${slice}% 0 ${Math.max(0, 70 - slice)}% 0)` : undefined, transform: `translateX(${jitter * 0.6}px)`}}>{text}</div>
       {amount > 0 && <div style={{...base, color: theme.foreground, clipPath: `inset(0 0 ${100 - slice}% 0)`}}>{text}</div>}
       {amount > 0 && <div style={{...base, color: theme.foreground, clipPath: `inset(${Math.min(100, slice + 30)}% 0 0 0)`}}>{text}</div>}

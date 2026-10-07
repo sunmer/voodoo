@@ -43,5 +43,25 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 
 ## Notes
 
+- Preset gallery cards autoplay muted MP4s when at least 35% visible. Scrolling away or hiding the page unloads them. Reduced-motion settings keep the poster, as does a rejected autoplay request.
+- iPhone/iPad live compositions skip costly grain, blur, and selected 3D layers. Exported videos retain the full effects. Browser emulation cannot prove stability on every physical iPhone.
+- The five additional families are Bento, Glass, Flex, Riso, and Collage, with two presets each. Flex measures glyph bounds to fit variable-width text.
+
+## Verify
+
+```bash
+npm run build
+node scripts/smoke.cjs
+node scripts/smoke-ios.cjs
+node scripts/smoke-media.cjs
+node scripts/smoke-media.cjs --ios
+```
+
+Run the browser checks against the dev server, or set `URL` to the deployed site. Media checks cover viewport autoplay, background cleanup, blocked autoplay, reduced motion, complete editor loops, and Flex text fitting. Screenshots are viewport-sized and written under `/tmp/voodoo-*`.
+
+Design reference: [Adobe's 2026 design trends](https://www.adobe.com/express/learn/blog/design-trends-2026), including tactile collage and playful typography. Playback reference: [WebKit's inline autoplay policies](https://webkit.org/blog/6784/new-video-policies-for-ios/).
+
+## Rendering
+
 - Remotion's downloaded headless Chrome hangs on this machine. `remotion.config.ts` and the preview script use Playwright's cached headless shell instead. To use another browser, set `REMOTION_BROWSER`.
 - Remotion needs a company license above a small team size. See remotion.dev/license.

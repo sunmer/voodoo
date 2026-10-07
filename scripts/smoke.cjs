@@ -1,5 +1,6 @@
 // Browser smoke test: gallery facets, brand kit, editor scene focus. Captures screenshots.
 const {chromium} = require('playwright');
+const manifest = require('../src/catalog/manifest.json');
 
 const assert = (cond, msg) => {
   if (!cond) throw new Error('ASSERT: ' + msg);
@@ -25,7 +26,7 @@ const assert = (cond, msg) => {
     if (await toggle.isVisible()) await toggle.click();
     await page.locator('.chip', {hasText: '9:16'}).click();
     const vertical = await page.locator('.card').count();
-    await page.screenshot({path: `/tmp/voodoo-gallery-${vp.n}.png`});
+    await page.screenshot({path: `/tmp/voodoo-gallery-${vp.n}.png`, scale: 'css'});
     await page.locator('.chip', {hasText: '9:16'}).click();
     if (await toggle.isVisible()) await toggle.click();
 
@@ -37,7 +38,7 @@ const assert = (cond, msg) => {
     await page.locator('.kit-btn').click();
     await page.waitForTimeout(1500);
     const kitThumbs = await page.locator('.card .media .__remotion-player, .card .media div[style*="aspect-ratio"] > div').count();
-    await page.screenshot({path: `/tmp/voodoo-kit-${vp.n}.png`, fullPage: vp.n === 'desktop'});
+    await page.screenshot({path: `/tmp/voodoo-kit-${vp.n}.png`, scale: 'css'});
 
     // Editor: focusing a field seeks the player to the scene that shows it.
     await page.goto(base + '#/v/stack-orbit');
@@ -49,10 +50,10 @@ const assert = (cond, msg) => {
     await page.locator('.kit-apply button').click();
     await page.waitForTimeout(800);
     const brandValue = await page.locator('.field input').nth(0).inputValue();
-    await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, fullPage: vp.n === 'mobile'});
+    await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, scale: 'css'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};
-    assert(total === 18 && vertical === 4, 'facet counts');
+    assert(total === manifest.variants.length && vertical === 8, 'facet counts');
     assert(linked === 'List', 'focus links point to list scene');
     assert(brandValue === 'ACME', 'brand kit applied in editor');
   }

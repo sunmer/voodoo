@@ -91,6 +91,51 @@
       "prompt": "An 8 second editorial brand film in a magazine layout: serif headline masked in line by line, a pull quote, and a numbered index with a CTA.",
       "createdAt": "2026-10-07",
       "license": "Remix with credit"
+    },
+    {
+      "id": "bento",
+      "title": "Bento",
+      "creator": "gridwork.studio",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second 16:9 product reveal in the bento-grid style: the headline sets word by word with a weight morph, then a grid of rounded tiles assembles with a live counter, progress ring and feature icons, and a tile grows into a gradient logo lockup.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "glass",
+      "title": "Glass",
+      "creator": "lumen.ui",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second vertical app promo in a liquid-glass style: drifting color fields behind frosted panels, a glass hero card with a light sheen, lock-screen style notifications for three features, and a glass orb lockup.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "flex",
+      "title": "Flex",
+      "creator": "widthaxis",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second square kinetic type ad using a variable font: headline words breathe between condensed and expanded widths, an index list where the active row stretches, and a circular wipe to the brand.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "riso",
+      "title": "Riso",
+      "creator": "inkfold",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second 4:5 poster in a risograph style: halftone sun shapes, two-color misregistered type, scrambled text that resolves, halftone wipes and a rotating text-ring stamp.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "collage",
+      "title": "Collage",
+      "creator": "cutpaste.club",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second vertical zine-style collage: torn paper scraps with tape drop in, hand-drawn scribbles draw on, a sticker badge pops, and the CTA lands on a pill.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
     }
   ],
   "variants": [
@@ -850,6 +895,428 @@
           "foreground": "#f1ede4",
           "accent": "#e8b04a",
           "accent2": "#8fb8de"
+        }
+      }
+    },
+    {
+      "id": "bento-launch",
+      "template": "bento",
+      "title": "Bento Launch",
+      "creator": "gridwork.studio",
+      "description": "Bento-grid feature reveal for a SaaS or AI product launch.",
+      "purpose": "Product launch",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "saas",
+        "ai",
+        "features",
+        "launch",
+        "bento"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 720,
+        "remixes": 164
+      },
+      "props": {
+        "texts": {
+          "brand": "Nova AI",
+          "headline": "Think less, ship more",
+          "subhead": "One workspace for docs, tasks and chat",
+          "point1": "Instant search",
+          "point2": "Live docs",
+          "point3": "Agents that ship",
+          "cta": "Start free"
+        },
+        "theme": {
+          "background": "#0b0c10",
+          "surface": "#16181f",
+          "foreground": "#f4f5f7",
+          "accent": "#7c5cff",
+          "accent2": "#2ee6a6"
+        }
+      }
+    },
+    {
+      "id": "bento-light",
+      "template": "bento",
+      "title": "Bento Recap",
+      "creator": "gridwork.studio",
+      "description": "Bright bento dashboard recap for a product update.",
+      "purpose": "Data recap",
+      "style": [
+        "Minimal",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "update",
+        "changelog",
+        "dashboard",
+        "recap"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 380,
+        "remixes": 72
+      },
+      "props": {
+        "texts": {
+          "brand": "Plano",
+          "headline": "What we shipped",
+          "subhead": "Six weeks of improvements in one view",
+          "point1": "Faster sync",
+          "point2": "New editor",
+          "point3": "Offline mode",
+          "cta": "See changelog"
+        },
+        "theme": {
+          "background": "#f3f1ec",
+          "surface": "#ffffff",
+          "foreground": "#16151a",
+          "accent": "#ff5a36",
+          "accent2": "#2f6bff"
+        }
+      }
+    },
+    {
+      "id": "glass-app",
+      "template": "glass",
+      "title": "Glass App Promo",
+      "creator": "lumen.ui",
+      "description": "Liquid-glass vertical promo for a mobile app.",
+      "purpose": "Product launch",
+      "style": [
+        "Tech",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "app",
+        "ios",
+        "mobile",
+        "reels",
+        "glass"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 860,
+        "remixes": 190
+      },
+      "props": {
+        "texts": {
+          "brand": "Halo",
+          "headline": "Calm by design",
+          "subhead": "Your day, quietly organised",
+          "point1": "Focus mode on",
+          "point2": "Wind down at 10",
+          "point3": "Streak: 21 days",
+          "cta": "Get the app"
+        },
+        "theme": {
+          "background": "#120a2a",
+          "surface": "#3a2aa8",
+          "foreground": "#ffffff",
+          "accent": "#ff6ad5",
+          "accent2": "#4fd1ff"
+        }
+      }
+    },
+    {
+      "id": "glass-sunset",
+      "template": "glass",
+      "title": "Sunset Glass",
+      "creator": "lumen.ui",
+      "description": "Warm frosted-glass story for a wellness or travel brand.",
+      "purpose": "Brand intro",
+      "style": [
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "wellness",
+        "travel",
+        "story",
+        "glass",
+        "warm"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 410,
+        "remixes": 88
+      },
+      "props": {
+        "texts": {
+          "brand": "Solace",
+          "headline": "Breathe in summer",
+          "subhead": "Retreats on the coast from June",
+          "point1": "Sunrise yoga",
+          "point2": "Sea sauna",
+          "point3": "Slow dinners",
+          "cta": "Book a stay"
+        },
+        "theme": {
+          "background": "#2a0f12",
+          "surface": "#c2410c",
+          "foreground": "#fff7ed",
+          "accent": "#fb923c",
+          "accent2": "#f43f5e"
+        }
+      }
+    },
+    {
+      "id": "flex-drop",
+      "template": "flex",
+      "title": "Flex Drop",
+      "creator": "widthaxis",
+      "description": "Breathing variable-type ad for a streetwear drop.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "fashion",
+        "drop",
+        "streetwear",
+        "kinetic type"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 540,
+        "remixes": 121
+      },
+      "props": {
+        "texts": {
+          "brand": "Kinetic",
+          "headline": "New season now live",
+          "point1": "Outerwear",
+          "point2": "Knitwear",
+          "point3": "Footwear",
+          "cta": "Shop the drop"
+        },
+        "theme": {
+          "background": "#0d0d0d",
+          "surface": "#1c1c1c",
+          "foreground": "#f2f2ee",
+          "accent": "#c6ff00",
+          "accent2": "#ff3d7f"
+        }
+      }
+    },
+    {
+      "id": "flex-gallery",
+      "template": "flex",
+      "title": "Flex Exhibition",
+      "creator": "widthaxis",
+      "description": "Expanding type poster for an exhibition or talk series.",
+      "purpose": "Event promo",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "exhibition",
+        "museum",
+        "talks",
+        "design",
+        "poster"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 260,
+        "remixes": 47
+      },
+      "props": {
+        "texts": {
+          "brand": "Kunsthall",
+          "headline": "Form follows motion",
+          "point1": "Opening",
+          "point2": "Talks",
+          "point3": "Late nights",
+          "cta": "Plan your visit"
+        },
+        "theme": {
+          "background": "#e9e6dd",
+          "surface": "#d6d1c4",
+          "foreground": "#111111",
+          "accent": "#1d4ed8",
+          "accent2": "#e11d48"
+        }
+      }
+    },
+    {
+      "id": "riso-gig",
+      "template": "riso",
+      "title": "Riso Gig Poster",
+      "creator": "inkfold",
+      "description": "Two-color risograph poster for a gig or club night.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "concert",
+        "gig",
+        "poster",
+        "club",
+        "print"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 330,
+        "remixes": 79
+      },
+      "props": {
+        "texts": {
+          "brand": "Basement",
+          "headline": "Loud night out",
+          "subhead": "Three rooms, one night, doors at nine",
+          "point1": "Live bands",
+          "point2": "DJ sets",
+          "point3": "Zines",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#f4efe4",
+          "surface": "#e6dcc8",
+          "foreground": "#1f1d1a",
+          "accent": "#ff4f8b",
+          "accent2": "#2c6bff"
+        }
+      }
+    },
+    {
+      "id": "riso-bakery",
+      "template": "riso",
+      "title": "Riso Shop Opening",
+      "creator": "inkfold",
+      "description": "Print-style announcement for a shop or cafe opening.",
+      "purpose": "Brand intro",
+      "style": [
+        "Editorial"
+      ],
+      "energy": 3,
+      "keywords": [
+        "cafe",
+        "bakery",
+        "opening",
+        "local",
+        "print"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 190,
+        "remixes": 36
+      },
+      "props": {
+        "texts": {
+          "brand": "Crumb",
+          "headline": "Now open daily",
+          "subhead": "Fresh bread, good coffee, from seven",
+          "point1": "Sourdough",
+          "point2": "Pastries",
+          "point3": "Coffee",
+          "cta": "Find us"
+        },
+        "theme": {
+          "background": "#fbf3e6",
+          "surface": "#f0e2c8",
+          "foreground": "#2b211c",
+          "accent": "#ff7a1a",
+          "accent2": "#0f9d76"
+        }
+      }
+    },
+    {
+      "id": "collage-zine",
+      "template": "collage",
+      "title": "Zine Collage",
+      "creator": "cutpaste.club",
+      "description": "Cut-and-paste collage story for a creator or podcast.",
+      "purpose": "Brand intro",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "podcast",
+        "creator",
+        "zine",
+        "collage",
+        "story"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 470,
+        "remixes": 112
+      },
+      "props": {
+        "texts": {
+          "brand": "Offline",
+          "headline": "Unfiltered talk",
+          "subhead": "A weekly show about making things",
+          "point1": "New episode",
+          "point2": "Every Friday",
+          "point3": "Zero ads",
+          "cta": "Listen now"
+        },
+        "theme": {
+          "background": "#efe9df",
+          "surface": "#ffffff",
+          "foreground": "#141414",
+          "accent": "#ff4d2e",
+          "accent2": "#2b59ff"
+        }
+      }
+    },
+    {
+      "id": "collage-sale",
+      "template": "collage",
+      "title": "Collage Sale",
+      "creator": "cutpaste.club",
+      "description": "Sticker-and-tape vertical ad for a vintage or thrift sale.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "vintage",
+        "thrift",
+        "sale",
+        "stories",
+        "collage"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 350,
+        "remixes": 84
+      },
+      "props": {
+        "texts": {
+          "brand": "Second Hand",
+          "headline": "Vintage weekend",
+          "subhead": "Racks restocked with one of a kind finds",
+          "point1": "50% off",
+          "point2": "New racks",
+          "point3": "Sat and Sun",
+          "cta": "Visit the shop"
+        },
+        "theme": {
+          "background": "#1a1a1a",
+          "surface": "#f5f0e6",
+          "foreground": "#ffffff",
+          "accent": "#ffd23f",
+          "accent2": "#ff5ca8"
         }
       }
     }

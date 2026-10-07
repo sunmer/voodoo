@@ -17,7 +17,7 @@ const {webkit, devices} = require('playwright');
   }
   const imgs = await page.locator('.media img').evaluateAll((els) => els.filter((e) => e.complete && e.naturalWidth > 0).length);
   const players = await page.locator('.media .__remotion-player').count();
-  await page.screenshot({path: '/tmp/voodoo-ios-gallery.png'});
+  await page.screenshot({path: '/tmp/voodoo-ios-gallery.png', scale: 'css'});
 
   // Brand kit mode renders static Remotion frames only for on-screen cards.
   await page.evaluate(() => window.scrollTo(0, 0));
@@ -28,7 +28,7 @@ const {webkit, devices} = require('playwright');
     await page.evaluate(() => window.scrollBy(0, 400));
     await page.waitForTimeout(200);
   }
-  await page.screenshot({path: '/tmp/voodoo-ios-kit.png'});
+  await page.screenshot({path: '/tmp/voodoo-ios-kit.png', scale: 'css'});
 
   await page.goto(base + '#/v/neon-summit');
   await page.waitForTimeout(2500);
@@ -36,7 +36,11 @@ const {webkit, devices} = require('playwright');
     await page.evaluate(() => window.scrollBy(0, 500));
     await page.waitForTimeout(150);
   }
-  await page.screenshot({path: '/tmp/voodoo-ios-editor.png'});
+  await page.screenshot({path: '/tmp/voodoo-ios-editor.png', scale: 'css'});
   console.log(JSON.stringify({imgsLoaded: imgs, livePlayersInGrid: players, errs}));
   await browser.close();
-})();
+  if (errs.length || !imgs || players !== 0) process.exitCode = 1;
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

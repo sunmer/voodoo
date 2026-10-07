@@ -14,6 +14,21 @@ import {pulseSchema} from './pulse/schema';
 import {Folio} from './folio/Folio';
 import {folioSchema} from './folio/schema';
 
+import {Bento} from './bento/Bento';
+import {bentoSchema} from './bento/schema';
+
+import {Glass} from './glass/Glass';
+import {glassSchema} from './glass/schema';
+
+import {Flex} from './flex/Flex';
+import {flexSchema} from './flex/schema';
+
+import {Riso} from './riso/Riso';
+import {risoSchema} from './riso/schema';
+
+import {Collage} from './collage/Collage';
+import {collageSchema} from './collage/schema';
+
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
   schema: VideoSchema;
@@ -27,4 +42,9 @@ export const compositions: Record<string, CompositionDef> = {
   terminal: {...templateMeta.terminal, component: Terminal, schema: terminalSchema as unknown as VideoSchema},
   pulse: {...templateMeta.pulse, component: Pulse, schema: pulseSchema as unknown as VideoSchema},
   folio: {...templateMeta.folio, component: Folio, schema: folioSchema as unknown as VideoSchema},
+  bento: {...templateMeta.bento, component: Bento, schema: bentoSchema as unknown as VideoSchema},
+  glass: {...templateMeta.glass, component: Glass, schema: glassSchema as unknown as VideoSchema},
+  flex: {...templateMeta.flex, component: Flex, schema: flexSchema as unknown as VideoSchema},
+  riso: {...templateMeta.riso, component: Riso, schema: risoSchema as unknown as VideoSchema},
+  collage: {...templateMeta.collage, component: Collage, schema: collageSchema as unknown as VideoSchema},
 };

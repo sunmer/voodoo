@@ -39,6 +39,7 @@ export const SCENE_TYPES = {
   typing: 'Typing',
   chart: 'Chart',
   quote: 'Quote',
+  grid: 'Bento grid',
   transition: 'Transition',
 } as const;
 export type SceneType = keyof typeof SCENE_TYPES;
@@ -57,6 +58,13 @@ export const MOTION = [
   'Glitch',
   'Line draw',
   'Bar chart',
+  'Bento grid',
+  'Liquid glass',
+  'Variable type',
+  'Halftone',
+  'Scramble',
+  'Collage',
+  'Draw-on',
 ] as const;
 export type Motion = (typeof MOTION)[number];
 

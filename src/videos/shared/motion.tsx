@@ -11,6 +11,12 @@ export const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as co
 export const fit = (text: string, max: number, width: number, ratio = 0.6) =>
   Math.min(max, width / (Math.max(text.length, 1) * ratio));
 
+// iPhone/iPad Safari kills pages that use too much graphics memory. Live previews
+// there skip full-frame filters and blend layers. Renders (headless Chrome) keep everything.
+export const LITE =
+  typeof navigator !== 'undefined' &&
+  (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+
 // A small noise tile rasterized once; shifting it each frame reads as film grain
 // without re-running a full-frame SVG filter (too heavy for mobile Safari).
 const NOISE_TILE = `url("data:image/svg+xml,${encodeURIComponent(
@@ -19,6 +25,7 @@ const NOISE_TILE = `url("data:image/svg+xml,${encodeURIComponent(
 
 export const Grain: React.FC = () => {
   const step = useCurrentFrame() % 6;
+  if (LITE) return null;
   return (
     <AbsoluteFill
       style={{
@@ -62,7 +69,7 @@ export const KineticLine: React.FC<{
               display: 'inline-block',
               transformOrigin: '50% 100%',
               transform: `translateY(${interpolate(s, [0, 1], [size * 0.8, 0])}px) rotateX(${interpolate(s, [0, 1], [-85, 0])}deg)`,
-              filter: s > 0.98 ? undefined : `blur(${interpolate(s, [0, 1], [14, 0], clamp)}px)`,
+              filter: LITE || s > 0.98 ? undefined : `blur(${interpolate(s, [0, 1], [14, 0], clamp)}px)`,
               opacity: Math.min(1, s * 1.5),
             }}
           >
