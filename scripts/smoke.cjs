@@ -52,7 +52,7 @@ const assert = (cond, msg) => {
     await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, fullPage: vp.n === 'mobile'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};
-    assert(total === 10 && vertical === 4, 'facet counts');
+    assert(total === 18 && vertical === 4, 'facet counts');
     assert(linked === 'List', 'focus links point to list scene');
     assert(brandValue === 'ACME', 'brand kit applied in editor');
   }

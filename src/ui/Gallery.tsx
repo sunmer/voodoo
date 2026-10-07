@@ -21,7 +21,7 @@ type Filters = {
 
 export const energyOf = (n: number): Energy => (n <= 2 ? 'Calm' : n === 3 ? 'Medium' : 'High');
 const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
-const FORMATS: Format[] = ['16:9', '9:16', '1:1'];
+const FORMATS: Format[] = ['16:9', '9:16', '1:1', '4:5'];
 const SCENE_FILTERS = Object.entries(SCENE_TYPES).filter(([k]) => k !== 'transition');
 
 function matches(v: Variant, f: Filters, skip?: keyof Filters) {

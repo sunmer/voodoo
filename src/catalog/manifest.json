@@ -2,13 +2,39 @@
   "version": 2,
   "vocab": {
     "version": "2026-10",
-    "purpose": ["Showreel", "Product launch", "Brand intro", "Event promo", "Social ad", "Data recap"],
-    "style": ["Minimal", "Editorial", "Neon", "Bold", "Tech"],
+    "purpose": [
+      "Showreel",
+      "Product launch",
+      "Brand intro",
+      "Event promo",
+      "Social ad",
+      "Data recap"
+    ],
+    "style": [
+      "Minimal",
+      "Editorial",
+      "Neon",
+      "Bold",
+      "Tech"
+    ],
     "placement": {
-      "16:9": ["YouTube", "Website hero", "Slides"],
-      "9:16": ["Reels", "TikTok", "Stories"],
-      "1:1": ["Instagram feed", "LinkedIn"],
-      "4:5": ["Instagram feed"]
+      "16:9": [
+        "YouTube",
+        "Website hero",
+        "Slides"
+      ],
+      "9:16": [
+        "Reels",
+        "TikTok",
+        "Stories"
+      ],
+      "1:1": [
+        "Instagram feed",
+        "LinkedIn"
+      ],
+      "4:5": [
+        "Instagram feed"
+      ]
     }
   },
   "templates": [
@@ -29,6 +55,42 @@
       "prompt": "An 8 second vertical video for Reels: masked headline reveal, three stacked selling points sliding in, and a circular reveal to a CTA.",
       "createdAt": "2026-10-03",
       "license": "Remix with credit"
+    },
+    {
+      "id": "ticker",
+      "title": "Ticker",
+      "creator": "mo.graph",
+      "model": "Claude Opus 5.5",
+      "prompt": "A loud 8 second square social ad: tilted scrolling marquee rows of the headline, a split-flap board for three offers, and a stamped CTA.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "terminal",
+      "title": "Terminal",
+      "creator": "devrel_kai",
+      "model": "Claude Opus 5.5",
+      "prompt": "A 9 second 16:9 developer launch: a terminal window types a command, glitches in the headline, ticks off a build log, then a glitched logo reveal.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "pulse",
+      "title": "Pulse",
+      "creator": "datawren",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second 4:5 data recap for LinkedIn: a growth line draws behind the headline, three bars spring up with counting percentages, and a ring closes around the brand.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "folio",
+      "title": "Folio",
+      "creator": "atelier.no",
+      "model": "Claude Opus 5.5",
+      "prompt": "An 8 second editorial brand film in a magazine layout: serif headline masked in line by line, a pull quote, and a numbered index with a CTA.",
+      "createdAt": "2026-10-07",
+      "license": "Remix with credit"
     }
   ],
   "variants": [
@@ -39,14 +101,38 @@
       "creator": "stephanlivera",
       "description": "Kinetic headline, 3D stat cards, orbit tagline and a circular brand reveal.",
       "purpose": "Showreel",
-      "style": ["Bold"],
+      "style": [
+        "Bold"
+      ],
       "energy": 5,
-      "keywords": ["resume", "portfolio", "motion designer", "reel"],
+      "keywords": [
+        "resume",
+        "portfolio",
+        "motion designer",
+        "reel"
+      ],
       "createdAt": "2026-09-28",
-      "stats": {"exports": 1840, "remixes": 312},
+      "stats": {
+        "exports": 1840,
+        "remixes": 312
+      },
       "props": {
-        "texts": {"brand": "NOCTURNE", "headline": "Motion, mastered.", "point1": "Kinetic type", "point2": "3D systems", "point3": "Brand stories", "subhead": "Every frame designed to move people", "cta": "See the reel"},
-        "theme": {"background": "#07070b", "surface": "#15151f", "foreground": "#f4f2ee", "accent": "#ff4d2e", "accent2": "#3dd6c6"}
+        "texts": {
+          "brand": "NOCTURNE",
+          "headline": "Motion, mastered.",
+          "point1": "Kinetic type",
+          "point2": "3D systems",
+          "point3": "Brand stories",
+          "subhead": "Every frame designed to move people",
+          "cta": "See the reel"
+        },
+        "theme": {
+          "background": "#07070b",
+          "surface": "#15151f",
+          "foreground": "#f4f2ee",
+          "accent": "#ff4d2e",
+          "accent2": "#3dd6c6"
+        }
       }
     },
     {
@@ -56,14 +142,40 @@
       "creator": "ajith_io",
       "description": "SaaS launch teaser with feature pillars and a strong closing CTA.",
       "purpose": "Product launch",
-      "style": ["Minimal", "Tech"],
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
       "energy": 3,
-      "keywords": ["saas", "startup", "app", "release", "features"],
+      "keywords": [
+        "saas",
+        "startup",
+        "app",
+        "release",
+        "features"
+      ],
       "createdAt": "2026-10-02",
-      "stats": {"exports": 960, "remixes": 141},
+      "stats": {
+        "exports": 960,
+        "remixes": 141
+      },
       "props": {
-        "texts": {"brand": "Orbit", "headline": "Ship it faster.", "point1": "Realtime sync", "point2": "Zero config", "point3": "Built-in AI", "subhead": "The workspace your team will actually love", "cta": "Start free"},
-        "theme": {"background": "#f3f4f6", "surface": "#ffffff", "foreground": "#111827", "accent": "#2563eb", "accent2": "#16a34a"}
+        "texts": {
+          "brand": "Orbit",
+          "headline": "Ship it faster.",
+          "point1": "Realtime sync",
+          "point2": "Zero config",
+          "point3": "Built-in AI",
+          "subhead": "The workspace your team will actually love",
+          "cta": "Start free"
+        },
+        "theme": {
+          "background": "#f3f4f6",
+          "surface": "#ffffff",
+          "foreground": "#111827",
+          "accent": "#2563eb",
+          "accent2": "#16a34a"
+        }
       }
     },
     {
@@ -73,14 +185,40 @@
       "creator": "twoclipping",
       "description": "Conference promo with a neon palette and speaker-track pillars.",
       "purpose": "Event promo",
-      "style": ["Neon", "Bold"],
+      "style": [
+        "Neon",
+        "Bold"
+      ],
       "energy": 5,
-      "keywords": ["conference", "meetup", "festival", "tickets", "summit"],
+      "keywords": [
+        "conference",
+        "meetup",
+        "festival",
+        "tickets",
+        "summit"
+      ],
       "createdAt": "2026-09-19",
-      "stats": {"exports": 1210, "remixes": 205},
+      "stats": {
+        "exports": 1210,
+        "remixes": 205
+      },
       "props": {
-        "texts": {"brand": "SUMMIT 26", "headline": "Future, live.", "point1": "40 speakers", "point2": "3 stages", "point3": "1 city", "subhead": "Two days of builders, ideas and late nights", "cta": "Get tickets"},
-        "theme": {"background": "#0b0420", "surface": "#1c0d3d", "foreground": "#fdf4ff", "accent": "#ff2bd6", "accent2": "#facc15"}
+        "texts": {
+          "brand": "SUMMIT 26",
+          "headline": "Future, live.",
+          "point1": "40 speakers",
+          "point2": "3 stages",
+          "point3": "1 city",
+          "subhead": "Two days of builders, ideas and late nights",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#0b0420",
+          "surface": "#1c0d3d",
+          "foreground": "#fdf4ff",
+          "accent": "#ff2bd6",
+          "accent2": "#facc15"
+        }
       }
     },
     {
@@ -90,14 +228,39 @@
       "creator": "LexnLin",
       "description": "Calm agency intro with an editorial green palette.",
       "purpose": "Brand intro",
-      "style": ["Editorial", "Minimal"],
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
       "energy": 2,
-      "keywords": ["agency", "studio", "about us", "sustainability"],
+      "keywords": [
+        "agency",
+        "studio",
+        "about us",
+        "sustainability"
+      ],
       "createdAt": "2026-09-24",
-      "stats": {"exports": 530, "remixes": 64},
+      "stats": {
+        "exports": 530,
+        "remixes": 64
+      },
       "props": {
-        "texts": {"brand": "Fern Studio", "headline": "Design that grows", "point1": "Identity", "point2": "Packaging", "point3": "Spaces", "subhead": "Considered work for brands with roots", "cta": "Say hello"},
-        "theme": {"background": "#0f1f17", "surface": "#183427", "foreground": "#eef5ec", "accent": "#9be15d", "accent2": "#f2c14e"}
+        "texts": {
+          "brand": "Fern Studio",
+          "headline": "Design that grows",
+          "point1": "Identity",
+          "point2": "Packaging",
+          "point3": "Spaces",
+          "subhead": "Considered work for brands with roots",
+          "cta": "Say hello"
+        },
+        "theme": {
+          "background": "#0f1f17",
+          "surface": "#183427",
+          "foreground": "#eef5ec",
+          "accent": "#9be15d",
+          "accent2": "#f2c14e"
+        }
       }
     },
     {
@@ -107,14 +270,40 @@
       "creator": "notdwd",
       "description": "Loud retail ad for a limited drop or flash sale.",
       "purpose": "Social ad",
-      "style": ["Bold", "Neon"],
+      "style": [
+        "Bold",
+        "Neon"
+      ],
       "energy": 5,
-      "keywords": ["ecommerce", "sale", "sneakers", "drop", "discount"],
+      "keywords": [
+        "ecommerce",
+        "sale",
+        "sneakers",
+        "drop",
+        "discount"
+      ],
       "createdAt": "2026-10-05",
-      "stats": {"exports": 2310, "remixes": 420},
+      "stats": {
+        "exports": 2310,
+        "remixes": 420
+      },
       "props": {
-        "texts": {"brand": "KICKLAB", "headline": "The drop is here", "point1": "Limited run", "point2": "Free shipping", "point3": "48h only", "subhead": "Once they are gone they are gone for good", "cta": "Shop now"},
-        "theme": {"background": "#111111", "surface": "#1f1f1f", "foreground": "#ffffff", "accent": "#d4ff3a", "accent2": "#ff5c39"}
+        "texts": {
+          "brand": "KICKLAB",
+          "headline": "The drop is here",
+          "point1": "Limited run",
+          "point2": "Free shipping",
+          "point3": "48h only",
+          "subhead": "Once they are gone they are gone for good",
+          "cta": "Shop now"
+        },
+        "theme": {
+          "background": "#111111",
+          "surface": "#1f1f1f",
+          "foreground": "#ffffff",
+          "accent": "#d4ff3a",
+          "accent2": "#ff5c39"
+        }
       }
     },
     {
@@ -124,14 +313,39 @@
       "creator": "emollick",
       "description": "Annual results recap with metric pillars and an editorial feel.",
       "purpose": "Data recap",
-      "style": ["Editorial"],
+      "style": [
+        "Editorial"
+      ],
       "energy": 2,
-      "keywords": ["annual report", "results", "investors", "finance", "recap"],
+      "keywords": [
+        "annual report",
+        "results",
+        "investors",
+        "finance",
+        "recap"
+      ],
       "createdAt": "2026-09-30",
-      "stats": {"exports": 410, "remixes": 38},
+      "stats": {
+        "exports": 410,
+        "remixes": 38
+      },
       "props": {
-        "texts": {"brand": "LEDGER", "headline": "2026 in review", "point1": "2M customers", "point2": "30 markets", "point3": "4x revenue", "subhead": "Thank you for building the future of money with us", "cta": "Read report"},
-        "theme": {"background": "#f5efe6", "surface": "#ffffff", "foreground": "#1d1b19", "accent": "#c2410c", "accent2": "#0f766e"}
+        "texts": {
+          "brand": "LEDGER",
+          "headline": "2026 in review",
+          "point1": "2M customers",
+          "point2": "30 markets",
+          "point3": "4x revenue",
+          "subhead": "Thank you for building the future of money with us",
+          "cta": "Read report"
+        },
+        "theme": {
+          "background": "#f5efe6",
+          "surface": "#ffffff",
+          "foreground": "#1d1b19",
+          "accent": "#c2410c",
+          "accent2": "#0f766e"
+        }
       }
     },
     {
@@ -141,14 +355,38 @@
       "creator": "notdwd",
       "description": "Vertical drop announcement with stacked selling points.",
       "purpose": "Social ad",
-      "style": ["Bold"],
+      "style": [
+        "Bold"
+      ],
       "energy": 4,
-      "keywords": ["ecommerce", "sneakers", "drop", "reels", "tiktok"],
+      "keywords": [
+        "ecommerce",
+        "sneakers",
+        "drop",
+        "reels",
+        "tiktok"
+      ],
       "createdAt": "2026-10-06",
-      "stats": {"exports": 1980, "remixes": 377},
+      "stats": {
+        "exports": 1980,
+        "remixes": 377
+      },
       "props": {
-        "texts": {"brand": "KICKLAB", "headline": "The drop is here", "point1": "Limited run", "point2": "Free shipping", "point3": "48h only", "cta": "Shop now"},
-        "theme": {"background": "#111111", "surface": "#1f1f1f", "foreground": "#ffffff", "accent": "#d4ff3a", "accent2": "#ff5c39"}
+        "texts": {
+          "brand": "KICKLAB",
+          "headline": "The drop is here",
+          "point1": "Limited run",
+          "point2": "Free shipping",
+          "point3": "48h only",
+          "cta": "Shop now"
+        },
+        "theme": {
+          "background": "#111111",
+          "surface": "#1f1f1f",
+          "foreground": "#ffffff",
+          "accent": "#d4ff3a",
+          "accent2": "#ff5c39"
+        }
       }
     },
     {
@@ -158,14 +396,39 @@
       "creator": "ajith_io",
       "description": "Clean vertical feature list for app launches and stories.",
       "purpose": "Product launch",
-      "style": ["Minimal", "Tech"],
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
       "energy": 3,
-      "keywords": ["saas", "app", "features", "stories", "launch"],
+      "keywords": [
+        "saas",
+        "app",
+        "features",
+        "stories",
+        "launch"
+      ],
       "createdAt": "2026-10-04",
-      "stats": {"exports": 720, "remixes": 96},
+      "stats": {
+        "exports": 720,
+        "remixes": 96
+      },
       "props": {
-        "texts": {"brand": "Orbit", "headline": "Ship it faster.", "point1": "Realtime sync", "point2": "Zero config", "point3": "Built-in AI", "cta": "Start free"},
-        "theme": {"background": "#f3f4f6", "surface": "#ffffff", "foreground": "#111827", "accent": "#2563eb", "accent2": "#16a34a"}
+        "texts": {
+          "brand": "Orbit",
+          "headline": "Ship it faster.",
+          "point1": "Realtime sync",
+          "point2": "Zero config",
+          "point3": "Built-in AI",
+          "cta": "Start free"
+        },
+        "theme": {
+          "background": "#f3f4f6",
+          "surface": "#ffffff",
+          "foreground": "#111827",
+          "accent": "#2563eb",
+          "accent2": "#16a34a"
+        }
       }
     },
     {
@@ -175,14 +438,39 @@
       "creator": "twoclipping",
       "description": "Vertical event teaser for stories with lineup highlights.",
       "purpose": "Event promo",
-      "style": ["Neon", "Bold"],
+      "style": [
+        "Neon",
+        "Bold"
+      ],
       "energy": 4,
-      "keywords": ["conference", "festival", "tickets", "stories", "countdown"],
+      "keywords": [
+        "conference",
+        "festival",
+        "tickets",
+        "stories",
+        "countdown"
+      ],
       "createdAt": "2026-10-01",
-      "stats": {"exports": 640, "remixes": 88},
+      "stats": {
+        "exports": 640,
+        "remixes": 88
+      },
       "props": {
-        "texts": {"brand": "SUMMIT 26", "headline": "Future, live.", "point1": "40 speakers", "point2": "3 stages", "point3": "1 city", "cta": "Get tickets"},
-        "theme": {"background": "#0b0420", "surface": "#1c0d3d", "foreground": "#fdf4ff", "accent": "#ff2bd6", "accent2": "#facc15"}
+        "texts": {
+          "brand": "SUMMIT 26",
+          "headline": "Future, live.",
+          "point1": "40 speakers",
+          "point2": "3 stages",
+          "point3": "1 city",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#0b0420",
+          "surface": "#1c0d3d",
+          "foreground": "#fdf4ff",
+          "accent": "#ff2bd6",
+          "accent2": "#facc15"
+        }
       }
     },
     {
@@ -192,14 +480,377 @@
       "creator": "LexnLin",
       "description": "Calm vertical service list for an agency profile.",
       "purpose": "Brand intro",
-      "style": ["Editorial", "Minimal"],
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
       "energy": 2,
-      "keywords": ["agency", "studio", "services", "stories"],
+      "keywords": [
+        "agency",
+        "studio",
+        "services",
+        "stories"
+      ],
       "createdAt": "2026-09-27",
-      "stats": {"exports": 310, "remixes": 41},
+      "stats": {
+        "exports": 310,
+        "remixes": 41
+      },
       "props": {
-        "texts": {"brand": "Fern Studio", "headline": "Design that grows", "point1": "Identity", "point2": "Packaging", "point3": "Spaces", "cta": "Say hello"},
-        "theme": {"background": "#0f1f17", "surface": "#183427", "foreground": "#eef5ec", "accent": "#9be15d", "accent2": "#f2c14e"}
+        "texts": {
+          "brand": "Fern Studio",
+          "headline": "Design that grows",
+          "point1": "Identity",
+          "point2": "Packaging",
+          "point3": "Spaces",
+          "cta": "Say hello"
+        },
+        "theme": {
+          "background": "#0f1f17",
+          "surface": "#183427",
+          "foreground": "#eef5ec",
+          "accent": "#9be15d",
+          "accent2": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": "ticker-flashsale",
+      "template": "ticker",
+      "title": "Flash Sale Ticker",
+      "creator": "mo.graph",
+      "description": "Scrolling marquee and split-flap offers for a weekend drop.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "sale",
+        "ecommerce",
+        "discount",
+        "drop",
+        "instagram"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 420,
+        "remixes": 77
+      },
+      "props": {
+        "texts": {
+          "brand": "KICKLAB",
+          "headline": "Weekend drop",
+          "point1": "30% off kicks",
+          "point2": "Free shipping",
+          "point3": "Ends Sunday",
+          "cta": "Shop now"
+        },
+        "theme": {
+          "background": "#111111",
+          "surface": "#262626",
+          "foreground": "#f5f5f0",
+          "accent": "#ff3b30",
+          "accent2": "#ffd60a"
+        }
+      }
+    },
+    {
+      "id": "ticker-festival",
+      "template": "ticker",
+      "title": "Festival Lineup",
+      "creator": "mo.graph",
+      "description": "Retro departure-board lineup for a festival or club night.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Neon"
+      ],
+      "energy": 5,
+      "keywords": [
+        "festival",
+        "lineup",
+        "music",
+        "club",
+        "tickets"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 288,
+        "remixes": 51
+      },
+      "props": {
+        "texts": {
+          "brand": "Northwave",
+          "headline": "Live this summer",
+          "point1": "Main stage",
+          "point2": "Night market",
+          "point3": "Afterparty",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#0b0630",
+          "surface": "#1d1452",
+          "foreground": "#f7f3ff",
+          "accent": "#ff4fd8",
+          "accent2": "#3df5ff"
+        }
+      }
+    },
+    {
+      "id": "terminal-cli",
+      "template": "terminal",
+      "title": "CLI Launch",
+      "creator": "devrel_kai",
+      "description": "Terminal-typed launch for a developer tool or API.",
+      "purpose": "Product launch",
+      "style": [
+        "Tech",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "developer",
+        "cli",
+        "api",
+        "open source",
+        "devtools"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 610,
+        "remixes": 133
+      },
+      "props": {
+        "texts": {
+          "brand": "Forge",
+          "headline": "Ship in seconds",
+          "point1": "Zero config",
+          "point2": "Edge deploys",
+          "point3": "Instant rollback",
+          "subhead": "Built for teams that ship every day",
+          "cta": "npm i forge"
+        },
+        "theme": {
+          "background": "#0a0e14",
+          "surface": "#121821",
+          "foreground": "#e6edf3",
+          "accent": "#3fb950",
+          "accent2": "#58a6ff"
+        }
+      }
+    },
+    {
+      "id": "terminal-hackathon",
+      "template": "terminal",
+      "title": "Hackathon Invite",
+      "creator": "devrel_kai",
+      "description": "Glitchy terminal teaser for a hackathon or dev conference.",
+      "purpose": "Event promo",
+      "style": [
+        "Tech",
+        "Neon"
+      ],
+      "energy": 4,
+      "keywords": [
+        "hackathon",
+        "conference",
+        "developers",
+        "meetup"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 190,
+        "remixes": 38
+      },
+      "props": {
+        "texts": {
+          "brand": "HackNight",
+          "headline": "48 hours to build",
+          "point1": "Teams of four",
+          "point2": "Mentors on site",
+          "point3": "Prizes",
+          "subhead": "Stockholm, 14 to 16 November",
+          "cta": "Register"
+        },
+        "theme": {
+          "background": "#08000f",
+          "surface": "#160a24",
+          "foreground": "#f1e9ff",
+          "accent": "#c77dff",
+          "accent2": "#ff6b9d"
+        }
+      }
+    },
+    {
+      "id": "pulse-quarterly",
+      "template": "pulse",
+      "title": "Quarterly Recap",
+      "creator": "datawren",
+      "description": "Growth line and bar chart for a quarterly results post.",
+      "purpose": "Data recap",
+      "style": [
+        "Minimal",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "report",
+        "results",
+        "growth",
+        "linkedin",
+        "kpi"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 530,
+        "remixes": 96
+      },
+      "props": {
+        "texts": {
+          "brand": "Ledger",
+          "headline": "Q3 in numbers",
+          "subhead": "Our strongest quarter yet, across every market",
+          "point1": "Revenue",
+          "point2": "New customers",
+          "point3": "Retention",
+          "cta": "Read the report"
+        },
+        "theme": {
+          "background": "#f6f7f9",
+          "surface": "#dfe3ea",
+          "foreground": "#14171f",
+          "accent": "#2f6bff",
+          "accent2": "#12b886"
+        }
+      }
+    },
+    {
+      "id": "pulse-fitness",
+      "template": "pulse",
+      "title": "Training Stats",
+      "creator": "datawren",
+      "description": "Year-in-review stats for a fitness or wellness app.",
+      "purpose": "Data recap",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "fitness",
+        "year in review",
+        "stats",
+        "app",
+        "wrapped"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 340,
+        "remixes": 64
+      },
+      "props": {
+        "texts": {
+          "brand": "Stride",
+          "headline": "Your year, moved",
+          "subhead": "Every run, ride and lift added up",
+          "point1": "Runs",
+          "point2": "Rides",
+          "point3": "Lifts",
+          "cta": "See your recap"
+        },
+        "theme": {
+          "background": "#101418",
+          "surface": "#1f2730",
+          "foreground": "#f2f5f7",
+          "accent": "#c6ff3d",
+          "accent2": "#ff7a45"
+        }
+      }
+    },
+    {
+      "id": "folio-atelier",
+      "template": "folio",
+      "title": "Atelier Folio",
+      "creator": "atelier.no",
+      "description": "Magazine-style brand film for a studio or boutique.",
+      "purpose": "Brand intro",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "studio",
+        "fashion",
+        "boutique",
+        "architecture",
+        "portfolio"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 260,
+        "remixes": 58
+      },
+      "props": {
+        "texts": {
+          "brand": "Atelier Norr",
+          "headline": "Made slow, built to last",
+          "subhead": "We design objects you keep for a lifetime",
+          "point1": "Furniture",
+          "point2": "Lighting",
+          "point3": "Textiles",
+          "cta": "Visit the studio"
+        },
+        "theme": {
+          "background": "#f3efe7",
+          "surface": "#e6dfd2",
+          "foreground": "#1b1a17",
+          "accent": "#b4442c",
+          "accent2": "#2d5a4a"
+        }
+      }
+    },
+    {
+      "id": "folio-journal",
+      "template": "folio",
+      "title": "Journal Issue",
+      "creator": "atelier.no",
+      "description": "Editorial issue teaser for a newsletter, podcast or magazine.",
+      "purpose": "Brand intro",
+      "style": [
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "newsletter",
+        "magazine",
+        "podcast",
+        "issue",
+        "journal"
+      ],
+      "createdAt": "2026-10-07",
+      "stats": {
+        "exports": 175,
+        "remixes": 29
+      },
+      "props": {
+        "texts": {
+          "brand": "The Long Read",
+          "headline": "Issue one is here",
+          "subhead": "Stories worth your whole attention",
+          "point1": "Essays",
+          "point2": "Interviews",
+          "point3": "Field notes",
+          "cta": "Subscribe"
+        },
+        "theme": {
+          "background": "#121417",
+          "surface": "#1e2227",
+          "foreground": "#f1ede4",
+          "accent": "#e8b04a",
+          "accent2": "#8fb8de"
+        }
       }
     }
   ]

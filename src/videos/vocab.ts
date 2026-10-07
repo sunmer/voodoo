@@ -35,11 +35,29 @@ export const SCENE_TYPES = {
   list: 'List',
   tagline: 'Tagline',
   'logo-lockup': 'Logo lockup',
+  marquee: 'Marquee',
+  typing: 'Typing',
+  chart: 'Chart',
+  quote: 'Quote',
   transition: 'Transition',
 } as const;
 export type SceneType = keyof typeof SCENE_TYPES;
 
-export const MOTION = ['Kinetic type', '3D cards', 'Mask reveal', 'Slide-in', 'Wipes', 'Orbit', 'Circle reveal'] as const;
+export const MOTION = [
+  'Kinetic type',
+  '3D cards',
+  'Mask reveal',
+  'Slide-in',
+  'Wipes',
+  'Orbit',
+  'Circle reveal',
+  'Split-flap',
+  'Marquee',
+  'Typewriter',
+  'Glitch',
+  'Line draw',
+  'Bar chart',
+] as const;
 export type Motion = (typeof MOTION)[number];
 
 export type SceneDef = {
