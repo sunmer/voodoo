@@ -62,18 +62,20 @@ async function check(engine, options, name) {
     const ids = ['drop-sale', ...manifest.variants.filter((v) => ['bento', 'glass', 'flex', 'riso', 'collage'].includes(v.template)).map((v) => v.id)];
     for (const id of ids) {
       await page.goto(`${base}#/v/${id}`);
-      await page.locator('.stage-info h1').waitFor();
+      await page.locator('.editor-top h1').waitFor();
       // A complete loop exercises all scenes, including the originally failing editor.
       await page.waitForTimeout(id === 'drop-sale' ? 16500 : 8500);
-      assert.equal(await page.locator('.field.invalid').count(), 0, `${id}: valid preset`);
+      assert.equal(await page.locator('[aria-invalid="true"]').count(), 0, `${id}: valid preset`);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${id}: no horizontal page overflow`);
-      await page.locator('.field input').nth(1).focus();
-      await page.locator('.player-wrap').scrollIntoViewIfNeeded();
+      await page.locator('.scene').first().click();
+      await page.locator('.editor-video').scrollIntoViewIfNeeded();
       await page.waitForTimeout(150);
       await page.screenshot({path: `/tmp/voodoo-${id}-${name}.png`, scale: 'css'});
       if (id.startsWith('flex-')) {
         for (const value of ['WWWWWWWWWWWWWWWWWWWWWWWW', 'Form follows motion']) {
-          await page.locator('.field input').nth(1).fill(value);
+          await page.getByRole('button', {name: 'Edit Headline', exact: true}).first().click();
+          await page.getByRole('textbox', {name: 'Headline', exact: true}).fill(value);
+          await page.getByRole('button', {name: 'Save text', exact: true}).click();
           await page.waitForTimeout(100);
           const fits = await page.locator('[data-fitted-type]').evaluateAll((els) => els.every((el) => {
             const outer = el.getBoundingClientRect();

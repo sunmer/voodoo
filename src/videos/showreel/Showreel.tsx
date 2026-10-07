@@ -91,10 +91,10 @@ const SceneTitle: React.FC<ShowreelProps> = ({texts, theme}) => {
             transform: `translateX(${(1 - label) * -30}px)`,
           }}
         >
-          {texts.brand}
+          <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
         </div>
       </div>
-      <KineticLine text={texts.headline} size={size} color={theme.foreground} delay={8} />
+      <span data-text-role={"headline"} style={{display: 'contents'}}><KineticLine text={texts.headline} size={size} color={theme.foreground} delay={8} /></span>
       <div style={{width: Math.min(1600, size * texts.headline.length * 0.6), marginTop: 30}}>
         <div
           style={{
@@ -127,7 +127,7 @@ const ScenePillars: React.FC<ShowreelProps> = ({texts, theme}) => {
           transform: `translateX(${200 - frame * 7}px)`,
         }}
       >
-        {`${texts.brand} ${texts.brand} ${texts.brand} ${texts.brand}`}
+        <span data-text-role={"brand"} style={{display: 'contents'}}>{`${texts.brand} ${texts.brand} ${texts.brand} ${texts.brand}`}</span>
       </div>
       <div style={{display: 'flex', gap: 48, perspective: 1600, marginTop: 120}}>
         {lines.map((text, i) => {
@@ -162,7 +162,7 @@ const ScenePillars: React.FC<ShowreelProps> = ({texts, theme}) => {
                   {count}
                 </div>
                 <div style={{fontSize: fit(text, 64, 370, 0.58), fontWeight: 800, color: theme.foreground, lineHeight: 1.1}}>
-                  {text}
+                  <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{text}</span>
                 </div>
                 <div style={{height: 6, background: `${theme.foreground}1a`, borderRadius: 3, marginTop: 28}}>
                   <div style={{width: `${progress}%`, height: '100%', borderRadius: 3, background: color}} />
@@ -212,7 +212,7 @@ const SceneOrbit: React.FC<ShowreelProps> = ({texts, theme}) => {
         })}
       </svg>
       <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 1000, gap: `0 ${size * 0.28}px`}}>
-        {words.map((w, i) => {
+        <span data-text-role={"subhead"} style={{display: 'contents'}}>{words.map((w, i) => {
           const y = interpolate(frame, [10 + i * 3, 30 + i * 3], [110, 0], {...clamp, easing: easeOut});
           return (
             <span key={i} style={{overflow: 'hidden', display: 'inline-block', paddingBottom: 6}}>
@@ -230,7 +230,7 @@ const SceneOrbit: React.FC<ShowreelProps> = ({texts, theme}) => {
               </span>
             </span>
           );
-        })}
+        })}</span>
       </div>
     </AbsoluteFill>
   );
@@ -266,7 +266,7 @@ const SceneLockup: React.FC<ShowreelProps> = ({texts, theme}) => {
         );
       })}
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: 50}}>
-        <KineticLine text={texts.brand} size={size} color={theme.background} delay={12} stagger={1.4} />
+        <span data-text-role={"brand"} style={{display: 'contents'}}><KineticLine text={texts.brand} size={size} color={theme.background} delay={12} stagger={1.4} /></span>
         <div
           style={{
             display: 'flex',
@@ -282,7 +282,7 @@ const SceneLockup: React.FC<ShowreelProps> = ({texts, theme}) => {
             opacity: Math.min(1, pill * 2),
           }}
         >
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={40} />
         </div>
       </AbsoluteFill>

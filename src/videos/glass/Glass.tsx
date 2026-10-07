@@ -53,17 +53,17 @@ const SceneHero: React.FC<GlassProps> = ({texts, theme}) => {
       <div style={{...glass(theme, 64), position: 'relative', overflow: 'hidden', padding: '80px 64px', transform: `translateY(${(1 - card) * 400}px) rotate(${(1 - card) * -6}deg)`, opacity: card}}>
         <div style={{position: 'absolute', top: 0, bottom: 0, left: `${sheen}%`, width: '30%', background: `linear-gradient(100deg, transparent, ${theme.foreground}30, transparent)`, transform: 'skewX(-18deg)'}} />
         <div style={{display: 'flex', alignItems: 'center', gap: 16, fontSize: 32, fontWeight: 650, color: theme.foreground, opacity: line(10)}}>
-          <span style={{width: 44, height: 44, borderRadius: 22, background: theme.foreground, color: theme.background, display: 'grid', placeItems: 'center', fontSize: 22, fontWeight: 800}}>{texts.brand[0]}</span>
-          {texts.brand}
+          <span style={{width: 44, height: 44, borderRadius: 22, background: theme.foreground, color: theme.background, display: 'grid', placeItems: 'center', fontSize: 22, fontWeight: 800}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand[0]}</span></span>
+          <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
         </div>
         <div style={{marginTop: 70, fontSize: size, fontWeight: 760, lineHeight: 1, color: theme.foreground}}>
-          {words.map((w, i) => (
+          <span data-text-role={"headline"} style={{display: 'contents'}}>{words.map((w, i) => (
             <div key={i} style={{overflow: 'hidden', paddingBottom: 8}}>
               <div style={{transform: `translateY(${(1 - line(16 + i * 5)) * 110}%)`}}>{w}</div>
             </div>
-          ))}
+          ))}</span>
         </div>
-        <div style={{marginTop: 44, fontSize: 40, lineHeight: 1.3, color: `${theme.foreground}cc`, opacity: line(34)}}>{texts.subhead}</div>
+        <div style={{marginTop: 44, fontSize: 40, lineHeight: 1.3, color: `${theme.foreground}cc`, opacity: line(34)}}><span data-text-role={"subhead"} style={{display: 'contents'}}>{texts.subhead}</span></div>
       </div>
     </AbsoluteFill>
   );
@@ -77,7 +77,7 @@ const SceneNotify: React.FC<GlassProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill style={{padding: PAD, paddingTop: 220}}>
       <div style={{textAlign: 'center', color: theme.foreground, opacity: clock}}>
-        <div style={{fontSize: 34, fontWeight: 600, opacity: 0.8}}>{texts.brand}</div>
+        <div style={{fontSize: 34, fontWeight: 600, opacity: 0.8}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></div>
         <div style={{fontSize: 210, fontWeight: 300, lineHeight: 1.05, fontVariantNumeric: 'tabular-nums'}}>{'9:41'}</div>
       </div>
       <div style={{marginTop: 120, display: 'flex', flexDirection: 'column', gap: 30}}>
@@ -92,10 +92,10 @@ const SceneNotify: React.FC<GlassProps> = ({texts, theme}) => {
               </div>
               <div style={{flex: 1, minWidth: 0}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', fontSize: 26, color: `${theme.foreground}aa`, fontWeight: 600}}>
-                  <span>{texts.brand}</span>
+                  <span><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></span>
                   <span>{i === 0 ? 'now' : `${i * 2}m ago`}</span>
                 </div>
-                <div style={{marginTop: 8, fontSize: fit(t, 54, 640, 0.56), fontWeight: 700, color: theme.foreground, whiteSpace: 'nowrap'}}>{t}</div>
+                <div style={{marginTop: 8, fontSize: fit(t, 54, 640, 0.56), fontWeight: 700, color: theme.foreground, whiteSpace: 'nowrap'}}><span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{t}</span></div>
               </div>
             </div>
           );
@@ -125,7 +125,7 @@ const SceneOrb: React.FC<GlassProps> = ({texts, theme}) => {
           marginBottom: 260,
         }}
       >
-        <div style={{fontSize: fit(texts.brand, 120, d - 140, 0.58), fontWeight: 800, color: theme.foreground, textAlign: 'center', lineHeight: 1}}>{texts.brand}</div>
+        <div style={{fontSize: fit(texts.brand, 120, d - 140, 0.58), fontWeight: 800, color: theme.foreground, textAlign: 'center', lineHeight: 1}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></div>
       </div>
       <div
         style={{
@@ -145,7 +145,7 @@ const SceneOrb: React.FC<GlassProps> = ({texts, theme}) => {
           transform: `translateY(${(1 - btn) * 80}px)`,
         }}
       >
-        {texts.cta}
+        <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
         <ArrowIcon size={46} />
       </div>
     </AbsoluteFill>

@@ -76,10 +76,10 @@ const SceneHero: React.FC<BentoProps> = ({texts, theme}) => {
         }}
       >
         <span style={{width: 12, height: 12, borderRadius: 6, background: theme.accent}} />
-        {texts.brand}
+        <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
       </div>
       <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', columnGap: size * 0.26, maxWidth: W - PAD * 3}}>
-        {words.map((w, i) => {
+        <span data-text-role={"headline"} style={{display: 'contents'}}>{words.map((w, i) => {
           const t = interpolate(frame - 8 - i * 5, [0, 24], [0, 1], {...clamp, easing: easeOut});
           return (
             <span
@@ -97,7 +97,7 @@ const SceneHero: React.FC<BentoProps> = ({texts, theme}) => {
               {w}
             </span>
           );
-        })}
+        })}</span>
       </div>
     </AbsoluteFill>
   );
@@ -129,9 +129,9 @@ const SceneGrid: React.FC<BentoProps> = ({texts, theme}) => {
     <AbsoluteFill>
       <Tile theme={theme} x={col(0)} y={row(0)} w={colW * 2 + GAP} h={rowH} delay={0}>
         <div style={{position: 'absolute', inset: 48, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-          <Label color={theme.accent}>{texts.brand}</Label>
-          <div style={{fontSize: fit(texts.headline, 92, colW * 2 - 80, 0.55), fontWeight: 800, lineHeight: 1.02, color: theme.foreground}}>{texts.headline}</div>
-          <div style={{fontSize: 34, lineHeight: 1.3, color: `${theme.foreground}99`, maxWidth: colW * 2 - 120}}>{texts.subhead}</div>
+          <Label color={theme.accent}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></Label>
+          <div style={{fontSize: fit(texts.headline, 92, colW * 2 - 80, 0.55), fontWeight: 800, lineHeight: 1.02, color: theme.foreground}}><span data-text-role={"headline"} style={{display: 'contents'}}>{texts.headline}</span></div>
+          <div style={{fontSize: 34, lineHeight: 1.3, color: `${theme.foreground}99`, maxWidth: colW * 2 - 120}}><span data-text-role={"subhead"} style={{display: 'contents'}}>{texts.subhead}</span></div>
         </div>
       </Tile>
       <Tile theme={theme} x={col(2)} y={row(0)} w={colW} h={rowH} delay={6} bg={theme.accent}>
@@ -164,7 +164,7 @@ const SceneGrid: React.FC<BentoProps> = ({texts, theme}) => {
                   <path d={icons[i]} />
                 </svg>
               </div>
-              <div style={{fontSize: fit(p, i === 2 ? 76 : 54, (i === 2 ? colW * 2 : colW) - 80, 0.56), fontWeight: 750, lineHeight: 1.05, color: theme.foreground}}>{p}</div>
+              <div style={{fontSize: fit(p, i === 2 ? 76 : 54, (i === 2 ? colW * 2 : colW) - 80, 0.56), fontWeight: 750, lineHeight: 1.05, color: theme.foreground}}><span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{p}</span></div>
             </div>
           </Tile>
         );
@@ -196,7 +196,7 @@ const SceneLockup: React.FC<BentoProps> = ({texts, theme}) => {
           overflow: 'hidden',
         }}
       >
-        <div style={{fontSize: fit(texts.brand, 240, 1500, 0.6), fontWeight: 850, lineHeight: 1, color: theme.background, opacity: grow, whiteSpace: 'nowrap'}}>{texts.brand}</div>
+        <div style={{fontSize: fit(texts.brand, 240, 1500, 0.6), fontWeight: 850, lineHeight: 1, color: theme.background, opacity: grow, whiteSpace: 'nowrap'}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></div>
         <div
           style={{
             display: 'flex',
@@ -214,7 +214,7 @@ const SceneLockup: React.FC<BentoProps> = ({texts, theme}) => {
             transform: `translateY(${(1 - btn) * 40}px)`,
           }}
         >
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={38} />
         </div>
       </div>

@@ -107,9 +107,9 @@ const SceneTitle: React.FC<StackProps> = ({texts, theme}) => {
           transform: `translateX(${(1 - tag) * -40}px)`,
         }}
       >
-        {texts.brand}
+        <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
       </div>
-      <MaskWords text={texts.headline} size={size} color={theme.foreground} accentLast={theme.accent} delay={10} />
+      <span data-text-role={"headline"} style={{display: 'contents'}}><MaskWords text={texts.headline} size={size} color={theme.foreground} accentLast={theme.accent} delay={10} /></span>
     </AbsoluteFill>
   );
 };
@@ -151,7 +151,7 @@ const SceneList: React.FC<StackProps> = ({texts, theme}) => {
             <div style={{position: 'absolute', left: 0, top: 0, bottom: 0, width: 12, background: color}} />
             <div style={{fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 64, fontWeight: 700, color, zIndex: 1}}>0{i + 1}</div>
             <div style={{fontSize: Math.min(92, 700 / (Math.max(text.length, 1) * 0.56)), fontWeight: 800, color: theme.foreground, lineHeight: 1.05, zIndex: 1}}>
-              {text}
+              <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{text}</span>
             </div>
           </div>
         );
@@ -185,7 +185,7 @@ const SceneLockup: React.FC<StackProps> = ({texts, theme}) => {
         }}
       />
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: 80, padding: PAD}}>
-        <MaskWords text={texts.brand} size={size} color={theme.background} delay={10} center />
+        <span data-text-role={"brand"} style={{display: 'contents'}}><MaskWords text={texts.brand} size={size} color={theme.background} delay={10} center /></span>
         <div
           style={{
             display: 'flex',
@@ -200,7 +200,7 @@ const SceneLockup: React.FC<StackProps> = ({texts, theme}) => {
             transform: `scale(${pill})`,
           }}
         >
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={52} />
         </div>
       </AbsoluteFill>

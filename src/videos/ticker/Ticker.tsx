@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, interpolate, random, spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import type {Theme} from '../contract';
+import type {Role, Theme} from '../contract';
 import {ArrowIcon, Grain, clamp, easeIn, easeInOut, easeOut, fit} from '../shared/motion';
 import {DISPLAY, MONO_FONT, loadTemplateFonts} from '../shared/fonts';
 import {tickerMeta} from './meta';
@@ -45,13 +45,13 @@ const Band: React.FC<{text: string; size: number; color: string; dir: 1 | -1; sp
   );
 };
 
-const Frame: React.FC<{theme: Theme; label: string; ink?: string}> = ({theme, label, ink}) => {
+const Frame: React.FC<{theme: Theme; label: string; role: Role; ink?: string}> = ({theme, label, role, ink}) => {
   const frame = useCurrentFrame();
   const c = ink ?? theme.foreground;
   return (
     <AbsoluteFill style={{pointerEvents: 'none', fontFamily: MONO_FONT, fontSize: 22, fontWeight: 600, color: c}}>
       <div style={{position: 'absolute', left: 48, right: 48, top: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <span style={{textTransform: 'uppercase'}}>{label}</span>
+        <span data-text-role={role} style={{textTransform: 'uppercase'}}>{label}</span>
         <span style={{display: 'flex', alignItems: 'center', gap: 10}}>
           <span style={{width: 12, height: 12, borderRadius: 6, background: ink ? c : theme.accent, opacity: Math.floor(frame / 10) % 2 ? 0.25 : 1}} />
           {'LIVE'}
@@ -86,7 +86,7 @@ const SceneMarquee: React.FC<TickerProps> = ({texts, theme}) => {
           const enter = interpolate(frame - i * 3, [0, 22], [i % 2 ? -700 : 700, 0], {...clamp, easing: easeOut});
           return (
             <div key={i} style={{transform: `translateX(${enter}px)`}}>
-              <Band text={texts.headline} size={168} dir={i % 2 ? 1 : -1} speed={7 + i * 1.5} {...b} />
+              <span data-text-role={"headline"} style={{display: 'contents'}}><Band text={texts.headline} size={168} dir={i % 2 ? 1 : -1} speed={7 + i * 1.5} {...b} /></span>
             </div>
           );
         })}
@@ -107,10 +107,10 @@ const SceneMarquee: React.FC<TickerProps> = ({texts, theme}) => {
             transform: `scale(${sticker}) rotate(${(1 - sticker) * 24 - 4}deg)`,
           }}
         >
-          {texts.brand}
+          <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
         </div>
       </AbsoluteFill>
-      <Frame theme={theme} label={texts.brand} />
+      <Frame theme={theme} label={texts.brand} role="brand" />
     </AbsoluteFill>
   );
 };
@@ -169,19 +169,19 @@ const SceneBoard: React.FC<TickerProps> = ({texts, theme}) => {
     <AbsoluteFill style={{background: theme.background, justifyContent: 'center', alignItems: 'center'}}>
       <div style={{transform: `translateY(${(1 - enter) * 80}px)`, opacity: enter, display: 'flex', flexDirection: 'column', gap: 34}}>
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', fontFamily: MONO_FONT, color: theme.foreground}}>
-          <span style={{fontSize: 30, fontWeight: 800, color: theme.accent, textTransform: 'uppercase'}}>{texts.headline}</span>
+          <span style={{fontSize: 30, fontWeight: 800, color: theme.accent, textTransform: 'uppercase'}}><span data-text-role={"headline"} style={{display: 'contents'}}>{texts.headline}</span></span>
           <span style={{fontSize: 22, opacity: 0.55}}>{'STATUS \u2192 ON'}</span>
         </div>
         <div style={{height: 3, background: theme.foreground, opacity: 0.2}} />
         {items.map((t, i) => (
           <div key={i} style={{display: 'flex', alignItems: 'center', gap: 28}}>
             <span style={{width: 82, fontFamily: MONO_FONT, fontSize: 30, fontWeight: 700, color: i === 1 ? theme.accent : `${theme.foreground}88`}}>{`0${i + 1}`}</span>
-            <Flap text={t} cells={cells} delay={6 + i * 7} size={size} theme={theme} color={i === 1 ? theme.accent2 : theme.foreground} />
+            <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}><Flap text={t} cells={cells} delay={6 + i * 7} size={size} theme={theme} color={i === 1 ? theme.accent2 : theme.foreground} /></span>
           </div>
         ))}
         <div style={{height: 3, background: theme.foreground, opacity: 0.2}} />
       </div>
-      <Frame theme={theme} label={texts.brand} />
+      <Frame theme={theme} label={texts.brand} role="brand" />
     </AbsoluteFill>
   );
 };
@@ -195,7 +195,7 @@ const SceneStamp: React.FC<TickerProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill style={{background: theme.accent}}>
       <AbsoluteFill style={{top: 'auto', height: 150, justifyContent: 'center', background: theme.background, overflow: 'hidden'}}>
-        <Band text={texts.cta} size={84} color={theme.accent2} dir={-1} speed={6} />
+        <span data-text-role={"cta"} style={{display: 'contents'}}><Band text={texts.cta} size={84} color={theme.accent2} dir={-1} speed={6} /></span>
       </AbsoluteFill>
       <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: 64, paddingBottom: 150}}>
         <div style={{overflow: 'hidden', padding: '0 10px'}}>
@@ -210,7 +210,7 @@ const SceneStamp: React.FC<TickerProps> = ({texts, theme}) => {
               transform: `translateY(${(1 - word) * 110}%)`,
             }}
           >
-            {texts.brand}
+            <span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span>
           </div>
         </div>
         <div
@@ -231,11 +231,11 @@ const SceneStamp: React.FC<TickerProps> = ({texts, theme}) => {
             opacity: Math.min(1, stamp * 2),
           }}
         >
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={48} />
         </div>
       </AbsoluteFill>
-      <Frame theme={theme} label={texts.headline} ink={theme.background} />
+      <Frame theme={theme} label={texts.headline} role="headline" ink={theme.background} />
     </AbsoluteFill>
   );
 };

@@ -115,8 +115,8 @@ const SceneBoot: React.FC<TerminalProps> = ({texts, theme}) => {
     <Window theme={theme} title={`~/${slug(texts.brand)}`} tab="zsh">
       <div style={{fontSize: 46}}>
         <span style={{color: theme.accent}}>{'\u279C '}</span>
-        <span style={{color: theme.accent2}}>{`${slug(texts.brand)} `}</span>
-        {typed(cmd, frame, cmdStart)}
+        <span style={{color: theme.accent2}}><span data-text-role={"brand"} style={{display: 'contents'}}>{`${slug(texts.brand)} `}</span></span>
+        <span data-text-role={"brand"} style={{display: 'contents'}}>{typed(cmd, frame, cmdStart)}</span>
         {frame < outStart && <Cursor color={theme.foreground} size={46} />}
       </div>
       <div style={{marginTop: 30, fontSize: 30, lineHeight: 1.7, color: `${theme.foreground}80`}}>
@@ -128,7 +128,7 @@ const SceneBoot: React.FC<TerminalProps> = ({texts, theme}) => {
         ))}
       </div>
       <div style={{position: 'absolute', left: 72, bottom: 70, opacity: head, transform: `translateY(${(1 - head) * 30}px)`}}>
-        <Glitch text={texts.headline} size={size} theme={theme} amount={glitch} />
+        <span data-text-role={"headline"} style={{display: 'contents'}}><Glitch text={texts.headline} size={size} theme={theme} amount={glitch} /></span>
       </div>
     </Window>
   );
@@ -141,7 +141,7 @@ const SceneChecks: React.FC<TerminalProps> = ({texts, theme}) => {
   return (
     <Window theme={theme} title="build.log" tab="build">
       <div style={{display: 'flex', justifyContent: 'space-between', fontSize: 28, color: `${theme.foreground}77`, marginBottom: 48}}>
-        <span>{`${texts.brand.toUpperCase()} // RELEASE`}</span>
+        <span><span data-text-role={"brand"} style={{display: 'contents'}}>{`${texts.brand.toUpperCase()} // RELEASE`}</span></span>
         <span style={{fontVariantNumeric: 'tabular-nums'}}>{`${Math.round(progress * 100)}%`}</span>
       </div>
       {items.map((t, i) => {
@@ -164,7 +164,7 @@ const SceneChecks: React.FC<TerminalProps> = ({texts, theme}) => {
             >
               {done ? '\u2713' : '\u2022'}
             </span>
-            <span style={{fontFamily: SANS_FONT, fontSize: 88, fontWeight: 750}}>{t}</span>
+            <span style={{fontFamily: SANS_FONT, fontSize: 88, fontWeight: 750}}><span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{t}</span></span>
           </div>
         );
       })}
@@ -173,7 +173,7 @@ const SceneChecks: React.FC<TerminalProps> = ({texts, theme}) => {
       </div>
       <div style={{marginTop: 34, fontSize: 34, color: `${theme.foreground}99`}}>
         <span style={{color: theme.accent2}}>{'// '}</span>
-        {typed(texts.subhead, frame, 34)}
+        <span data-text-role={"subhead"} style={{display: 'contents'}}>{typed(texts.subhead, frame, 34)}</span>
       </div>
     </Window>
   );
@@ -191,9 +191,9 @@ const SceneShip: React.FC<TerminalProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', gap: 64, transform: `scale(${scale})`}}>
       <AbsoluteFill style={{background: `repeating-linear-gradient(0deg, ${theme.foreground}07 0 2px, transparent 2px 6px)`}} />
-      <div style={{fontFamily: MONO, fontSize: 34, color: theme.accent, opacity: btn}}>{`[ ${texts.headline} ]`}</div>
+      <div style={{fontFamily: MONO, fontSize: 34, color: theme.accent, opacity: btn}}><span data-text-role={"headline"} style={{display: 'contents'}}>{`[ ${texts.headline} ]`}</span></div>
       <div style={{width}}>
-        <Glitch text={texts.brand} size={size} theme={theme} amount={glitch} weight={850} />
+        <span data-text-role={"brand"} style={{display: 'contents'}}><Glitch text={texts.brand} size={size} theme={theme} amount={glitch} weight={850} /></span>
       </div>
       <div
         style={{
@@ -212,7 +212,7 @@ const SceneShip: React.FC<TerminalProps> = ({texts, theme}) => {
           opacity: btn,
         }}
       >
-        {`$ ${texts.cta}`}
+        <span data-text-role={"cta"} style={{display: 'contents'}}>{`$ ${texts.cta}`}</span>
         <ArrowIcon size={42} />
       </div>
       <AbsoluteFill style={{background: theme.accent, opacity: flash * 0.45}} />

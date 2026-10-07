@@ -40,6 +40,14 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 2. Add `meta.ts` with its scenes. Each scene has `from`, `duration`, `focus`, and `roles`. Map the components to scenes in the same order.
 3. Add the schema with `textsSchema([...roles])` and `themeSchema`, and register the template in `src/videos/registry.ts` and `src/videos/meta.ts`.
 4. Add the template and its variants to `manifest.json`. Then run `node scripts/previews.mjs`.
+5. Mark each editable text group with `data-text-role="headline"` (or the matching shared role). Use `display: contents` on additional wrappers to preserve the composition layout. Tag the copy itself, not decorative labels or whole scenes.
+
+## Editor
+
+- Mobile uses a screen-filling stage with overlay controls. Landscape compositions fill the phone when it rotates to landscape. The expand button requests native fullscreen and landscape orientation where supported; otherwise it uses the browser viewport. Desktop keeps a contained preview.
+- Click or tap visible text to pause and edit that role in place. Confirm to save one undo step, or cancel. Scene buttons expose later text without a separate text panel.
+- Theme controls sit below the video. Descriptions, template prompts, related videos, and taxonomy are not part of the editor.
+- Saved props are validated before loading. Invalid text cannot be committed. Changes remain available after reloading.
 
 ## Notes
 
@@ -55,9 +63,16 @@ node scripts/smoke.cjs
 node scripts/smoke-ios.cjs
 node scripts/smoke-media.cjs
 node scripts/smoke-media.cjs --ios
+node scripts/smoke-inline.cjs
+node scripts/smoke-inline.cjs --ios
+node scripts/smoke-editor-layout.cjs
+node scripts/smoke-editor-layout.cjs --ios
+node scripts/smoke-editor-layout.cjs --mobile
 ```
 
 Run the browser checks against the dev server, or set `URL` to the deployed site. Media checks cover viewport autoplay, background cleanup, blocked autoplay, reduced motion, complete editor loops, and Flex text fitting. Screenshots are viewport-sized and written under `/tmp/voodoo-*`.
+
+Inline checks edit every role in every template and verify undo, redo, and persistence. Layout checks cover mobile rotation, the fullscreen fallback, orientation requests, duplicate text values, and validation. The synthetic keyboard viewport test runs in mobile Chromium because overriding that native property crashes this Mac's WebKit test runner; physical-device keyboard behavior still needs manual confirmation.
 
 Design reference: [Adobe's 2026 design trends](https://www.adobe.com/express/learn/blog/design-trends-2026), including tactile collage and playful typography. Playback reference: [WebKit's inline autoplay policies](https://webkit.org/blog/6784/new-video-policies-for-ios/).
 

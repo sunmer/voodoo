@@ -70,19 +70,19 @@ const SceneCover: React.FC<CollageProps> = ({texts, theme}) => {
     <AbsoluteFill>
       <Scrap x={PAD} y={170} w={W - PAD * 2} h={140} rot={-2} delay={2} bg={theme.foreground} seed="a">
         <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', fontFamily: MONO_FONT, fontSize: 30, fontWeight: 700, color: theme.background, textTransform: 'uppercase'}}>
-          <span>{texts.brand}</span>
+          <span><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></span>
           <span>{'zine 26'}</span>
         </div>
       </Scrap>
-      {lines.map((l, i) => (
+      <span data-text-role="headline" style={{display: 'contents'}}>{lines.map((l, i) => (
         <Scrap key={i} x={PAD + (i ? 60 : 0)} y={420 + i * 300} w={W - PAD * 2 - 60} h={270} rot={i ? 3 : -3} delay={10 + i * 8} bg={i ? theme.accent : theme.surface} seed={`h${i}`} tape={i ? undefined : theme.accent2}>
           <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', padding: '0 44px', fontFamily: i ? SERIF_FONT : DISPLAY, fontStyle: i ? 'italic' : 'normal', fontSize: size, fontWeight: i ? 600 : 900, lineHeight: 1, textTransform: i ? 'none' : 'uppercase', color: i ? theme.background : theme.foreground, whiteSpace: 'nowrap'}}>
             {l}
           </div>
         </Scrap>
-      ))}
+      ))}</span>
       <Scribble d="M40 60 C 260 10, 560 0, 820 40 S 900 120, 600 130 S 80 140, 40 60" color={theme.accent2} delay={34} w={900} h={160} style={{left: PAD + 20, top: 1080}} />
-      <Sticker theme={theme} text={texts.brand} delay={40} x={W - PAD - 250} y={1300} rot={12} />
+      <span data-text-role={"brand"} style={{display: 'contents'}}><Sticker theme={theme} text={texts.brand} delay={40} x={W - PAD - 250} y={1300} rot={12} /></span>
       <Scrap x={PAD + 30} y={1380} w={480} h={300} rot={-5} delay={26} bg={theme.surface} seed="p">
         <AbsoluteFill style={{backgroundImage: `repeating-linear-gradient(0deg, ${theme.foreground}22 0 2px, transparent 2px 46px)`}} />
         <div style={{position: 'absolute', inset: 36, fontFamily: SERIF_FONT, fontStyle: 'italic', fontSize: 50, lineHeight: 1.1, color: theme.foreground}}>{'cut, paste, repeat.'}</div>
@@ -97,7 +97,7 @@ const SceneBoard: React.FC<CollageProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill>
       <Scrap x={PAD} y={150} w={W - PAD * 2} h={360} rot={1.5} delay={0} bg={theme.foreground} seed="s" tape={theme.accent}>
-        <div style={{position: 'absolute', inset: 50, display: 'flex', alignItems: 'center', fontFamily: SERIF_FONT, fontStyle: 'italic', fontSize: fit(texts.subhead, 74, (W - PAD * 2 - 100) * 2.3, 0.48), lineHeight: 1.12, color: theme.background}}>{`\u201C${texts.subhead}\u201D`}</div>
+        <div style={{position: 'absolute', inset: 50, display: 'flex', alignItems: 'center', fontFamily: SERIF_FONT, fontStyle: 'italic', fontSize: fit(texts.subhead, 74, (W - PAD * 2 - 100) * 2.3, 0.48), lineHeight: 1.12, color: theme.background}}><span data-text-role={"subhead"} style={{display: 'contents'}}>{`\u201C${texts.subhead}\u201D`}</span></div>
       </Scrap>
       {items.map((t, i) => {
         const y = 640 + i * 350;
@@ -107,7 +107,7 @@ const SceneBoard: React.FC<CollageProps> = ({texts, theme}) => {
           <React.Fragment key={i}>
             <Scrap x={PAD + [0, 90, 30][i]} y={y} w={W - PAD * 2 - 120} h={290} rot={rot} delay={12 + i * 9} bg={colors[i]} seed={`p${i}`} tape={i === 1 ? theme.accent : undefined}>
               <div style={{position: 'absolute', left: 44, top: 34, fontFamily: MONO_FONT, fontSize: 28, fontWeight: 700, color: fg}}>{`no.${i + 1}`}</div>
-              <div style={{position: 'absolute', left: 44, right: 44, bottom: 40, fontFamily: DISPLAY, fontSize: fit(t, 120, W - PAD * 2 - 210, 0.68), fontWeight: 900, lineHeight: 1, textTransform: 'uppercase', whiteSpace: 'nowrap', color: fg}}>{t}</div>
+              <div style={{position: 'absolute', left: 44, right: 44, bottom: 40, fontFamily: DISPLAY, fontSize: fit(t, 120, W - PAD * 2 - 210, 0.68), fontWeight: 900, lineHeight: 1, textTransform: 'uppercase', whiteSpace: 'nowrap', color: fg}}><span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{t}</span></div>
             </Scrap>
             <Scribble d="M10 30 L 60 70 L 150 0" color={theme.foreground} delay={24 + i * 9} width={14} w={160} h={80} style={{left: W - PAD - 150, top: y + 90}} />
           </React.Fragment>
@@ -124,16 +124,16 @@ const SceneEnd: React.FC<CollageProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill>
       <Scrap x={PAD - 20} y={520} w={W - PAD * 2 + 40} h={420} rot={-3} delay={0} bg={theme.accent} seed="e" tape={theme.foreground}>
-        <div style={{position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', fontFamily: DISPLAY, fontSize: fit(texts.brand, 190, W - PAD * 2 - 80, 0.68), fontWeight: 900, textTransform: 'uppercase', color: theme.background, whiteSpace: 'nowrap'}}>{texts.brand}</div>
+        <div style={{position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', fontFamily: DISPLAY, fontSize: fit(texts.brand, 190, W - PAD * 2 - 80, 0.68), fontWeight: 900, textTransform: 'uppercase', color: theme.background, whiteSpace: 'nowrap'}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></div>
       </Scrap>
       <Scribble d="M20 40 C 200 0, 560 0, 860 30" color={theme.foreground} delay={10} width={14} w={880} h={60} style={{left: PAD + 20, top: 980}} />
       <div style={{position: 'absolute', left: 0, right: 0, top: 1120, display: 'flex', justifyContent: 'center'}}>
         <div style={{display: 'flex', alignItems: 'center', gap: 20, height: 120, padding: '0 56px', borderRadius: 60, background: theme.foreground, color: theme.background, fontFamily: DISPLAY, fontSize: fit(texts.cta, 52, 700, 0.66), fontWeight: 900, textTransform: 'uppercase', whiteSpace: 'nowrap', transform: `rotate(${(1 - btn) * 10 + 2}deg) scale(${btn})`}}>
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={46} />
         </div>
       </div>
-      <Sticker theme={theme} text={texts.point1} delay={26} x={W - PAD - 260} y={300} rot={-10} />
+      <span data-text-role={"point1"} style={{display: 'contents'}}><Sticker theme={theme} text={texts.point1} delay={26} x={W - PAD - 260} y={300} rot={-10} /></span>
     </AbsoluteFill>
   );
 };

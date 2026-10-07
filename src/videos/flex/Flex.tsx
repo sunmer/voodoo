@@ -52,7 +52,7 @@ const Breath: React.FC<{text: string; size: number; delay: number; color: string
   const stretch = interpolate(t, [0, 1], [MIN, MIN + (max - MIN) * (0.5 + breathe * 0.5)]);
   const weight = interpolate(t, [0, 1], [200, 850]);
   return (
-    <div style={{overflow: 'hidden', height: size * 0.9}}>
+    <div data-text-role="headline" style={{overflow: 'hidden', height: size * 0.9}}>
       <FittedType
         text={text}
         width={S - PAD * 2}
@@ -109,7 +109,7 @@ const SceneList: React.FC<FlexProps> = ({texts, theme}) => {
         return (
           <div key={i} style={{display: 'flex', alignItems: 'center', gap: 28, height: 230, borderTop: `3px solid ${theme.foreground}`, opacity: enter, transform: `translateX(${(1 - enter) * 80}px)`}}>
             <span style={{width: 92, flexShrink: 0, fontFamily: MONO_FONT, fontSize: 30, fontWeight: 700, color: on ? theme.accent : `${theme.foreground}77`}}>{`0${i + 1}`}</span>
-            <FittedType
+            <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}><FittedType
               text={t}
               width={S - PAD * 2 - 120}
               style={{
@@ -122,7 +122,7 @@ const SceneList: React.FC<FlexProps> = ({texts, theme}) => {
                 whiteSpace: 'nowrap',
                 color: on ? theme.foreground : `${theme.foreground}55`,
               }}
-            />
+            /></span>
           </div>
         );
       })}
@@ -141,9 +141,9 @@ const SceneLockup: React.FC<FlexProps> = ({texts, theme}) => {
   const stretch = interpolate(frame, [6, 40], [MIN, max], {...clamp, easing: easeOut});
   return (
     <AbsoluteFill style={{background: theme.accent, clipPath: `circle(${wipe * 0.75}% at 50% 50%)`, justifyContent: 'center', alignItems: 'center', gap: 70}}>
-      <FittedType text={texts.brand} width={S - PAD * 2} style={{fontFamily: FLEX_FONT, fontSize: size, fontWeight: 850, fontStretch: `${stretch}%`, lineHeight: 0.9, textTransform: 'uppercase', whiteSpace: 'nowrap', color: theme.background}} />
+      <span data-text-role={"brand"} style={{display: 'contents'}}><FittedType text={texts.brand} width={S - PAD * 2} style={{fontFamily: FLEX_FONT, fontSize: size, fontWeight: 850, fontStretch: `${stretch}%`, lineHeight: 0.9, textTransform: 'uppercase', whiteSpace: 'nowrap', color: theme.background}} /></span>
       <div style={{display: 'flex', alignItems: 'center', gap: 18, height: 100, padding: '0 50px', border: `4px solid ${theme.background}`, borderRadius: 50, fontFamily: FLEX_FONT, fontSize: 46, fontWeight: 800, fontStretch: '110%', textTransform: 'uppercase', whiteSpace: 'nowrap', color: theme.background, opacity: btn, transform: `scale(${0.7 + btn * 0.3})`}}>
-        <FittedType text={texts.cta} width={Math.min(620, texts.cta.length * 32)} style={{}} />
+        <span data-text-role={"cta"} style={{display: 'contents'}}><FittedType text={texts.cta} width={Math.min(620, texts.cta.length * 32)} style={{}} /></span>
         <ArrowIcon size={44} />
       </div>
       <Corner theme={{...theme, foreground: theme.background}} left="03 / 03" right={texts.headline} />

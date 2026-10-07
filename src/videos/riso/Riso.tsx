@@ -57,17 +57,17 @@ const SceneCover: React.FC<RisoProps> = ({texts, theme}) => {
       <div style={{position: 'absolute', right: -160, top: 140, width: 760, height: 760, borderRadius: 380, ...halftone(theme.accent2, 26, dot), transform: `scale(${sun})`}} />
       <div style={{position: 'absolute', left: -120, bottom: 120, width: 620, height: 620, ...halftone(theme.accent, 22, dot * 0.8), transform: `rotate(${frame * 0.2}deg) scale(${sun})`}} />
       <div style={{position: 'absolute', left: PAD, right: PAD, top: 64, display: 'flex', justifyContent: 'space-between', fontFamily: MONO_FONT, fontSize: 24, fontWeight: 700, color: theme.foreground}}>
-        <span>{scramble(texts.brand.toUpperCase(), frame, 2)}</span>
+        <span><span data-text-role={"brand"} style={{display: 'contents'}}>{scramble(texts.brand.toUpperCase(), frame, 2)}</span></span>
         <span>{'ED. 26'}</span>
       </div>
       <div style={{position: 'absolute', left: PAD, right: PAD, bottom: 150}}>
-        {words.map((w, i) => (
+        <span data-text-role={"headline"} style={{display: 'contents'}}>{words.map((w, i) => (
           <div key={i} style={{overflow: 'hidden', paddingBottom: 6}}>
             <div style={{transform: `translateY(${interpolate(frame - 8 - i * 6, [0, 22], [110, 0], {...clamp, easing: easeOut})}%)`}}>
               <Ink text={w} size={size} a={theme.foreground} b={theme.accent} offset={reg} />
             </div>
           </div>
-        ))}
+        ))}</span>
       </div>
       <div style={{position: 'absolute', left: PAD, bottom: 70, fontFamily: MONO_FONT, fontSize: 22, color: theme.foreground, opacity: 0.7}}>{'PRINTED IN TWO COLOURS \u2022 NO. 001'}</div>
     </AbsoluteFill>
@@ -80,7 +80,7 @@ const SceneList: React.FC<RisoProps> = ({texts, theme}) => {
   const head = interpolate(frame, [0, 16], [0, 1], {...clamp, easing: easeOut});
   return (
     <AbsoluteFill style={{padding: PAD, paddingTop: 110}}>
-      <div style={{fontFamily: MONO_FONT, fontSize: 30, lineHeight: 1.4, fontWeight: 600, color: theme.foreground, maxWidth: 800, minHeight: 130}}>{scramble(texts.subhead, frame, 0, 2.4)}</div>
+      <div style={{fontFamily: MONO_FONT, fontSize: 30, lineHeight: 1.4, fontWeight: 600, color: theme.foreground, maxWidth: 800, minHeight: 130}}><span data-text-role={"subhead"} style={{display: 'contents'}}>{scramble(texts.subhead, frame, 0, 2.4)}</span></div>
       <div style={{height: 4, background: theme.foreground, marginTop: 30, width: `${head * 100}%`}} />
       <div style={{marginTop: 40, display: 'flex', flexDirection: 'column', gap: 26}}>
         {items.map((t, i) => {
@@ -94,7 +94,7 @@ const SceneList: React.FC<RisoProps> = ({texts, theme}) => {
               <AbsoluteFill style={{...halftone(`${theme.background}55`, 14, 0.3 + 0.2 * Math.sin(frame / 10 + i))}} />
               <div style={{position: 'absolute', left: 40, top: 30, fontFamily: MONO_FONT, fontSize: 26, fontWeight: 700, color: fg}}>{`(${i + 1})`}</div>
               <div style={{position: 'absolute', left: 40, right: 40, bottom: 26, fontFamily: DISPLAY, fontSize: fit(t, 140, W - PAD * 2 - 80, 0.76), fontWeight: 900, lineHeight: 0.95, textTransform: 'uppercase', whiteSpace: 'nowrap', color: fg}}>
-                {scramble(t.toUpperCase(), frame, d + 4, 1.6)}
+                <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{scramble(t.toUpperCase(), frame, d + 4, 1.6)}</span>
               </div>
             </div>
           );
@@ -123,10 +123,10 @@ const SceneStamp: React.FC<RisoProps> = ({texts, theme}) => {
         ))}
       </div>
       <div style={{position: 'absolute', top: H / 2 - 120, transform: `translateY(-50%) rotate(-6deg) scale(${s})`}}>
-        <Ink text={texts.brand} size={fit(texts.brand, 150, 520, 0.72)} a={theme.foreground} b={theme.accent} offset={8} />
+        <span data-text-role={"brand"} style={{display: 'contents'}}><Ink text={texts.brand} size={fit(texts.brand, 150, 520, 0.72)} a={theme.foreground} b={theme.accent} offset={8} /></span>
       </div>
       <div style={{position: 'absolute', bottom: 150, display: 'flex', alignItems: 'center', gap: 18, height: 104, padding: '0 50px', background: theme.foreground, color: theme.background, fontFamily: DISPLAY, fontSize: fit(texts.cta, 46, 700, 0.66), fontWeight: 900, textTransform: 'uppercase', whiteSpace: 'nowrap', boxShadow: `10px 10px 0 ${theme.accent}`, opacity: btn, transform: `translateY(${(1 - btn) * 60}px)`}}>
-        {texts.cta}
+        <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
         <ArrowIcon size={42} />
       </div>
     </AbsoluteFill>

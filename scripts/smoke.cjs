@@ -40,16 +40,18 @@ const assert = (cond, msg) => {
     const kitThumbs = await page.locator('.card .media .__remotion-player, .card .media div[style*="aspect-ratio"] > div').count();
     await page.screenshot({path: `/tmp/voodoo-kit-${vp.n}.png`, scale: 'css'});
 
-    // Editor: focusing a field seeks the player to the scene that shows it.
+    // Editor: text is edited on the canvas; the brand kit still applies.
     await page.goto(base + '#/v/stack-orbit');
     await page.waitForTimeout(1000);
-    await page.locator('.field input').nth(2).focus();
+    await page.locator('.scene').nth(1).click();
     await page.waitForTimeout(400);
+    await page.getByRole('button', {name: 'Edit Point 1', exact: true}).first().click();
     const linked = await page.locator('.scene.linked').innerText();
-    const applyVisible = await page.locator('.kit-apply button').isVisible();
-    await page.locator('.kit-apply button').click();
+    await page.getByRole('button', {name: 'Cancel edit', exact: true}).click();
+    const applyVisible = await page.getByRole('button', {name: 'Apply brand kit', exact: true}).isVisible();
+    await page.getByRole('button', {name: 'Apply brand kit', exact: true}).click();
     await page.waitForTimeout(800);
-    const brandValue = await page.locator('.field input').nth(0).inputValue();
+    const brandValue = await page.evaluate(() => JSON.parse(localStorage.getItem('voodoo:v2:stack-orbit')).texts.brand);
     await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, scale: 'css'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};

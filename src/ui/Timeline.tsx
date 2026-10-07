@@ -3,7 +3,7 @@ import {useEffect, useState, type RefObject} from 'react';
 import {SCENE_TYPES, type Role, type TemplateMeta} from '../videos/vocab';
 
 // Scene strip under the player: shows where each scene sits, follows playback, seeks on click.
-export function Timeline({meta, player, focusRole}: {meta: TemplateMeta; player: RefObject<PlayerRef | null>; focusRole: Role | null}) {
+export function Timeline({meta, player, focusRole, disabled = false}: {meta: TemplateMeta; player: RefObject<PlayerRef | null>; focusRole: Role | null; disabled?: boolean}) {
   const [frame, setFrame] = useState(0);
   useEffect(() => {
     const p = player.current;
@@ -28,6 +28,8 @@ export function Timeline({meta, player, focusRole}: {meta: TemplateMeta; player:
         return (
           <button
             key={i}
+            disabled={disabled}
+            aria-label={`${SCENE_TYPES[s.type]} scene`}
             className={`scene ${current ? 'current' : ''} ${linked ? 'linked' : ''}`}
             style={{left: `${(s.from / total) * 100}%`, width: `${((end - s.from) / total) * 100}%`}}
             title={`${SCENE_TYPES[s.type]} · ${(s.from / meta.fps).toFixed(1)}s`}

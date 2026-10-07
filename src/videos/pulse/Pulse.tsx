@@ -122,15 +122,15 @@ const SceneTitle: React.FC<PulseProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill style={{padding: `${PAD + 10}px ${PAD}px`}}>
       <Reveal delay={0}>
-        <Chip theme={theme}>{texts.brand}</Chip>
+        <Chip theme={theme}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></Chip>
       </Reveal>
       <div style={{height: 40}} />
       <Reveal delay={6}>
-        <div style={{fontSize: size, fontWeight: 800, lineHeight: 1, color: theme.foreground, maxWidth: W - PAD * 2}}>{texts.headline}</div>
+        <div style={{fontSize: size, fontWeight: 800, lineHeight: 1, color: theme.foreground, maxWidth: W - PAD * 2}}><span data-text-role={"headline"} style={{display: 'contents'}}>{texts.headline}</span></div>
       </Reveal>
       <div style={{height: 30}} />
       <Reveal delay={14}>
-        <div style={{fontSize: 38, lineHeight: 1.3, fontWeight: 450, color: `${theme.foreground}99`, maxWidth: 820}}>{texts.subhead}</div>
+        <div style={{fontSize: 38, lineHeight: 1.3, fontWeight: 450, color: `${theme.foreground}99`, maxWidth: 820}}><span data-text-role={"subhead"} style={{display: 'contents'}}>{texts.subhead}</span></div>
       </Reveal>
       <AreaChart theme={theme} progress={draw} />
     </AbsoluteFill>
@@ -148,10 +148,10 @@ const SceneBars: React.FC<PulseProps> = ({texts, theme}) => {
   return (
     <AbsoluteFill style={{padding: `${PAD + 10}px ${PAD}px`}}>
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', opacity: head}}>
-        <Chip theme={theme}>{texts.brand}</Chip>
+        <Chip theme={theme}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></Chip>
         <span style={{fontFamily: MONO_FONT, fontSize: 22, color: `${theme.foreground}77`}}>{'INDEX \u2191'}</span>
       </div>
-      <div style={{marginTop: 34, fontSize: fit(texts.headline, 72, W - PAD * 2, 0.56), fontWeight: 800, color: theme.foreground, opacity: head}}>{texts.headline}</div>
+      <div style={{marginTop: 34, fontSize: fit(texts.headline, 72, W - PAD * 2, 0.56), fontWeight: 800, color: theme.foreground, opacity: head}}><span data-text-role={"headline"} style={{display: 'contents'}}>{texts.headline}</span></div>
       <div style={{position: 'absolute', left: PAD, right: PAD, bottom: 130, height: maxH + 220}}>
         {[0.25, 0.5, 0.75, 1].map((g) => (
           <div key={g} style={{position: 'absolute', left: 0, right: 0, bottom: 90 + g * maxH, borderTop: `2px dashed ${theme.foreground}14`}} />
@@ -183,7 +183,7 @@ const SceneBars: React.FC<PulseProps> = ({texts, theme}) => {
         <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, display: 'flex', gap: 36}}>
           {items.map((t, i) => (
             <div key={i} style={{flex: 1, fontSize: fit(t, 34, 270, 0.56), lineHeight: 1.15, fontWeight: 700, color: theme.foreground, opacity: interpolate(frame - 18 - i * 9, [0, 14], [0, 1], clamp)}}>
-              {t}
+              <span data-text-role={`point${i + 1}`} style={{display: 'contents'}}>{t}</span>
             </div>
           ))}
         </div>
@@ -228,7 +228,7 @@ const SceneClose: React.FC<PulseProps> = ({texts, theme}) => {
         </g>
       </svg>
       <div style={{position: 'absolute', left: PAD, right: PAD, top: cy, transform: `translateY(-50%) scale(${0.85 + word * 0.15})`, opacity: word, textAlign: 'center'}}>
-        <div style={{fontSize: fit(texts.brand, 120, 470, 0.6), fontWeight: 850, lineHeight: 1, color: theme.foreground}}>{texts.brand}</div>
+        <div style={{fontSize: fit(texts.brand, 120, 470, 0.6), fontWeight: 850, lineHeight: 1, color: theme.foreground}}><span data-text-role={"brand"} style={{display: 'contents'}}>{texts.brand}</span></div>
         <div style={{marginTop: 18, fontFamily: MONO_FONT, fontSize: 24, color: `${theme.foreground}88`}}>{`${Math.round(ring * 100)}% COMPLETE`}</div>
       </div>
       <div style={{position: 'absolute', left: 0, right: 0, bottom: 170, display: 'flex', justifyContent: 'center'}}>
@@ -249,7 +249,7 @@ const SceneClose: React.FC<PulseProps> = ({texts, theme}) => {
             opacity: btn,
           }}
         >
-          {texts.cta}
+          <span data-text-role={"cta"} style={{display: 'contents'}}>{texts.cta}</span>
           <ArrowIcon size={44} />
         </div>
       </div>
