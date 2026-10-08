@@ -3,7 +3,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {renderToString} from 'react-dom/server';
 import {BenchmarkPage} from '../../src/benchmark/BenchmarkPage';
-import {visualScore, withRecovery, type BenchmarkResult, type BenchmarkResults} from '../../src/benchmark/types';
+import {visualScore, withRecovery, type BenchmarkResult, type BenchmarkResults, type BenchmarkTimings} from '../../src/benchmark/types';
 
 const sample = (): BenchmarkResult => ({
   model: 'opus-5-5', brief: 'product-launch', run: 1, status: 'rendered', attempts: 1,
@@ -12,16 +12,23 @@ const sample = (): BenchmarkResult => ({
   video: 'benchmark/media/test/video.mp4', poster: 'benchmark/media/test/poster.jpg',
   source: 'benchmark/media/test/source.tsx', request: 'benchmark/media/test/request.json', reviews: [],
 });
-const render = (entry: BenchmarkResult) => {
+const timingFixture: BenchmarkTimings = {version: 1, metric: 'generation_time', unit: 'milliseconds', entries: [{
+  video: 'benchmark/media/test/video.mp4', sourceSha256: 'a'.repeat(64), generationId: 'gen-test',
+  model: 'anthropic/claude-opus-5.5', resolvedModel: 'anthropic/claude-opus-5.5', provider: 'test-provider',
+  generationTimeMs: 5234, fetchedAt: '2026-10-08T20:00:00.000Z',
+}]};
+const render = (entry: BenchmarkResult, timings = timingFixture) => {
   const data: BenchmarkResults = {version: '1.0', edition: '2026-10', updatedAt: '2026-10-08', status: 'in-progress', entries: [entry]};
-  return renderToString(<BenchmarkPage base="/voodoo/" data={data} />);
+  return renderToString(<BenchmarkPage base="/voodoo/" data={data} timings={timings} />);
 };
 test('real rendered entry shows video, actual metrics, and base-aware downloads', () => {
   const html = render(sample());
   assert.match(html, /data-video-src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
   assert.doesNotMatch(html, /<video[^>]*\ssrc=/);
   assert.match(html, /\$0.123/);
-  assert.match(html, /12.3s/);
+  assert.match(html, /5.2s/);
+  assert.doesNotMatch(html, /12.3s/);
+  assert.match(html, /gen-test/);
   assert.match(html, /Review pending/);
   assert.match(html, /href="\/voodoo\/benchmark\/media\/test\/source.tsx"/);
   assert.match(html, /Passed on first attempt/);
@@ -31,6 +38,8 @@ test('failed entry is not a pending run or a fabricated video', () => {
   const html = render(entry);
   assert.match(html, /Render failed/);
   assert.match(html, /2 attempts/);
+  assert.match(html, /Not generated/);
+  assert.doesNotMatch(html, /5.2s/);
   assert.doesNotMatch(html, /src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
   assert.match(html, /&lt;script&gt;unsafe&lt;\/script&gt;/);
 });
@@ -84,4 +93,20 @@ test('recovery keeps original failure and adds costs without claiming first-atte
   assert.match(html, /Recovered in automated repair pass R1/);
   assert.match(html, /Additional repair cost/);
   assert.match(html, /Original outcome/);
+  assert.match(html, /5.2s/);
+  assert.doesNotMatch(html, /24.6s/);
+});
+test('missing OpenRouter timing never falls back to local elapsed time', () => {
+  for (const entries of [[], [{...timingFixture.entries[0], generationTimeMs: null, unavailableReason: 'Not reported'}]]) {
+    const html = render(sample(), {...timingFixture, entries});
+    assert.match(html, /Unavailable/);
+    assert.doesNotMatch(html, /12.3s/);
+  }
+  const html = render(sample(), {...timingFixture, entries: [{...timingFixture.entries[0], video: 'benchmark/media/another/video.mp4'}]});
+  assert.match(html, /Unavailable/);
+  assert.doesNotMatch(html, /5.2s/);
+});
+test('zero reported generation time remains zero', () => {
+  const html = render(sample(), {...timingFixture, entries: [{...timingFixture.entries[0], generationTimeMs: 0}]});
+  assert.match(html, /0.0s/);
 });

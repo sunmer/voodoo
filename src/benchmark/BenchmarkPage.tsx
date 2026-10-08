@@ -6,7 +6,8 @@ import protocol from './protocol.json';
 import resultsData from './results.json';
 import recoveryData from './recovery.json';
 import recoveryProtocol from './recovery-protocol.json';
-import {visualScore, withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries} from './types';
+import timingsData from './timings.json';
+import {visualScore, withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries, type BenchmarkTiming, type BenchmarkTimings} from './types';
 
 // The publication build validates this JSON against the result schema.
 const defaultResults = resultsData as BenchmarkResults;
@@ -23,7 +24,7 @@ function ResultVideo({entry, base, label}: {entry: BenchmarkResult; base: string
       onError={() => setFailed(true)} />;
 }
 
-function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; entry?: BenchmarkResult; base: string; run: number; brief: string}) {
+function ResultCard({model, entry, timing, base, run, brief}: {model: BenchmarkModel; entry?: BenchmarkResult; timing?: BenchmarkTiming; base: string; run: number; brief: string}) {
   const score = visualScore(entry);
   const truncated = entry?.error?.includes('Completion limit reached');
   const invalid = entry?.error?.startsWith('Invalid submission:');
@@ -46,12 +47,17 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
       <dl className="benchmark-metrics">
         <div><dt>Visual score</dt><dd>{score === null ? <span className="metric-pending">{entry?.status === 'rendered' ? 'Review pending' : 'Not scored'}</span> : <>{score.toFixed(1)}<small>/100</small></>}</dd></div>
         <div><dt>API cost</dt><dd>{entry ? money(entry.costUsd) : <span className="metric-pending">Pending</span>}</dd></div>
-        <div><dt>Generation</dt><dd>{entry ? seconds(entry.generationMs) : <span className="metric-pending">Pending</span>}</dd></div>
+        <div><dt title="OpenRouter generation_time for the successful attempt only">Generation</dt><dd>{entry?.status === 'rendered' && timing?.generationTimeMs != null
+          ? seconds(timing.generationTimeMs)
+          : <span className="metric-pending">{!entry ? 'Pending' : entry.status === 'failed' ? 'Not generated' : 'Unavailable'}</span>}</dd></div>
       </dl>
       <details className="benchmark-entry-details">
         <summary>Run details <ChevronDown size={14} aria-hidden="true" /></summary>
         <dl><div><dt>Model ID</dt><dd><code>{model.id}</code></dd></div>
           <div><dt>Reasoning effort</dt><dd>{model.reasoning}</dd></div>
+          {entry?.status === 'rendered' && <><div><dt>Timing source</dt><dd>OpenRouter <code>generation_time</code>, successful attempt only</dd></div>
+            {timing && <div><dt>Generation ID</dt><dd><code>{timing.generationId}</code></dd></div>}
+            {timing?.unavailableReason && <div><dt>Timing unavailable</dt><dd>{timing.unavailableReason}</dd></div>}</>}
           <div><dt>Status</dt><dd>{entry ? entry.recovery ? entry.status === 'rendered' ? 'Recovered in automated repair pass R1' : 'Still failed after repair pass R1' : entry.firstAttemptPassed ? 'Passed on first attempt' : entry.status === 'rendered' ? 'Passed after repair' : 'Failed' : 'Awaiting generation'}</dd></div>
           {entry?.recovery && <><div><dt>Original outcome</dt><dd>Failed after {entry.recovery.originalAttempts} attempt{entry.recovery.originalAttempts === 1 ? '' : 's'}. {entry.recovery.originalError}</dd></div>
             <div><dt>Original API cost</dt><dd>{money(entry.recovery.originalCostUsd)}</dd></div>
@@ -70,7 +76,7 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
   </article>;
 }
 
-export function BenchmarkPage({base = '/', edition = false, data = defaultResults, recoveries = recoveryData as BenchmarkRecoveries}: {base?: string; edition?: boolean; data?: BenchmarkResults; recoveries?: BenchmarkRecoveries}) {
+export function BenchmarkPage({base = '/', edition = false, data = defaultResults, recoveries = recoveryData as BenchmarkRecoveries, timings = timingsData as BenchmarkTimings}: {base?: string; edition?: boolean; data?: BenchmarkResults; recoveries?: BenchmarkRecoveries; timings?: BenchmarkTimings}) {
   const results = data;
   const [briefId, setBriefId] = useState(protocol.briefs[0].id);
   const [run, setRun] = useState(1);
@@ -189,9 +195,14 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
           </details>
         </div>
         <p className="article-sr-only" aria-live="polite">{brief.name}, run {run}. {entries.length} completed entries.</p>
-        <div className="benchmark-grid">{models.map((model) => <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={findEntry(model.key)} base={base} run={run} brief={brief.name} />)}</div>
+        <div className="benchmark-grid">{models.map((model) => {
+          const entry = findEntry(model.key);
+          const timing = entry?.status === 'rendered' ? timings.entries.find(timing => timing.video === entry.video) : undefined;
+          return <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={entry} timing={timing} base={base} run={run} brief={brief.name} />;
+        })}</div>
         <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed. Scores stay unpublished until two blind reviews are complete.</p>
-        {showRepairs && recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost and generation time, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered, not that visual quality or brief adherence has been approved. It is not first-attempt success.</p>}
+        <p className="benchmark-footnote">Generation is OpenRouter&apos;s reported time for the successful attempt that produced the video. It excludes previous failed attempts and local rendering. Missing OpenRouter timings are marked unavailable, never estimated. <a href={`${base}benchmark/timings.json`}>Timing records</a></p>
+        {showRepairs && recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered, not that visual quality or brief adherence has been approved. It is not first-attempt success.</p>}
       </section>
 
       <section id="methodology" className="benchmark-section">
@@ -207,7 +218,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
               <p>{recoveryProtocol.policy} Recovery uses a {recoveryProtocol.maxTokens.toLocaleString('en-US')}-token limit and direct TSX output instead of the original JSON-only format. These are additional repair results, not replacement first attempts.</p>
               <p><a href={`${base}benchmark/recovery.json`}>Repair results</a> &middot; <a href={`${base}benchmark/recovery-protocol.json`}>Repair protocol</a> &middot; <a href={`${base}benchmark/results.json`}>Original results</a></p></>}
             <h3>What we disclose</h3>
-            <p>The exact model ID, provider, request, reasoning setting, source code, elapsed time, and API cost. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
+            <p>The exact model ID, provider, request, reasoning setting, source code, OpenRouter generation time, and API cost. Generation time comes from the successful request&apos;s <code>generation_time</code> field in OpenRouter&apos;s generation metadata, converted from milliseconds to seconds. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
           </div>
           <div className="benchmark-reference">
             <figure><ViewportVideo src={`${base}previews/bento-launch.mp4`} poster={`${base}previews/bento-launch.jpg`} label="Existing Cliphouse motion graphics example" style={{aspectRatio: '16 / 9'}} />

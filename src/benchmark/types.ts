@@ -24,6 +24,18 @@ export type BenchmarkResult = {
 };
 export type BenchmarkRecovery = Omit<BenchmarkResult, 'reviews' | 'firstAttemptPassed' | 'recovery'>;
 export type BenchmarkRecoveries = {version: string; entries: BenchmarkRecovery[]};
+export type BenchmarkTiming = {
+  video: string;
+  sourceSha256: string;
+  generationId: string;
+  model: string;
+  resolvedModel: string;
+  provider: string | null;
+  generationTimeMs: number | null;
+  fetchedAt: string;
+  unavailableReason?: string;
+};
+export type BenchmarkTimings = {version: number; metric: string; unit: string; entries: BenchmarkTiming[]};
 export type BenchmarkResults = {
   version: string;
   edition: string;

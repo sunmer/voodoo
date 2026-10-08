@@ -12,6 +12,7 @@ async function check(engine, viewport, name) {
     const baseline = await (await page.request.get(`${base}benchmark/results.json`)).json();
     const repairs = await (await page.request.get(`${base}benchmark/recovery.json`)).json();
     const protocol = await (await page.request.get(`${base}benchmark/protocol.json`)).json();
+    const timings = await (await page.request.get(`${base}benchmark/timings.json`)).json();
     assert.equal(repairs.entries.length, baseline.entries.filter(entry => entry.status === 'failed').length);
     const rendered = repairs.entries.filter(entry => entry.status === 'rendered').length;
     assert.match(await page.locator('.benchmark-recovery-summary').innerText(), new RegExp(`${rendered} of ${repairs.entries.length}`));
@@ -25,6 +26,14 @@ async function check(engine, viewport, name) {
         assert.equal(await page.locator('.benchmark-card-media video').count(),
           originals.filter(entry => entry.status === 'rendered').length + recoveries.filter(entry => entry.status === 'rendered').length);
         assert.equal(await page.locator('.benchmark-recovery-label').count(), recoveries.length);
+        for (const original of originals) {
+          const entry = recoveries.find(entry => entry.model === original.model) ?? original;
+          const model = protocol.models.find(model => model.key === entry.model);
+          const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});
+          const timing = timings.entries.find(timing => timing.video === entry.video);
+          const expected = entry.status === 'failed' ? 'Not generated' : timing?.generationTimeMs == null ? 'Unavailable' : `${(timing.generationTimeMs / 1000).toFixed(1)}s`;
+          assert.equal(await card.locator('.benchmark-metrics dd').nth(2).textContent(), expected, `${model.name}: timing belongs to displayed video`);
+        }
         for (const recovery of recoveries) {
           const model = protocol.models.find(model => model.key === recovery.model);
           const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});

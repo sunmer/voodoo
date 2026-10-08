@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {root, validateResults} from './protocol.mjs';
 import {validateRecovery} from './recovery.mjs';
+import {validateTimings} from './timings.mjs';
 
 const dist = path.join(root, 'dist');
 const expected = JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/results.json'), 'utf8'));
@@ -10,6 +11,8 @@ const published = validateResults(JSON.parse(fs.readFileSync(path.join(dist, 'be
 assert.deepEqual(published, expected, 'The production build must contain every recorded result.');
 const recovery = validateRecovery(JSON.parse(fs.readFileSync(path.join(dist, 'benchmark/recovery.json'), 'utf8')), published, dist);
 assert.deepEqual(recovery, JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/recovery.json'), 'utf8')), 'Every recovery must be published.');
+const timings = validateTimings(JSON.parse(fs.readFileSync(path.join(dist, 'benchmark/timings.json'), 'utf8')), published, recovery, dist);
+assert.deepEqual(timings, JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/timings.json'), 'utf8')), 'Every video must have its OpenRouter timing record.');
 for (const route of ['benchmark/index.html', `benchmark/${published.edition}/index.html`]) {
   const html = fs.readFileSync(path.join(dist, route), 'utf8');
   assert.match(html, /Motion Graphics/, `${route} must include the benchmark article.`);
