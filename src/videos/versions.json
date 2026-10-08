@@ -626,5 +626,61 @@
       "sha256": "1fed21421058cc73a290b171dc2b74c5709032e4b259111002e959af9e351416",
       "createdAt": "2026-10-08"
     }
+  ],
+  "giveaway": [
+    {
+      "version": 1,
+      "hash": "db6cf2d58924fca1",
+      "sha256": "4b2706c32534a415994feb06350d04235a1af4785a76742c66d5a5eafb7f2983",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "channeltrailer": [
+    {
+      "version": 1,
+      "hash": "64f5b40db4717f38",
+      "sha256": "c78aba69688ab6eb672bbc990d1ca8185868731096842c506a10fe8c8d08ddaa",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "gamingintro": [
+    {
+      "version": 1,
+      "hash": "d60ff49a80c17718",
+      "sha256": "9653d2b12e14eac263bb74f6001462c7f26f86f9b1f4c95f3239389744ef5152",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "speaker": [
+    {
+      "version": 1,
+      "hash": "d9ffe8ff3e2a6335",
+      "sha256": "aee91a89dd6611cd64b7b47aeabeb9a451baf7c9e539ccc1672212977d7a0cea",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "agenda": [
+    {
+      "version": 1,
+      "hash": "36586f4c9ee2f9a7",
+      "sha256": "9b520db2d902cbf555828b5dadfaf11cd7bb798f61e263719aa64de13e7a16d9",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "tickets": [
+    {
+      "version": 1,
+      "hash": "421641a2d97242df",
+      "sha256": "14ec3d31920836ca4fafdba8583b6102fb7e002bd739e292394b4a809b6096b3",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "webinar": [
+    {
+      "version": 1,
+      "hash": "8f6905678855aa2e",
+      "sha256": "c6c25163b8585adb4fd012056936b83e6b1c35802876c39db4f597c1153dfa69",
+      "createdAt": "2026-10-08"
+    }
   ]
 }

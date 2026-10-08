@@ -870,6 +870,104 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "giveaway",
+      "title": "Giveaway",
+      "creator": "dropzone.club",
+      "prompt": "A 9 second 1:1 giveaway post for Instagram: a sunburst with a gift box that pops open under a bouncing GIVEAWAY headline, a checklist of entry steps, and confetti behind the end date and CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "channeltrailer",
+      "title": "Channel Trailer",
+      "creator": "channel.lab",
+      "prompt": "A 10 second 16:9 YouTube channel trailer: a camera viewfinder with a recording timecode zooms into the channel name, video tiles flip in for each show, and a ringing bell button closes on the upload schedule.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "gamingintro",
+      "title": "Gaming Intro",
+      "creator": "respawn.tv",
+      "prompt": "A 6 second 16:9 gaming and Twitch intro: skewed color bars slam in, the gamertag hits with a chromatic glitch, and a HUD panel loads a segmented energy bar under the tagline.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "speaker",
+      "title": "Speaker Card",
+      "creator": "stagecraft",
+      "prompt": "An 8 second 4:5 speaker announcement for LinkedIn: a serif headline grows in weight, then a circular portrait mask opens with a rotating dashed ring above the speaker name, title, and session date.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "agenda",
+      "title": "Event Agenda",
+      "creator": "summit.desk",
+      "prompt": "A 9 second 9:16 conference agenda: a grid cover with the event name and date, then a vertical timeline draws down and pops in each session with a derived start time.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "tickets",
+      "title": "Tickets on Sale",
+      "creator": "boxoffice",
+      "prompt": "An 8 second 9:16 ticket launch: a notched ticket stub slides up with ADMIT ONE, a barcode, and an ON SALE stamp, then the ticket price flips in on split-flap tiles above the buy button.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "webinar",
+      "title": "Webinar Invite",
+      "creator": "onair.tv",
+      "prompt": "A 9 second 16:9 webinar invitation: a video call window types out the session title while the host appears in a picture-in-picture tile, then a cursor clicks the register button under the date.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -4432,6 +4530,327 @@
         "valentines",
         "sale",
         "social-ad"
+      ]
+    },
+    {
+      "template": "giveaway",
+      "creator": "dropzone.club",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "giveaway-gift-box",
+      "title": "Gift Box Giveaway",
+      "description": "A playful giveaway post with a gift box that pops open, entry steps, and confetti.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "giveaway post",
+        "giveaway template",
+        "instagram giveaway video",
+        "giveaway announcement",
+        "contest video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Fernhill Coffee",
+          "headline": "Giveaway",
+          "items": "Follow @fernhill, Like this post, Tag two friends",
+          "date": "Ends Friday",
+          "cta": "Enter now"
+        },
+        "theme": {
+          "background": "#fff4d6",
+          "surface": "#ffe4a3",
+          "foreground": "#1d1a2b",
+          "accent": "#ff4f79",
+          "accent2": "#2bb3a3"
+        }
+      },
+      "seoDescription": "A free giveaway post template for Instagram and TikTok. List the entry steps, set the end date, and edit the colors online before you share it.",
+      "useCases": [
+        "giveaway",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "channeltrailer",
+      "creator": "channel.lab",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "channeltrailer-viewfinder",
+      "title": "Viewfinder Channel Trailer",
+      "description": "A YouTube channel trailer with a recording viewfinder, flipping show tiles, and a subscribe bell.",
+      "purpose": "Creator video",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "channel trailer",
+        "youtube channel trailer",
+        "channel trailer template",
+        "youtube trailer template",
+        "youtube channel intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Low Tide",
+          "headline": "Stories from the coast",
+          "items": "Weekly field trips, Gear reviews, Live Q and A",
+          "date": "New videos every Sunday",
+          "cta": "Subscribe"
+        },
+        "theme": {
+          "background": "#0f1720",
+          "surface": "#1f2d3a",
+          "foreground": "#f4f7fb",
+          "accent": "#ff3b3b",
+          "accent2": "#ffd23f"
+        }
+      },
+      "seoDescription": "A free YouTube channel trailer template. Show your channel name, up to six series, and your upload schedule, then edit the text and colors online.",
+      "useCases": [
+        "channel-trailer",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "gamingintro",
+      "creator": "respawn.tv",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "gamingintro-glitch",
+      "title": "Glitch Gaming Intro",
+      "description": "A fast gaming intro with color bars, a glitching gamertag, and a HUD energy bar.",
+      "purpose": "Creator video",
+      "style": [
+        "Neon",
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "gaming intro",
+        "twitch intro",
+        "gaming intro template",
+        "esports intro",
+        "stream intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "NOVA",
+          "headline": "Ranked grind tonight",
+          "subhead": "Live on Twitch every night at 8"
+        },
+        "theme": {
+          "background": "#0a0612",
+          "surface": "#1c1030",
+          "foreground": "#ffffff",
+          "accent": "#00f0ff",
+          "accent2": "#ff2bd6"
+        }
+      },
+      "seoDescription": "A free gaming intro and Twitch intro template with a glitch logo hit and HUD energy bar. Type your gamertag and tagline, then edit online.",
+      "useCases": [
+        "gaming-intro",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "speaker",
+      "creator": "stagecraft",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "speaker-portrait",
+      "title": "Portrait Speaker Card",
+      "description": "An editorial speaker announcement with a circular portrait reveal, name, title, and session date.",
+      "purpose": "Event promo",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "speaker announcement",
+        "speaker card",
+        "conference speaker video",
+        "keynote speaker announcement",
+        "event speaker template"
+      ],
+      "props": {
+        "texts": {
+          "brand": "DesignOps Summit",
+          "headline": "Meet our keynote speaker",
+          "author": "Maya Lindqvist",
+          "attribution": "Head of Design, Northwind Labs",
+          "date": "Nov 12, 10:00 AM"
+        },
+        "theme": {
+          "background": "#f6f2ec",
+          "surface": "#d9cfc2",
+          "foreground": "#1f1b16",
+          "accent": "#2f5d50",
+          "accent2": "#c9572f"
+        }
+      },
+      "seoDescription": "A free speaker announcement and speaker card template for LinkedIn. Add the speaker name, title, and session time, then edit the colors online.",
+      "useCases": [
+        "speaker",
+        "event-promo"
+      ]
+    },
+    {
+      "template": "agenda",
+      "creator": "summit.desk",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "agenda-timeline",
+      "title": "Conference Agenda Timeline",
+      "description": "A vertical conference agenda with a drawn timeline and a card for each session.",
+      "purpose": "Event promo",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "conference agenda",
+        "event agenda template",
+        "agenda video",
+        "event schedule video",
+        "conference schedule"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Build Week 26",
+          "headline": "Day one agenda",
+          "date": "Thursday, Nov 19",
+          "items": "Opening keynote, Platform roadmap, Lunch and demos, Scaling workshops, Closing panel"
+        },
+        "theme": {
+          "background": "#f3f6fa",
+          "surface": "#dde5ef",
+          "foreground": "#0f1b2d",
+          "accent": "#3a5bff",
+          "accent2": "#e2483d"
+        }
+      },
+      "seoDescription": "A free conference agenda template for Stories and Reels. List up to six sessions on an animated timeline, add the date, and edit online.",
+      "useCases": [
+        "agenda",
+        "event-promo",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "tickets",
+      "creator": "boxoffice",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "tickets-on-sale",
+      "title": "Tickets On Sale Now",
+      "description": "A ticket launch with a notched ticket stub, an ON SALE stamp, and a split-flap price.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "ticket launch",
+        "tickets on sale video",
+        "ticket sale announcement",
+        "concert ticket video",
+        "event ticket template"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Harbor Hall",
+          "headline": "Midnight Static live",
+          "date": "Sat Dec 5, doors 8 PM",
+          "price": "$35",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#1b1530",
+          "surface": "#2c2350",
+          "foreground": "#fff6e5",
+          "accent": "#ff6b35",
+          "accent2": "#d6246e"
+        }
+      },
+      "seoDescription": "A free tickets on sale video template for Reels and Stories. Show the event, date, and ticket price on a ticket stub, then edit it online.",
+      "useCases": [
+        "tickets",
+        "event-promo",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "webinar",
+      "creator": "onair.tv",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "webinar-live-call",
+      "title": "Live Webinar Invite",
+      "description": "A webinar invitation set in a video call window with a host tile and a register click.",
+      "purpose": "Event promo",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "webinar invitation",
+        "webinar announcement",
+        "webinar promo video",
+        "webinar invite template",
+        "online event invite"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Ledgerly",
+          "headline": "Close books in 3 days",
+          "author": "Priya Raman",
+          "date": "Tue, Nov 17 at 11 AM ET",
+          "cta": "Save my seat"
+        },
+        "theme": {
+          "background": "#ffffff",
+          "surface": "#e9eef5",
+          "foreground": "#121826",
+          "accent": "#0f9d76",
+          "accent2": "#e5484d"
+        }
+      },
+      "seoDescription": "A free webinar invitation template set in a video call window. Add the topic, host, date, and register button, then edit the text online.",
+      "useCases": [
+        "webinar",
+        "event-promo",
+        "saas"
       ]
     }
   ]

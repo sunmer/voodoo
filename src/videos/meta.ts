@@ -58,6 +58,13 @@ import {subscribeMeta} from './subscribe/meta.ts';
 import {thankyouMeta} from './thankyou/meta.ts';
 import {birthdayMeta} from './birthday/meta.ts';
 import {valentinesMeta} from './valentines/meta.ts';
+import {giveawayMeta} from './giveaway/meta.ts';
+import {channeltrailerMeta} from './channeltrailer/meta.ts';
+import {gamingintroMeta} from './gamingintro/meta.ts';
+import {speakerMeta} from './speaker/meta.ts';
+import {agendaMeta} from './agenda/meta.ts';
+import {ticketsMeta} from './tickets/meta.ts';
+import {webinarMeta} from './webinar/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -119,4 +126,11 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [thankyouMeta.id]: thankyouMeta,
   [birthdayMeta.id]: birthdayMeta,
   [valentinesMeta.id]: valentinesMeta,
+  [giveawayMeta.id]: giveawayMeta,
+  [channeltrailerMeta.id]: channeltrailerMeta,
+  [gamingintroMeta.id]: gamingintroMeta,
+  [speakerMeta.id]: speakerMeta,
+  [agendaMeta.id]: agendaMeta,
+  [ticketsMeta.id]: ticketsMeta,
+  [webinarMeta.id]: webinarMeta,
 };
