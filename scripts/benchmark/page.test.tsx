@@ -3,7 +3,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {renderToString} from 'react-dom/server';
 import {BenchmarkPage} from '../../src/benchmark/BenchmarkPage';
-import {visualScore, type BenchmarkResult, type BenchmarkResults} from '../../src/benchmark/types';
+import {visualScore, withRecovery, type BenchmarkResult, type BenchmarkResults} from '../../src/benchmark/types';
 
 const sample = (): BenchmarkResult => ({
   model: 'opus-5-5', brief: 'product-launch', run: 1, status: 'rendered', attempts: 1,
@@ -67,4 +67,21 @@ test('malformed JSON is distinguished from truncated code', () => {
   const html = render({...sample(), status: 'failed', firstAttemptPassed: false, error: 'Invalid submission: Unexpected token'});
   assert.match(html, /Invalid response format/);
   assert.match(html, /could not be read as the required JSON/);
+});
+test('recovery keeps original failure and adds costs without claiming first-attempt success', () => {
+  const original = {...sample(), status: 'failed' as const, firstAttemptPassed: false, error: 'Invalid submission', video: undefined, poster: undefined};
+  const repair = {...sample(), attempts: 2, costUsd: 0.02};
+  const entry = withRecovery(original, repair);
+  assert.equal(entry.status, 'rendered');
+  assert.equal(entry.attempts, 3);
+  assert.equal(entry.costUsd, original.costUsd + repair.costUsd);
+  assert.equal(entry.firstAttemptPassed, false);
+  assert.equal(entry.error, undefined);
+  assert.equal(entry.recovery?.originalError, original.error);
+  assert.equal(original.status, 'failed');
+  assert.equal(visualScore(entry), null);
+  const html = render(entry);
+  assert.match(html, /Recovered in automated repair pass R1/);
+  assert.match(html, /Additional repair cost/);
+  assert.match(html, /Original outcome/);
 });

@@ -16,6 +16,8 @@
     "build": "node scripts/build-sources.mjs --check && tsc && vite build && node --import tsx scripts/build-seo.mjs && node --import tsx scripts/build-benchmark.tsx",
     "benchmark:plan": "node scripts/benchmark/run.mjs",
     "benchmark:run": "node scripts/benchmark/run.mjs --execute",
+    "benchmark:repair": "node scripts/benchmark/run-recovery.mjs",
+    "benchmark:publish-repairs": "node scripts/benchmark/publish-recovery.mjs",
     "test:benchmark": "node --import tsx --test scripts/benchmark/*.test.mjs scripts/benchmark/*.test.tsx",
     "test:benchmark-build": "node scripts/benchmark/check-build.mjs",
     "test:video-policy": "node scripts/check-video-policy.mjs",

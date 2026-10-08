@@ -4,7 +4,9 @@ import {ArticleLayout} from '../ui/ArticleLayout';
 import {ViewportVideo} from '../ui/ViewportVideo';
 import protocol from './protocol.json';
 import resultsData from './results.json';
-import {visualScore, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults} from './types';
+import recoveryData from './recovery.json';
+import recoveryProtocol from './recovery-protocol.json';
+import {visualScore, withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries} from './types';
 
 // The publication build validates this JSON against the result schema.
 const defaultResults = resultsData as BenchmarkResults;
@@ -40,6 +42,7 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
     <div className="benchmark-card-body">
       <div className="benchmark-card-labels"><span>{model.author}</span><span>{model.weights === 'Open' ? 'Open weights' : model.tier}</span></div>
       <h3>{model.name}</h3>
+      {entry?.recovery && <p className="benchmark-recovery-label">{entry.status === 'rendered' ? 'Recovered' : 'Repair limit reached'} / R1 &middot; {entry.recovery.attempts} additional attempt{entry.recovery.attempts === 1 ? '' : 's'}</p>}
       <dl className="benchmark-metrics">
         <div><dt>Visual score</dt><dd>{score === null ? <span className="metric-pending">{entry?.status === 'rendered' ? 'Review pending' : 'Not scored'}</span> : <>{score.toFixed(1)}<small>/100</small></>}</dd></div>
         <div><dt>API cost</dt><dd>{entry ? money(entry.costUsd) : <span className="metric-pending">Pending</span>}</dd></div>
@@ -49,7 +52,11 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
         <summary>Run details <ChevronDown size={14} aria-hidden="true" /></summary>
         <dl><div><dt>Model ID</dt><dd><code>{model.id}</code></dd></div>
           <div><dt>Reasoning effort</dt><dd>{model.reasoning}</dd></div>
-          <div><dt>Status</dt><dd>{entry ? entry.firstAttemptPassed ? 'Passed on first attempt' : entry.status === 'rendered' ? 'Passed after repair' : 'Failed' : 'Awaiting generation'}</dd></div>
+          <div><dt>Status</dt><dd>{entry ? entry.recovery ? entry.status === 'rendered' ? 'Recovered in automated repair pass R1' : 'Still failed after repair pass R1' : entry.firstAttemptPassed ? 'Passed on first attempt' : entry.status === 'rendered' ? 'Passed after repair' : 'Failed' : 'Awaiting generation'}</dd></div>
+          {entry?.recovery && <><div><dt>Original outcome</dt><dd>Failed after {entry.recovery.originalAttempts} attempt{entry.recovery.originalAttempts === 1 ? '' : 's'}. {entry.recovery.originalError}</dd></div>
+            <div><dt>Original API cost</dt><dd>{money(entry.recovery.originalCostUsd)}</dd></div>
+            <div><dt>Additional repair cost</dt><dd>{money(entry.recovery.costUsd)}</dd></div>
+            <div><dt>Total attempts</dt><dd>{entry.attempts}</dd></div></>}
           {entry && <><div><dt>Provider</dt><dd>{entry.provider}</dd></div><div><dt>Generated</dt><dd>{entry.generatedAt}</dd></div><div><dt>Render time</dt><dd>{seconds(entry.renderMs)}</dd></div></>}
         </dl>
         {entry?.error && <p>{entry.error}</p>}
@@ -63,19 +70,23 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
   </article>;
 }
 
-export function BenchmarkPage({base = '/', edition = false, data = defaultResults}: {base?: string; edition?: boolean; data?: BenchmarkResults}) {
+export function BenchmarkPage({base = '/', edition = false, data = defaultResults, recoveries = recoveryData as BenchmarkRecoveries}: {base?: string; edition?: boolean; data?: BenchmarkResults; recoveries?: BenchmarkRecoveries}) {
   const results = data;
   const [briefId, setBriefId] = useState(protocol.briefs[0].id);
   const [run, setRun] = useState(1);
   const [sort, setSort] = useState('listed');
+  const [showRepairs, setShowRepairs] = useState(true);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const brief = protocol.briefs.find((item) => item.id === briefId)!;
   const completed = results.entries.length;
   const planned = protocol.models.length * protocol.briefs.length * protocol.runs;
-  const successful = results.entries.filter((entry) => entry.status === 'rendered').length;
+  const originalSuccessful = results.entries.filter((entry) => entry.status === 'rendered').length;
+  const recovered = recoveries.entries.filter(entry => entry.status === 'rendered').length;
+  const successful = originalSuccessful + (showRepairs ? recovered : 0);
   const reviewed = results.entries.filter((entry) => visualScore(entry) !== null).length;
-  const entries = results.entries.filter((entry) => entry.brief === briefId && entry.run === run);
+  const entries = results.entries.filter((entry) => entry.brief === briefId && entry.run === run)
+    .map(entry => showRepairs ? withRecovery(entry, recoveries.entries.find(item => item.model === entry.model && item.brief === entry.brief && item.run === entry.run)) : entry);
   const findEntry = (key: string) => entries.find((entry) => entry.model === key);
   const models = [...protocol.models].sort((a, b) => {
     if (sort === 'name') return a.name.localeCompare(b.name);
@@ -87,6 +98,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
     const params = new URLSearchParams(location.search);
     if (protocol.briefs.some((item) => item.id === params.get('brief'))) setBriefId(params.get('brief')!);
     if (params.get('run') === '2') setRun(2);
+    if (params.get('view') === 'original') setShowRepairs(false);
   }, []);
   useEffect(() => {
     if (!copied) return;
@@ -105,6 +117,12 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
     setRun(value);
     const url = new URL(location.href);
     url.searchParams.set('run', String(value));
+    history.replaceState(null, '', url);
+  }
+  function selectRepairs(value: boolean) {
+    setShowRepairs(value);
+    const url = new URL(location.href);
+    url.searchParams.set('view', value ? 'repairs' : 'original');
     history.replaceState(null, '', url);
   }
   async function copyPrompt() {
@@ -135,6 +153,13 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
           <p>{completed === 0 ? 'No benchmark videos have been generated or scored yet.' : `${successful} rendered videos. ${completed - successful} incomplete or failed submissions. ${reviewed} videos reviewed.`}</p></div>
         <div className="benchmark-progress-count"><strong>{completed}<span>/{planned}</span></strong><span>runs completed</span></div>
       </section>
+      {recoveries.entries.length > 0 && <aside className="benchmark-recovery-summary">
+        <p><strong>Automated repair pass R1:</strong> {recovered} of {recoveries.entries.length} original failures recovered. {money(recoveries.entries.reduce((sum, entry) => sum + entry.costUsd, 0))} in additional API costs. Original results are preserved.</p>
+        <div className="benchmark-run-control" role="group" aria-label="Result version">
+          <button aria-pressed={!showRepairs} onClick={() => selectRepairs(false)}>Original runs</button>
+          <button aria-pressed={showRepairs} onClick={() => selectRepairs(true)}>With repairs</button>
+        </div>
+      </aside>}
 
       <section id="comparison" className="benchmark-comparison" aria-labelledby="comparison-title">
         <div className="benchmark-section-heading"><div><span className="section-number">01 / Comparison</span><h2 id="comparison-title">One brief. Every model.</h2></div>
@@ -166,6 +191,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
         <p className="article-sr-only" aria-live="polite">{brief.name}, run {run}. {entries.length} completed entries.</p>
         <div className="benchmark-grid">{models.map((model) => <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={findEntry(model.key)} base={base} run={run} brief={brief.name} />)}</div>
         <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed. Scores stay unpublished until two blind reviews are complete.</p>
+        {showRepairs && recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost and generation time, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered, not that visual quality or brief adherence has been approved. It is not first-attempt success.</p>}
       </section>
 
       <section id="methodology" className="benchmark-section">
@@ -177,6 +203,9 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
             <p>Three fixed briefs, two independent runs, one component contract, the same local fonts and palette, and a {protocol.limits.maxTokens.toLocaleString('en-US')}-token completion limit that includes reasoning. No browsing, external assets, or existing Cliphouse compositions.</p>
             <h3>What gets another attempt</h3>
             <p>Only a failed compile or render gets one repair request, with the error log. Successful videos receive no creative revision. Original attempts and repair costs are retained. Transport errors are recorded separately.</p>
+            {recoveries.entries.length > 0 && <><h3>Automated recovery / R1</h3>
+              <p>{recoveryProtocol.policy} Recovery uses a {recoveryProtocol.maxTokens.toLocaleString('en-US')}-token limit and direct TSX output instead of the original JSON-only format. These are additional repair results, not replacement first attempts.</p>
+              <p><a href={`${base}benchmark/recovery.json`}>Repair results</a> &middot; <a href={`${base}benchmark/recovery-protocol.json`}>Repair protocol</a> &middot; <a href={`${base}benchmark/results.json`}>Original results</a></p></>}
             <h3>What we disclose</h3>
             <p>The exact model ID, provider, request, reasoning setting, source code, elapsed time, and API cost. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
           </div>

@@ -45,12 +45,49 @@ original attempts. Before freezing the next protocol version, capture both outpu
 streams and test the repair feedback with a known compiler error. Do not silently
 rerun or replace this edition's submissions.
 
-Recommended next protocol: allow every model the same bounded automated feedback
-loop for format, truncation, compile, and render errors. Preserve all original
-responses and charges. No human code edits or aesthetic feedback are allowed.
-Report first-attempt success separately from success after recovery. Publish new
-recovery results as a labelled protocol revision rather than replacing v1.1.
-This recommendation has not changed or rerun the published October results.
+## Automated Recovery R1
+
+R1 completed on October 8, 2026: all 12 original failures compiled and rendered
+after one additional model-generated attempt each. The 12 API calls cost
+$0.1669760136. The site now has 60 playable submissions in the repaired view;
+the original view retains 48 videos and 12 failures. All 60 videos passed the
+format audit. Recovered means technically renderable, not visually approved;
+blind reviews remain outstanding. Total confirmed recorded API charges, including
+the original setup pilot, are approximately $4.19. The separate $0.247746
+infrastructure estimate remains reserved, not counted as confirmed spending.
+
+The user authorized automated repairs of the 12 original failures. Recovery R1
+allows up to three additional requests per failure, stops at the first successful
+render, and retains the original model, pinned provider, reasoning effort, creative
+brief, and frozen renderer. Every additional call is charged to the original
+$10 repair budget, including repair spending already incurred in v1.1.
+
+R1 requests a complete TSX module directly, accepts one code fence or a valid
+source JSON wrapper without modifying the code, raises the completion limit to
+64,000 tokens, and passes both stdout and stderr back after compiler/render
+errors. The original compile failure is reproduced in the sandbox to obtain full
+diagnostics before the first new request. A recovered video is not a first-attempt
+success. No human source edits or creative feedback are allowed.
+
+```sh
+npm run benchmark:repair
+npm run benchmark:repair -- --execute --store /absolute/path/to/.benchmark/2026-10
+npm run benchmark:publish-repairs -- --store /absolute/path/to/.benchmark/2026-10
+```
+
+Without `--execute`, the runner only prints the plan. The existing dedicated key
+must be provided through `OPENROUTER_API_KEY`. It never enters publication files.
+The runner locks the original store and writes only under its `recovery-r1/`
+directory. It retains all raw responses, sources, requests, costs, errors, and
+timings. Resume reuses recorded responses; unresolved charges block new calls.
+
+Publication uses `src/benchmark/recovery.json` and separately prefixed media,
+leaving `results.json` and original media intact. The page defaults to "With
+repairs"; "Original runs" preserves the baseline comparison. Recovered cards show
+combined costs/timings with separate original and additional costs in run details.
+The public recovery request file contains each repair request and response source
+plus available compiler diagnostics. The build validates original and recovery
+artifacts. Browser tests exercise both views and every brief/run combination.
 
 ## Video Loading
 
