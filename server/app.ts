@@ -1,6 +1,6 @@
 import type {IncomingMessage, ServerResponse} from 'node:http';
 import {pipeline} from 'node:stream/promises';
-import {HttpError, byteRange, exportFilename, fingerprint, publicExport, publicVideo, shareHtml, validId, validateShare} from './model.ts';
+import {HttpError, byteRange, exportFilename, fingerprint, publicExport, publicVideo, shareHtml, shareSpec, validId, validateShare} from './model.ts';
 import type {createStore} from './store.ts';
 import type {renderThumbnail, renderVideo} from './render.ts';
 
@@ -131,8 +131,9 @@ export function createHandler(deps: Dependencies) {
       }
       const api = pathname.match(/^\/api\/shares\/([^/]+)$/);
       const page = pathname.match(/^\/s\/([^/]+)\/?$/);
+      const spec = pathname.match(/^\/s\/([^/]+)\/agent\.json$/);
       const asset = pathname.match(/^\/s\/([^/]+)\/(preview\.jpg)$/);
-      const id = api?.[1] || page?.[1] || asset?.[1];
+      const id = api?.[1] || page?.[1] || spec?.[1] || asset?.[1];
       if (!id || !validId(id)) throw new HttpError(404, 'This shared video is unavailable.');
       if (api && req.method === 'DELETE') {
         await deps.store.remove(id, await user(req));
@@ -142,6 +143,13 @@ export function createHandler(deps: Dependencies) {
       const video = await deps.store.get(id);
       res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60');
       if (api) { if (req.method === 'HEAD') { res.end(); return; } json(200, publicVideo(video, deps.origin)); return; }
+      if (spec) {
+        const body = `${JSON.stringify(shareSpec(video, deps.origin), null, 2)}\n`;
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('Content-Length', Buffer.byteLength(body));
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.end(req.method === 'HEAD' ? undefined : body); return;
+      }
       if (page) {
         const html = shareHtml(video, deps.origin, deps.assets);
         res.setHeader('Content-Type', 'text/html; charset=utf-8');

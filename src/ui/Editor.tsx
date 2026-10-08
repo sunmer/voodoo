@@ -1,9 +1,11 @@
 import {Player, type PlayerRef} from '@remotion/player';
-import {ArrowLeft, Check, Copy, Download, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RefreshCw, RotateCcw, Save, Undo2, Wand2} from 'lucide-react';
+import {ArrowLeft, Bot, Check, Download, FileCode, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RefreshCw, RotateCcw, Save, Undo2, Wand2} from 'lucide-react';
 import {useCallback, useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import type {Variant} from '../catalog/catalog';
 import {THEME_LABELS, THEME_ROLES, type Role, type VideoProps} from '../videos/contract';
-import {compositions} from '../videos/registry';
+import {compositionFor} from '../videos/registry';
+import {currentVersion, handoffPath, sourcePath, specPath} from '../agent/versions';
+import {readHandoff} from '../agent/handoff';
 import {applyKit, kitHasValues, useBrandKit} from './brandKit';
 import {derivePalettes, generatePalettes} from './palettes';
 import {TextCanvas} from './TextCanvas';
@@ -31,24 +33,34 @@ function useHistory(initial: VideoProps) {
   return {props: state.now, set, undo, redo, canUndo: state.past.length > 0, canRedo: state.future.length > 0};
 }
 
-export function Editor({variant, sharedProps, shareId, draftId, published, openShare}: {
+export function Editor({variant, sharedProps, shareId, draftId, published, openShare, handoff, templateVersion}: {
   variant: Variant; sharedProps?: VideoProps; shareId?: string; draftId?: string; published?: SharedVideo; openShare?: boolean;
+  handoff?: string; templateVersion?: number;
 }) {
+  const latest = currentVersion(variant.template);
+  const [version, versionError] = useMemo(() => {
+    try { compositionFor(variant.template, templateVersion ?? latest); return [templateVersion ?? latest, '']; }
+    catch (e) { return [latest, (e as Error).message]; }
+  }, [variant.template, templateVersion, latest]);
+  // Edits of an older template version stay pinned to it; local drafts of older versions get a separate key.
+  const localKey = version === latest ? variant.id : `${variant.id}@v${version}`;
   const account = useAccount();
   const draft = useRef<{uid: string; id: string} | null>(draftId && account.user ? {uid: account.user.uid, id: draftId} : null);
   const [saving, setSaving] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [exportedKey, setExportedKey] = useState('');
   const [savedKey, setSavedKey] = useState(draftId ? JSON.stringify(sharedProps) : '');
-  const c = compositions[variant.template];
+  const c = compositionFor(variant.template, version);
   const kit = useBrandKit();
+  const incoming = useMemo(() => handoff === undefined ? null : readHandoff(handoff, c.schema), [handoff, c]);
   const initial = useMemo(() => {
     if (sharedProps) return sharedProps;
+    if (incoming?.ok) return incoming.props;
     try {
-      const result = c.schema.safeParse(JSON.parse(localStorage.getItem(storageKey(variant.id)) ?? 'null'));
+      const result = c.schema.safeParse(JSON.parse(localStorage.getItem(storageKey(localKey)) ?? 'null'));
       return result.success ? result.data as VideoProps : variant.props;
     } catch { return variant.props; }
-  }, [c, variant, sharedProps]);
+  }, [c, variant, sharedProps, incoming, localKey]);
   const h = useHistory(initial);
   const {props} = h;
   const player = useRef<PlayerRef>(null);
@@ -58,7 +70,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
   const [editing, setEditing] = useState<Role | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [notice, setNotice] = useState('');
+  const [notice, setNotice] = useState(() => versionError || (incoming && !incoming.ok ? `Agent link rejected. ${incoming.error} The video was not changed.` : ''));
   const [hexes, setHexes] = useState(props.theme);
   const defaultPalettes = useMemo(() => derivePalettes(variant.props.theme), [variant.props.theme]);
   const [generatedPalettes, setGeneratedPalettes] = useState<typeof defaultPalettes | null>(null);
@@ -68,16 +80,22 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
 
   useEffect(() => { track('editor_open', {variant_id: variant.id}); }, [variant.id]);
   useEffect(() => {
+    if (!incoming) return;
+    track(incoming.ok ? 'agent_handoff_open' : 'agent_handoff_reject', {variant_id: variant.id});
+    // Remove the props from the address bar after loading so reloads use the saved local edit.
+    if (incoming.ok) history.replaceState(null, '', `${location.pathname}${location.search}#/v/${variant.id}${version === latest ? '' : `?v=${version}`}`);
+  }, [incoming, variant.id, version, latest]);
+  useEffect(() => {
     setHexes(props.theme);
     // Account drafts remain private; do not copy them into anonymous browser storage.
     if (draftId) return;
-    try { localStorage.setItem(storageKey(shareId ? `share:${shareId}` : variant.id), JSON.stringify(props)); }
+    try { localStorage.setItem(storageKey(shareId ? `share:${shareId}` : localKey), JSON.stringify(props)); }
     catch { setNotice('Changes could not be saved on this device. Save this edit to keep a copy.'); }
-  }, [props, variant.id, shareId, draftId]);
+  }, [props, localKey, shareId, draftId]);
   const save = async () => {
     const user = await account.requireSignIn();
     if (draft.current?.uid !== user.uid) draft.current = {uid: user.uid, id: crypto.randomUUID().replaceAll('-', '')};
-    const id = await saveDraft(user.uid, draft.current.id, variant, props);
+    const id = await saveDraft(user.uid, draft.current.id, variant, props, version);
     setSavedKey(JSON.stringify(props));
     track('save_video', {variant_id: variant.id});
     return id;
@@ -186,14 +204,19 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       }
     }
   };
-  const copyRender = async () => {
-    const json = JSON.stringify(props).replace(/'/g, `'\\''`);
+  const copyAgentLink = async () => {
+    const site = `${location.origin}${import.meta.env.BASE_URL.replace(/\/$/, '')}`;
+    const spec = published ? published.agent : `${site}${specPath(variant.id)}`;
+    const text = `Edit this cliphou.se video.
+Agent spec (no JavaScript needed): ${spec}
+Current edit: ${site}${handoffPath(variant.id, props, version === latest ? undefined : version)}
+For text and color edits, return a link in the spec's handoff format. For code edits, download the spec's source package and render it locally.`;
     try {
-      await navigator.clipboard.writeText(`npx remotion render src/remotion/index.ts ${variant.template} out/${variant.id}.mp4 --props='${json}'`);
-      track('render_command_copy', {variant_id: variant.id});
+      await navigator.clipboard.writeText(text);
+      track('agent_link_copy', {variant_id: variant.id});
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
-    } catch { setNotice('Clipboard is unavailable. Use Share to keep a copy of your edit.'); }
+    } catch { setNotice(`Clipboard is unavailable. Give your agent ${spec}`); }
   };
   const downloadMp4 = async () => {
     if (exporting) return;
@@ -202,7 +225,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
     try {
       await account.requireSignIn();
       setNotice('Rendering your MP4. This usually takes under a minute.');
-      const result = await exportVideo(variant.id, props);
+      const result = await exportVideo(variant.id, props, version);
       const link = document.createElement('a');
       link.href = result.url;
       link.download = result.filename;
@@ -256,11 +279,14 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
             disabled={!!editing || JSON.stringify(props) === JSON.stringify(variant.props)} onClick={() => h.set(variant.props)}><RotateCcw size={20} /></button>
           <button className="overlay-btn" title="Save video" aria-label="Save video" disabled={!!editing || saving}
             onClick={() => void saveAndOpen()}>{saving ? <LoaderCircle className="spin" size={20} /> : savedKey === JSON.stringify(props) ? <Check size={20} /> : <Save size={20} />}</button>
-          <ShareButton variant={variant} props={props} disabled={!!editing || saving} save={save} publishedVideo={published} initiallyOpen={openShare}
+          <ShareButton variant={variant} props={props} templateVersion={version} disabled={!!editing || saving} save={save} publishedVideo={published} initiallyOpen={openShare}
             beforeOpen={() => { player.current?.pause(); if (document.fullscreenElement) void document.exitFullscreen().catch(() => {}); }} />
-          <button className={`overlay-btn ${copied ? 'confirmed' : ''}`} title="Copy render command" aria-label="Copy render command" disabled={!!editing} onClick={copyRender}>
-            {copied ? <Check size={20} /> : <Copy size={20} />}
+          <button className={`overlay-btn ${copied ? 'confirmed' : ''}`} title="Copy agent link" aria-label="Copy agent link" disabled={!!editing} onClick={copyAgentLink}>
+            {copied ? <Check size={20} /> : <Bot size={20} />}
           </button>
+          <a className="overlay-btn" title={`Download source (template v${version})`} aria-label="Download source" download
+            href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}${sourcePath(variant.template, version)}`}
+            onClick={() => track('source_download', {variant_id: variant.id})}><FileCode size={20} /></a>
           {sharingConfigured && <button className={`overlay-btn ${exportedKey === JSON.stringify(props) ? 'confirmed' : ''}`} title="Download MP4" aria-label="Download MP4"
             disabled={!!editing || saving || exporting} aria-busy={exporting} onClick={() => void downloadMp4()}>
             {exporting ? <LoaderCircle className="spin" size={20} /> : exportedKey === JSON.stringify(props) ? <Check size={20} /> : <Download size={20} />}
@@ -304,7 +330,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       <section className="video-details" aria-labelledby="video-details-heading">
         <h2 id="video-details-heading">Video details</h2>
         <p>{variant.description}</p>
-        <p className="small muted">Free to copy, modify, share, and use commercially. No attribution required. Updated {variant.updatedAt}. Created by {variant.creator}. {sharingConfigured ? 'Free full-resolution MP4 export.' : 'Hosted MP4 export is not available yet.'}</p>
+        <p className="small muted">Free to copy, modify, share, and use commercially. No attribution required. Template v{version}. Updated {variant.updatedAt}. Created by {variant.creator}. {sharingConfigured ? 'Free full-resolution MP4 export.' : 'Hosted MP4 export is not available yet.'}</p>
         <div className="tags">
           {[...new Set([variant.purpose, ...variant.placement, ...variant.style, variant.tone,
             variant.energy <= 2 ? 'Calm' : variant.energy === 3 ? 'Medium' : 'High',

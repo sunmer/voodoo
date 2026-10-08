@@ -58,6 +58,8 @@ import {Countdown} from './countdown/Countdown';
 import {countdownSchema} from './countdown/schema';
 import {Podcast} from './podcast/Podcast';
 import {podcastSchema} from './podcast/schema';
+import {legacy} from './legacy';
+import {currentVersion} from '../agent/versions';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -93,3 +95,11 @@ export const compositions: Record<string, CompositionDef> = {
   countdown: {...templateMeta.countdown, component: Countdown, schema: countdownSchema as unknown as VideoSchema},
   podcast: {...templateMeta.podcast, component: Podcast, schema: podcastSchema as unknown as VideoSchema},
 };
+
+// Saved and shared videos keep the template version they were made with.
+export function compositionFor(template: string, version = currentVersion(template)): CompositionDef {
+  if (version === currentVersion(template)) return compositions[template];
+  const old = legacy[template]?.[version];
+  if (!old) throw new Error('This video uses a template version that this site no longer includes.');
+  return old;
+}

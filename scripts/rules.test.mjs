@@ -81,6 +81,7 @@ test('verified owners can save, reopen, update, list and delete private drafts',
   await assertSucceeds(getDoc(ref));
   await assertSucceeds(getDocs(collection(db, 'users/alice/drafts')));
   await assertSucceeds(setDoc(ref, {...draft(), title: 'Changed title'}));
+  await assertSucceeds(setDoc(ref, {...draft(), templateVersion: 2}));
   await assertSucceeds(deleteDoc(ref));
 });
 test('drafts reject other users, anonymous visitors and unverified accounts', async () => {
@@ -101,5 +102,6 @@ test('drafts reject oversized content, extra fields and forged timestamps', asyn
     {...draft(), propsJson: 'x'.repeat(12001)}, {...draft(), propsJson: {}},
     {...draft(), title: ''}, {...draft(), title: 'x'.repeat(121)},
     {...draft(), public: true}, {...draft(), updatedAt: new Date(0)},
+    {...draft(), templateVersion: '1'}, {...draft(), templateVersion: 0}, {...draft(), templateVersion: 1.5},
   ]) await assertFails(setDoc(ref, value));
 });

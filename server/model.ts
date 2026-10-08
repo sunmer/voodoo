@@ -3,6 +3,11 @@ import manifest from '../src/catalog/manifest.json' with {type: 'json'};
 import {templateMeta} from '../src/videos/meta.ts';
 import {ROLES, THEME_ROLES} from '../src/videos/vocab.ts';
 import type {VideoProps} from '../src/videos/vocab.ts';
+import {currentVersion, templateVersion} from '../src/agent/versions.ts';
+import {agentSpec} from '../src/agent/spec.ts';
+import {validateProps} from '../src/agent/handoff.ts';
+import {schemas} from '../src/videos/schemas.ts';
+import {legacySchemas} from '../src/videos/legacy-schemas.ts';
 
 export class HttpError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -14,11 +19,17 @@ function exactKeys(value: unknown, keys: string[]): value is Record<string, unkn
 }
 
 export function validateShare(body: unknown) {
-  if (!exactKeys(body, ['variantId', 'props'])) throw new HttpError(400, 'Invalid video.');
+  if (!object(body) || !exactKeys(body, Object.hasOwn(body, 'templateVersion') ? ['variantId', 'props', 'templateVersion'] : ['variantId', 'props'])) throw new HttpError(400, 'Invalid video.');
   const variant = manifest.variants.find((v) => v.id === body.variantId);
   if (!variant || !exactKeys(body.props, ['texts', 'theme'])) throw new HttpError(400, 'Invalid video.');
+  // Clients send the version they edited. Older clients omit it and get the current version.
+  const version = Object.hasOwn(body, 'templateVersion') ? body.templateVersion : currentVersion(variant.template);
+  if (typeof version !== 'number' || !Number.isInteger(version)) throw new HttpError(400, 'Invalid template version.');
+  try { templateVersion(variant.template, version); } catch { throw new HttpError(400, 'Unknown template version.'); }
+  const schema = version === currentVersion(variant.template) ? schemas[variant.template] : legacySchemas[variant.template]?.[version];
+  if (!schema) throw new HttpError(400, 'Unknown template version.');
   const {texts, theme} = body.props;
-  const roles = Object.keys(variant.props.texts) as (keyof typeof ROLES)[];
+  const roles = Object.keys(schema.shape.texts.shape) as (keyof typeof ROLES)[];
   if (!exactKeys(texts, roles) || !exactKeys(theme, [...THEME_ROLES])) throw new HttpError(400, 'Invalid video fields.');
   for (const role of roles) {
     const text = texts[role];
@@ -29,26 +40,35 @@ export function validateShare(body: unknown) {
   for (const role of THEME_ROLES) {
     if (typeof theme[role] !== 'string' || !/^#[a-f0-9]{6}$/i.test(theme[role] as string)) throw new HttpError(400, 'Invalid video color.');
   }
+  if (!validateProps(schema, body.props).ok) throw new HttpError(400, 'Video text is invalid or too long.');
   // Canonical key order makes retries of an identical edit idempotent.
   const props = {
     texts: Object.fromEntries(roles.map((role) => [role, texts[role]])),
     theme: Object.fromEntries(THEME_ROLES.map((role) => [role, theme[role]])),
   } as VideoProps;
-  return {variantId: variant.id, template: variant.template, props,
+  return {variantId: variant.id, template: variant.template, templateVersion: version, props,
+    composition: version === currentVersion(variant.template) ? variant.template : `${variant.template}-v${version}`,
     title: props.texts.headline || props.texts.brand || variant.title, meta: templateMeta[variant.template]};
 }
 export type Snapshot = ReturnType<typeof validateShare>;
-export type Published = Omit<Snapshot, 'meta'> & {id: string; owner: string; status: string; createdAt: number};
+export type Published = Omit<Snapshot, 'meta' | 'composition' | 'templateVersion'> & {templateVersion?: number; id: string; owner: string; status: string; createdAt: number};
 export type Exported = {id: string; owner: string; variantId: string; template: string; title: string; status: string; createdAt: number};
 export const exportFilename = (video: Pick<Exported, 'variantId' | 'title'>) =>
   `${(video.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48) || video.variantId)}.mp4`;
 export const publicExport = (video: Exported) => ({id: video.id, path: `/api/exports/${video.id}/video.mp4`, filename: exportFilename(video)});
 export const fingerprint = (uid: string, value: Snapshot, version: string) =>
-  createHash('sha256').update(JSON.stringify([uid, version, value.variantId, value.props])).digest('hex');
+  createHash('sha256').update(JSON.stringify([uid, version, value.variantId, value.templateVersion, value.props])).digest('hex');
+
+// Shares created before versioning are pinned to v1, the first published source package.
+export const shareVersion = (video: Pick<Published, 'templateVersion'>) => video.templateVersion ?? 1;
 
 export function publicVideo(video: Published, origin: string) {
-  return {id: video.id, variantId: video.variantId, props: video.props, title: video.title,
-    url: `${origin}/s/${video.id}`, image: `${origin}/s/${video.id}/preview.jpg`};
+  return {id: video.id, variantId: video.variantId, templateVersion: shareVersion(video), props: video.props, title: video.title,
+    url: `${origin}/s/${video.id}`, image: `${origin}/s/${video.id}/preview.jpg`, agent: `${origin}/s/${video.id}/agent.json`};
+}
+export function shareSpec(video: Published, origin: string) {
+  return agentSpec({site: origin, kind: 'share', id: video.id, url: `${origin}/s/${video.id}`, title: video.title,
+    variant: {id: video.variantId, template: video.template}, props: video.props, version: shareVersion(video)});
 }
 const escape = (text: string) => text.replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]!));
 export function shareHtml(video: Published, origin: string, assets: {file: string; css?: string[]}) {
@@ -63,6 +83,7 @@ export function shareHtml(video: Published, origin: string, assets: {file: strin
 <title>${escape(data.title)} | cliphou.se</title>
 <meta name="description" content="${escape(description)}">
 <link rel="canonical" href="${data.url}">
+<link rel="alternate" type="application/json" href="${data.agent}" title="Agent spec">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 ${tag('og:type', 'website')}${tag('og:site_name', 'cliphou.se')}${tag('og:title', data.title)}
@@ -77,7 +98,7 @@ ${(assets.css || []).map((file) => `<link rel="stylesheet" href="/${escape(file)
 <script type="module" crossorigin src="/${escape(assets.file)}"></script>
 </head><body><div id="root"></div><noscript>
 <h1>${escape(data.title)}</h1><img alt="${escape(data.title)}" src="${data.image}" style="max-width:100%;max-height:80vh">
-<p><a href="/">Browse cliphou.se</a></p></noscript></body></html>`;
+<p><a href="${data.agent}">Agent spec</a> · <a href="/">Browse cliphou.se</a></p></noscript></body></html>`;
 }
 
 export function byteRange(header: string | undefined, size: number) {

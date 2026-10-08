@@ -3,7 +3,7 @@ import type {VideoProps} from '../videos/contract';
 
 const apiOrigin = (import.meta.env.VITE_SHARE_API_ORIGIN || '').replace(/\/$/, '');
 export const sharingConfigured = Boolean(apiOrigin);
-export type SharedVideo = {id: string; variantId: string; props: VideoProps; title: string; url: string; image: string};
+export type SharedVideo = {id: string; variantId: string; templateVersion: number; props: VideoProps; title: string; url: string; image: string; agent: string};
 export type ExportedVideo = {id: string; path: string; filename: string; url: string};
 
 async function request(path: string, options: RequestInit = {}, authenticated = false) {
@@ -24,12 +24,12 @@ async function request(path: string, options: RequestInit = {}, authenticated = 
   return body;
 }
 
-export async function publishVideo(variantId: string, props: VideoProps): Promise<SharedVideo> {
+export async function publishVideo(variantId: string, props: VideoProps, templateVersion: number): Promise<SharedVideo> {
   if (!sharingConfigured) throw new Error('Publishing is not available yet. Your edits remain on this device.');
   return request('/api/shares', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({variantId, props}),
+    body: JSON.stringify({variantId, props, templateVersion}),
   }, true);
 }
 
@@ -41,12 +41,12 @@ export async function deleteSharedVideo(id: string) {
   return request(`/api/shares/${encodeURIComponent(id)}`, {method: 'DELETE'}, true);
 }
 
-export async function exportVideo(variantId: string, props: VideoProps): Promise<ExportedVideo> {
+export async function exportVideo(variantId: string, props: VideoProps, templateVersion: number): Promise<ExportedVideo> {
   if (!sharingConfigured) throw new Error('MP4 export is not available yet. Copy the render command instead.');
   const body = await request('/api/exports', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({variantId, props}),
+    body: JSON.stringify({variantId, props, templateVersion}),
   }, true);
   return {...body, url: `${apiOrigin}${body.path}`};
 }

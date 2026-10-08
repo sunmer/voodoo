@@ -1,0 +1,73 @@
+import {z} from 'zod';
+import {templateMeta} from '../videos/meta.ts';
+import {schemas} from '../videos/schemas.ts';
+import {ROLES, SCENE_TYPES, THEME_ROLES, type Role, type VideoProps} from '../videos/vocab.ts';
+import {MAX_HANDOFF_CHARS, REPOSITORY, TEMPLATE_LICENSE, handoffPath, sourcePath, templateVersion} from './versions.ts';
+
+type SpecInput = {
+  site: string;
+  kind: 'template' | 'share';
+  id: string;
+  url: string;
+  title: string;
+  variant: {id: string; template: string};
+  props: VideoProps;
+  version?: number;
+  siteCommit?: string;
+};
+
+export function renderCommand(template: string) {
+  return `npm ci && npx remotion render src/index.ts ${template} out/video.mp4 --props=props.json`;
+}
+
+// One machine-readable contract for templates and published shares. Agents can read it without JavaScript.
+export function agentSpec({site, kind, id, url, title, variant, props, version, siteCommit}: SpecInput) {
+  const meta = templateMeta[variant.template];
+  const schema = schemas[variant.template];
+  const pinned = templateVersion(variant.template, version);
+  const latest = templateVersion(variant.template);
+  const ratio = meta.width / meta.height;
+  const texts = Object.fromEntries((Object.keys(schema.shape.texts.shape) as Role[]).map((role) =>
+    [role, {label: ROLES[role].label, maxLength: ROLES[role].max, current: props.texts[role]}]));
+  const pkg = `${site}${sourcePath(variant.template, pinned.version)}`;
+  const old = pinned.version !== latest.version ? `&v=${pinned.version}` : '';
+  return {
+    schemaVersion: '1.1', kind, id, variantId: variant.id, template: variant.template, title, url,
+    editorUrl: `${site}/#/v/${variant.id}`,
+    templateVersion: pinned.version, latestTemplateVersion: latest.version, sourceHash: pinned.hash,
+    ...(siteCommit ? {siteCommit} : {}),
+    license: TEMPLATE_LICENSE, licenseUrl: `${site}/license/`, price: 'Free', attributionRequired: false,
+    format: {
+      aspectRatio: ratio > 1.2 ? '16:9' : ratio < 0.7 ? '9:16' : ratio < 0.9 ? '4:5' : '1:1',
+      width: meta.width, height: meta.height, fps: meta.fps, durationInFrames: meta.durationInFrames,
+      seconds: Math.round(meta.durationInFrames / meta.fps),
+    },
+    scenes: meta.scenes.map((s) => ({type: s.type, label: SCENE_TYPES[s.type], from: s.from, duration: s.duration, roles: s.roles})),
+    props,
+    editableFields: {
+      texts,
+      theme: Object.fromEntries(THEME_ROLES.map((role) => [role, {format: '#RRGGBB', current: props.theme[role]}])),
+    },
+    jsonSchema: z.toJSONSchema(schema),
+    handoff: {
+      urlTemplate: `${site}/#/v/${variant.id}?props=<url-encoded props JSON>${old}`,
+      example: `${site}${handoffPath(variant.id, props, old ? pinned.version : undefined)}`,
+      maxEncodedLength: MAX_HANDOFF_CHARS,
+      note: 'cliphou.se validates the props before it opens them. Invalid props are rejected and never saved.',
+    },
+    source: {
+      package: pkg, packageSha256: pinned.sha256, templateVersion: pinned.version,
+      renderCommand: renderCommand(variant.template),
+      repository: REPOSITORY, path: `src/videos/${variant.template}/`,
+      contents: 'Remotion component, schema, scene metadata, shared helpers, exact dependency versions, lockfile, example props, and MIT-0 license. Fonts install from pinned Fontsource packages.',
+      note: 'Rendering uses Remotion, which has separate license terms: https://remotion.dev/license',
+    },
+    instructions: [
+      'For text and color edits, change only props.texts and props.theme. Keep each text within maxLength and each color as #RRGGBB.',
+      'Return text and color edits as handoff.urlTemplate with the props JSON URL-encoded.',
+      'For layout, motion, timing, or scene edits, download source.package, extract it, and edit the code.',
+      'Render the source package with source.renderCommand. Edit props.json to change text and colors.',
+      'Never send code through the handoff URL. It accepts props only.',
+    ],
+  };
+}

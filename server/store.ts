@@ -32,7 +32,7 @@ export function createStore(bucketName: string) {
         if (job?.status === 'rendering' && job.leaseUntil > Date.now()) throw new HttpError(409, 'This video is still rendering. Try again shortly.');
         const count = await quota(tx, 'share', owner);
         const id = randomBytes(24).toString('base64url');
-        const {meta: _, ...snapshot} = value;
+        const {meta: _, composition: __, ...snapshot} = value;
         const video: Published = {...snapshot, id, owner, status: 'rendering', createdAt: Date.now()};
         count();
         if (job?.status === 'rendering') tx.delete(db.doc(`shares/${job.id}`));

@@ -18,9 +18,9 @@ export async function renderThumbnail(value: Snapshot) {
   const timer = setTimeout(cancel, 250_000);
   try {
     const serveUrl = path.resolve(process.env.REMOTION_BUNDLE || 'render-bundle');
-    const composition = await selectComposition({serveUrl, id: value.template, inputProps: value.props, puppeteerInstance: browser});
+    const composition = await selectComposition({serveUrl, id: value.composition, inputProps: value.props, puppeteerInstance: browser});
     const common = {serveUrl, composition, inputProps: value.props, puppeteerInstance: browser, cancelSignal, timeoutInMilliseconds: 30_000};
-    await renderStill({...common, frame: value.meta.posterFrame, scale: 900 / composition.width, imageFormat: 'jpeg', jpegQuality: 85, output: image});
+    await renderStill({...common, frame: Math.min(value.meta.posterFrame, composition.durationInFrames - 1), scale: 900 / composition.width, imageFormat: 'jpeg', jpegQuality: 85, output: image});
     if ((await stat(image)).size > 1_000_000) throw new Error('Rendered thumbnail exceeds preview size limit.');
     return {image, cleanup};
   } catch (e) {
@@ -45,7 +45,7 @@ export async function renderVideo(value: Snapshot) {
   const timer = setTimeout(cancel, 270_000);
   try {
     const serveUrl = path.resolve(process.env.REMOTION_BUNDLE || 'render-bundle');
-    const composition = await selectComposition({serveUrl, id: value.template, inputProps: value.props, puppeteerInstance: browser});
+    const composition = await selectComposition({serveUrl, id: value.composition, inputProps: value.props, puppeteerInstance: browser});
     await renderMedia({
       serveUrl, composition, inputProps: value.props, puppeteerInstance: browser, cancelSignal,
       codec: 'h264', crf: 18, pixelFormat: 'yuv420p', muted: true, outputLocation: video,

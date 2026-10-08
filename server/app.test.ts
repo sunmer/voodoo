@@ -115,6 +115,32 @@ test('anonymous crawlers get edit-specific metadata without JavaScript or authen
   assert.equal((await fetch(`${origin}/s/${id}/video.mp4`)).status, 404);
   assert.equal((await fetch(`${origin}/s/${'z'.repeat(32)}`)).status, 404);
 });
+test('shares publish a crawlable agent spec pinned to their template version', async () => {
+  const response = await fetch(`${origin}/s/${id}/agent.json`);
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get('content-type') || '', /application\/json/);
+  assert.equal(response.headers.get('access-control-allow-origin'), '*');
+  const spec = await response.json();
+  assert.equal(spec.kind, 'share');
+  assert.equal(spec.templateVersion, data.templateVersion);
+  assert.deepEqual(spec.props, props);
+  assert.equal(spec.source.package, `https://cliphou.se/source/${variant.template}/v${data.templateVersion}.tar.gz`);
+  assert.match(spec.handoff.example, new RegExp(`^https://cliphou.se/#/v/${variant.id}\\?props=`));
+  assert.equal(spec.jsonSchema.properties.texts.additionalProperties, false);
+  assert.ok(!JSON.stringify(spec).includes('alice'));
+  // Shares saved before versioning stay on v1.
+  saved.set('legacylegacylegacylegacy1', {...data, id: 'legacylegacylegacylegacy1', templateVersion: undefined});
+  assert.equal((await (await fetch(`${origin}/s/legacylegacylegacylegacy1/agent.json`)).json()).templateVersion, 1);
+  const html = await (await fetch(`${origin}/s/${id}`)).text();
+  assert.match(html, new RegExp(`rel="alternate" type="application/json" href="https://cliphou.se/s/${id}/agent.json"`));
+});
+test('share validation pins and checks template versions', () => {
+  assert.equal(validateShare(payload).templateVersion, data.templateVersion);
+  assert.equal(validateShare({...payload, templateVersion: 1}).composition, variant.template);
+  for (const templateVersion of [0, 99, '1', 1.5, null]) assert.throws(() => validateShare({...payload, templateVersion}), HttpError);
+  const a = validateShare(payload);
+  assert.notEqual(fingerprint('alice', a, '1'), fingerprint('alice', {...a, templateVersion: 2}, '1'));
+});
 test('untrusted copy cannot escape metadata or introduce scripts', () => {
   const html = shareHtml({...data, title: '\"><script>alert(1)</script>'}, 'https://cliphou.se', {file: 'assets/a.js'});
   assert.ok(!html.includes('<script>alert'));

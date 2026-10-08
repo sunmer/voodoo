@@ -6,6 +6,7 @@ The Firebase-hosted site is at https://cliphouse-app.web.app/. The production do
 
 See [deployment.md](docs/deployment.md) for configuration and the Loopia cutover checklist.
 See [sharing.md](docs/sharing.md) for saved video links, rendering, and the pending paid-service activation.
+See [agents.md](docs/agents.md) for agent specs, handoff links, source packages, and template versions.
 
 ## Run
 
@@ -56,6 +57,7 @@ Content roles hold text that belongs to one video, so the brand kit never fills 
 3. Add the schema with `textsSchema([...roles])` and `themeSchema`, and register the template in `src/videos/registry.ts` and `src/videos/meta.ts`.
 4. Add the template and one visible variant to `manifest.json`. Keep retired variants with `"hidden": true` so existing links still open. Then run `node scripts/previews.mjs`.
 5. Mark each editable text group with `data-text-role="headline"` (or the matching shared role). Use `display: contents` on additional wrappers to preserve the composition layout. Tag the copy itself, not decorative labels or whole scenes.
+6. Add the schema to `src/videos/schemas.ts`. Run `npm run sources` to publish its source package and version. Run it again after any template or shared helper change.
 
 ## Editor
 
@@ -76,6 +78,8 @@ Content roles hold text that belongs to one video, so the brand kit never fills 
 ```bash
 npm run build
 npm test
+npm run test:agent
+npm run test:source-render -- stack
 npm run test:rules          # requires Java 21 on PATH
 node scripts/smoke.cjs
 node scripts/smoke-ios.cjs

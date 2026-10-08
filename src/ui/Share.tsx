@@ -6,10 +6,10 @@ import {publishVideo, sharingConfigured, type SharedVideo} from '../services/sha
 import {track} from '../services/analytics';
 import {useAccount} from './Account';
 import {Thumbnail} from '@remotion/player';
-import {compositions} from '../videos/registry';
+import {compositionFor} from '../videos/registry';
 
-export function ShareButton({variant, props, disabled, beforeOpen, save, publishedVideo, initiallyOpen}: {
-  variant: Variant; props: VideoProps; disabled: boolean; beforeOpen: () => void; save: () => Promise<string>;
+export function ShareButton({variant, props, templateVersion, disabled, beforeOpen, save, publishedVideo, initiallyOpen}: {
+  variant: Variant; props: VideoProps; templateVersion: number; disabled: boolean; beforeOpen: () => void; save: () => Promise<string>;
   publishedVideo?: SharedVideo; initiallyOpen?: boolean;
 }) {
   const account = useAccount();
@@ -20,7 +20,7 @@ export function ShareButton({variant, props, disabled, beforeOpen, save, publish
   const [copied, setCopied] = useState(false);
   const [result, setResult] = useState<{key: string; value: SharedVideo} | null>(
     publishedVideo ? {key: JSON.stringify(publishedVideo.props), value: publishedVideo} : null);
-  const composition = compositions[variant.template];
+  const composition = compositionFor(variant.template, templateVersion);
   const key = JSON.stringify(props);
   const published = result?.key === key ? result.value : null;
   const mounted = useRef(true);
@@ -35,7 +35,7 @@ export function ShareButton({variant, props, disabled, beforeOpen, save, publish
     setError('');
     try {
       await save();
-      const value = await publishVideo(variant.id, props);
+      const value = await publishVideo(variant.id, props, templateVersion);
       if (!mounted.current) return;
       setResult({key, value});
       track('share_publish', {variant_id: variant.id});

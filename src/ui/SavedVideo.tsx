@@ -18,7 +18,7 @@ export function SavedVideo({id}: {id: string}) {
     return () => { active = false; };
   }, [id, uid, attempt]);
   if (uid && loaded?.uid === uid) {
-    return <Editor key={`${uid}/${id}`} variant={loaded.value.variant} sharedProps={loaded.value.props} draftId={id} />;
+    return <Editor key={`${uid}/${id}`} variant={loaded.value.variant} sharedProps={loaded.value.props} draftId={id} templateVersion={loaded.value.templateVersion} />;
   }
   return <main className="shared-status">
     <h1>{error ? 'Video unavailable' : !account.ready || uid ? 'Opening saved video...' : 'Private video'}</h1>

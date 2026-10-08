@@ -10,8 +10,12 @@ service cloud.firestore {
       allow read, delete: if owner();
       allow create, update: if owner()
         && draftId.matches('^[a-zA-Z0-9_-]{24,64}$')
-        && request.resource.data.keys().hasOnly(['variantId', 'propsJson', 'title', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['variantId', 'propsJson', 'title', 'updatedAt', 'templateVersion'])
         && request.resource.data.keys().hasAll(['variantId', 'propsJson', 'title', 'updatedAt'])
+        && (!('templateVersion' in request.resource.data)
+          || (request.resource.data.templateVersion is int
+            && request.resource.data.templateVersion >= 1
+            && request.resource.data.templateVersion <= 10000))
         && request.resource.data.variantId is string
         && request.resource.data.variantId.matches('^[a-z0-9-]{1,100}$')
         && request.resource.data.propsJson is string

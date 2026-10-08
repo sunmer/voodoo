@@ -38,7 +38,7 @@ export function startAnalytics() {
   document.head.append(script);
 }
 
-type EventName = 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'share_publish' | 'editor_open' | 'text_edit' | 'color_edit' | 'save_video' | 'render_command_copy' | 'mp4_export';
+type EventName = 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'share_publish' | 'editor_open' | 'text_edit' | 'color_edit' | 'save_video' | 'agent_link_copy' | 'agent_handoff_open' | 'agent_handoff_reject' | 'source_download' | 'mp4_export';
 
 function landingPage() {
   try { return sessionStorage.getItem('cliphouse:landing') ?? ''; } catch { return ''; }

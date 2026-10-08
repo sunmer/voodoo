@@ -25,6 +25,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test:sharing
+      - run: npm run test:agent
       - run: npx tsc -p tsconfig.server.json
       - uses: actions/setup-java@v4
         with:
