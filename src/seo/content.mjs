@@ -235,6 +235,19 @@ export const useCases = [
       ['Is there audio?', 'No. Add music or a voiceover in your video editor or social app.'],
     ],
   },
+  {
+    path: '/business-announcement-video-templates/',
+    title: 'Business Announcement Video Templates | cliphou.se',
+    h1: 'Business announcement video templates',
+    description: 'Free announcement video templates for launches, partnerships, new hires, anniversaries, newsletters, and grand openings. Edit the text online.',
+    intro: 'Share company news with motion: a teaser, a partner, a new team member, a milestone, or a new location.',
+    match: (v) => ['coming-soon', 'announcement', 'team-intro', 'partnership', 'newsletter', 'anniversary', 'grand-opening'].some((u) => v.useCases.includes(u)),
+    faq: [
+      ['Which template fits a new employee announcement?', 'Use Meet the Team. It shows the name, role, and a short quote from the new hire.'],
+      ['Can I add a date?', 'Yes. Coming Soon, Partnership, Company Anniversary, and Grand Opening each have a date field.'],
+      ['Which formats are available?', 'The set includes 9:16 for Reels and Stories, 4:5 and 1:1 for feeds and LinkedIn, and 16:9 for YouTube and websites.'],
+    ],
+  },
 ];
 
 export const editorialPages = [

@@ -458,5 +458,61 @@
       "sha256": "f8c13d599cfff10a180059f5c4a27442f9233d03b955ad8d74c0624cb4a96012",
       "createdAt": "2026-10-08"
     }
+  ],
+  "comingsoon": [
+    {
+      "version": 1,
+      "hash": "55086c70fc94e377",
+      "sha256": "980234af950ea913bc51b34236011e3c4ab615b4cea79073cf074ae9e747685a",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "announcement": [
+    {
+      "version": 1,
+      "hash": "0ffea54d182ab580",
+      "sha256": "5d3849ea043056fa7537409bcde7dcedc891c09480590f30dcb2d3a64acce9c7",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "teamintro": [
+    {
+      "version": 1,
+      "hash": "c959595a73f39277",
+      "sha256": "01366285a5e31b1a5f2de2047c7d0a4efaa655d09a8532236556726d72fd352a",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "partnership": [
+    {
+      "version": 1,
+      "hash": "7abd63f3703a395e",
+      "sha256": "df61425deeab3ed9f0b425f6e457d7b7d307a46fc4da8279994a65dc8cc894c5",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "newsletter": [
+    {
+      "version": 1,
+      "hash": "31d1b22001e06985",
+      "sha256": "8eb27346a5a9eee6f0d76a415776594a6f91e6ee817383a1b571725dad935ed1",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "anniversary": [
+    {
+      "version": 1,
+      "hash": "dc197f48cdfc0b36",
+      "sha256": "10523603663c33b431e1dc5bc873c402c0cad7292c748fac72539205beca48e6",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "grandopening": [
+    {
+      "version": 1,
+      "hash": "2d50bc216f9b88c9",
+      "sha256": "56ba937707ee341a1dd1e528f3f01b7e4bdd5dbd70829f44eb4b689cdd2a40e5",
+      "createdAt": "2026-10-08"
+    }
   ]
 }
