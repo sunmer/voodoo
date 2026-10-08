@@ -65,6 +65,10 @@ export const MOTION = [
   'Scramble',
   'Collage',
   'Draw-on',
+  'Cursor',
+  'Spotlight',
+  'Slice',
+  'Swiss grid',
 ] as const;
 export type Motion = (typeof MOTION)[number];
 

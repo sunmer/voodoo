@@ -41,7 +41,7 @@ const assert = (cond, msg) => {
     await page.screenshot({path: `/tmp/voodoo-kit-${vp.n}.png`, scale: 'css'});
 
     // Editor: text is edited on the canvas; the brand kit still applies.
-    await page.goto(base + '#/v/stack-orbit');
+    await page.goto(base + '#/v/stack-kicklab');
     await page.waitForTimeout(1000);
     await page.locator('.scene').nth(1).click();
     await page.waitForTimeout(400);
@@ -51,11 +51,11 @@ const assert = (cond, msg) => {
     const applyVisible = await page.getByRole('button', {name: 'Apply brand kit', exact: true}).isVisible();
     await page.getByRole('button', {name: 'Apply brand kit', exact: true}).click();
     await page.waitForTimeout(800);
-    const brandValue = await page.evaluate(() => JSON.parse(localStorage.getItem('voodoo:v2:stack-orbit')).texts.brand);
+    const brandValue = await page.evaluate(() => JSON.parse(localStorage.getItem('voodoo:v2:stack-kicklab')).texts.brand);
     await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, scale: 'css'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};
-    assert(total === manifest.variants.length && vertical === 8, 'facet counts');
+    assert(total === manifest.variants.filter((v) => !v.hidden).length && vertical === 4, 'facet counts');
     assert(linked === 'List', 'focus links point to list scene');
     assert(brandValue === 'ACME', 'brand kit applied in editor');
   }

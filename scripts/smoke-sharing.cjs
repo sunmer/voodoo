@@ -21,7 +21,7 @@ const data = {id, variantId: variant.id, props, title: props.texts.headline,
       await page.route('**/api/shares/*', (route) => route.fulfill({json: data}));
       await page.goto(base);
       await page.locator('.card-edit').first().waitFor();
-      assert.equal(await page.locator('.card-edit').count(), 28);
+      assert.equal(await page.locator('.card-edit').count(), manifest.variants.filter((v) => !v.hidden).length);
       assert.equal(await page.locator('.stats,.card-meta').count(), 0);
       assert.equal(await page.getByText('Most remixed', {exact: true}).count(), 0);
       assert.ok(!(await page.locator('.grid').innerText()).includes('@'));

@@ -136,6 +136,51 @@
       "prompt": "An 8 second vertical zine-style collage: torn paper scraps with tape drop in, hand-drawn scribbles draw on, a sticker badge pops, and the CTA lands on a pill.",
       "createdAt": "2026-10-07",
       "license": "Remix with credit"
+    },
+    {
+      "id": "cursor",
+      "title": "Cursor",
+      "creator": "interface.lab",
+      "model": "Codex",
+      "prompt": "A clean 8 second 16:9 product demo: animated cursor selects a headline, toggles three features in an app window, and clicks a CTA.",
+      "createdAt": "2026-10-08",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "spotlight",
+      "title": "Spotlight",
+      "creator": "after.hours",
+      "model": "Codex",
+      "prompt": "A cinematic 8 second vertical announcement with a moving stage light, beam-swept headline, lit stat cards, and circular CTA reveal.",
+      "createdAt": "2026-10-08",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "slice",
+      "title": "Slice",
+      "creator": "sharp.type",
+      "model": "Codex",
+      "prompt": "A fast 8 second square social ad with diagonal slice reveals, angled list panels, and a split-screen CTA.",
+      "createdAt": "2026-10-08",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "swiss",
+      "title": "Swiss",
+      "creator": "grid.office",
+      "model": "Codex",
+      "prompt": "A precise 8 second 4:5 editorial template on an animated Swiss grid, with modular point blocks and a clean brand lockup.",
+      "createdAt": "2026-10-08",
+      "license": "Remix with credit"
+    },
+    {
+      "id": "prism",
+      "title": "Prism",
+      "creator": "light.form",
+      "model": "Codex",
+      "prompt": "A premium 8 second 16:9 launch with prism light rays, 3D glass point cards, and a rotating diamond lockup.",
+      "createdAt": "2026-10-08",
+      "license": "Remix with credit"
     }
   ],
   "variants": [
@@ -221,7 +266,8 @@
           "accent": "#2563eb",
           "accent2": "#16a34a"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "neon-summit",
@@ -264,7 +310,8 @@
           "accent": "#ff2bd6",
           "accent2": "#facc15"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "fern-studio",
@@ -306,7 +353,8 @@
           "accent": "#9be15d",
           "accent2": "#f2c14e"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "drop-sale",
@@ -349,7 +397,8 @@
           "accent": "#d4ff3a",
           "accent2": "#ff5c39"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "ledger-report",
@@ -391,7 +440,8 @@
           "accent": "#c2410c",
           "accent2": "#0f766e"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "stack-kicklab",
@@ -474,7 +524,8 @@
           "accent": "#2563eb",
           "accent2": "#16a34a"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "stack-summit",
@@ -516,7 +567,8 @@
           "accent": "#ff2bd6",
           "accent2": "#facc15"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "stack-fern",
@@ -557,7 +609,8 @@
           "accent": "#9be15d",
           "accent2": "#f2c14e"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "ticker-flashsale",
@@ -640,7 +693,8 @@
           "accent": "#ff4fd8",
           "accent2": "#3df5ff"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "terminal-cli",
@@ -725,7 +779,8 @@
           "accent": "#c77dff",
           "accent2": "#ff6b9d"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "pulse-quarterly",
@@ -811,7 +866,8 @@
           "accent": "#c6ff3d",
           "accent2": "#ff7a45"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "folio-atelier",
@@ -896,7 +952,8 @@
           "accent": "#e8b04a",
           "accent2": "#8fb8de"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "bento-launch",
@@ -981,7 +1038,8 @@
           "accent": "#ff5a36",
           "accent2": "#2f6bff"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "glass-app",
@@ -1066,7 +1124,8 @@
           "accent": "#fb923c",
           "accent2": "#f43f5e"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "flex-drop",
@@ -1148,7 +1207,8 @@
           "accent": "#1d4ed8",
           "accent2": "#e11d48"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "riso-gig",
@@ -1233,7 +1293,8 @@
           "accent": "#ff7a1a",
           "accent2": "#0f9d76"
         }
-      }
+      },
+      "hidden": true
     },
     {
       "id": "collage-zine",
@@ -1318,7 +1379,221 @@
           "accent": "#ffd23f",
           "accent2": "#ff5ca8"
         }
-      }
+      },
+      "hidden": true
+    },
+    {
+      "id": "cursor-workflow",
+      "template": "cursor",
+      "title": "Workflow Demo",
+      "creator": "interface.lab",
+      "description": "Cursor-led product demo with headline selection, live feature toggles, and a clicked CTA.",
+      "purpose": "Product launch",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "saas",
+        "product demo",
+        "app",
+        "workflow",
+        "feature"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "FLOWDESK",
+          "headline": "Work moves faster",
+          "subhead": "Automate handoffs, approvals, and updates",
+          "point1": "Auto routing",
+          "point2": "Live approvals",
+          "point3": "Smart alerts",
+          "cta": "Start free"
+        },
+        "theme": {
+          "background": "#f4f6f8",
+          "surface": "#ffffff",
+          "foreground": "#111827",
+          "accent": "#2563eb",
+          "accent2": "#14b8a6"
+        }
+      },
+      "createdAt": "2026-10-08"
+    },
+    {
+      "id": "spotlight-premiere",
+      "template": "spotlight",
+      "title": "Premiere Spotlight",
+      "creator": "after.hours",
+      "description": "A cinematic stage-light reveal for launches, premieres, and limited releases.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "premiere",
+        "launch",
+        "event",
+        "cinema",
+        "announcement"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "NORTHLIGHT",
+          "headline": "Opening night",
+          "subhead": "Live music, screenings, and first looks.",
+          "point1": "Live set",
+          "point2": "World premiere",
+          "point3": "Late access",
+          "cta": "Get tickets"
+        },
+        "theme": {
+          "background": "#090807",
+          "surface": "#3a2b1f",
+          "foreground": "#fff8ec",
+          "accent": "#ffb000",
+          "accent2": "#ff4f6d"
+        }
+      },
+      "createdAt": "2026-10-08"
+    },
+    {
+      "id": "slice-drop",
+      "template": "slice",
+      "title": "Sharp Drop",
+      "creator": "sharp.type",
+      "description": "Diagonal cuts and angled offer panels for fast social campaigns.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "sale",
+        "drop",
+        "retail",
+        "offer",
+        "campaign"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "VOLT SUPPLY",
+          "headline": "New gear is live",
+          "point1": "Limited run",
+          "point2": "Free shipping",
+          "point3": "48 hours",
+          "cta": "Shop now"
+        },
+        "theme": {
+          "background": "#101010",
+          "surface": "#f2f2ed",
+          "foreground": "#ffffff",
+          "accent": "#ff3b30",
+          "accent2": "#00c2a8"
+        }
+      },
+      "createdAt": "2026-10-08"
+    },
+    {
+      "id": "swiss-studio",
+      "template": "swiss",
+      "title": "Studio Index",
+      "creator": "grid.office",
+      "description": "A precise Swiss-style grid for studios, agencies, and editorial launches.",
+      "purpose": "Brand intro",
+      "style": [
+        "Minimal",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "studio",
+        "agency",
+        "portfolio",
+        "grid",
+        "editorial"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "FORM INDEX",
+          "headline": "Design with intent",
+          "subhead": "Strategy, identity, and motion for bold brands.",
+          "point1": "Strategy",
+          "point2": "Identity",
+          "point3": "Motion",
+          "cta": "View work"
+        },
+        "theme": {
+          "background": "#f2f0ea",
+          "surface": "#d8d4ca",
+          "foreground": "#111111",
+          "accent": "#e11d48",
+          "accent2": "#2563eb"
+        }
+      },
+      "createdAt": "2026-10-08"
+    },
+    {
+      "id": "prism-launch",
+      "template": "prism",
+      "title": "Prism Launch",
+      "creator": "light.form",
+      "description": "Prism light rays, 3D glass cards, and a rotating lockup for premium launches.",
+      "purpose": "Product launch",
+      "style": [
+        "Tech",
+        "Neon"
+      ],
+      "energy": 4,
+      "keywords": [
+        "ai",
+        "product",
+        "premium",
+        "launch",
+        "technology"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "PRISM AI",
+          "headline": "See every signal",
+          "subhead": "Turn scattered data into clear decisions.",
+          "point1": "Live insight",
+          "point2": "Privacy first",
+          "point3": "Instant reports",
+          "cta": "Join the beta"
+        },
+        "theme": {
+          "background": "#060816",
+          "surface": "#20245a",
+          "foreground": "#f7f8ff",
+          "accent": "#7c3aed",
+          "accent2": "#06b6d4"
+        }
+      },
+      "createdAt": "2026-10-08"
     }
   ]
 }

@@ -52,7 +52,7 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 1. Generate a composition that reads all text from `props.texts` with shared roles, and all color from `props.theme`.
 2. Add `meta.ts` with its scenes. Each scene has `from`, `duration`, `focus`, and `roles`. Map the components to scenes in the same order.
 3. Add the schema with `textsSchema([...roles])` and `themeSchema`, and register the template in `src/videos/registry.ts` and `src/videos/meta.ts`.
-4. Add the template and its variants to `manifest.json`. Then run `node scripts/previews.mjs`.
+4. Add the template and one visible variant to `manifest.json`. Keep retired variants with `"hidden": true` so existing links still open. Then run `node scripts/previews.mjs`.
 5. Mark each editable text group with `data-text-role="headline"` (or the matching shared role). Use `display: contents` on additional wrappers to preserve the composition layout. Tag the copy itself, not decorative labels or whole scenes.
 
 ## Editor
@@ -67,7 +67,7 @@ All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, 
 
 - Preset gallery cards autoplay muted MP4s when at least 35% visible. Scrolling away or hiding the page unloads them. Reduced-motion settings keep the poster, as does a rejected autoplay request.
 - iPhone/iPad live compositions skip costly grain, blur, and selected 3D layers. Exported videos retain the full effects. Browser emulation cannot prove stability on every physical iPhone.
-- The five additional families are Bento, Glass, Flex, Riso, and Collage, with two presets each. Flex measures glyph bounds to fit variable-width text.
+- The gallery shows one preset per template. Retired color presets stay hidden but remain valid for bookmarks, saved drafts, and share links. Flex measures glyph bounds to fit variable-width text.
 
 ## Verify
 

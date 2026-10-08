@@ -20,7 +20,7 @@ async function check(engine, options, name) {
     await page.locator('.card .media').first().scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('.card video')].some((video) => !video.paused && video.currentTime > 0.1));
     const initial = await page.locator('.card video').count();
-    assert(initial > 0 && initial < manifest.variants.length, `${name}: only visible videos mounted`);
+    assert(initial > 0 && initial < manifest.variants.filter((v) => !v.hidden).length, `${name}: only visible videos mounted`);
     assert(await page.locator('.card video').evaluateAll((videos) => videos.every((v) => v.muted && v.playsInline)), `${name}: inline muted autoplay`);
     await page.screenshot({path: `/tmp/voodoo-autoplay-${name}.png`, scale: 'css'});
     await page.locator('.card').last().scrollIntoViewIfNeeded();
@@ -59,7 +59,7 @@ async function check(engine, options, name) {
     assert(await blocked.locator('.card img').first().evaluate((img) => img.complete && img.naturalWidth > 0), `${name}: blocked autoplay poster loaded`);
     await blocked.close();
 
-    const ids = ['drop-sale', ...manifest.variants.filter((v) => ['bento', 'glass', 'flex', 'riso', 'collage'].includes(v.template)).map((v) => v.id)];
+    const ids = ['drop-sale', ...manifest.variants.filter((v) => !v.hidden && ['bento', 'glass', 'flex', 'riso', 'collage', 'cursor', 'spotlight', 'slice', 'swiss', 'prism'].includes(v.template)).map((v) => v.id)];
     for (const id of ids) {
       await page.goto(`${base}#/v/${id}`);
       await page.locator('.editor-top h1').waitFor();

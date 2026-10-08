@@ -28,6 +28,16 @@ import {risoSchema} from './riso/schema';
 
 import {Collage} from './collage/Collage';
 import {collageSchema} from './collage/schema';
+import {Cursor} from './cursor/Cursor';
+import {cursorSchema} from './cursor/schema';
+import {Spotlight} from './spotlight/Spotlight';
+import {spotlightSchema} from './spotlight/schema';
+import {Slice} from './slice/Slice';
+import {sliceSchema} from './slice/schema';
+import {Swiss} from './swiss/Swiss';
+import {swissSchema} from './swiss/schema';
+import {Prism} from './prism/Prism';
+import {prismSchema} from './prism/schema';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -47,4 +57,9 @@ export const compositions: Record<string, CompositionDef> = {
   flex: {...templateMeta.flex, component: Flex, schema: flexSchema as unknown as VideoSchema},
   riso: {...templateMeta.riso, component: Riso, schema: risoSchema as unknown as VideoSchema},
   collage: {...templateMeta.collage, component: Collage, schema: collageSchema as unknown as VideoSchema},
+  cursor: {...templateMeta.cursor, component: Cursor, schema: cursorSchema as unknown as VideoSchema},
+  spotlight: {...templateMeta.spotlight, component: Spotlight, schema: spotlightSchema as unknown as VideoSchema},
+  slice: {...templateMeta.slice, component: Slice, schema: sliceSchema as unknown as VideoSchema},
+  swiss: {...templateMeta.swiss, component: Swiss, schema: swissSchema as unknown as VideoSchema},
+  prism: {...templateMeta.prism, component: Prism, schema: prismSchema as unknown as VideoSchema},
 };

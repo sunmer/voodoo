@@ -1,6 +1,6 @@
 import {Pencil, Search, SlidersHorizontal, Star, Wand2, X} from 'lucide-react';
 import {useMemo, useState} from 'react';
-import {searchText, templates, variants, vocab, type Format, type Tone, type Variant} from '../catalog/catalog';
+import {galleryVariants, searchText, templates, variants, vocab, type Format, type Tone, type Variant} from '../catalog/catalog';
 import {SCENE_TYPES} from '../videos/vocab';
 import {applyKit, kitActive, useBrandKit} from './brandKit';
 import {BrandKitPanel} from './BrandKitPanel';
@@ -55,7 +55,7 @@ export function Gallery({initialTemplate}: {initialTemplate: string | null}) {
 
   const searched = useMemo(() => {
     const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-    return variants.filter((v) => (!savedOnly || account.saved.has(v.id)) && terms.every((t) => searchText(v).includes(t)));
+    return (savedOnly ? variants : galleryVariants).filter((v) => (!savedOnly || account.saved.has(v.id)) && terms.every((t) => searchText(v).includes(t)));
   }, [q, savedOnly, account.saved]);
 
   const count = (skip: keyof Filters, pred: (v: Variant) => boolean) => searched.filter((v) => matches(v, f, skip) && pred(v)).length;

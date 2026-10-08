@@ -31,7 +31,7 @@ async function clickText(page, label, optional = false) {
     const {ROLES} = await import('../src/videos/vocab.ts');
     for (const template of manifest.templates) {
       if (process.env.TEMPLATE && template.id !== process.env.TEMPLATE) continue;
-      const v = manifest.variants.find((v) => v.template === template.id);
+      const v = manifest.variants.find((v) => v.template === template.id && !v.hidden);
       const meta = templateMeta[template.id];
       await page.goto(base + '#/v/' + v.id);
       await page.getByRole('heading', {name: v.title, exact: true}).waitFor();

@@ -11,6 +11,25 @@ export const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as co
 export const fit = (text: string, max: number, width: number, ratio = 0.6) =>
   Math.min(max, width / (Math.max(text.length, 1) * ratio));
 
+// Find the largest size where words wrap into the requested number of rows.
+export function wrapFit(text: string, max: number, width: number, lines = 2, ratio = 0.56, min = 28) {
+  const words = text.trim().split(/\s+/);
+  for (let size = max; size > min; size -= 2) {
+    const perLine = Math.max(1, Math.floor(width / (size * ratio)));
+    if (words.some((word) => word.length > perLine)) continue;
+    let rows = 1;
+    let length = 0;
+    for (const word of words) {
+      if (length && length + 1 + word.length > perLine) {
+        rows += 1;
+        length = word.length;
+      } else length += (length ? 1 : 0) + word.length;
+    }
+    if (rows <= lines) return size;
+  }
+  return min;
+}
+
 // iPhone/iPad Safari kills pages that use too much graphics memory. Live previews
 // there skip full-frame filters and blend layers. Renders (headless Chrome) keep everything.
 export const LITE =

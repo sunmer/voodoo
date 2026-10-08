@@ -61,6 +61,9 @@ export const variants: Variant[] = manifest.variants.map((v) => {
   };
 });
 
+// Hidden variants keep old bookmarks, drafts, and share links resolvable.
+export const galleryVariants = variants.filter((v) => !('hidden' in v && v.hidden));
+
 export function searchText(v: Variant) {
   return [
     v.title,

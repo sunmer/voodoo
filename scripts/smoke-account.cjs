@@ -1,5 +1,6 @@
 const {chromium} = require('playwright');
 const assert = require('node:assert/strict');
+const manifest = require('../src/catalog/manifest.json');
 const base = process.env.URL || 'http://127.0.0.1:5180/voodoo/';
 
 (async () => {
@@ -22,7 +23,7 @@ const base = process.env.URL || 'http://127.0.0.1:5180/voodoo/';
       await page.getByRole('button', {name: /^Starred/}).click();
       assert.match(await page.locator('.empty').innerText(), /starred videos/);
       await page.getByRole('button', {name: 'All videos', exact: true}).click();
-      assert.equal(await page.locator('.card').count(), 28);
+      assert.equal(await page.locator('.card').count(), manifest.variants.filter((v) => !v.hidden).length);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       assert.equal(overflow, false, 'gallery fits viewport');
       await page.screenshot({path: `/tmp/cliphouse-gallery-${viewport.width}.png`, scale: 'css'});
