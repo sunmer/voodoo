@@ -23,6 +23,7 @@ async function check(browser, viewport, prefix) {
   const original = await (await context.request.get(`${base}benchmark/results.json`)).json();
   const protocol = await (await context.request.get(`${base}benchmark/protocol.json`)).json();
   const recoveries = await (await context.request.get(`${base}benchmark/recovery.json`)).json();
+  const timings = await (await context.request.get(`${base}benchmark/timings.json`)).json();
   const results = {...original, entries: original.entries.map((entry) => {
     const repair = recoveries.entries.find((item) => item.model === entry.model && item.brief === entry.brief && item.run === entry.run);
     return repair ? {...entry, ...repair} : entry;
@@ -52,6 +53,13 @@ async function check(browser, viewport, prefix) {
       const actualVideos = await page.locator('.benchmark-card-media video').evaluateAll((videos) =>
         videos.map((video) => new URL(video.dataset.videoSrc, location.href).pathname).sort());
       assert.deepEqual(actualVideos, rendered.map((entry) => new URL(entry.video, base).pathname).sort(), 'each selection shows its recorded videos');
+      for (const entry of entries) {
+        const model = protocol.models.find(model => model.key === entry.model);
+        const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});
+        const timing = timings.entries.find(timing => timing.video === entry.video);
+        const expected = entry.status === 'failed' ? 'Not generated' : timing?.generationTimeMs == null ? 'Unavailable' : `${(timing.generationTimeMs / 1000).toFixed(1)}s`;
+        assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('Generation', {exact: true})}).locator('dd').textContent(), expected, `${model.name}: uses successful request metadata`);
+      }
     }
   }
   await page.getByRole('button', {name: 'Data story', exact: true}).click();

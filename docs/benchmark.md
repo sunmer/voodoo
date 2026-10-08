@@ -82,12 +82,44 @@ directory. It retains all raw responses, sources, requests, costs, errors, and
 timings. Resume reuses recorded responses; unresolved charges block new calls.
 
 Publication uses `src/benchmark/recovery.json` and separately prefixed media,
-leaving `results.json` and original media intact. The page defaults to "With
-repairs"; "Original runs" preserves the baseline comparison. Recovered cards show
-combined costs/timings with separate original and additional costs in run details.
+leaving `results.json` and original media intact. The simplified page shows the
+repaired results; original results remain downloadable. Recovered cards show
+combined costs with separate original and additional costs in run details.
+Generation time now uses the successful request's OpenRouter metadata, as described below.
 The public recovery request file contains each repair request and response source
 plus available compiler diagnostics. The build validates original and recovery
-artifacts. Browser tests exercise both views and every brief/run combination.
+artifacts. Browser tests exercise original result downloads and every brief/run combination.
+
+## OpenRouter Generation Time
+
+The card's Generation metric uses OpenRouter's `generation_time`, in milliseconds,
+from `GET https://openrouter.ai/api/v1/generation?id=...`, displayed in seconds.
+It belongs only to the successful request whose generated source produced that
+video. A repaired video uses its successful repair request, not the sum of the
+original and repair attempts. Original successful videos use their original
+successful request, including a baseline repair where applicable.
+
+`src/benchmark/timings.json` records the generation ID, requested and resolved
+model, provider, source hash, lookup timestamp, and exact reported time for each
+video. All 60 current videos have a reported timing. These records are exported
+at `/benchmark/timings.json`. The original `generationMs` fields remain unchanged
+as historical client-measured totals but are no longer the displayed metric.
+Costs still include all attempts. Local render times remain separate.
+
+After publishing new video records, run:
+
+```sh
+npm run benchmark:timings -- --execute --store /absolute/path/to/.benchmark/2026-10
+```
+
+The command requires `OPENROUTER_API_KEY` in the environment. Without `--execute`,
+it only prints the lookup plan. It makes metadata GET requests, never completion
+or render requests. It verifies the successful attempt's source hash and ledger
+generation ID before publication, and caches raw responses in the private run
+store. Missing metadata or null timings display as unavailable, never as local
+timing estimates. Authentication, network, and other API errors stop collection.
+The build requires a timing record for every published video and verifies its
+source hash. Browser tests check all models, briefs, runs, and original result downloads.
 
 ## Video Loading
 

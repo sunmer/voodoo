@@ -1,0 +1,607 @@
+{
+  "version": 1,
+  "metric": "generation_time",
+  "unit": "milliseconds",
+  "entries": [
+    {
+      "video": "benchmark/media/deepseek-v4-1-flash-data-story-1/video.mp4",
+      "sourceSha256": "121356627b8c06e202e3a9ecc891edbb7ae52d2914bde0482cc6c76f52659903",
+      "generationId": "gen-1791476294-qmHOBiyduGyI6P0KGJ6b",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 218735,
+      "fetchedAt": "2026-10-08T20:44:55.759Z"
+    },
+    {
+      "video": "benchmark/media/deepseek-v4-1-flash-data-story-2/video.mp4",
+      "sourceSha256": "f910c1d14109b79deea92eec44ba98b6648c76c80b39f15b2de445486a968412",
+      "generationId": "gen-1791476327-0jZYGJ6CSgBa6ngweFoZ",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 249273,
+      "fetchedAt": "2026-10-08T20:46:02.982Z"
+    },
+    {
+      "video": "benchmark/media/deepseek-v4-1-flash-kinetic-type-2/video.mp4",
+      "sourceSha256": "d48bcf40dc9fa82c02b2a1b79234c775bc17f56fdc2c648ae11ded9073af4a31",
+      "generationId": "gen-1791476115-WP24iKxKOKw5A0TEAEO9",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 196321,
+      "fetchedAt": "2026-10-08T20:46:03.414Z"
+    },
+    {
+      "video": "benchmark/media/gemini-3-8-flash-data-story-1/video.mp4",
+      "sourceSha256": "372ad418e0430e5124f73ba1d6c3bc6ebf807a722af653d0eba6c8ecf092e8e2",
+      "generationId": "gen-1791475884-jRMyvg2q80DMxL7bcUmC",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 197692,
+      "fetchedAt": "2026-10-08T20:46:03.675Z"
+    },
+    {
+      "video": "benchmark/media/gemini-3-8-flash-kinetic-type-1/video.mp4",
+      "sourceSha256": "e5777cdc54c7518b8dae243b2587a191727241bc5fecbf7b530398ea7ad77e1c",
+      "generationId": "gen-1791475780-7sCWxrgVRzBeCHbAgeKt",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 152299,
+      "fetchedAt": "2026-10-08T20:46:03.964Z"
+    },
+    {
+      "video": "benchmark/media/gemini-3-8-flash-product-launch-1/video.mp4",
+      "sourceSha256": "1fe00c8ef4cdacf746d87312f1a8030791d2e39922ea7dcdce35a3bbcf7d045c",
+      "generationId": "gen-1791475707-lGBxIH9syDuIvJU8sTgx",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 163829,
+      "fetchedAt": "2026-10-08T20:46:04.324Z"
+    },
+    {
+      "video": "benchmark/media/glm-5-3-flashx-data-story-1/video.mp4",
+      "sourceSha256": "52788b2179b7648a1d83c282e4c51030b540ba09dada8078aeccc2ecde8b9ca8",
+      "generationId": "gen-1791476485-RO9IHT5k3IOCxN8zAD5I",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 24430,
+      "fetchedAt": "2026-10-08T20:46:04.618Z"
+    },
+    {
+      "video": "benchmark/media/glm-5-3-flashx-data-story-2/video.mp4",
+      "sourceSha256": "cd489be53e5cbd5ea1905c6bac4cdd50ec76de9733db6229f3d29b94cb008d8c",
+      "generationId": "gen-1791476539-l7dU1ueAFcuc5iX9Vmkn",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 38374,
+      "fetchedAt": "2026-10-08T20:46:04.935Z"
+    },
+    {
+      "video": "benchmark/media/glm-5-3-flashx-kinetic-type-2/video.mp4",
+      "sourceSha256": "4ea5d559b76e679c4b5c2e059a336030b4fc434eea1a9109f5994bed614b7cb1",
+      "generationId": "gen-1791476457-PLzlA9EkWmf41X3qi1ui",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 47773,
+      "fetchedAt": "2026-10-08T20:46:05.145Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-data-story-1/video.mp4",
+      "sourceSha256": "99f967c809817ef6a0110c88dfacdb9d0c2e0ba69a53e42fda3867625ef9e496",
+      "generationId": "gen-1791475408-vW1VcIQaGvTJE6zI5Dml",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 112559,
+      "fetchedAt": "2026-10-08T20:46:05.383Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-data-story-2/video.mp4",
+      "sourceSha256": "1a152683e3454ab06d2f99eef608da335af1b90cf527e7bbbc039405f581add3",
+      "generationId": "gen-1791475443-a1bqGLf0lywJakr6da2O",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 85394,
+      "fetchedAt": "2026-10-08T20:46:05.634Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-kinetic-type-1/video.mp4",
+      "sourceSha256": "79a1403bbc9028156e7dd34e749c53429c1006a6b907eefb905d61e02e67b2e3",
+      "generationId": "gen-1791475260-jrLsCvJuP095SefmCtXN",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 149354,
+      "fetchedAt": "2026-10-08T20:46:05.935Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-kinetic-type-2/video.mp4",
+      "sourceSha256": "48c7a0df969c85dab7b74cdcd950247c0c288ea697c80a9fb8d7d21387f5910d",
+      "generationId": "gen-1791475260-yIyQrYEVgdo7QWSFRkdx",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 114142,
+      "fetchedAt": "2026-10-08T20:46:06.227Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-product-launch-1/video.mp4",
+      "sourceSha256": "7af708f90915d4d6784e2b2a056e9781b3dfcfc8ac4d6105f582021615a7a974",
+      "generationId": "gen-1791475260-TVsJveMp49wbEOd6AnOc",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 195787,
+      "fetchedAt": "2026-10-08T20:46:06.463Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-1-sol-product-launch-2/video.mp4",
+      "sourceSha256": "5aba0b95cdd2df90acf6df1df7ac1db5d8f4bb1434008dccb50374b62ac994c3",
+      "generationId": "gen-1791475260-od0Y5paqUCso7XP5GvQv",
+      "model": "openai/gpt-6.1-sol",
+      "resolvedModel": "openai/gpt-6.1-sol-20260929",
+      "provider": "OpenAI",
+      "generationTimeMs": 155545,
+      "fetchedAt": "2026-10-08T20:46:06.696Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-data-story-1/video.mp4",
+      "sourceSha256": "6bd0f753f17eab1f8892f012b8a9065f35a9527383ec5880cb66dffe66afe43d",
+      "generationId": "gen-1791475640-MFDX3eYFs2IY8DR5WEOZ",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 85406,
+      "fetchedAt": "2026-10-08T20:46:06.929Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-data-story-2/video.mp4",
+      "sourceSha256": "cbb098947d44107e1a6e86eb97b3ec6c1bb3ca699596be5d749952b8cf9c9e27",
+      "generationId": "gen-1791475673-XMrJezvQE9LrwCDEA6OS",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 83563,
+      "fetchedAt": "2026-10-08T20:46:07.155Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-kinetic-type-1/video.mp4",
+      "sourceSha256": "ecfffab5541e8f958858de52c8de118aefe87f8ca61b5f235d9c621d5060fa3a",
+      "generationId": "gen-1791475553-qbGao9bH35Wbk1AWlMOy",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 74810,
+      "fetchedAt": "2026-10-08T20:46:07.406Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-kinetic-type-2/video.mp4",
+      "sourceSha256": "196b69cbbdaef22f9527e97303c0089742effbd14bbaf0fb38d1825c1f99d43f",
+      "generationId": "gen-1791475585-v68s1isbSJ2KpVLWDo55",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 86601,
+      "fetchedAt": "2026-10-08T20:46:07.681Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-product-launch-1/video.mp4",
+      "sourceSha256": "a46d2cb70d264090b5eb45d33b041a9b129ab478623f439f260b236ed31b9f80",
+      "generationId": "gen-1791475475-yp2El122stCMuqOk5ZKr",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 129722,
+      "fetchedAt": "2026-10-08T20:46:07.930Z"
+    },
+    {
+      "video": "benchmark/media/gpt-6-luna-product-launch-2/video.mp4",
+      "sourceSha256": "63691971396360b7b900aa03298c7ccc0784e6e54fc2f9ed6944f220e0aed773",
+      "generationId": "gen-1791475640-WUFHdNXhPn50XVa7a8JA",
+      "model": "openai/gpt-6-luna",
+      "resolvedModel": "openai/gpt-6-luna-20260922",
+      "provider": "OpenAI",
+      "generationTimeMs": 71976,
+      "fetchedAt": "2026-10-08T20:46:08.194Z"
+    },
+    {
+      "video": "benchmark/media/haiku-5-5-data-story-1/video.mp4",
+      "sourceSha256": "c0eed00729fff7a147fbaa8da4f65062310f63401f4233b2e6af8a09663490e9",
+      "generationId": "gen-1791474983-mNJPkZwETJp1d8aEN4ky",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 42782,
+      "fetchedAt": "2026-10-08T20:46:08.413Z"
+    },
+    {
+      "video": "benchmark/media/haiku-5-5-data-story-2/video.mp4",
+      "sourceSha256": "94e1759aa2f521573d894fe02e6c6d13a65953f3092b6b43f18514405ff96d50",
+      "generationId": "gen-1791475015-RQfAuXvgFJhj35yqA3fR",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 36753,
+      "fetchedAt": "2026-10-08T20:46:08.664Z"
+    },
+    {
+      "video": "benchmark/media/haiku-5-5-kinetic-type-1/video.mp4",
+      "sourceSha256": "bbb40efdc73e3f25bdad4f4eb8a25fbfe586c6735b10c2ae87d596398998be14",
+      "generationId": "gen-1791474895-re6sNCge2tSoUUxCpC88",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 40857,
+      "fetchedAt": "2026-10-08T20:46:08.963Z"
+    },
+    {
+      "video": "benchmark/media/haiku-5-5-kinetic-type-2/video.mp4",
+      "sourceSha256": "5d08b9a28a3094ebaeb6725014e631468aee0713f026b59b46858104dbb284be",
+      "generationId": "gen-1791474951-pQBMq3iCdxIYmsi6ALqd",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 41145,
+      "fetchedAt": "2026-10-08T20:46:09.183Z"
+    },
+    {
+      "video": "benchmark/media/haiku-5-5-product-launch-1/video.mp4",
+      "sourceSha256": "de54c6eb4147e2742e50beb8758b48a021fecb6fef5b68de8919112711804bb2",
+      "generationId": "gen-1791473327-4RQArKnAgnoFNuwUwbYh",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 90270,
+      "fetchedAt": "2026-10-08T20:46:09.420Z"
+    },
+    {
+      "video": "benchmark/media/kimi-k3-data-story-1/video.mp4",
+      "sourceSha256": "49ab6dd7cad6c1ad4e229c1468214d45108259ee7bc4c3ff0b88f865eb9a709e",
+      "generationId": "gen-1791476987-L5eiQFk29O2IMQuFwkX8",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 60629,
+      "fetchedAt": "2026-10-08T20:46:09.641Z"
+    },
+    {
+      "video": "benchmark/media/kimi-k3-data-story-2/video.mp4",
+      "sourceSha256": "9ac870cde8ca1fce4f453f71b006222e3c74141ac9bc0fb2c6e3f6846e46d576",
+      "generationId": "gen-1791476996-Lhkzqz399wOvXOPJlTTT",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 52100,
+      "fetchedAt": "2026-10-08T20:46:10.085Z"
+    },
+    {
+      "video": "benchmark/media/kimi-k3-kinetic-type-2/video.mp4",
+      "sourceSha256": "64c073cc1575c3e52680ec01f7f7563277407417c44686913a734ca14d3ea794",
+      "generationId": "gen-1791476854-ACGNMEyab6j17nqQWQ8r",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 177789,
+      "fetchedAt": "2026-10-08T20:46:10.296Z"
+    },
+    {
+      "video": "benchmark/media/kimi-k3-product-launch-1/video.mp4",
+      "sourceSha256": "19dddeed42c70b18e7b5d592ed84c21714281f3fd45d17e493d8fbde1db02daf",
+      "generationId": "gen-1791476771-hzcy498AYiscSSPjZhR7",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 518932,
+      "fetchedAt": "2026-10-08T20:46:10.524Z"
+    },
+    {
+      "video": "benchmark/media/kimi-k3-product-launch-2/video.mp4",
+      "sourceSha256": "046ee19bbd4fa594423f4e9b7fbafd70eac43887ebdf6302a2bef879a4fbed28",
+      "generationId": "gen-1791476810-gc637tfjiS4C05AWvTvf",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 144079,
+      "fetchedAt": "2026-10-08T20:46:11.299Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-data-story-1/video.mp4",
+      "sourceSha256": "728f15d85d3db852f48fdd7ade857c2d93aacb37239121c9f8d74cca689f07bf",
+      "generationId": "gen-1791474259-Z1FKPVfE20CkSv6H7EKp",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 110515,
+      "fetchedAt": "2026-10-08T20:46:11.516Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-data-story-2/video.mp4",
+      "sourceSha256": "d46e903579a5156ff5c33078845ad32b66f2106da4faf4bbc845b1713e545837",
+      "generationId": "gen-1791474298-B6YV5KWHCNsXRNul9ENT",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 52977,
+      "fetchedAt": "2026-10-08T20:46:11.782Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-kinetic-type-1/video.mp4",
+      "sourceSha256": "7ca0e80a296d4de2335a1e0193a50e292f9029e8e619d188bc8595e1dcf6c55b",
+      "generationId": "gen-1791474259-7lTLvXAKWJX7VMLSuV6G",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 161729,
+      "fetchedAt": "2026-10-08T20:46:12.010Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-kinetic-type-2/video.mp4",
+      "sourceSha256": "eee472ae122d5e438fa37cade0e0a5c0f54dbdf66dd672b803ae2c98f0354b35",
+      "generationId": "gen-1791474259-aao6HwAq75RvwlQDz2rh",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 133370,
+      "fetchedAt": "2026-10-08T20:46:12.248Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-product-launch-1/video.mp4",
+      "sourceSha256": "8da591edb37638af34e3277877d17307992817d9b5d46645678a61bb54d1beb6",
+      "generationId": "gen-1791473470-56iTa35pdSfCu38guL3O",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 211000,
+      "fetchedAt": "2026-10-08T20:46:12.481Z"
+    },
+    {
+      "video": "benchmark/media/opus-5-5-product-launch-2/video.mp4",
+      "sourceSha256": "4411b8cdd171036972aea9d9268f3f7db58e73a19980288dc47edddaaee4c2be",
+      "generationId": "gen-1791473729-jByCIzzoJ1tQ0iYKgHRg",
+      "model": "anthropic/claude-opus-5.5",
+      "resolvedModel": "anthropic/claude-opus-5.5-20260921",
+      "provider": "Amazon Bedrock",
+      "generationTimeMs": 493993,
+      "fetchedAt": "2026-10-08T20:46:12.696Z"
+    },
+    {
+      "video": "benchmark/media/qwen-3-8-data-story-1/video.mp4",
+      "sourceSha256": "e8f17ee61d900905efbe2d978dc4aa42218fa3258a2068b39e86dc4bfe897c7b",
+      "generationId": "gen-1791476706-29Qhfy7iU8QLVvdhHTLt",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 71680,
+      "fetchedAt": "2026-10-08T20:46:12.955Z"
+    },
+    {
+      "video": "benchmark/media/qwen-3-8-data-story-2/video.mp4",
+      "sourceSha256": "a2d272e253b2e93983f8ceb0a26e6647e5172237b830f1a368044bafb44cb98e",
+      "generationId": "gen-1791476739-oMQcUN9kcJj1jsMEeU9w",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 81820,
+      "fetchedAt": "2026-10-08T20:46:13.166Z"
+    },
+    {
+      "video": "benchmark/media/qwen-3-8-kinetic-type-2/video.mp4",
+      "sourceSha256": "a945eab1ede76ea73f953332564586a8abfbd740fb1f3e518b3dc3221c7e791a",
+      "generationId": "gen-1791476674-7iw3odcbMbatPtah0E5a",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 54522,
+      "fetchedAt": "2026-10-08T20:46:13.411Z"
+    },
+    {
+      "video": "benchmark/media/qwen-3-8-product-launch-1/video.mp4",
+      "sourceSha256": "b5a8306e4170421c72bb66efd8f22f502b0b2daf4108663036ba314a4744bb17",
+      "generationId": "gen-1791476573-paPXDZ0Ahc1eIdUsTXWS",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 101313,
+      "fetchedAt": "2026-10-08T20:46:13.643Z"
+    },
+    {
+      "video": "benchmark/media/qwen-3-8-product-launch-2/video.mp4",
+      "sourceSha256": "cc972dfdf5ab5675ba85c70e41daba06961b55d63507405a441eed5965fd9ef4",
+      "generationId": "gen-1791476610-Gw48qkuPxUYbjgDfoBa2",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 80843,
+      "fetchedAt": "2026-10-08T20:46:13.852Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-data-story-1/video.mp4",
+      "sourceSha256": "72b0758aa48d8ba73721791dc6ed96b4e02a79106cdc4093d78951e52a674670",
+      "generationId": "gen-1791474695-EFFYgG7vr7FeKb2f1DgT",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 24376,
+      "fetchedAt": "2026-10-08T20:46:14.076Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-data-story-2/video.mp4",
+      "sourceSha256": "63b40d926fceaa7df3a3fb76f10482b41c0078ba369b7aacb83b5178355fd4e7",
+      "generationId": "gen-1791474731-Az6GOA7uRcM3TlZKvRm5",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 30270,
+      "fetchedAt": "2026-10-08T20:46:14.303Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-kinetic-type-1/video.mp4",
+      "sourceSha256": "5760a7a87150f2665097d55f0a8b36ca976734f5a5a68fa41c6b74dd7252ab1b",
+      "generationId": "gen-1791474449-TGoH6ogBsUUYDc8s2ROu",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 37140,
+      "fetchedAt": "2026-10-08T20:46:14.609Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-kinetic-type-2/video.mp4",
+      "sourceSha256": "da86345863949b8fe1450c688068551a136cc6103c2c6bdb7546d0cc9efd542b",
+      "generationId": "gen-1791474483-0swlmBFtOKE2n74hHHP7",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 50203,
+      "fetchedAt": "2026-10-08T20:46:14.877Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-product-launch-1/video.mp4",
+      "sourceSha256": "93f5426190518858d1211179d3d20cd4f308832e71ce1cd68e66fb9e2e8986d3",
+      "generationId": "gen-1791474384-b1YYEhNEJVtkCP49xr4o",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 80217,
+      "fetchedAt": "2026-10-08T20:46:15.092Z"
+    },
+    {
+      "video": "benchmark/media/sonnet-5-5-product-launch-2/video.mp4",
+      "sourceSha256": "210f09400072dbaf312dac5a46dc5cebf9ff78fb0431631696c0f32dc0807e24",
+      "generationId": "gen-1791474416-M45Dgb1uMdtBrnSAMqvT",
+      "model": "anthropic/claude-sonnet-5.5",
+      "resolvedModel": "anthropic/claude-sonnet-5.5-20260928",
+      "provider": "Google",
+      "generationTimeMs": 119501,
+      "fetchedAt": "2026-10-08T20:46:15.320Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-deepseek-v4-1-flash-kinetic-type-1/video.mp4",
+      "sourceSha256": "0279e6528b239101ec089b01078dc976d4f1ee86ec97b230bcca4d514aceec4e",
+      "generationId": "gen-1791484067-1VOHjcFWhuNIeUDNwZuU",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 51431,
+      "fetchedAt": "2026-10-08T20:46:15.567Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-deepseek-v4-1-flash-product-launch-1/video.mp4",
+      "sourceSha256": "73090756bb5f131cc78c7633d0c91206d159bc57ed06d7f80b3967527e19888f",
+      "generationId": "gen-1791484067-mR90dWIhvqONB97nu6X6",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 51935,
+      "fetchedAt": "2026-10-08T20:46:15.867Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-deepseek-v4-1-flash-product-launch-2/video.mp4",
+      "sourceSha256": "e6728cd0eb1e4ea8427c996e31cea298232dc0b245810ef783ba546ad74cd071",
+      "generationId": "gen-1791484067-uOUFMYce7hGnWNncU0eW",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "resolvedModel": "deepseek/deepseek-v4.1-flash-20260910",
+      "provider": "Decart",
+      "generationTimeMs": 63054,
+      "fetchedAt": "2026-10-08T20:46:16.141Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-gemini-3-8-flash-data-story-2/video.mp4",
+      "sourceSha256": "5655ddeb00c39a934332208473c8d9bc1552f04623f5aaf2a5e8eca5d6421ec7",
+      "generationId": "gen-1791484067-6G10ZraOCdLtMHnnOJLQ",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 26566,
+      "fetchedAt": "2026-10-08T20:46:16.396Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-gemini-3-8-flash-kinetic-type-2/video.mp4",
+      "sourceSha256": "44ebfcacb86df48dcf5f4969a3440f88e9172f8497b919121237be70848c2943",
+      "generationId": "gen-1791484128-0oS2RqRnybV3sPl3OMje",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 30266,
+      "fetchedAt": "2026-10-08T20:46:16.665Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-gemini-3-8-flash-product-launch-2/video.mp4",
+      "sourceSha256": "3bf324eb9a1dad300c6fa36d4038100c2d1b498175bbaf65b145e4239697740a",
+      "generationId": "gen-1791484161-Q2IH7Q1mzHsizAiyKScz",
+      "model": "google/gemini-3.8-flash",
+      "resolvedModel": "google/gemini-3.8-flash-20260902",
+      "provider": "Google AI Studio",
+      "generationTimeMs": 46464,
+      "fetchedAt": "2026-10-08T20:46:16.900Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-glm-5-3-flashx-kinetic-type-1/video.mp4",
+      "sourceSha256": "fde8c9c9ac66061e5837acf9f7618e85d1e5ba5906347d2194ae0319abb86c45",
+      "generationId": "gen-1791484194-9fz4ahHDy4RqsaNTerhJ",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 10863,
+      "fetchedAt": "2026-10-08T20:46:17.194Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-glm-5-3-flashx-product-launch-1/video.mp4",
+      "sourceSha256": "95f46183c88136796f2f25c4a3acc4eaf3f9037f2d8d39294e4292a605adf09a",
+      "generationId": "gen-1791484229-6jyLrryIu1BtuiCKMLqq",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 22358,
+      "fetchedAt": "2026-10-08T20:46:17.418Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-glm-5-3-flashx-product-launch-2/video.mp4",
+      "sourceSha256": "5fb166d1632f277ae1f6cb2785c5ec97a9fbde17a4c392984e8d7a3859ed9a6a",
+      "generationId": "gen-1791484263-tIEWzssrfwxjOXxvrSYq",
+      "model": "z-ai/glm-5.3-flashx",
+      "resolvedModel": "z-ai/glm-5.3-flashx-20260918",
+      "provider": "Z.AI",
+      "generationTimeMs": 21223,
+      "fetchedAt": "2026-10-08T20:46:17.631Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-haiku-5-5-product-launch-2/video.mp4",
+      "sourceSha256": "0b0705dce80d20551d8c5472f4cdc243dafa5266464c472c0946e59ef7c94a8d",
+      "generationId": "gen-1791484296-AH4SkFoNdMQJZuAxWu62",
+      "model": "anthropic/claude-haiku-5.5",
+      "resolvedModel": "anthropic/claude-haiku-5.5-20261007",
+      "provider": "Google",
+      "generationTimeMs": 26733,
+      "fetchedAt": "2026-10-08T20:46:17.916Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-kimi-k3-kinetic-type-1/video.mp4",
+      "sourceSha256": "7fcfb6e42f3a9e47b2a42b115f447c8d9b74de49d8404126efd8eefb5fe4a4ae",
+      "generationId": "gen-1791484330-Bsy6fWmAhu8aRRsX6Eeo",
+      "model": "moonshotai/kimi-k3",
+      "resolvedModel": "moonshotai/kimi-k3-20260715",
+      "provider": "Decart",
+      "generationTimeMs": 110487,
+      "fetchedAt": "2026-10-08T20:46:18.130Z"
+    },
+    {
+      "video": "benchmark/media/recovery-r1-qwen-3-8-kinetic-type-1/video.mp4",
+      "sourceSha256": "c5f424dab7c59ea1ffd021092e21842815a454be1928394cd36de13b3dc7fa74",
+      "generationId": "gen-1791484452-pjD1e7ZBFVrm2prPGneS",
+      "model": "qwen/qwen3.8-2.4t-a95b",
+      "resolvedModel": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "provider": "Novita",
+      "generationTimeMs": 34011,
+      "fetchedAt": "2026-10-08T20:46:18.351Z"
+    }
+  ]
+}

@@ -18,6 +18,7 @@
     "benchmark:run": "node scripts/benchmark/run.mjs --execute",
     "benchmark:repair": "node scripts/benchmark/run-recovery.mjs",
     "benchmark:publish-repairs": "node scripts/benchmark/publish-recovery.mjs",
+    "benchmark:timings": "node scripts/benchmark/collect-timings.mjs",
     "test:benchmark": "node --import tsx --test scripts/benchmark/*.test.mjs scripts/benchmark/*.test.tsx",
     "test:benchmark-build": "node scripts/benchmark/check-build.mjs",
     "test:video-policy": "node scripts/check-video-policy.mjs",
