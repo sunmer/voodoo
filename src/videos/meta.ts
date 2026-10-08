@@ -51,6 +51,13 @@ import {toplistMeta} from './toplist/meta.ts';
 import {pollMeta} from './poll/meta.ts';
 import {progressMeta} from './progress/meta.ts';
 import {comparisonMeta} from './comparison/meta.ts';
+import {newyearMeta} from './newyear/meta.ts';
+import {creditsMeta} from './credits/meta.ts';
+import {titlecardMeta} from './titlecard/meta.ts';
+import {subscribeMeta} from './subscribe/meta.ts';
+import {thankyouMeta} from './thankyou/meta.ts';
+import {birthdayMeta} from './birthday/meta.ts';
+import {valentinesMeta} from './valentines/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -105,4 +112,11 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [pollMeta.id]: pollMeta,
   [progressMeta.id]: progressMeta,
   [comparisonMeta.id]: comparisonMeta,
+  [newyearMeta.id]: newyearMeta,
+  [creditsMeta.id]: creditsMeta,
+  [titlecardMeta.id]: titlecardMeta,
+  [subscribeMeta.id]: subscribeMeta,
+  [thankyouMeta.id]: thankyouMeta,
+  [birthdayMeta.id]: birthdayMeta,
+  [valentinesMeta.id]: valentinesMeta,
 };

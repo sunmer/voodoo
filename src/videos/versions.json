@@ -570,5 +570,61 @@
       "sha256": "1f8bc794567ad228287e97a1a6669d3771eb4d860ff8901b35c6701cd7fbd796",
       "createdAt": "2026-10-08"
     }
+  ],
+  "newyear": [
+    {
+      "version": 1,
+      "hash": "c806f836251a8524",
+      "sha256": "dc22c97ae32c104e8ab23bc8c2f4738ee5fbfff4c1e51a724addc376ffe41c87",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "credits": [
+    {
+      "version": 1,
+      "hash": "42de30123aca7b4a",
+      "sha256": "1af71d2791c8f3ffdd4bad0fde42ba968595d448321013f08dc88e1425e7fcaa",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "titlecard": [
+    {
+      "version": 1,
+      "hash": "7df88e463489afb9",
+      "sha256": "4701be15e1719a9160a5dae9b15f7ab010ee1b9e90ad0be6aaef787225755973",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "subscribe": [
+    {
+      "version": 1,
+      "hash": "4af5a9a887bcbf85",
+      "sha256": "7bed048d78e3d1466299af319cc83f42e1127664cddc5c9cfb3a8e647e4fcc76",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "thankyou": [
+    {
+      "version": 1,
+      "hash": "3347e18302448403",
+      "sha256": "1bf2a9a8292ae66440d2d802c25e6e001c102667e7adecfe57a95c4f77092d9b",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "birthday": [
+    {
+      "version": 1,
+      "hash": "97eda08cdc920f45",
+      "sha256": "a7d57bb787fb965cf48bb7046961907ff6ebec2bc5bb00f3086f8f4d4c915105",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "valentines": [
+    {
+      "version": 1,
+      "hash": "f5b2b3f2dee1ebbf",
+      "sha256": "1fed21421058cc73a290b171dc2b74c5709032e4b259111002e959af9e351416",
+      "createdAt": "2026-10-08"
+    }
   ]
 }

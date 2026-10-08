@@ -274,6 +274,32 @@ export const useCases = [
       ['Can I use these in slides?', 'Yes. Both templates are 16:9, so the MP4 fits a presentation slide.'],
     ],
   },
+  {
+    path: '/holiday-greeting-video-templates/',
+    title: 'New Year, Birthday, and Valentine Video Templates | cliphou.se',
+    h1: 'Holiday and greeting video templates',
+    description: 'Free New Year countdown, birthday, and Valentine sale video templates. Add names, dates, and offers, then edit the colors online.',
+    intro: 'Short greeting and seasonal videos for countdowns, celebrations, and holiday offers.',
+    match: (v) => ['new-year', 'birthday', 'valentines'].some((u) => v.useCases.includes(u)),
+    faq: [
+      ['Can I change the date?', 'Yes. Each template has an editable date field.'],
+      ['Can I use these on Instagram?', 'Yes. The batch includes 9:16, 1:1, and 4:5 formats for Stories and feed posts.'],
+      ['Do the videos include music?', 'No. Add licensed music in your video editor.'],
+    ],
+  },
+  {
+    path: '/title-card-and-credits-templates/',
+    title: 'Title Card, End Credits, and Subscribe Templates | cliphou.se',
+    h1: 'Title card and credits templates',
+    description: 'Free title card, rolling credits, subscribe button, and thank you video templates for YouTube creators and filmmakers. Edit online.',
+    intro: 'Open with a title, close with credits, and ask viewers to subscribe or watch the next video.',
+    match: (v) => ['title-card', 'credits', 'subscribe', 'thank-you'].some((u) => v.useCases.includes(u)),
+    faq: [
+      ['How do I enter credits?', 'Use comma-separated entries such as "Director: Mara Chen, Editor: Leo Park".'],
+      ['Can I use a green screen?', 'Yes. The Subscribe Button preset uses a green background that you can key out.'],
+      ['Which format do these use?', 'These creator templates use 16:9 for YouTube and other landscape videos.'],
+    ],
+  },
 ];
 
 export const editorialPages = [

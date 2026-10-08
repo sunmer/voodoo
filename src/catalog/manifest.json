@@ -772,6 +772,104 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "newyear",
+      "title": "New Year Countdown",
+      "creator": "midnightclub",
+      "prompt": "A 10 second vertical New Year countdown: a 5 to 1 timer inside a filling ring, then a confetti burst with a greeting and call to action.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "credits",
+      "title": "End Credits",
+      "creator": "reelroll",
+      "prompt": "A 12 second 16:9 rolling credits sequence with role and name columns, then a studio card and call to action.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "titlecard",
+      "title": "Title Card",
+      "creator": "framehouse",
+      "prompt": "A 6 second 16:9 cinematic title card with letterbox bars, a widening title, a drawn rule, and a subtitle.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "subscribe",
+      "title": "Subscribe Button",
+      "creator": "clickcue",
+      "prompt": "A 6 second 16:9 subscribe animation where a cursor clicks a channel button and rings the notification bell.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "thankyou",
+      "title": "Thank You for Watching",
+      "creator": "warmend",
+      "prompt": "An 8 second 16:9 thank you outro with a hand-drawn stroke, letter-by-letter script, and a split brand and call to action card.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "birthday",
+      "title": "Birthday Greeting",
+      "creator": "partyline",
+      "prompt": "A 9 second square birthday greeting with floating balloons, a bouncing headline and name, then a candle cake and date.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "valentines",
+      "title": "Valentine's Sale",
+      "creator": "heartsale",
+      "prompt": "A 10 second 4:5 Valentine's sale with a beating heart reveal, a counting sale price, and a ticket-style date card.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -4017,6 +4115,323 @@
         "comparison",
         "saas",
         "product-launch"
+      ]
+    },
+    {
+      "template": "newyear",
+      "creator": "midnightclub",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "newyear-countdown",
+      "title": "New Year Countdown",
+      "description": "A 5 to 1 ring countdown with the date, then a confetti burst and a bold New Year greeting.",
+      "purpose": "Holiday sale",
+      "style": [
+        "Bold",
+        "Neon"
+      ],
+      "energy": 3,
+      "keywords": [
+        "new year countdown",
+        "happy new year video",
+        "new year video template",
+        "countdown video",
+        "new year greeting"
+      ],
+      "props": {
+        "texts": {
+          "brand": "LUMA STUDIO",
+          "date": "December 31, 2026",
+          "headline": "Happy New Year",
+          "subhead": "Thank you for a bright year together",
+          "cta": "Here is to 2027"
+        },
+        "theme": {
+          "background": "#080b1f",
+          "surface": "#1d2350",
+          "foreground": "#ffffff",
+          "accent": "#ffd43b",
+          "accent2": "#ff4fa3"
+        }
+      },
+      "seoDescription": "A free New Year countdown video template for Reels, TikTok, and Stories. Count down from 5, add your date, and edit the greeting online.",
+      "useCases": [
+        "new-year",
+        "countdown",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "credits",
+      "creator": "reelroll",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "credits-rolling",
+      "title": "Rolling End Credits",
+      "description": "Two-column rolling credits for your cast and crew, followed by a clean studio card.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "end credits template",
+        "rolling credits",
+        "movie credits",
+        "film credits",
+        "credits video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "A film by North Light",
+          "items": "Director: Mara Chen, Editor: Leo Park, Music: Sol Rivera, Camera: Ana Ruiz, Sound: Ben Ito",
+          "brand": "NORTH LIGHT",
+          "cta": "Thanks for watching"
+        },
+        "theme": {
+          "background": "#050505",
+          "surface": "#151515",
+          "foreground": "#f4efe6",
+          "accent": "#c9a45c",
+          "accent2": "#e05d44"
+        }
+      },
+      "seoDescription": "A free rolling end credits template for films and YouTube videos. Add roles and names, and they scroll in two columns. Edit online.",
+      "useCases": [
+        "credits",
+        "youtube-end-screen"
+      ]
+    },
+    {
+      "template": "titlecard",
+      "creator": "framehouse",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "titlecard-cinematic",
+      "title": "Cinematic Title Card",
+      "description": "Letterbox bars close in as a wide title opens from the center, followed by a drawn rule and subtitle.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "title card",
+        "title screen",
+        "title card template",
+        "movie title",
+        "chapter title"
+      ],
+      "props": {
+        "texts": {
+          "brand": "CHAPTER ONE",
+          "headline": "The Long Road",
+          "subhead": "A story about leaving home and finding your way back"
+        },
+        "theme": {
+          "background": "#0d1117",
+          "surface": "#253041",
+          "foreground": "#f8fafc",
+          "accent": "#7dd3fc",
+          "accent2": "#f59e0b"
+        }
+      },
+      "seoDescription": "A free cinematic title card template for videos, films, and chapters. Add a title and subtitle with letterbox motion, then edit online.",
+      "useCases": [
+        "title-card",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "subscribe",
+      "creator": "clickcue",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "subscribe-button",
+      "title": "Subscribe Button Animation",
+      "description": "A cursor clicks your subscribe button, the button changes state, and the notification bell rings.",
+      "purpose": "Creator video",
+      "style": [
+        "Tech",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "subscribe animation",
+        "like and subscribe animation",
+        "subscribe button",
+        "youtube subscribe",
+        "bell icon animation"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Never miss a recipe",
+          "brand": "Pixel Kitchen",
+          "subhead": "New recipes every Friday",
+          "cta": "Subscribe"
+        },
+        "theme": {
+          "background": "#00b140",
+          "surface": "#181818",
+          "foreground": "#ffffff",
+          "accent": "#ff1f1f",
+          "accent2": "#ffd400"
+        }
+      },
+      "seoDescription": "A free YouTube subscribe button animation with a cursor click and ringing bell. Add your channel name and call to action, then edit online.",
+      "useCases": [
+        "subscribe",
+        "youtube-end-screen"
+      ]
+    },
+    {
+      "template": "thankyou",
+      "creator": "warmend",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "thankyou-watching",
+      "title": "Thank You for Watching",
+      "description": "A warm script thank you with a drawn stroke, then a split card for your channel name and next step.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "thank you for watching",
+        "thank you video",
+        "outro video",
+        "youtube outro",
+        "end screen"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Thank you",
+          "subhead": "We are glad you watched until the end",
+          "brand": "Field Notes",
+          "cta": "Watch the next one"
+        },
+        "theme": {
+          "background": "#fff7ed",
+          "surface": "#ffedd5",
+          "foreground": "#2b1b12",
+          "accent": "#ea580c",
+          "accent2": "#0f766e"
+        }
+      },
+      "seoDescription": "A free thank you for watching video template for YouTube outros and presentations. Edit the script, channel name, and next step online.",
+      "useCases": [
+        "thank-you",
+        "youtube-end-screen"
+      ]
+    },
+    {
+      "template": "birthday",
+      "creator": "partyline",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "birthday-balloons",
+      "title": "Birthday Balloons",
+      "description": "Balloons float behind a bouncing birthday greeting, then a candle cake shows the date and message.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "birthday animation",
+        "birthday video template",
+        "happy birthday video",
+        "birthday greeting video",
+        "birthday wish"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Happy Birthday",
+          "author": "Maya",
+          "date": "October 18",
+          "subhead": "Wishing you a year full of good things"
+        },
+        "theme": {
+          "background": "#7c3aed",
+          "surface": "#38bdf8",
+          "foreground": "#ffffff",
+          "accent": "#fbbf24",
+          "accent2": "#fb7185"
+        }
+      },
+      "seoDescription": "A free square birthday video template with balloons, a name tag, and a candle cake. Add the name, date, and wish, then edit online.",
+      "useCases": [
+        "birthday"
+      ]
+    },
+    {
+      "template": "valentines",
+      "creator": "heartsale",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "valentines-sale",
+      "title": "Valentine's Day Sale",
+      "description": "A beating heart reveals your Valentine's offer, then the price counts up and a ticket card shows the date.",
+      "purpose": "Holiday sale",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "valentines sale",
+        "valentines day video",
+        "valentines day sale",
+        "valentines promo",
+        "gift sale video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "ROSE & CO",
+          "headline": "Love is on sale",
+          "price": "$39",
+          "priceNote": "Gift sets 30% off",
+          "date": "Feb 7 to Feb 14",
+          "cta": "Shop gifts"
+        },
+        "theme": {
+          "background": "#fff1f2",
+          "surface": "#ffe4e6",
+          "foreground": "#4c0519",
+          "accent": "#e11d48",
+          "accent2": "#fb7185"
+        }
+      },
+      "seoDescription": "A free Valentine's Day sale video template for Instagram feed posts. Add your price, offer, and dates, then edit the colors online.",
+      "useCases": [
+        "valentines",
+        "sale",
+        "social-ad"
       ]
     }
   ]
