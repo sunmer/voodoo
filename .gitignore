@@ -7,3 +7,5 @@ render-bundle
 !.env.example
 .firebase
 *-debug.log
+.benchmark
+.benchmark-renderer-check-*

@@ -5,6 +5,6 @@ export default defineConfig({
   // GitHub Pages serves the site at /voodoo/. Set BASE=/ for other hosts.
   base: process.env.BASE ?? '/voodoo/',
   plugins: [react()],
-  build: {manifest: true, rollupOptions: {input: {main: 'index.html', about: 'about/index.html'}}},
+  build: {manifest: true, rollupOptions: {input: {main: 'index.html', about: 'about/index.html', benchmark: 'benchmark/index.html', benchmarkOctober: 'benchmark/2026-10/index.html'}}},
   server: {port: 5180},
 });

@@ -1,0 +1,49 @@
+{
+  "version": "1.1",
+  "edition": "2026-10",
+  "date": "2026-10-08",
+  "title": "Motion Graphics Benchmark",
+  "runs": 2,
+  "format": {"width": 1920, "height": 1080, "fps": 30, "durationInFrames": 360},
+  "limits": {"generationBudgetUsd": 25, "repairBudgetUsd": 10, "reserveUsd": 5, "maxTokens": 32000, "maxRepairs": 1, "requestTimeoutMs": 600000},
+  "pilot": {"version": "1.0", "model": "anthropic/claude-haiku-5.5", "brief": "product-launch", "completionTokens": 16000, "reasoningTokens": 13309, "costUsd": 0.007980687, "status": "truncated", "note": "A setup pilot exhausted the 16,000-token limit while writing code. Protocol 1.1 raises the limit to 32,000 for every model. The pilot is excluded from the 60 comparable runs but included in the spending ledger."},
+  "palette": {"background": "#101114", "foreground": "#F5F5F2", "accent": "#B8F36B", "secondary": "#78B9ED", "muted": "#B1B4BC"},
+  "models": [
+    {"key": "opus-5-5", "name": "Claude Opus 5.5", "author": "Anthropic", "id": "anthropic/claude-opus-5.5", "tier": "Premium", "weights": "Closed", "reasoning": "high"},
+    {"key": "sonnet-5-5", "name": "Claude Sonnet 5.5", "author": "Anthropic", "id": "anthropic/claude-sonnet-5.5", "tier": "Mid-range", "weights": "Closed", "reasoning": "high"},
+    {"key": "haiku-5-5", "name": "Claude Haiku 5.5", "author": "Anthropic", "id": "anthropic/claude-haiku-5.5", "tier": "Budget", "weights": "Closed", "reasoning": "high"},
+    {"key": "gpt-6-1-sol", "name": "GPT-6.1 Sol", "author": "OpenAI", "id": "openai/gpt-6.1-sol", "tier": "Mid-range", "weights": "Closed", "reasoning": "high"},
+    {"key": "gpt-6-luna", "name": "GPT-6 Luna", "author": "OpenAI", "id": "openai/gpt-6-luna", "tier": "Budget", "weights": "Closed", "reasoning": "high"},
+    {"key": "gemini-3-8-flash", "name": "Gemini 3.8 Flash", "author": "Google", "id": "google/gemini-3.8-flash", "tier": "Budget", "weights": "Closed", "reasoning": "high"},
+    {"key": "deepseek-v4-1-flash", "name": "DeepSeek V4.1 Flash", "author": "DeepSeek", "id": "deepseek/deepseek-v4.1-flash", "tier": "Budget", "weights": "Unverified", "reasoning": "high"},
+    {"key": "glm-5-3-flashx", "name": "GLM 5.3 FlashX", "author": "Z.ai", "id": "z-ai/glm-5.3-flashx", "tier": "Budget", "weights": "Unverified", "reasoning": "high"},
+    {"key": "qwen-3-8", "name": "Qwen3.8 2.4T A95B", "author": "Qwen", "id": "qwen/qwen3.8-2.4t-a95b", "tier": "Mid-range", "weights": "Open", "reasoning": "medium"},
+    {"key": "kimi-k3", "name": "Kimi K3", "author": "Moonshot AI", "id": "moonshotai/kimi-k3", "tier": "Mid-range", "weights": "Open", "reasoning": "high"}
+  ],
+  "briefs": [
+    {
+      "id": "product-launch",
+      "name": "Product launch",
+      "focus": "Storytelling, composition, and interface animation",
+      "prompt": "Create a silent, 12-second product-launch video for \"Relay\", a fictional team-planning app. Use Remotion, 1920 x 1080, 30 fps.\nFrom 0-3 seconds, introduce \"Relay\" and \"Make room for focused work\".\nFrom 3-9 seconds, show \"Plan together\", \"Protect focus time\", and \"See progress\" through an animated product interface.\nFrom 9-12 seconds, show \"Start your next week with Relay\". Keep the final message fully readable for at least two seconds.\nUse the supplied fonts and palette. Choose the layout, visual style, and transitions. Include no additional claims, external assets, or audio. Return a complete composition that follows the supplied component contract."
+    },
+    {
+      "id": "kinetic-type",
+      "name": "Kinetic typography",
+      "focus": "Type hierarchy, readable timing, and rhythm",
+      "prompt": "Create a silent, 12-second kinetic-typography film for \"Relay\". Use Remotion, 1920 x 1080, 30 fps.\nShow these exact phrases in this order: \"Less noise.\" from 0-3 seconds; \"More focus.\" from 3-6 seconds; \"Better work, together.\" from 6-9 seconds; \"Make room for what matters.\" with \"Relay\" from 9-12 seconds.\nKeep each complete phrase fully readable for at least 1.5 seconds. Use distinct but coherent typographic motion for each phrase. Keep the final message still and readable for the last two seconds.\nUse the supplied fonts and palette. Do not add other words, external assets, or audio. Choose the composition and transitions. Return a complete composition that follows the supplied component contract."
+    },
+    {
+      "id": "data-story",
+      "name": "Data story",
+      "focus": "Numerical accuracy, chart motion, and clarity",
+      "prompt": "Create a silent, 12-second data-story video for \"Relay\". Use Remotion, 1920 x 1080, 30 fps.\nFrom 0-3 seconds, introduce \"A week with more focus\" and \"Illustrative data\".\nFrom 3-9 seconds, animate a bar chart of focus hours: \"Monday\" 2, \"Tuesday\" 3, \"Wednesday\" 4, \"Thursday\" 3, \"Friday\" 5. Use a common zero baseline and a linear scale. Every day label and exact value must be readable together for at least two seconds after the animation settles.\nFrom 9-12 seconds, show \"17 hours of focused work\" and \"Relay\". Keep this final message fully readable for at least two seconds.\nUse the supplied fonts and palette. Do not imply these are measured customer results. Include no other claims, external assets, or audio. Return a complete composition that follows the supplied component contract."
+    }
+  ],
+  "rubric": [
+    {"id": "design", "name": "Visual design", "weight": 30, "description": "Hierarchy, composition, color, and visual coherence."},
+    {"id": "motion", "name": "Motion", "weight": 25, "description": "Timing, continuity, purposeful animation, and transitions."},
+    {"id": "readability", "name": "Readability", "weight": 25, "description": "Readable text, safe margins, and enough time to understand each scene."},
+    {"id": "adherence", "name": "Brief adherence", "weight": 20, "description": "Correct copy, numerical values, sequence, and requested duration."}
+  ]
+}

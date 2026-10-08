@@ -1,0 +1,7 @@
+@font-face {
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('./archivo.woff2') format('woff2');
+}
+body { font-family: Archivo, sans-serif; }

@@ -1,0 +1,155 @@
+# Motion Graphics Benchmark
+
+The October 2026 pilot compares ten models writing Remotion code through OpenRouter.
+The public pages are `/benchmark/` and `/benchmark/2026-10/`.
+Both prerender the article, prompts, and initial comparison without JavaScript.
+Brief switching and sorting are enhanced in the browser. No account or facet
+sidebar is included.
+
+## Current State
+
+All 60 protocol 1.1 runs finished on October 8, 2026. There are 48 rendered
+videos and 12 failed submissions: 11 invalid or truncated submissions and one
+compile failure after repair. Of the rendered videos, 47 passed on the first
+attempt and one passed after repair. All results are exported, including failures.
+The edition is `reviewing`; human reviews have not been completed.
+
+A v1.0 Haiku setup pilot was truncated after 13,309
+reasoning tokens at the original 16,000-token completion limit. Its $0.007980687
+cost is retained in the ledger, and its artifacts remain under
+`.benchmark/pilots/2026-10-v1.0/`. All 60 comparable runs use the new 32,000-token
+limit.
+
+The 62 comparison API calls cost $4.01051518857, including two repair requests.
+Confirmed charges including the setup pilot total $4.01849587557. An additional
+$0.247746 remains reserved for the unavailable GPT Sol Flex endpoint until its
+charge is reconciled. It is an estimate, not a confirmed charge. The failed
+infrastructure request returned no model output; the standard endpoint was
+selected before the comparison runs. Its incident record is under
+`.benchmark/2026-10/infrastructure/`. There are no in-flight requests.
+
+All 48 videos passed the format audit: 1920x1080, 30 fps, 360 frames, 12 seconds,
+and no audio. The anonymous review package is in
+`.benchmark/2026-10/blind-review/`. Keep its separate review key private.
+
+Do not substitute existing gallery videos for benchmark results.
+The example in the methodology section is explicitly labeled as a gallery example.
+
+## Pilot Limitation
+
+The runner selected stderr instead of combining stdout and stderr for failed
+compiles. Both repair requests therefore received the compiler stack trace without
+the detailed TypeScript diagnostics. First-attempt outcomes are unaffected.
+Repair outcomes are provisional, as disclosed on the public page. Preserve these
+original attempts. Before freezing the next protocol version, capture both output
+streams and test the repair feedback with a known compiler error. Do not silently
+rerun or replace this edition's submissions.
+
+## Prerequisites
+
+- Configure a dedicated `OPENROUTER_API_KEY` in the shell environment.
+- Set its lifetime OpenRouter spending limit to at most USD 40.
+- Rotate any key shared in chat after the authorized run ends.
+- Start Docker.
+- Build the isolated renderer:
+
+```sh
+docker build -f scripts/benchmark/sandbox/Dockerfile -t cliphouse-benchmark:1 .
+```
+
+The Docker build requires network access to install the fixed lockfile dependencies.
+The generated code runs later in a read-only container with networking disabled,
+no credentials, restricted resources, and only its input and output directories
+mounted. Never render untrusted generated code in the host application.
+
+The image ID is frozen at the first run. A changed image or protocol stops the
+runner. The Dockerfile context excludes environment files and credentials.
+
+## Run
+
+```sh
+npm run test:benchmark
+npm run benchmark:plan
+npm run benchmark:run -- --model haiku-5-5 --brief product-launch --run 1
+npm run benchmark:run
+```
+
+The plan is local and free. Execution validates the key, model availability,
+reasoning support, and Docker image before generation. It pins one provider per
+model, disables fallback, and records the endpoint snapshot.
+
+Up to four independent API requests overlap. Renders remain sequential in the
+same fixed container environment. Queue time is excluded from render time.
+The runner reserves the maximum quoted input/output charge for all in-flight
+requests before each new call. It stops before crossing USD 25 for generation or USD 10 for
+repairs, leaving USD 5 untouched. Reasoning is included in the 32,000 completion
+token limit. Price overrides are included in the reservation.
+
+The protocol requests high reasoning except Qwen, whose supported medium effort
+is used. Effort names are not equivalent amounts of computation across models.
+No temperature or seed is forced on models that do not support it.
+
+Only failed compiles/renders receive one repair. Invalid JSON and truncated
+submissions remain failures. Transport errors stop the runner; they are not
+silently retried or counted as model failures.
+
+Requests, raw responses, usage, source hashes, image ID, and error logs stay in
+`.benchmark/2026-10/`, which is ignored by Git. Existing completed jobs are skipped.
+A saved response with a matching ledger charge is reused after interruption,
+without another API call. An unresolved request or cost stops execution rather
+than regenerating a potentially cherry-picked replacement.
+
+If a request times out or omits a trustworthy `usage.cost`, reconcile the request
+with OpenRouter before another run. Do not delete the ledger or guess the cost.
+If a process crashes, inspect the pending request and running containers before
+removing `runner.lock`. The runner does not attempt automated charge recovery.
+
+## Review And Publish Results
+
+```sh
+node scripts/benchmark/publish.mjs --prepare-reviews
+```
+
+Give each of two reviewers the `blind-review/` videos and a separate copy of
+`review-template.json`. Keep `review-key.json` private. Do not show model names,
+source code, costs, or provider details during review. Each reviewer assigns
+scores from 1 to 5. Use 1 for poor, 3 for acceptable, and 5 for excellent.
+
+Combine the two completed reviewer objects into a JSON array, then run:
+
+```sh
+node scripts/benchmark/publish.mjs --reviews /absolute/path/reviews.json
+```
+
+Without `--reviews`, publication includes actual videos and metrics but no scores.
+The exporter verifies recorded charges and unchanged source. The build rejects
+duplicate entries, missing assets, one-reviewer scores, and unsafe asset paths.
+The command prepares local publication data only; it does not deploy.
+
+All completed jobs, including failures, must be published. Displayed run 1 is the
+default, never the highest-scoring take. Do not calculate an overall winner from
+unequal coverage. Cost, generation time, render time, reliability, and visual
+quality remain separate measurements.
+
+## Monthly Editions
+
+Generation for the first edition is complete. It remains in review until both
+blind reviews are complete.
+The exporter refuses to overwrite a completed edition. Before a later edition,
+retain this edition's protocol, results, and media as a separate frozen dataset;
+add the new edition and route rather than reusing its files. Corrections require
+an identified revision, not silent replacement. Protocol changes require a new
+protocol version.
+
+## Verify And Deploy
+
+```sh
+BASE=/ npm run build
+BASE=/ npx vite preview --host 127.0.0.1 --port 5182 --strictPort
+URL=http://127.0.0.1:5182/ node scripts/smoke-benchmark.cjs
+```
+
+Use the cloud-token validation and production deployment process in
+`docs/deployment.md`. Never change cloud accounts or start interactive login
+without user approval. This checkout contains unrelated in-progress changes;
+do not commit or deploy those as part of the benchmark without reviewing them.
