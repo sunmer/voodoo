@@ -8,7 +8,11 @@
       "Brand intro",
       "Event promo",
       "Social ad",
-      "Data recap"
+      "Data recap",
+      "Creator video",
+      "Logo reveal",
+      "Testimonial",
+      "Holiday sale"
     ],
     "style": [
       "Minimal",
@@ -179,6 +183,96 @@
       "creator": "light.form",
       "model": "Codex",
       "prompt": "A premium 8 second 16:9 launch with prism light rays, 3D glass point cards, and a rotating diamond lockup.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "lowerthird",
+      "title": "Lower Thirds",
+      "creator": "broadcast.kit",
+      "model": "Codex",
+      "prompt": "A 9 second 16:9 lower thirds pack: a name and title bar, a topic strap, and a social handle bubble over an interview frame.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "kinetic",
+      "title": "Kinetic",
+      "creator": "type.motion",
+      "model": "Codex",
+      "prompt": "A 9 second square kinetic typography piece with one word per line, full-screen word flashes, and a bold brand outro.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "endscreen",
+      "title": "End Screen",
+      "creator": "channel.lab",
+      "model": "Codex",
+      "prompt": "A 20 second 16:9 YouTube end screen and outro with two video placeholders and a subscribe circle.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "blackfriday",
+      "title": "Black Friday",
+      "creator": "promo.desk",
+      "model": "Codex",
+      "prompt": "A 9 second 9:16 Black Friday sale video with caution-tape marquees, slamming deal cards, and a pulsing shop button.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "wordmark",
+      "title": "Wordmark",
+      "creator": "mark.studio",
+      "model": "Codex",
+      "prompt": "A 6 second 16:9 wordmark logo reveal with a dot burst, letter mask reveal, gradient underline, and circle wipe.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "testimonial",
+      "title": "Testimonial",
+      "creator": "proof.co",
+      "model": "Codex",
+      "prompt": "A 10 second 4:5 customer testimonial video with a serif quote reveal, five stars, an author card, and a result stat.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "ytintro",
+      "title": "Channel Intro",
+      "creator": "channel.lab",
+      "model": "Codex",
+      "prompt": "A 6 second 16:9 YouTube intro with color bar wipes, a glitch channel name, and a tagline.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "wrapped",
+      "title": "Wrapped",
+      "creator": "recap.club",
+      "model": "Codex",
+      "prompt": "A 10 second 9:16 year in review video with bold shapes, a ranked top-three list, and a share call to action.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "countdown",
+      "title": "Countdown",
+      "creator": "launch.clock",
+      "model": "Codex",
+      "prompt": "An 8 second 9:16 countdown video from 5 to 1 with a progress ring, then a flash reveal and call to action.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0"
+    },
+    {
+      "id": "podcast",
+      "title": "Podcast",
+      "creator": "audio.club",
+      "model": "Codex",
+      "prompt": "An 8 second square podcast intro with an episode badge, show title, animated waveform, and spinning record outro.",
       "createdAt": "2026-10-08",
       "license": "MIT-0"
     }
@@ -464,7 +558,10 @@
         "sneakers",
         "drop",
         "reels",
-        "tiktok"
+        "tiktok",
+        "tiktok template",
+        "youtube shorts template",
+        "instagram reel template"
       ],
       "createdAt": "2026-10-06",
       "stats": {
@@ -1004,7 +1101,9 @@
         "ai",
         "features",
         "launch",
-        "bento"
+        "bento",
+        "product demo video",
+        "saas demo video"
       ],
       "createdAt": "2026-10-07",
       "stats": {
@@ -1095,7 +1194,10 @@
         "ios",
         "mobile",
         "reels",
-        "glass"
+        "glass",
+        "tiktok template",
+        "youtube shorts template",
+        "product demo"
       ],
       "createdAt": "2026-10-07",
       "stats": {
@@ -1365,7 +1467,9 @@
         "creator",
         "zine",
         "collage",
-        "story"
+        "story",
+        "tiktok template",
+        "instagram reel template"
       ],
       "createdAt": "2026-10-07",
       "stats": {
@@ -1456,7 +1560,9 @@
         "product demo",
         "app",
         "workflow",
-        "feature"
+        "feature",
+        "product demo video",
+        "saas demo video"
       ],
       "stats": {
         "exports": 0,
@@ -1505,7 +1611,9 @@
         "launch",
         "event",
         "cinema",
-        "announcement"
+        "announcement",
+        "youtube shorts template",
+        "tiktok template"
       ],
       "stats": {
         "exports": 0,
@@ -1647,7 +1755,8 @@
         "product",
         "premium",
         "launch",
-        "technology"
+        "technology",
+        "product demo video"
       ],
       "stats": {
         "exports": 0,
@@ -1676,6 +1785,486 @@
       "useCases": [
         "product-launch",
         "saas",
+        "youtube-intro"
+      ]
+    },
+    {
+      "id": "lowerthird-news",
+      "template": "lowerthird",
+      "title": "Lower Thirds Pack",
+      "creator": "broadcast.kit",
+      "description": "Name bars, topic straps, and a social handle for interviews, streams, and YouTube videos.",
+      "purpose": "Creator video",
+      "style": [
+        "Minimal",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "lower thirds",
+        "lower third template",
+        "name title",
+        "interview",
+        "broadcast",
+        "youtube",
+        "caption"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "Maya Lindqvist",
+          "headline": "Design Lead, Northwind",
+          "subhead": "Why small teams ship better products",
+          "point1": "Episode 12",
+          "cta": "@mayadesigns"
+        },
+        "theme": {
+          "background": "#14161c",
+          "surface": "#3a4152",
+          "foreground": "#ffffff",
+          "accent": "#ef4444",
+          "accent2": "#facc15"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free lower thirds template pack with name and title bars, a topic strap, and a social handle. Edit the text and colors online.",
+      "useCases": [
+        "lower-thirds",
+        "youtube-intro"
+      ]
+    },
+    {
+      "id": "kinetic-type",
+      "template": "kinetic",
+      "title": "Kinetic Typography",
+      "creator": "type.motion",
+      "description": "One word per beat: bold kinetic typography for title animations, manifestos, and social promos.",
+      "purpose": "Brand intro",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 5,
+      "keywords": [
+        "kinetic typography",
+        "title animation",
+        "text animation",
+        "typography",
+        "manifesto",
+        "words"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "Loudhouse",
+          "headline": "Make every word move",
+          "subhead": "Bold ideas deserve motion that hits on every beat.",
+          "point1": "Louder",
+          "point2": "Faster",
+          "point3": "Bolder",
+          "cta": "Start creating"
+        },
+        "theme": {
+          "background": "#0b0b0f",
+          "surface": "#26262e",
+          "foreground": "#f5f5f0",
+          "accent": "#ff3d2e",
+          "accent2": "#3dd6ff"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free kinetic typography template with one word per beat, full-screen word flashes, and a bold outro. Animate your own title text online.",
+      "useCases": [
+        "kinetic-typography",
+        "brand-intro",
+        "social-ad"
+      ]
+    },
+    {
+      "id": "endscreen-youtube",
+      "template": "endscreen",
+      "title": "YouTube End Screen",
+      "creator": "channel.lab",
+      "description": "A 20 second YouTube outro with two video slots and a subscribe circle placed for end screen elements.",
+      "purpose": "Creator video",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "youtube end screen",
+        "youtube outro",
+        "end card",
+        "subscribe",
+        "outro template",
+        "creator"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "BUILD WITH ALEX",
+          "headline": "Thanks for watching",
+          "subhead": "New videos every Tuesday",
+          "point1": "Watch next",
+          "point2": "Fan favorites",
+          "cta": "Subscribe"
+        },
+        "theme": {
+          "background": "#0f1115",
+          "surface": "#232835",
+          "foreground": "#f4f6fb",
+          "accent": "#ff0033",
+          "accent2": "#4f8cff"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free 20 second YouTube end screen and outro template with two video placeholders and a subscribe circle. Edit text and colors online.",
+      "useCases": [
+        "youtube-end-screen",
+        "youtube-intro"
+      ]
+    },
+    {
+      "id": "blackfriday-sale",
+      "template": "blackfriday",
+      "title": "Black Friday Sale",
+      "creator": "promo.desk",
+      "description": "Caution-tape marquees, slamming deal cards, and a pulsing shop button for Black Friday and Cyber Monday.",
+      "purpose": "Holiday sale",
+      "style": [
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "black friday",
+        "black friday video",
+        "cyber monday",
+        "sale",
+        "discount",
+        "holiday",
+        "promo",
+        "ecommerce"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "NORTH SUPPLY",
+          "headline": "Black Friday sale",
+          "subhead": "Our biggest price drop of the year. Three days only.",
+          "point1": "50% off",
+          "point2": "Free shipping",
+          "point3": "Gifts from $9",
+          "cta": "Shop the sale"
+        },
+        "theme": {
+          "background": "#050505",
+          "surface": "#1d1d1d",
+          "foreground": "#ffffff",
+          "accent": "#ffd400",
+          "accent2": "#ff2e63"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free vertical Black Friday sale video template with marquee tape, deal cards, and a shop button for Reels, TikTok, and Stories.",
+      "useCases": [
+        "black-friday",
+        "sale",
+        "social-ad",
+        "instagram-reel"
+      ]
+    },
+    {
+      "id": "wordmark-reveal",
+      "template": "wordmark",
+      "title": "Wordmark Logo Reveal",
+      "creator": "mark.studio",
+      "description": "A clean wordmark logo reveal with a dot burst, letter masks, and a circle wipe sign-off.",
+      "purpose": "Logo reveal",
+      "style": [
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "logo animation",
+        "logo reveal",
+        "logo intro",
+        "wordmark",
+        "brand reveal",
+        "logo sting"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "lumora",
+          "headline": "Light for every room",
+          "cta": "lumora.com"
+        },
+        "theme": {
+          "background": "#0d0d12",
+          "surface": "#24243a",
+          "foreground": "#ffffff",
+          "accent": "#7c5cff",
+          "accent2": "#22d3ee"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free wordmark logo reveal template with a dot burst, letter mask reveal, and circle wipe. Type your brand name to animate your logo intro.",
+      "useCases": [
+        "logo-reveal",
+        "brand-intro",
+        "youtube-intro"
+      ]
+    },
+    {
+      "id": "testimonial-quote",
+      "template": "testimonial",
+      "title": "Customer Testimonial",
+      "creator": "proof.co",
+      "description": "A serif quote reveal, five stars, an author card, and a result stat for customer stories.",
+      "purpose": "Testimonial",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "customer testimonial video",
+        "testimonial video template",
+        "review",
+        "quote",
+        "case study",
+        "social proof",
+        "b2b"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "Ledgerly",
+          "headline": "CFO, Brightline Health",
+          "point1": "3x faster close",
+          "cta": "Book a demo",
+          "quote": "Ledgerly cut our month-end close from two weeks to four days. Our finance team finally has time for strategy.",
+          "author": "Priya Raman"
+        },
+        "theme": {
+          "background": "#f6f3ee",
+          "surface": "#e8e1d6",
+          "foreground": "#1a1a1a",
+          "accent": "#e2622b",
+          "accent2": "#2f5d50"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free customer testimonial video template with an animated quote, star rating, author card, and result stat for B2B social proof.",
+      "useCases": [
+        "testimonial",
+        "saas"
+      ]
+    },
+    {
+      "id": "ytintro-channel",
+      "template": "ytintro",
+      "title": "YouTube Channel Intro",
+      "creator": "channel.lab",
+      "description": "Color bar wipes and a glitch channel name for a 6 second YouTube intro.",
+      "purpose": "Creator video",
+      "style": [
+        "Bold",
+        "Neon"
+      ],
+      "energy": 5,
+      "keywords": [
+        "youtube intro",
+        "youtube intro template",
+        "intro video template",
+        "channel intro",
+        "glitch",
+        "creator"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "PIXEL PILOT",
+          "headline": "Games, tech, teardowns",
+          "cta": "New every Friday"
+        },
+        "theme": {
+          "background": "#0a0a12",
+          "surface": "#2b2b45",
+          "foreground": "#ffffff",
+          "accent": "#ff2bd6",
+          "accent2": "#2bf5ff"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free 6 second YouTube intro template with color bar wipes and a glitch channel name. Add your channel name and colors online.",
+      "useCases": [
+        "youtube-intro"
+      ]
+    },
+    {
+      "id": "wrapped-year",
+      "template": "wrapped",
+      "title": "Year in Review",
+      "creator": "recap.club",
+      "description": "Bold shapes and a ranked top three for year in review and Wrapped-style recaps.",
+      "purpose": "Data recap",
+      "style": [
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "year in review",
+        "wrapped template",
+        "recap",
+        "year end",
+        "top 3",
+        "annual"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "STUDIO NINE",
+          "headline": "Our year wrapped",
+          "subhead": "The moments that made our year",
+          "point1": "12 launches",
+          "point2": "4M views",
+          "point3": "38 countries",
+          "cta": "Share your year"
+        },
+        "theme": {
+          "background": "#14062b",
+          "surface": "#ff8a3d",
+          "foreground": "#ffffff",
+          "accent": "#1ed760",
+          "accent2": "#ff4fa3"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free vertical year in review template with a ranked top three and bold shapes. Make a Wrapped-style recap for your brand or team.",
+      "useCases": [
+        "year-in-review",
+        "data-recap",
+        "instagram-reel"
+      ]
+    },
+    {
+      "id": "countdown-launch",
+      "template": "countdown",
+      "title": "Countdown Video",
+      "creator": "launch.clock",
+      "description": "A five second countdown timer with a progress ring and a flash reveal for launches and live events.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 4,
+      "keywords": [
+        "countdown video",
+        "countdown timer video",
+        "timer",
+        "launch",
+        "live event",
+        "premiere"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "LIVE PREMIERE",
+          "headline": "Going live in",
+          "subhead": "We are live now",
+          "cta": "Join the stream"
+        },
+        "theme": {
+          "background": "#07090f",
+          "surface": "#1b2233",
+          "foreground": "#ffffff",
+          "accent": "#ff5a1f",
+          "accent2": "#ffd60a"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free vertical countdown video template from 5 to 1 with a progress ring, then a flash reveal and call to action for launches.",
+      "useCases": [
+        "countdown",
+        "event-promo",
+        "instagram-reel"
+      ]
+    },
+    {
+      "id": "podcast-intro",
+      "template": "podcast",
+      "title": "Podcast Intro",
+      "creator": "audio.club",
+      "description": "An episode badge, show title, animated waveform, and spinning record for podcast intros.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "podcast intro",
+        "podcast video",
+        "audiogram style",
+        "waveform",
+        "episode",
+        "video podcast"
+      ],
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "props": {
+        "texts": {
+          "brand": "Signal Hour",
+          "headline": "with Sam Okafor",
+          "subhead": "How small studios beat big budgets",
+          "point1": "EP 48",
+          "point2": "This week",
+          "cta": "Listen everywhere"
+        },
+        "theme": {
+          "background": "#101418",
+          "surface": "#2a3440",
+          "foreground": "#f2f5f7",
+          "accent": "#ffb020",
+          "accent2": "#2dd4bf"
+        }
+      },
+      "createdAt": "2026-10-08",
+      "seoDescription": "A free square podcast intro video template with an episode badge, animated waveform, and show title. Add your own audio in any editor.",
+      "useCases": [
+        "podcast-intro",
         "youtube-intro"
       ]
     }

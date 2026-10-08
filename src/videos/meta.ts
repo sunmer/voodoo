@@ -15,6 +15,16 @@ import {spotlightMeta} from './spotlight/meta.ts';
 import {sliceMeta} from './slice/meta.ts';
 import {swissMeta} from './swiss/meta.ts';
 import {prismMeta} from './prism/meta.ts';
+import {lowerthirdMeta} from './lowerthird/meta.ts';
+import {kineticMeta} from './kinetic/meta.ts';
+import {endscreenMeta} from './endscreen/meta.ts';
+import {blackfridayMeta} from './blackfriday/meta.ts';
+import {wordmarkMeta} from './wordmark/meta.ts';
+import {testimonialMeta} from './testimonial/meta.ts';
+import {ytintroMeta} from './ytintro/meta.ts';
+import {wrappedMeta} from './wrapped/meta.ts';
+import {countdownMeta} from './countdown/meta.ts';
+import {podcastMeta} from './podcast/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -33,4 +43,14 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [sliceMeta.id]: sliceMeta,
   [swissMeta.id]: swissMeta,
   [prismMeta.id]: prismMeta,
+  [lowerthirdMeta.id]: lowerthirdMeta,
+  [kineticMeta.id]: kineticMeta,
+  [endscreenMeta.id]: endscreenMeta,
+  [blackfridayMeta.id]: blackfridayMeta,
+  [wordmarkMeta.id]: wordmarkMeta,
+  [testimonialMeta.id]: testimonialMeta,
+  [ytintroMeta.id]: ytintroMeta,
+  [wrappedMeta.id]: wrappedMeta,
+  [countdownMeta.id]: countdownMeta,
+  [podcastMeta.id]: podcastMeta,
 };

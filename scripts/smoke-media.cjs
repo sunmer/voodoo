@@ -59,14 +59,21 @@ async function check(engine, options, name) {
     assert(await blocked.locator('.card img').first().evaluate((img) => img.complete && img.naturalWidth > 0), `${name}: blocked autoplay poster loaded`);
     await blocked.close();
 
-    const ids = ['drop-sale', ...manifest.variants.filter((v) => !v.hidden && ['bento', 'glass', 'flex', 'riso', 'collage', 'cursor', 'spotlight', 'slice', 'swiss', 'prism'].includes(v.template)).map((v) => v.id)];
+    const {templateMeta} = await import('../src/videos/meta.ts');
+    const loopMs = (id) => {
+      const m = templateMeta[manifest.variants.find((v) => v.id === id).template];
+      return Math.ceil((m.durationInFrames / m.fps) * 1000) + 500;
+    };
+    const ids = ['drop-sale', ...manifest.variants.filter((v) => !v.hidden && ['bento', 'glass', 'flex', 'riso', 'collage', 'cursor', 'spotlight', 'slice', 'swiss', 'prism', 'lowerthird', 'kinetic', 'endscreen', 'blackfriday', 'wordmark', 'testimonial', 'ytintro', 'wrapped', 'countdown', 'podcast'].includes(v.template)).map((v) => v.id)];
     for (const id of ids) {
       await page.goto(`${base}#/v/${id}`);
       await page.locator('.editor-top h1').waitFor();
       // A complete loop exercises all scenes, including the originally failing editor.
-      await page.waitForTimeout(id === 'drop-sale' ? 16500 : 8500);
+      await page.waitForTimeout(loopMs(id));
       assert.equal(await page.locator('[aria-invalid="true"]').count(), 0, `${id}: valid preset`);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${id}: no horizontal page overflow`);
+      const pause = page.getByRole('button', {name: 'Pause', exact: true});
+      if (await pause.isVisible()) await pause.click();
       await page.locator('.scene').first().click();
       await page.locator('.editor-video').scrollIntoViewIfNeeded();
       await page.waitForTimeout(150);

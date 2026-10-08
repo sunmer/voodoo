@@ -1,17 +1,21 @@
 // Shared vocabularies. Plain data with no imports, so Node scripts can read it too.
 
+// `kit: false` roles hold per-video content, so the shared brand kit skips them.
 export const ROLES = {
-  brand: {label: 'Brand', max: 18},
-  headline: {label: 'Headline', max: 24},
-  subhead: {label: 'Subhead', max: 52},
-  point1: {label: 'Point 1', max: 16},
-  point2: {label: 'Point 2', max: 16},
-  point3: {label: 'Point 3', max: 16},
-  cta: {label: 'Call to action', max: 20},
+  brand: {label: 'Brand', max: 18, kit: true},
+  headline: {label: 'Headline', max: 24, kit: true},
+  subhead: {label: 'Subhead', max: 52, kit: true},
+  point1: {label: 'Point 1', max: 16, kit: true},
+  point2: {label: 'Point 2', max: 16, kit: true},
+  point3: {label: 'Point 3', max: 16, kit: true},
+  cta: {label: 'Call to action', max: 20, kit: true},
+  quote: {label: 'Quote', max: 140, kit: false},
+  author: {label: 'Author', max: 40, kit: false},
 } as const;
 
 export type Role = keyof typeof ROLES;
 export const ROLE_KEYS = Object.keys(ROLES) as Role[];
+export const KIT_ROLE_KEYS = ROLE_KEYS.filter((role) => ROLES[role].kit);
 
 export const THEME_ROLES = ['background', 'surface', 'foreground', 'accent', 'accent2'] as const;
 export type ThemeRole = (typeof THEME_ROLES)[number];
@@ -40,6 +44,10 @@ export const SCENE_TYPES = {
   chart: 'Chart',
   quote: 'Quote',
   grid: 'Bento grid',
+  'lower-third': 'Lower third',
+  'end-screen': 'End screen',
+  countdown: 'Countdown',
+  byline: 'Byline',
   transition: 'Transition',
 } as const;
 export type SceneType = keyof typeof SCENE_TYPES;
@@ -69,6 +77,9 @@ export const MOTION = [
   'Spotlight',
   'Slice',
   'Swiss grid',
+  'Lower thirds',
+  'Countdown timer',
+  'Waveform',
 ] as const;
 export type Motion = (typeof MOTION)[number];
 

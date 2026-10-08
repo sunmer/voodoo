@@ -43,6 +43,7 @@ const assert = (cond, msg) => {
     // Editor: text is edited on the canvas; the brand kit still applies.
     await page.goto(base + '#/v/stack-kicklab');
     await page.waitForTimeout(1000);
+    await page.getByRole('button', {name: 'Pause', exact: true}).click();
     await page.locator('.scene').nth(1).click();
     await page.waitForTimeout(400);
     await page.getByRole('button', {name: 'Edit Point 1', exact: true}).first().click();
@@ -55,7 +56,7 @@ const assert = (cond, msg) => {
     await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, scale: 'css'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};
-    assert(total === manifest.variants.filter((v) => !v.hidden).length && vertical === 4, 'facet counts');
+    assert(total === manifest.variants.filter((v) => !v.hidden).length && vertical === 7, 'facet counts');
     assert(linked === 'List', 'focus links point to list scene');
     assert(brandValue === 'ACME', 'brand kit applied in editor');
   }

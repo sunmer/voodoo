@@ -47,10 +47,12 @@ Facets come from different sources:
 
 All templates use the text roles in `src/videos/vocab.ts`: `brand`, `headline`, `subhead`, `point1` to `point3`, and `cta`. All templates also use the same five theme roles. Because of this, the **brand kit** can apply one set of values to every video. Each card then shows one static Remotion frame with the user's text, but only while the card is on screen.
 
+Content roles hold text that belongs to one video, so the brand kit never fills them. `quote` (140 characters) and `author` (40 characters) are content roles for testimonials. Countdown digits come from the timeline, not from a text role. Image logo upload is not part of the contract yet; Wordmark animates the brand name as text.
+
 ## Add A Template
 
 1. Generate a composition that reads all text from `props.texts` with shared roles, and all color from `props.theme`.
-2. Add `meta.ts` with its scenes. Each scene has `from`, `duration`, `focus`, and `roles`. Map the components to scenes in the same order.
+2. Add `meta.ts` with its scenes. Each scene has `from`, `duration`, `focus`, and `roles`. Map the components to scenes in the same order with `SceneTrack` from `src/videos/shared/scenes.tsx`. Each role must be visible at its scene's midpoint because inline tests seek there.
 3. Add the schema with `textsSchema([...roles])` and `themeSchema`, and register the template in `src/videos/registry.ts` and `src/videos/meta.ts`.
 4. Add the template and one visible variant to `manifest.json`. Keep retired variants with `"hidden": true` so existing links still open. Then run `node scripts/previews.mjs`.
 5. Mark each editable text group with `data-text-role="headline"` (or the matching shared role). Use `display: contents` on additional wrappers to preserve the composition layout. Tag the copy itself, not decorative labels or whole scenes.

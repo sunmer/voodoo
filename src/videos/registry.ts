@@ -38,6 +38,26 @@ import {Swiss} from './swiss/Swiss';
 import {swissSchema} from './swiss/schema';
 import {Prism} from './prism/Prism';
 import {prismSchema} from './prism/schema';
+import {Lowerthird} from './lowerthird/Lowerthird';
+import {lowerthirdSchema} from './lowerthird/schema';
+import {Kinetic} from './kinetic/Kinetic';
+import {kineticSchema} from './kinetic/schema';
+import {Endscreen} from './endscreen/Endscreen';
+import {endscreenSchema} from './endscreen/schema';
+import {Blackfriday} from './blackfriday/Blackfriday';
+import {blackfridaySchema} from './blackfriday/schema';
+import {Wordmark} from './wordmark/Wordmark';
+import {wordmarkSchema} from './wordmark/schema';
+import {Testimonial} from './testimonial/Testimonial';
+import {testimonialSchema} from './testimonial/schema';
+import {Ytintro} from './ytintro/Ytintro';
+import {ytintroSchema} from './ytintro/schema';
+import {Wrapped} from './wrapped/Wrapped';
+import {wrappedSchema} from './wrapped/schema';
+import {Countdown} from './countdown/Countdown';
+import {countdownSchema} from './countdown/schema';
+import {Podcast} from './podcast/Podcast';
+import {podcastSchema} from './podcast/schema';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -62,4 +82,14 @@ export const compositions: Record<string, CompositionDef> = {
   slice: {...templateMeta.slice, component: Slice, schema: sliceSchema as unknown as VideoSchema},
   swiss: {...templateMeta.swiss, component: Swiss, schema: swissSchema as unknown as VideoSchema},
   prism: {...templateMeta.prism, component: Prism, schema: prismSchema as unknown as VideoSchema},
+  lowerthird: {...templateMeta.lowerthird, component: Lowerthird, schema: lowerthirdSchema as unknown as VideoSchema},
+  kinetic: {...templateMeta.kinetic, component: Kinetic, schema: kineticSchema as unknown as VideoSchema},
+  endscreen: {...templateMeta.endscreen, component: Endscreen, schema: endscreenSchema as unknown as VideoSchema},
+  blackfriday: {...templateMeta.blackfriday, component: Blackfriday, schema: blackfridaySchema as unknown as VideoSchema},
+  wordmark: {...templateMeta.wordmark, component: Wordmark, schema: wordmarkSchema as unknown as VideoSchema},
+  testimonial: {...templateMeta.testimonial, component: Testimonial, schema: testimonialSchema as unknown as VideoSchema},
+  ytintro: {...templateMeta.ytintro, component: Ytintro, schema: ytintroSchema as unknown as VideoSchema},
+  wrapped: {...templateMeta.wrapped, component: Wrapped, schema: wrappedSchema as unknown as VideoSchema},
+  countdown: {...templateMeta.countdown, component: Countdown, schema: countdownSchema as unknown as VideoSchema},
+  podcast: {...templateMeta.podcast, component: Podcast, schema: podcastSchema as unknown as VideoSchema},
 };

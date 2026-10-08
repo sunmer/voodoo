@@ -17,7 +17,7 @@ const exportStatus = mp4 ? 'Free, full resolution, no watermark' : 'Not availabl
 const exportFact = mp4 ? 'Signed-in users can download a free full-resolution MP4 with no watermark.' : 'Hosted MP4 export is not available yet.';
 const promise = `100% free to browse and edit. No account, watermark, credit card, or attribution required.${mp4 ? ' Free MP4 downloads.' : ''} Built for Claude, ChatGPT, Codex, and any coding agent.`;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'));
-const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo']);
+const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo', 'lower-thirds', 'kinetic-typography', 'youtube-end-screen', 'black-friday', 'logo-reveal', 'testimonial', 'year-in-review', 'countdown', 'podcast-intro']);
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const local = (p) => `${base.replace(/\/$/, '')}${p}`;
@@ -45,6 +45,13 @@ function validate() {
   }
   for (const v of visible) {
     if (!templates.has(v.template) || !templateMeta[v.template]) errors.push(`${v.id}: unknown template ${v.template}`);
+    const roles = templateMeta[v.template]?.scenes.flatMap((s) => s.roles) ?? [];
+    for (const [role, value] of Object.entries(v.props?.texts ?? {})) {
+      if (!ROLES[role]) errors.push(`${v.id}: unknown text role ${role}`);
+      else if (!value || value.length > ROLES[role].max) errors.push(`${v.id}: ${role} must be 1 to ${ROLES[role].max} characters`);
+      else if (!roles.includes(role)) errors.push(`${v.id}: ${role} is not assigned to a scene`);
+    }
+    for (const [role, value] of Object.entries(v.props?.theme ?? {})) if (!/^#[0-9a-fA-F]{6}$/.test(value)) errors.push(`${v.id}: invalid ${role} color`);
     if (!/^[a-z0-9-]+$/.test(v.id)) errors.push(`${v.id}: slug must use lowercase letters, numbers, and hyphens`);
     if (v.seoDescription?.length < 80 || v.seoDescription?.length > 170) errors.push(`${v.id}: seoDescription must be 80 to 170 characters`);
     if (!manifest.vocab.purpose.includes(v.purpose)) errors.push(`${v.id}: invalid purpose`);

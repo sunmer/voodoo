@@ -1,5 +1,5 @@
 import {Eraser} from 'lucide-react';
-import {ROLES, ROLE_KEYS, THEME_LABELS, THEME_ROLES, type Theme} from '../videos/vocab';
+import {KIT_ROLE_KEYS, ROLES, THEME_LABELS, THEME_ROLES, type Theme} from '../videos/vocab';
 import {setBrandKit, useBrandKit} from './brandKit';
 import {PRESETS} from './palettes';
 
@@ -33,7 +33,7 @@ export function BrandKitPanel() {
         </div>
       </div>
       <div className="kit-grid">
-        {ROLE_KEYS.map((role) => {
+        {KIT_ROLE_KEYS.map((role) => {
           const v = kit.texts[role] ?? '';
           const over = v.length > ROLES[role].max;
           return (

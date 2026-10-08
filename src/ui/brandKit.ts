@@ -46,7 +46,7 @@ export const kitActive = (k: BrandKit) => k.enabled && kitHasValues(k);
 export function applyKit(props: VideoProps, kit: BrandKit): VideoProps {
   const texts = {...props.texts};
   for (const role of Object.keys(texts) as Role[]) {
-    const v = kit.texts[role]?.trim();
+    const v = ROLES[role].kit ? kit.texts[role]?.trim() : undefined;
     if (v && v.length <= ROLES[role].max) texts[role] = v;
   }
   return {texts, theme: kit.theme ?? props.theme};
