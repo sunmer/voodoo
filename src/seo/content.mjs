@@ -248,6 +248,32 @@ export const useCases = [
       ['Which formats are available?', 'The set includes 9:16 for Reels and Stories, 4:5 and 1:1 for feeds and LinkedIn, and 16:9 for YouTube and websites.'],
     ],
   },
+  {
+    path: '/quiz-and-poll-video-templates/',
+    title: 'Quiz, Poll, and Ranking Video Templates | cliphou.se',
+    h1: 'Quiz, poll, and ranking videos',
+    description: 'Free quiz, this or that, top 5 ranking, comparison, and before and after video templates. Type your questions and options, then edit online.',
+    intro: 'Interactive formats that ask viewers to guess, vote, or compare. Each one ends with a call to comment or act.',
+    match: (v) => ['quiz', 'poll', 'top-list', 'comparison', 'before-after'].some((u) => v.useCases.includes(u)),
+    faq: [
+      ['How do I mark the right quiz answer?', 'Put the right answer first in the answer list. The video shuffles the answers and reveals the first one as correct.'],
+      ['Are the poll percentages real?', 'No. The vote shares are a decorative animation. Ask viewers to vote in the comments or with a platform poll sticker.'],
+      ['How many entries can a ranking have?', 'The list accepts 2 to 6 entries separated by commas. The first entry is number one.'],
+    ],
+  },
+  {
+    path: '/timeline-video-templates/',
+    title: 'Animated Timeline and Progress Bar Templates | cliphou.se',
+    h1: 'Animated timeline and progress templates',
+    description: 'Free animated timeline and progress bar video templates. Type dated milestones or a goal percentage, and the route or bar animates in your browser.',
+    intro: 'Show how far you have come, or how close you are to a goal, in a short 16:9 video.',
+    match: (v) => v.useCases.includes('timeline') || v.useCases.includes('progress-bar'),
+    faq: [
+      ['How do I add dates to the timeline?', 'Start each list entry with a year or number, for example "2019 Founded". Entries without a number are numbered in order.'],
+      ['How does the progress bar know how full to be?', 'A percentage such as 78% fills the bar to 78 percent. Other numbers fill the whole bar.'],
+      ['Can I use these in slides?', 'Yes. Both templates are 16:9, so the MP4 fits a presentation slide.'],
+    ],
+  },
 ];
 
 export const editorialPages = [

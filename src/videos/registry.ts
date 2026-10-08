@@ -82,6 +82,20 @@ import {Anniversary} from './anniversary/Anniversary';
 import {anniversarySchema} from './anniversary/schema';
 import {Grandopening} from './grandopening/Grandopening';
 import {grandopeningSchema} from './grandopening/schema';
+import {Beforeafter} from './beforeafter/Beforeafter';
+import {beforeafterSchema} from './beforeafter/schema';
+import {Timeline} from './timeline/Timeline';
+import {timelineSchema} from './timeline/schema';
+import {Quiz} from './quiz/Quiz';
+import {quizSchema} from './quiz/schema';
+import {Toplist} from './toplist/Toplist';
+import {toplistSchema} from './toplist/schema';
+import {Poll} from './poll/Poll';
+import {pollSchema} from './poll/schema';
+import {Progress} from './progress/Progress';
+import {progressSchema} from './progress/schema';
+import {Comparison} from './comparison/Comparison';
+import {comparisonSchema} from './comparison/schema';
 import {legacy} from './legacy';
 import {currentVersion} from '../agent/versions';
 import {Apppromo} from './apppromo/Apppromo';
@@ -151,6 +165,13 @@ export const compositions: Record<string, CompositionDef> = {
   newsletter: {...templateMeta.newsletter, component: Newsletter, schema: newsletterSchema as unknown as VideoSchema},
   anniversary: {...templateMeta.anniversary, component: Anniversary, schema: anniversarySchema as unknown as VideoSchema},
   grandopening: {...templateMeta.grandopening, component: Grandopening, schema: grandopeningSchema as unknown as VideoSchema},
+  beforeafter: {...templateMeta.beforeafter, component: Beforeafter, schema: beforeafterSchema as unknown as VideoSchema},
+  timeline: {...templateMeta.timeline, component: Timeline, schema: timelineSchema as unknown as VideoSchema},
+  quiz: {...templateMeta.quiz, component: Quiz, schema: quizSchema as unknown as VideoSchema},
+  toplist: {...templateMeta.toplist, component: Toplist, schema: toplistSchema as unknown as VideoSchema},
+  poll: {...templateMeta.poll, component: Poll, schema: pollSchema as unknown as VideoSchema},
+  progress: {...templateMeta.progress, component: Progress, schema: progressSchema as unknown as VideoSchema},
+  comparison: {...templateMeta.comparison, component: Comparison, schema: comparisonSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.
