@@ -30,6 +30,13 @@ import {livestreamSchema} from './livestream/schema.ts';
 import {barchartSchema} from './barchart/schema.ts';
 import {counterSchema} from './counter/schema.ts';
 import {cybermondaySchema} from './cybermonday/schema.ts';
+import {apppromoSchema} from './apppromo/schema.ts';
+import {pricingSchema} from './pricing/schema.ts';
+import {casestudySchema} from './casestudy/schema.ts';
+import {featureSchema} from './feature/schema.ts';
+import {quotecardSchema} from './quotecard/schema.ts';
+import {linechartSchema} from './linechart/schema.ts';
+import {flashsaleSchema} from './flashsale/schema.ts';
 
 // Schemas without React components, so build scripts and the share server can validate props.
 export const schemas = {
@@ -40,4 +47,11 @@ export const schemas = {
   stack: stackSchema, swiss: swissSchema, terminal: terminalSchema, testimonial: testimonialSchema,
   ticker: tickerSchema, wordmark: wordmarkSchema, wrapped: wrappedSchema, ytintro: ytintroSchema,
   hiring: hiringSchema, livestream: livestreamSchema, barchart: barchartSchema, counter: counterSchema, cybermonday: cybermondaySchema,
+  apppromo: apppromoSchema,
+  pricing: pricingSchema,
+  casestudy: casestudySchema,
+  feature: featureSchema,
+  quotecard: quotecardSchema,
+  linechart: linechartSchema,
+  flashsale: flashsaleSchema,
 } as unknown as Record<string, VideoSchema>;

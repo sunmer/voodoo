@@ -70,6 +70,20 @@ import {Cybermonday} from './cybermonday/Cybermonday';
 import {cybermondaySchema} from './cybermonday/schema';
 import {legacy} from './legacy';
 import {currentVersion} from '../agent/versions';
+import {Apppromo} from './apppromo/Apppromo';
+import {apppromoSchema} from './apppromo/schema';
+import {Pricing} from './pricing/Pricing';
+import {pricingSchema} from './pricing/schema';
+import {Casestudy} from './casestudy/Casestudy';
+import {casestudySchema} from './casestudy/schema';
+import {Feature} from './feature/Feature';
+import {featureSchema} from './feature/schema';
+import {Quotecard} from './quotecard/Quotecard';
+import {quotecardSchema} from './quotecard/schema';
+import {Linechart} from './linechart/Linechart';
+import {linechartSchema} from './linechart/schema';
+import {Flashsale} from './flashsale/Flashsale';
+import {flashsaleSchema} from './flashsale/schema';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -109,6 +123,13 @@ export const compositions: Record<string, CompositionDef> = {
   barchart: {...templateMeta.barchart, component: Barchart, schema: barchartSchema as unknown as VideoSchema},
   counter: {...templateMeta.counter, component: Counter, schema: counterSchema as unknown as VideoSchema},
   cybermonday: {...templateMeta.cybermonday, component: Cybermonday, schema: cybermondaySchema as unknown as VideoSchema},
+  apppromo: {...templateMeta.apppromo, component: Apppromo, schema: apppromoSchema as unknown as VideoSchema},
+  pricing: {...templateMeta.pricing, component: Pricing, schema: pricingSchema as unknown as VideoSchema},
+  casestudy: {...templateMeta.casestudy, component: Casestudy, schema: casestudySchema as unknown as VideoSchema},
+  feature: {...templateMeta.feature, component: Feature, schema: featureSchema as unknown as VideoSchema},
+  quotecard: {...templateMeta.quotecard, component: Quotecard, schema: quotecardSchema as unknown as VideoSchema},
+  linechart: {...templateMeta.linechart, component: Linechart, schema: linechartSchema as unknown as VideoSchema},
+  flashsale: {...templateMeta.flashsale, component: Flashsale, schema: flashsaleSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.

@@ -402,5 +402,61 @@
       "sha256": "d4f8a7216cc8b5a40a107ba8fa974491a55a58cd4b2f459ac1d6db0990825a0c",
       "createdAt": "2026-10-08"
     }
+  ],
+  "apppromo": [
+    {
+      "version": 1,
+      "hash": "00391ca62bb9758a",
+      "sha256": "df24e35bddb0376dd65b00426071c423394b9debcb0eab041f9436d1cccccbab",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "pricing": [
+    {
+      "version": 1,
+      "hash": "0a0836d9cb47ece6",
+      "sha256": "1b550ee555561c85c03f88003a1af5dd564436f5e7be1a586570215a3084b1a5",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "casestudy": [
+    {
+      "version": 1,
+      "hash": "1fecebda3cbd990b",
+      "sha256": "f784c65dd558df8c76f752619f98acdc422142aec80bc7d72dd131a3fc969929",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "feature": [
+    {
+      "version": 1,
+      "hash": "a27dec99e336c768",
+      "sha256": "01159164942f5c3090c74f5d22d1ebd173c02b67696ff0369ec67da1efe34cb6",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "quotecard": [
+    {
+      "version": 1,
+      "hash": "1213a3f82206269f",
+      "sha256": "8b4f03c1b04423557a7ae6ada494a206cebed53bb47bcb67049aeda791fc5867",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "linechart": [
+    {
+      "version": 1,
+      "hash": "03cd5a01badc7001",
+      "sha256": "511db0ad255468ac174f24ac49e0ab4f910c53402b974d3f62eb0a1884fdd53b",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "flashsale": [
+    {
+      "version": 1,
+      "hash": "97652931a9bdedcd",
+      "sha256": "f8c13d599cfff10a180059f5c4a27442f9233d03b955ad8d74c0624cb4a96012",
+      "createdAt": "2026-10-08"
+    }
   ]
 }

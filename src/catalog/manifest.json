@@ -478,6 +478,104 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "apppromo",
+      "title": "App Promo",
+      "creator": "pocketlabs",
+      "prompt": "A 9 second vertical mobile app promo: a phone mockup rises into frame, feature rows slide onto its screen with check icons, and a price counts up above a pill download button.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "pricing",
+      "title": "Pricing Plans",
+      "creator": "tierline",
+      "prompt": "A 9 second widescreen pricing announcement: an editorial serif headline under a drawn rule, three plan cards that flip up with the featured plan in front, a counting price, and checkmarked features.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "casestudy",
+      "title": "Case Study",
+      "creator": "ledgerline",
+      "prompt": "An 11 second 4:5 case study video styled like a report: a serif headline wipes in, a results stat counts up as a color block rises, a customer quote fades in word by word, and a call to action closes.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "feature",
+      "title": "New Feature",
+      "creator": "shipnotes",
+      "prompt": "A 10 second widescreen feature announcement: a NEW badge stamps in over a zooming dot grid, a bold headline rises with the release date, numbered steps connect along a drawn line, and a CTA button zooms in.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "quotecard",
+      "title": "Quote Animation",
+      "creator": "versewell",
+      "prompt": "A 10 second vertical quote animation: oversized quote marks drift behind a serif quote whose words rise one at a time, then a color wipe reveals the author and source.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "linechart",
+      "title": "Line Chart",
+      "creator": "plotwise",
+      "prompt": "A 9 second widescreen animated line chart: a drawn curve introduces the headline, then a line grows point by point over a gradient area with a value tag riding the leading edge, and a source card closes.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "flashsale",
+      "title": "Flash Sale",
+      "creator": "boltdeals",
+      "prompt": "An 8 second 4:5 flash sale video: scrolling hazard stripes frame a condensed italic headline that slams together from two slashed halves, a discount stamps in over pulse rings, and a pulsing CTA closes.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -2718,6 +2816,344 @@
         "sale",
         "social-ad",
         "instagram-reel"
+      ]
+    },
+    {
+      "template": "apppromo",
+      "creator": "pocketlabs",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "apppromo-mobile-app",
+      "title": "Mobile App Promo",
+      "description": "A phone mockup rises in, feature rows slide onto the screen, and a price counts up above a download button.",
+      "purpose": "Product launch",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "app promo video",
+        "mobile app promo",
+        "app promotion video",
+        "app store video",
+        "app launch video",
+        "phone mockup animation"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Habitly",
+          "headline": "Build habits that stick",
+          "items": "Daily streaks, Smart reminders, Weekly insights, Offline mode",
+          "price": "$4.99",
+          "cta": "Download free"
+        },
+        "theme": {
+          "background": "#0e1a2b",
+          "surface": "#16263d",
+          "foreground": "#f5f8ff",
+          "accent": "#ffcf33",
+          "accent2": "#3ad6a6"
+        }
+      },
+      "seoDescription": "A free vertical app promo video template with a phone mockup, animated feature list, and price reveal. Edit your app name and features online.",
+      "useCases": [
+        "app-promo",
+        "product-launch",
+        "instagram-reel",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "pricing",
+      "creator": "tierline",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "pricing-plans-reveal",
+      "title": "Pricing Plans Reveal",
+      "description": "Plan cards flip up, the featured price counts up, and checkmarks draw beside each included feature.",
+      "purpose": "Product launch",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "pricing announcement",
+        "price reveal video",
+        "pricing video",
+        "new pricing",
+        "saas pricing",
+        "pricing plans animation"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Northwind",
+          "headline": "Pricing for every team",
+          "price": "$24",
+          "priceNote": "per seat, billed monthly",
+          "items": "Unlimited projects, Shared workspaces, Priority support, SSO",
+          "cta": "Start your trial"
+        },
+        "theme": {
+          "background": "#f4f1ea",
+          "surface": "#e2ddd2",
+          "foreground": "#1c1b19",
+          "accent": "#2f5bea",
+          "accent2": "#e2563b"
+        }
+      },
+      "seoDescription": "A free pricing announcement video template with flip-up plan cards, a counting price, and a feature checklist. Change plans and prices online.",
+      "useCases": [
+        "pricing",
+        "saas",
+        "product-launch"
+      ]
+    },
+    {
+      "template": "casestudy",
+      "creator": "ledgerline",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "casestudy-results",
+      "title": "Customer Case Study",
+      "description": "A report-style story: headline, a counting results stat, a customer quote, and a closing call to action.",
+      "purpose": "Testimonial",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "case study video",
+        "customer story video",
+        "case study template",
+        "success story video",
+        "b2b video",
+        "results video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Ferrow Logistics",
+          "headline": "How Ferrow ships faster",
+          "stat": "38%",
+          "quote": "We replaced three tools with one dashboard. Our dispatch team now plans a full day of routes in under an hour.",
+          "attribution": "Dana Ruiz, Head of Operations",
+          "cta": "Read the full story"
+        },
+        "theme": {
+          "background": "#f7f7f4",
+          "surface": "#e7e7e1",
+          "foreground": "#14213d",
+          "accent": "#18b47b",
+          "accent2": "#14213d"
+        }
+      },
+      "seoDescription": "A free case study video template with a counting results stat, customer quote, and attribution. Tell a customer success story and edit it online.",
+      "useCases": [
+        "case-study",
+        "testimonial",
+        "saas"
+      ]
+    },
+    {
+      "template": "feature",
+      "creator": "shipnotes",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "feature-announcement",
+      "title": "New Feature Announcement",
+      "description": "A stamped NEW badge, a bold feature headline with its release date, numbered steps, and a closing button.",
+      "purpose": "Product launch",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "new feature announcement",
+        "feature announcement",
+        "feature launch video",
+        "product update video",
+        "release announcement",
+        "changelog video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Loopdesk",
+          "headline": "Meet Auto Replies",
+          "items": "Connect your inbox, Pick a tone, Approve and send",
+          "date": "Available Oct 20",
+          "cta": "Try it today"
+        },
+        "theme": {
+          "background": "#101014",
+          "surface": "#1b1b22",
+          "foreground": "#ffffff",
+          "accent": "#b4ff39",
+          "accent2": "#ff6b4a"
+        }
+      },
+      "seoDescription": "A free new feature announcement video template with a stamped NEW badge, release date, and numbered how-it-works steps. Edit it online.",
+      "useCases": [
+        "feature-launch",
+        "product-launch",
+        "saas",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "quotecard",
+      "creator": "versewell",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "quotecard-motivational",
+      "title": "Motivational Quote Animation",
+      "description": "Serif words rise one at a time behind drifting quote marks, then a color wipe reveals the author.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "quote animation",
+        "motivational quote video",
+        "quote video template",
+        "inspirational quote video",
+        "animated quote",
+        "quote reel"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Quote of the day",
+          "quote": "The secret of getting ahead is getting started.",
+          "author": "Mark Twain",
+          "attribution": "American writer and humorist",
+          "brand": "@dailyspark"
+        },
+        "theme": {
+          "background": "#13261f",
+          "surface": "#1d362d",
+          "foreground": "#f3efe2",
+          "accent": "#f2a541",
+          "accent2": "#e8d9b5"
+        }
+      },
+      "seoDescription": "A free motivational quote animation template for Reels, TikTok, and Stories. Words rise one at a time, then the author appears. Edit it online.",
+      "useCases": [
+        "quote",
+        "instagram-reel",
+        "kinetic-typography"
+      ]
+    },
+    {
+      "template": "linechart",
+      "creator": "plotwise",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "linechart-growth",
+      "title": "Animated Line Chart",
+      "description": "A line grows point by point over a filled area, with a value tag that follows the leading edge.",
+      "purpose": "Data story",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 1,
+      "keywords": [
+        "animated line chart",
+        "animated graph video",
+        "line graph animation",
+        "animated chart",
+        "growth chart video",
+        "data visualization video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Monthly active users",
+          "chart": "Jan 12k, Feb 15k, Mar 14k, Apr 21k, May 27k, Jun 34k",
+          "subhead": "Six months of steady growth after launch",
+          "attribution": "Source: internal analytics, 2026"
+        },
+        "theme": {
+          "background": "#0b1220",
+          "surface": "#121b2e",
+          "foreground": "#e8eefc",
+          "accent": "#4cc9f0",
+          "accent2": "#f72585"
+        }
+      },
+      "seoDescription": "A free animated line chart video template. Type labels and values, and the line graph draws itself with a moving value tag. Edit it online.",
+      "useCases": [
+        "animated-chart",
+        "data-recap"
+      ]
+    },
+    {
+      "template": "flashsale",
+      "creator": "boltdeals",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "flashsale-limited-offer",
+      "title": "Flash Sale Limited Offer",
+      "description": "Hazard stripes, a slashed headline that slams together, a stamped discount over pulse rings, and a pulsing button.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "flash sale",
+        "flash sale video",
+        "limited time offer video",
+        "sale announcement video",
+        "discount video",
+        "promo video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "KICKBOX",
+          "headline": "Flash Sale",
+          "price": "50% OFF",
+          "priceNote": "All sneakers",
+          "date": "Ends Sunday 11:59 PM",
+          "cta": "Shop now"
+        },
+        "theme": {
+          "background": "#111111",
+          "surface": "#1e1e1e",
+          "foreground": "#ffffff",
+          "accent": "#ffe600",
+          "accent2": "#ff3b30"
+        }
+      },
+      "seoDescription": "A free flash sale video template for limited time offers. A slashed headline, stamped discount, and end date for Instagram feed ads. Edit it online.",
+      "useCases": [
+        "flash-sale",
+        "sale",
+        "social-ad"
       ]
     }
   ]
