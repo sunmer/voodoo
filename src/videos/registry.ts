@@ -96,6 +96,20 @@ import {Progress} from './progress/Progress';
 import {progressSchema} from './progress/schema';
 import {Comparison} from './comparison/Comparison';
 import {comparisonSchema} from './comparison/schema';
+import {Newyear} from './newyear/Newyear';
+import {newyearSchema} from './newyear/schema';
+import {Credits} from './credits/Credits';
+import {creditsSchema} from './credits/schema';
+import {Titlecard} from './titlecard/Titlecard';
+import {titlecardSchema} from './titlecard/schema';
+import {Subscribe} from './subscribe/Subscribe';
+import {subscribeSchema} from './subscribe/schema';
+import {Thankyou} from './thankyou/Thankyou';
+import {thankyouSchema} from './thankyou/schema';
+import {Birthday} from './birthday/Birthday';
+import {birthdaySchema} from './birthday/schema';
+import {Valentines} from './valentines/Valentines';
+import {valentinesSchema} from './valentines/schema';
 import {legacy} from './legacy';
 import {currentVersion} from '../agent/versions';
 import {Apppromo} from './apppromo/Apppromo';
@@ -172,6 +186,13 @@ export const compositions: Record<string, CompositionDef> = {
   poll: {...templateMeta.poll, component: Poll, schema: pollSchema as unknown as VideoSchema},
   progress: {...templateMeta.progress, component: Progress, schema: progressSchema as unknown as VideoSchema},
   comparison: {...templateMeta.comparison, component: Comparison, schema: comparisonSchema as unknown as VideoSchema},
+  newyear: {...templateMeta.newyear, component: Newyear, schema: newyearSchema as unknown as VideoSchema},
+  credits: {...templateMeta.credits, component: Credits, schema: creditsSchema as unknown as VideoSchema},
+  titlecard: {...templateMeta.titlecard, component: Titlecard, schema: titlecardSchema as unknown as VideoSchema},
+  subscribe: {...templateMeta.subscribe, component: Subscribe, schema: subscribeSchema as unknown as VideoSchema},
+  thankyou: {...templateMeta.thankyou, component: Thankyou, schema: thankyouSchema as unknown as VideoSchema},
+  birthday: {...templateMeta.birthday, component: Birthday, schema: birthdaySchema as unknown as VideoSchema},
+  valentines: {...templateMeta.valentines, component: Valentines, schema: valentinesSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.
