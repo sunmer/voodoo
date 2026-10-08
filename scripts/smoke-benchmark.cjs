@@ -20,6 +20,9 @@ async function check(browser, viewport, prefix) {
   assert.equal(columns, viewport.width > 1000 ? 3 : viewport.width > 600 ? 2 : 1);
   for (const {id: brief, name} of protocol.briefs) {
     await page.getByRole('button', {name, exact: true}).click();
+    assert.equal(await page.locator('.benchmark-prompt summary').innerText(), `${name} - full brief`);
+    assert.equal(await page.locator('.benchmark-prompt pre').textContent(), protocol.briefs.find(item => item.id === brief).prompt);
+    assert.ok(await page.locator('#briefs').evaluate(el => Boolean(el.compareDocumentPosition(document.querySelector('.benchmark-grid')) & Node.DOCUMENT_POSITION_FOLLOWING)));
     for (const run of [1, 2]) {
       await page.getByRole('button', {name: `Run ${run}`, exact: true}).click();
       const entries = results.entries.filter((entry) => entry.brief === brief && entry.run === run);
@@ -29,7 +32,7 @@ async function check(browser, viewport, prefix) {
       assert.equal(await page.locator('.benchmark-pending.is-failed').count(), entries.length - rendered.length);
       assert.equal(await page.locator('.benchmark-pending:not(.is-failed)').count(), 10 - entries.length);
       const actualVideos = await page.locator('.benchmark-card-media video').evaluateAll((videos) =>
-        videos.map((video) => new URL(video.src).pathname).sort());
+        videos.map((video) => new URL(video.dataset.videoSrc, location.href).pathname).sort());
       assert.deepEqual(actualVideos, rendered.map((entry) => new URL(entry.video, base).pathname).sort(), 'each selection shows its recorded videos');
     }
   }
@@ -38,9 +41,11 @@ async function check(browser, viewport, prefix) {
   const selected = results.entries.find((entry) => entry.model === 'opus-5-5' && entry.brief === 'data-story' && entry.run === 2);
   if (!selected) assert.equal(await page.locator('.benchmark-card-media').first().innerText(), 'Not run\nData story / Run 2');
   else if (selected.status === 'rendered') assert.equal(await page.locator('.benchmark-card-media').first().locator('video').count(), 1);
-  else assert.match(await page.locator('.benchmark-card-media').first().innerText(), /Render failed|Incomplete submission/);
+  else assert.match(await page.locator('.benchmark-card-media').first().innerText(), /Render failed|Token limit reached|Invalid response format/);
   assert.equal(new URL(page.url()).searchParams.get('brief'), 'data-story');
   assert.equal(new URL(page.url()).searchParams.get('run'), '2');
+  assert.equal(await page.locator('.benchmark-prompt[open]').count(), 0);
+  await page.getByText('Data story - full brief', {exact: true}).click();
   assert.equal(await page.locator('.benchmark-prompt[open]').count(), 1);
   assert.match(await page.locator('.benchmark-prompt[open]').innerText(), /Monday.*2/);
   await page.reload({waitUntil: 'networkidle'});
@@ -66,14 +71,14 @@ async function check(browser, viewport, prefix) {
   const submission = page.locator('.benchmark-card-media video').first();
   if (await submission.count()) {
     await submission.scrollIntoViewIfNeeded();
-    await submission.evaluate(async (el) => { el.muted = true; await el.play(); });
+    await page.getByRole('button', {name: new RegExp(`^Play ${await submission.getAttribute('aria-label')}$`)}).click();
     await page.waitForFunction(() => [...document.querySelectorAll('.benchmark-card-media video')].some((el) => el.currentTime > 0.2));
     assert.ok(await submission.evaluate((el) => el.videoWidth > 0 && el.videoHeight > 0), 'real benchmark video decodes');
     await submission.evaluate((el) => el.pause());
   }
   await page.locator('#methodology').scrollIntoViewIfNeeded();
   const video = page.locator('.benchmark-reference video');
-  await video.evaluate(async (el) => { el.muted = true; await el.play(); });
+  await page.getByRole('button', {name: 'Play Existing Cliphouse motion graphics example', exact: true}).click();
   await page.waitForFunction(() => document.querySelector('.benchmark-reference video').currentTime > 0.2);
   const frame = await video.evaluate((el) => {
     const canvas = document.createElement('canvas');
@@ -110,8 +115,8 @@ async function check(browser, viewport, prefix) {
     await page.goto(`${base}benchmark/`);
     assert.equal(await page.locator('.benchmark-card').count(), 10, 'all models are server rendered');
     assert.equal(await page.locator('script[type="application/ld+json"]').count(), 1);
-    await page.locator('.benchmark-prompt summary').nth(1).click();
-    assert.equal(await page.locator('.benchmark-prompt').nth(1).getAttribute('open'), '');
+    await page.locator('.benchmark-prompt summary').click();
+    assert.equal(await page.locator('.benchmark-prompt').getAttribute('open'), '');
     await context.close();
   } finally { await browser.close(); }
   const safari = await webkit.launch();

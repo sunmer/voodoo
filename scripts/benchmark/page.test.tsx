@@ -18,7 +18,8 @@ const render = (entry: BenchmarkResult) => {
 };
 test('real rendered entry shows video, actual metrics, and base-aware downloads', () => {
   const html = render(sample());
-  assert.match(html, /src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
+  assert.match(html, /data-video-src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
+  assert.doesNotMatch(html, /<video[^>]*\ssrc=/);
   assert.match(html, /\$0.123/);
   assert.match(html, /12.3s/);
   assert.match(html, /Review pending/);
@@ -53,6 +54,17 @@ test('repaired output discloses repair instead of first-attempt success', () => 
 });
 test('a truncated generation is identified separately from a render failure', () => {
   const html = render({...sample(), status: 'failed', firstAttemptPassed: false, video: undefined, poster: undefined, error: 'Invalid submission: Completion limit reached.'});
-  assert.match(html, /Incomplete submission/);
+  assert.match(html, /Token limit reached/);
   assert.match(html, /Completion limit reached/);
+});
+test('the expandable selected brief precedes its results', () => {
+  const html = render(sample());
+  assert.match(html, /Product launch - full brief/);
+  assert.ok(html.indexOf('id="briefs"') < html.indexOf('class="benchmark-grid"'));
+  assert.equal((html.match(/class="benchmark-prompt"/g) ?? []).length, 1);
+});
+test('malformed JSON is distinguished from truncated code', () => {
+  const html = render({...sample(), status: 'failed', firstAttemptPassed: false, error: 'Invalid submission: Unexpected token'});
+  assert.match(html, /Invalid response format/);
+  assert.match(html, /could not be read as the required JSON/);
 });

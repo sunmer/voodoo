@@ -9,6 +9,8 @@ import {sourcePath, templateVersion} from '../src/agent/versions.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
+const buildManifest = JSON.parse(fs.readFileSync(path.join(dist, '.vite/manifest.json'), 'utf8'));
+const videoScript = buildManifest['src/media/seo-video.ts'].file;
 const site = 'https://cliphou.se';
 const base = process.env.BASE ?? '/voodoo/';
 const ga = process.env.VITE_GA_MEASUREMENT_ID ?? '';
@@ -99,6 +101,7 @@ function layout({page, body, schema, landing = true}) {
     <meta name="twitter:description" content="${esc(page.description)}" />
     <meta name="twitter:image" content="${esc(page.image ?? `${site}/social.png`)}" />
     <link rel="stylesheet" href="${local('/seo.css')}" />
+    <script type="module" src="${local(`/${videoScript}`)}"></script>
     <script type="application/ld+json">${json({'@context': 'https://schema.org', '@graph': schema})}</script>
     ${analytics}
   </head>
@@ -120,7 +123,7 @@ const list = (items) => ({'@type': 'ItemList', itemListElement: items.map((v, i)
 const faqSchema = (faq) => ({'@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({'@type': 'Question', name: q, acceptedAnswer: {'@type': 'Answer', text: a}}))});
 
 function cards(items) {
-  return `<div class="seo-grid">${items.map((v) => `<article class="seo-card"><a href="${local(v.path)}"><img src="${local(`/previews/${v.id}.jpg`)}" alt="${esc(v.title)} preview" width="480" height="${Math.round(480 * v.meta.height / v.meta.width)}" loading="lazy" /><span>${esc(v.title)}</span></a><p>${esc(v.format)} · ${v.seconds}s · ${esc(v.purpose)}</p></article>`).join('')}</div>`;
+  return `<div class="seo-grid">${items.map((v) => `<article class="seo-card"><a href="${local(v.path)}"><div class="seo-preview" style="aspect-ratio:${v.meta.width}/${v.meta.height}"><img src="${local(`/previews/${v.id}.jpg`)}" alt="${esc(v.title)} preview" width="480" height="${Math.round(480 * v.meta.height / v.meta.width)}" loading="lazy" /><video data-video-src="${local(`/previews/${v.id}.mp4`)}" aria-label="${esc(v.title)} preview" muted loop playsinline preload="none"></video></div><span>${esc(v.title)}</span></a><p>${esc(v.format)} · ${v.seconds}s · ${esc(v.purpose)}</p></article>`).join('')}</div>`;
 }
 
 function templatePage(v) {
@@ -131,7 +134,7 @@ function templatePage(v) {
   const source = templateVersion(v.template);
   const facts = [['Format', `${v.format} (${v.meta.width} x ${v.meta.height})`], ['Duration', `${v.seconds} seconds`], ['Purpose', v.purpose], ['Styles', v.style.join(', ')], ['Scenes', v.scenes.join(', ')], ['Editable text', v.roles.join(', ')], ['License', license], ['Source', `Remotion project, template v${source.version} (${source.hash})`], ['MP4 export', exportStatus], ['Updated', v.updatedAt], ['Created by', v.creator]];
   const body = `<nav class="crumbs" aria-label="Breadcrumb"><a href="${local('/')}">Home</a><span>/</span><a href="${local('/motion-graphics-templates/')}">Templates</a><span>/</span>${esc(v.title)}</nav>
-    <section class="seo-template"><div class="seo-video" style="aspect-ratio:${v.meta.width}/${v.meta.height};background:${esc(v.props.theme.background)}"><video src="${local(`/previews/${v.id}.mp4`)}" poster="${local(`/previews/${v.id}.jpg`)}" muted loop playsinline controls preload="metadata"></video></div>
+    <section class="seo-template"><div class="seo-video" style="aspect-ratio:${v.meta.width}/${v.meta.height};background:${esc(v.props.theme.background)}"><video data-video-src="${local(`/previews/${v.id}.mp4`)}" poster="${local(`/previews/${v.id}.jpg`)}" aria-label="${esc(v.title)} preview" muted loop playsinline controls preload="none"></video><button type="button" data-video-play hidden>Play video</button><noscript><a href="${local(`/previews/${v.id}.mp4`)}">Watch video</a></noscript></div>
     <div><h1>${esc(v.title)}</h1><p class="lead">${esc(v.seoDescription)}</p><p class="claim">${promise}</p><div class="actions"><a class="seo-button" data-editor="${esc(v.id)}" href="${local(`/#/v/${v.id}`)}">Edit free now</a><a class="seo-secondary" href="${local(`${v.path}agent.json`)}">Agent spec</a><a class="seo-secondary" href="${local(sourcePath(v.template, source.version))}" download>Download source</a></div><p class="license-note">${notice} <a href="${local('/license/')}">Read the license</a>.</p>
     <dl class="facts">${facts.map(([k, val]) => `<div><dt>${k}</dt><dd>${esc(val)}</dd></div>`).join('')}</dl></div></section>`;
   const schema = [pageSchema(page), breadcrumb([['Home', '/'], ['Templates', '/motion-graphics-templates/'], [v.title, v.path]]), {
