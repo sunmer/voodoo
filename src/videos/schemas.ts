@@ -44,6 +44,13 @@ import {partnershipSchema} from './partnership/schema.ts';
 import {newsletterSchema} from './newsletter/schema.ts';
 import {anniversarySchema} from './anniversary/schema.ts';
 import {grandopeningSchema} from './grandopening/schema.ts';
+import {beforeafterSchema} from './beforeafter/schema.ts';
+import {timelineSchema} from './timeline/schema.ts';
+import {quizSchema} from './quiz/schema.ts';
+import {toplistSchema} from './toplist/schema.ts';
+import {pollSchema} from './poll/schema.ts';
+import {progressSchema} from './progress/schema.ts';
+import {comparisonSchema} from './comparison/schema.ts';
 
 // Schemas without React components, so build scripts and the share server can validate props.
 export const schemas = {
@@ -63,4 +70,6 @@ export const schemas = {
   flashsale: flashsaleSchema,
   comingsoon: comingsoonSchema, announcement: announcementSchema, teamintro: teamintroSchema, partnership: partnershipSchema,
   newsletter: newsletterSchema, anniversary: anniversarySchema, grandopening: grandopeningSchema,
+  beforeafter: beforeafterSchema, timeline: timelineSchema, quiz: quizSchema, toplist: toplistSchema, poll: pollSchema,
+  progress: progressSchema, comparison: comparisonSchema,
 } as unknown as Record<string, VideoSchema>;

@@ -514,5 +514,61 @@
       "sha256": "56ba937707ee341a1dd1e528f3f01b7e4bdd5dbd70829f44eb4b689cdd2a40e5",
       "createdAt": "2026-10-08"
     }
+  ],
+  "beforeafter": [
+    {
+      "version": 1,
+      "hash": "7a073e435210132b",
+      "sha256": "3ae8150bc8051c215a3bfffdf775c6283f0b1ecfdc0913d9fc34b7ee0ab90a29",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "timeline": [
+    {
+      "version": 1,
+      "hash": "a58fb133d1a9f1ed",
+      "sha256": "08fa10f6db6ce06cc94d2db6873c769428faf1dec7cbe800d2932a60224a6efc",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "quiz": [
+    {
+      "version": 1,
+      "hash": "b271aa21d573f890",
+      "sha256": "4bc27ade37c3dbfbc797312f21a613b6ca5b5c03d4f785bb92571f5a1ecc92e7",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "toplist": [
+    {
+      "version": 1,
+      "hash": "32c0edc6d7258835",
+      "sha256": "4f7c675770308f980d8c4b9af9585d2dd8be0537e221923cb724f3dd327552aa",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "poll": [
+    {
+      "version": 1,
+      "hash": "c449e20d2bca9f54",
+      "sha256": "5c4aedeaea852da7d2e2ad8a49a88f68a11e6ec311b3d45cba90a253d4af717d",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "progress": [
+    {
+      "version": 1,
+      "hash": "624c553298206fae",
+      "sha256": "7d2f532d419711cdf26a99ddfbced9c3b0f0af8d09aa3c0e1a93654c5dd21ae5",
+      "createdAt": "2026-10-08"
+    }
+  ],
+  "comparison": [
+    {
+      "version": 1,
+      "hash": "919ab0ec99dbeae7",
+      "sha256": "1f8bc794567ad228287e97a1a6669d3771eb4d860ff8901b35c6701cd7fbd796",
+      "createdAt": "2026-10-08"
+    }
   ]
 }

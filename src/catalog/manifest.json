@@ -674,6 +674,104 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "beforeafter",
+      "title": "Before and After",
+      "creator": "swapshop",
+      "prompt": "A 10 second 4:5 before and after video: a headline with a slider handle, a split screen where a drag handle wipes from the old way to the new way with a strike-through and check stamp, and a brand end card.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "timeline",
+      "title": "Animated Timeline",
+      "creator": "datadesk",
+      "prompt": "An 11 second 16:9 animated timeline: a wiped headline, a route line that draws across dated milestones while the camera pans with parallax grid lines, and a brand byline card.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "quiz",
+      "title": "Quiz",
+      "creator": "quizroom",
+      "prompt": "An 11 second 9:16 trivia quiz video: a question card that flips in under a badge, shuffled answer tiles with a 3 second ring timer, the correct answer revealed with a check, and a comment CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "toplist",
+      "title": "Top 5 Ranking",
+      "creator": "listicle",
+      "prompt": "A 12 second 9:16 top 5 ranking video: a giant zooming rank number behind the title, then entries counting down from 5 to 1, each filling the screen before it settles into a ranked list.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "poll",
+      "title": "This or That",
+      "creator": "quizroom",
+      "prompt": "A 9 second square this or that poll: a popping question, a diagonal two-color split with a spinning VS badge and counting vote shares, and a vote CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "progress",
+      "title": "Progress Bar",
+      "creator": "crewline",
+      "prompt": "A 9 second 16:9 progress bar animation: a headline, a striped bar that fills with a hold at the first milestone, a counting percentage that rides the bar, confetti at the goal, and a brand wipe.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "comparison",
+      "title": "Comparison",
+      "creator": "datadesk",
+      "prompt": "A 10 second 16:9 comparison table: a headline on ruled lines, two column headers with a highlighted winning column, feature rows with drawn-on checks and crosses, and a CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -3590,6 +3688,336 @@
           "accent2": "#f2c14e"
         }
       }
+    },
+    {
+      "template": "beforeafter",
+      "creator": "swapshop",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "beforeafter-split",
+      "title": "Before and After Split",
+      "description": "A drag handle wipes from the old way to the new way, strikes out the before, and stamps the after.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "before and after template",
+        "before and after video",
+        "before after video",
+        "transformation video",
+        "before and after reel",
+        "old vs new video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Your workflow, fixed",
+          "point1": "14 open tabs",
+          "point2": "One clean inbox",
+          "brand": "Tidyflow",
+          "cta": "Try it free"
+        },
+        "theme": {
+          "background": "#f6f4ef",
+          "surface": "#d9d4c7",
+          "foreground": "#1d1c1a",
+          "accent": "#1f8a5b",
+          "accent2": "#e0452b"
+        }
+      },
+      "seoDescription": "A free before and after video template. A slider wipes from the old way to the new way, strikes out the before, and stamps the after. Edit it online.",
+      "useCases": [
+        "before-after",
+        "social-ad",
+        "product-launch"
+      ]
+    },
+    {
+      "template": "timeline",
+      "creator": "datadesk",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "timeline-milestones",
+      "title": "Animated Timeline",
+      "description": "A route line draws across dated milestones while the camera pans, then a byline card closes the story.",
+      "purpose": "Data story",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "animated timeline",
+        "timeline video",
+        "timeline animation",
+        "company history video",
+        "milestone timeline",
+        "history timeline template"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Ten years of Northwind",
+          "items": "2016 Two founders, 2018 First 100 customers, 2021 Offices in 3 cities, 2024 Profitable, 2026 Series B",
+          "brand": "Northwind",
+          "attribution": "Company history, 2016 to 2026"
+        },
+        "theme": {
+          "background": "#f3f1ea",
+          "surface": "#1f2a44",
+          "foreground": "#1b1d22",
+          "accent": "#d9482b",
+          "accent2": "#2c6e8f"
+        }
+      },
+      "seoDescription": "A free animated timeline video template. Type dated milestones, watch a route line draw across them as the camera pans, and edit the colors online.",
+      "useCases": [
+        "timeline",
+        "data-recap",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "quiz",
+      "creator": "quizroom",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "quiz-trivia",
+      "title": "Trivia Quiz",
+      "description": "A question card flips in, answer tiles slide in under a ring timer, and the right answer lights up.",
+      "purpose": "Creator video",
+      "style": [
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "quiz video",
+        "trivia video",
+        "quiz video template",
+        "trivia question video",
+        "guess the answer video",
+        "quiz reel"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Quick quiz",
+          "quote": "Which planet has the shortest day in our solar system?",
+          "items": "Jupiter, Mars, Earth, Saturn",
+          "cta": "Comment your answer"
+        },
+        "theme": {
+          "background": "#2a1f6b",
+          "surface": "#3b2f8f",
+          "foreground": "#ffffff",
+          "accent": "#ffcf33",
+          "accent2": "#2fd18b"
+        }
+      },
+      "seoDescription": "A free trivia quiz video template for Reels, TikTok, and Shorts. Type a question and answers, run a 3 second timer, and reveal the right one.",
+      "useCases": [
+        "quiz",
+        "instagram-reel",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "toplist",
+      "creator": "listicle",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "toplist-ranking",
+      "title": "Top 5 Ranking",
+      "description": "Entries count down from five to one, each one fills the screen before it settles into the ranked list.",
+      "purpose": "Creator video",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "top 5 video",
+        "ranking video",
+        "list video",
+        "top 10 video template",
+        "countdown list video",
+        "top five video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Best budget cameras",
+          "items": "Fujifilm X-M5, Sony ZV-E10 II, Canon R50, Nikon Z50 II, Panasonic G100D",
+          "brand": "Gearcheck",
+          "cta": "Full review on site"
+        },
+        "theme": {
+          "background": "#111111",
+          "surface": "#262626",
+          "foreground": "#f5f5f5",
+          "accent": "#ff3b30",
+          "accent2": "#8e8e93"
+        }
+      },
+      "seoDescription": "A free top 5 ranking video template. List up to six entries, count down to number one with big rank numbers, and edit the text and colors online.",
+      "useCases": [
+        "top-list",
+        "instagram-reel",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "poll",
+      "creator": "quizroom",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "poll-versus",
+      "title": "This or That Poll",
+      "description": "A diagonal split pits two options against each other with a spinning VS badge and counting vote shares.",
+      "purpose": "Social ad",
+      "style": [
+        "Bold",
+        "Neon"
+      ],
+      "energy": 4,
+      "keywords": [
+        "this or that video",
+        "this or that template",
+        "would you rather video",
+        "poll video",
+        "vote video",
+        "versus video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Which do you pick?",
+          "point1": "Coffee",
+          "point2": "Matcha",
+          "cta": "Vote in the comments"
+        },
+        "theme": {
+          "background": "#101820",
+          "surface": "#1c2833",
+          "foreground": "#ffffff",
+          "accent": "#ff5a5f",
+          "accent2": "#00a6a6"
+        }
+      },
+      "seoDescription": "A free this or that video template. Two options face off on a diagonal split with a VS badge and vote shares. Type your pair and edit it online.",
+      "useCases": [
+        "poll",
+        "social-ad",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "progress",
+      "creator": "crewline",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "progress-goal",
+      "title": "Progress Bar Animation",
+      "description": "A striped bar fills toward the goal with a counting percentage, then confetti bursts at the finish.",
+      "purpose": "Data story",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "progress bar animation",
+        "progress bar video",
+        "goal progress video",
+        "fundraising progress bar",
+        "loading bar animation",
+        "milestone progress video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Road to launch",
+          "stat": "78%",
+          "subhead": "Of the community fund is raised. Help us finish.",
+          "brand": "Openfield"
+        },
+        "theme": {
+          "background": "#f4f7fb",
+          "surface": "#e3e9f2",
+          "foreground": "#14213d",
+          "accent": "#3a86ff",
+          "accent2": "#ffbe0b"
+        }
+      },
+      "seoDescription": "A free progress bar animation template. Enter a percentage, watch a striped bar fill with a counting label and confetti, and edit the colors online.",
+      "useCases": [
+        "progress-bar",
+        "data-recap",
+        "event-promo"
+      ]
+    },
+    {
+      "template": "comparison",
+      "creator": "datadesk",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "comparison-table",
+      "title": "Comparison Table",
+      "description": "Two columns face off, rows slide in, and checks and crosses draw on to show the winner.",
+      "purpose": "Product launch",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "comparison template",
+        "comparison video",
+        "comparison table video",
+        "us vs them video",
+        "feature comparison video",
+        "competitor comparison"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Why teams switch",
+          "point1": "Spreadsheets",
+          "point2": "Ledgerly",
+          "items": "Live bank sync, Auto categories, Shared approvals, Audit trail",
+          "cta": "Start a free trial"
+        },
+        "theme": {
+          "background": "#ffffff",
+          "surface": "#eef1f5",
+          "foreground": "#0f172a",
+          "accent": "#6d28d9",
+          "accent2": "#0ea5e9"
+        }
+      },
+      "seoDescription": "A free comparison video template. Put two options in columns, list features as rows, and draw checks and crosses to show the winner. Edit it online.",
+      "useCases": [
+        "comparison",
+        "saas",
+        "product-launch"
+      ]
     }
   ]
 }

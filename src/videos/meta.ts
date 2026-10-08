@@ -44,6 +44,13 @@ import {partnershipMeta} from './partnership/meta.ts';
 import {newsletterMeta} from './newsletter/meta.ts';
 import {anniversaryMeta} from './anniversary/meta.ts';
 import {grandopeningMeta} from './grandopening/meta.ts';
+import {beforeafterMeta} from './beforeafter/meta.ts';
+import {timelineMeta} from './timeline/meta.ts';
+import {quizMeta} from './quiz/meta.ts';
+import {toplistMeta} from './toplist/meta.ts';
+import {pollMeta} from './poll/meta.ts';
+import {progressMeta} from './progress/meta.ts';
+import {comparisonMeta} from './comparison/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -91,4 +98,11 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [newsletterMeta.id]: newsletterMeta,
   [anniversaryMeta.id]: anniversaryMeta,
   [grandopeningMeta.id]: grandopeningMeta,
+  [beforeafterMeta.id]: beforeafterMeta,
+  [timelineMeta.id]: timelineMeta,
+  [quizMeta.id]: quizMeta,
+  [toplistMeta.id]: toplistMeta,
+  [pollMeta.id]: pollMeta,
+  [progressMeta.id]: progressMeta,
+  [comparisonMeta.id]: comparisonMeta,
 };
