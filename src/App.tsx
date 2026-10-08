@@ -6,6 +6,7 @@ import {SiteFooter, PrivacyPage} from './ui/Privacy';
 import {trackPage} from './services/analytics';
 import {SharedVideo} from './ui/SharedVideo';
 import {SavedVideo} from './ui/SavedVideo';
+import {BenchmarkBanner} from './ui/BenchmarkBanner';
 
 type Route = {view: 'editor'; id: string} | {view: 'shared'; id: string; openShare?: boolean} | {view: 'saved'; id: string} | {view: 'gallery'; params: URLSearchParams} | {view: 'privacy'};
 
@@ -40,6 +41,7 @@ export function App() {
 
   const template = route.view === 'gallery' ? route.params.get('template') : null;
   return <>
+    <BenchmarkBanner />
     {route.view === 'saved' ? <SavedVideo key={route.id} id={route.id} /> : route.view === 'shared' ? <SharedVideo key={route.id} id={route.id} openShare={route.openShare} /> : variant ? <Editor key={variant.id} variant={variant} /> : route.view === 'privacy' ? <PrivacyPage /> : <Gallery key={template ?? 'all'} initialTemplate={template} />}
     <SiteFooter />
   </>;

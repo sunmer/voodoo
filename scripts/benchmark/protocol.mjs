@@ -1,0 +1,112 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {z} from 'zod';
+
+export const root = path.resolve(import.meta.dirname, '../..');
+export const protocol = JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/protocol.json'), 'utf8'));
+export const hash = (value) => createHash('sha256').update(value).digest('hex');
+export const contract = `You write a complete Remotion 4 composition.
+Return one JSON object with exactly one string property: "source".
+The source must be a complete TSX module exporting a named React component called BenchmarkVideo.
+Only import from "react", "remotion", and "./contract".
+Do not register a composition or change the project configuration.
+The wrapper supplies 1920 x 1080, 30 fps, and 360 frames.
+Use useCurrentFrame(), interpolate(), spring(), and Sequence for frame-based motion.
+Every frame must be deterministic. No Math.random(), dates, timers, network requests, audio, or external assets.
+The wrapper loads Archivo locally. Use the font family "Archivo" for all text.
+Import palette from "./contract": background #101114, foreground #F5F5F2, accent #B8F36B, secondary #78B9ED, muted #B1B4BC.
+Use these colors. Alpha variants are permitted.
+Keep text inside an 80-pixel safe margin on every side.
+No existing video examples are provided. Make all design decisions yourself.
+Do not include model names, provider names, explanations, markdown fences, or other files.`;
+
+export const digest = hash(JSON.stringify(protocol) + contract);
+const localAsset = z.string().regex(/^benchmark\/media\/[a-z0-9-]+\/[a-z0-9-]+\.(mp4|jpg|tsx|json)$/);
+const scores = z.object(Object.fromEntries(protocol.rubric.map((criterion) => [criterion.id, z.number().min(1).max(5)]))).strict();
+export const resultSchema = z.object({
+  model: z.enum(protocol.models.map((model) => model.key)),
+  brief: z.enum(protocol.briefs.map((brief) => brief.id)),
+  run: z.number().int().min(1).max(protocol.runs),
+  status: z.enum(['rendered', 'failed']),
+  attempts: z.number().int().min(1).max(2),
+  firstAttemptPassed: z.boolean(),
+  provider: z.string().min(1),
+  generatedAt: z.iso.datetime(),
+  costUsd: z.number().nonnegative(),
+  generationMs: z.number().nonnegative(),
+  renderMs: z.number().nonnegative(),
+  video: localAsset.optional(),
+  poster: localAsset.optional(),
+  source: localAsset.optional(),
+  request: localAsset.optional(),
+  error: z.string().max(1000).optional(),
+  reviews: z.array(z.object({reviewer: z.string().min(1), scores}).strict()).max(2),
+}).strict().superRefine((entry, ctx) => {
+  if (entry.status === 'rendered' && (!entry.video || !entry.poster || !entry.source || !entry.request)) ctx.addIssue({code: 'custom', message: 'Rendered entries need video, poster, source, and request artifacts.'});
+  if (entry.status === 'failed' && (entry.video || entry.poster || entry.reviews.length)) ctx.addIssue({code: 'custom', message: 'Failed entries cannot have video, poster, or visual scores.'});
+  if (entry.reviews.length === 1 || new Set(entry.reviews.map((review) => review.reviewer)).size !== entry.reviews.length) ctx.addIssue({code: 'custom', message: 'Publish either zero reviews or two distinct reviewers.'});
+  if (entry.firstAttemptPassed !== (entry.status === 'rendered' && entry.attempts === 1)) ctx.addIssue({code: 'custom', message: 'First-attempt status does not match the result.'});
+});
+
+export function validateResults(data, assetRoot) {
+  const validated = z.object({
+    version: z.literal(protocol.version),
+    edition: z.literal(protocol.edition),
+    updatedAt: z.iso.date(),
+    status: z.enum(['awaiting-runs', 'in-progress', 'reviewing', 'complete']),
+    entries: z.array(resultSchema),
+  }).strict().parse(data);
+  const keys = validated.entries.map((entry) => `${entry.model}/${entry.brief}/${entry.run}`);
+  if (new Set(keys).size !== keys.length) throw new Error('Duplicate benchmark entries.');
+  const rendered = validated.entries.filter((entry) => entry.status === 'rendered');
+  const expected = protocol.models.length * protocol.briefs.length * protocol.runs;
+  const expectedStatus = !keys.length ? 'awaiting-runs' : keys.length < expected ? 'in-progress' : rendered.some((entry) => entry.reviews.length < 2) ? 'reviewing' : 'complete';
+  if (validated.status !== expectedStatus) throw new Error(`Expected benchmark status ${expectedStatus}.`);
+  if (assetRoot) for (const entry of validated.entries) {
+    for (const field of ['video', 'poster', 'source', 'request']) {
+      if (entry[field]) {
+        const file = path.join(assetRoot, entry[field]);
+        if (!fs.existsSync(file) || !fs.lstatSync(file).isFile() || !fs.statSync(file).size) throw new Error(`Missing benchmark artifact: ${entry[field]}`);
+        const relative = path.relative(fs.realpathSync(assetRoot), fs.realpathSync(file));
+        if (relative.startsWith('..') || path.isAbsolute(relative)) throw new Error('Benchmark artifact escapes the public directory.');
+      }
+    }
+  }
+  return validated;
+}
+
+export function parseSource(content) {
+  const data = z.object({source: z.string().min(50).max(250000)}).strict().parse(JSON.parse(content));
+  return data.source;
+}
+
+export function priceCeiling(pricing) {
+  const tiers = [pricing, ...(pricing.overrides ?? [])];
+  const maximum = (key) => Math.max(...tiers.map((tier) => Number(tier[key] ?? pricing[key])));
+  const rates = {prompt: maximum('prompt'), completion: maximum('completion')};
+  if (Object.values(rates).some((rate) => !Number.isFinite(rate) || rate < 0)) throw new Error('Provider has missing or invalid prices.');
+  return rates;
+}
+
+export function reserveCost(messages, rates, maxTokens = protocol.limits.maxTokens) {
+  // UTF-8 bytes plus message overhead deliberately overestimate input tokens.
+  return (Buffer.byteLength(JSON.stringify(messages), 'utf8') + 2048) * rates.prompt + maxTokens * rates.completion;
+}
+
+export function ensureBudget(ledger, kind, reservation, {allowInFlight = false} = {}) {
+  const pending = Array.isArray(ledger.pending) ? ledger.pending : ledger.pending ? [ledger.pending] : [];
+  if (pending.length && !allowInFlight) throw new Error('An earlier request has unknown cost. Reconcile it with OpenRouter before continuing.');
+  if (!Number.isFinite(reservation) || reservation < 0) throw new Error('Invalid cost reservation.');
+  const limit = kind === 'generation' ? protocol.limits.generationBudgetUsd : protocol.limits.repairBudgetUsd;
+  const spend = ledger.charges.filter((charge) => charge.kind === kind).reduce((sum, charge) => sum + charge.cost, 0) + pending.filter((request) => request.kind === kind).reduce((sum, request) => sum + request.reservation, 0);
+  if (spend + reservation > limit + 1e-9) throw new Error(`${kind} budget would exceed $${limit}. No request sent.`);
+  if (ledger.charges.reduce((sum, charge) => sum + charge.cost, 0) + pending.reduce((sum, request) => sum + request.reservation, 0) + reservation > 35 + 1e-9) throw new Error('Combined API budget would exceed $35. No request sent.');
+}
+
+export function atomicJson(file, value) {
+  fs.mkdirSync(path.dirname(file), {recursive: true});
+  const temporary = `${file}.${process.pid}.tmp`;
+  fs.writeFileSync(temporary, `${JSON.stringify(value, null, 2)}\n`, {mode: 0o600});
+  fs.renameSync(temporary, file);
+}

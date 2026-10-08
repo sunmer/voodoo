@@ -10,7 +10,10 @@
     "build:sharing": "node scripts/build-share.mjs",
     "start:sharing": "node --import tsx server/index.ts",
     "dev": "vite",
-    "build": "tsc && vite build && node --import tsx scripts/build-seo.mjs",
+    "build": "tsc && vite build && node --import tsx scripts/build-seo.mjs && node --import tsx scripts/build-benchmark.tsx",
+    "benchmark:plan": "node scripts/benchmark/run.mjs",
+    "benchmark:run": "node scripts/benchmark/run.mjs --execute",
+    "test:benchmark": "node --import tsx --test scripts/benchmark/*.test.mjs scripts/benchmark/*.test.tsx",
     "studio": "remotion studio src/remotion/index.ts",
     "typecheck": "tsc"
   },
