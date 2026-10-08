@@ -126,6 +126,20 @@ import {Linechart} from './linechart/Linechart';
 import {linechartSchema} from './linechart/schema';
 import {Flashsale} from './flashsale/Flashsale';
 import {flashsaleSchema} from './flashsale/schema';
+import {Giveaway} from './giveaway/Giveaway';
+import {giveawaySchema} from './giveaway/schema';
+import {Channeltrailer} from './channeltrailer/Channeltrailer';
+import {channeltrailerSchema} from './channeltrailer/schema';
+import {Gamingintro} from './gamingintro/Gamingintro';
+import {gamingintroSchema} from './gamingintro/schema';
+import {Speaker} from './speaker/Speaker';
+import {speakerSchema} from './speaker/schema';
+import {Agenda} from './agenda/Agenda';
+import {agendaSchema} from './agenda/schema';
+import {Tickets} from './tickets/Tickets';
+import {ticketsSchema} from './tickets/schema';
+import {Webinar} from './webinar/Webinar';
+import {webinarSchema} from './webinar/schema';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -193,6 +207,13 @@ export const compositions: Record<string, CompositionDef> = {
   thankyou: {...templateMeta.thankyou, component: Thankyou, schema: thankyouSchema as unknown as VideoSchema},
   birthday: {...templateMeta.birthday, component: Birthday, schema: birthdaySchema as unknown as VideoSchema},
   valentines: {...templateMeta.valentines, component: Valentines, schema: valentinesSchema as unknown as VideoSchema},
+  giveaway: {...templateMeta.giveaway, component: Giveaway, schema: giveawaySchema as unknown as VideoSchema},
+  channeltrailer: {...templateMeta.channeltrailer, component: Channeltrailer, schema: channeltrailerSchema as unknown as VideoSchema},
+  gamingintro: {...templateMeta.gamingintro, component: Gamingintro, schema: gamingintroSchema as unknown as VideoSchema},
+  speaker: {...templateMeta.speaker, component: Speaker, schema: speakerSchema as unknown as VideoSchema},
+  agenda: {...templateMeta.agenda, component: Agenda, schema: agendaSchema as unknown as VideoSchema},
+  tickets: {...templateMeta.tickets, component: Tickets, schema: ticketsSchema as unknown as VideoSchema},
+  webinar: {...templateMeta.webinar, component: Webinar, schema: webinarSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.
