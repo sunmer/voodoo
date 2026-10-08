@@ -39,6 +39,10 @@ export function validateShare(body: unknown) {
 }
 export type Snapshot = ReturnType<typeof validateShare>;
 export type Published = Omit<Snapshot, 'meta'> & {id: string; owner: string; status: string; createdAt: number};
+export type Exported = {id: string; owner: string; variantId: string; template: string; title: string; status: string; createdAt: number};
+export const exportFilename = (video: Pick<Exported, 'variantId' | 'title'>) =>
+  `${(video.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48) || video.variantId)}.mp4`;
+export const publicExport = (video: Exported) => ({id: video.id, path: `/api/exports/${video.id}/video.mp4`, filename: exportFilename(video)});
 export const fingerprint = (uid: string, value: Snapshot, version: string) =>
   createHash('sha256').update(JSON.stringify([uid, version, value.variantId, value.props])).digest('hex');
 

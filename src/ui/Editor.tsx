@@ -1,5 +1,5 @@
 import {Player, type PlayerRef} from '@remotion/player';
-import {ArrowLeft, Check, Copy, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RefreshCw, RotateCcw, Save, Undo2, Wand2} from 'lucide-react';
+import {ArrowLeft, Check, Copy, Download, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RefreshCw, RotateCcw, Save, Undo2, Wand2} from 'lucide-react';
 import {useCallback, useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import type {Variant} from '../catalog/catalog';
 import {THEME_LABELS, THEME_ROLES, type Role, type VideoProps} from '../videos/contract';
@@ -11,7 +11,7 @@ import {Timeline} from './Timeline';
 import {StarButton, useAccount} from './Account';
 import {ShareButton} from './Share';
 import {saveDraft} from '../services/drafts';
-import type {SharedVideo} from '../services/sharing';
+import {exportVideo, sharingConfigured, type SharedVideo} from '../services/sharing';
 import {track} from '../services/analytics';
 
 const storageKey = (id: string) => `voodoo:v2:${id}`;
@@ -37,6 +37,8 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
   const account = useAccount();
   const draft = useRef<{uid: string; id: string} | null>(draftId && account.user ? {uid: account.user.uid, id: draftId} : null);
   const [saving, setSaving] = useState(false);
+  const [exporting, setExporting] = useState(false);
+  const [exportedKey, setExportedKey] = useState('');
   const [savedKey, setSavedKey] = useState(draftId ? JSON.stringify(sharedProps) : '');
   const c = compositions[variant.template];
   const kit = useBrandKit();
@@ -193,6 +195,26 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       setTimeout(() => setCopied(false), 1600);
     } catch { setNotice('Clipboard is unavailable. Use Share to keep a copy of your edit.'); }
   };
+  const downloadMp4 = async () => {
+    if (exporting) return;
+    setExporting(true); setNotice('');
+    player.current?.pause();
+    try {
+      await account.requireSignIn();
+      setNotice('Rendering your MP4. This usually takes under a minute.');
+      const result = await exportVideo(variant.id, props);
+      const link = document.createElement('a');
+      link.href = result.url;
+      link.download = result.filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setExportedKey(JSON.stringify(props));
+      setNotice('Your MP4 is downloading.');
+      track('mp4_export', {variant_id: variant.id});
+    } catch (e) { setNotice((e as Error).message); }
+    finally { setExporting(false); }
+  };
   const changeHex = (key: typeof THEME_ROLES[number], value: string) => {
     setHexes((old) => ({...old, [key]: value}));
     if (/^#[0-9a-f]{6}$/i.test(value) && value.toLowerCase() !== props.theme[key].toLowerCase()) {
@@ -239,6 +261,10 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
           <button className={`overlay-btn ${copied ? 'confirmed' : ''}`} title="Copy render command" aria-label="Copy render command" disabled={!!editing} onClick={copyRender}>
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
+          {sharingConfigured && <button className={`overlay-btn ${exportedKey === JSON.stringify(props) ? 'confirmed' : ''}`} title="Download MP4" aria-label="Download MP4"
+            disabled={!!editing || saving || exporting} aria-busy={exporting} onClick={() => void downloadMp4()}>
+            {exporting ? <LoaderCircle className="spin" size={20} /> : exportedKey === JSON.stringify(props) ? <Check size={20} /> : <Download size={20} />}
+          </button>}
         </nav>
         <div className="editor-bottom">
           <button className="overlay-btn playback-btn" title={playing ? 'Pause' : 'Play'} aria-label={playing ? 'Pause' : 'Play'}
@@ -278,7 +304,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       <section className="video-details" aria-labelledby="video-details-heading">
         <h2 id="video-details-heading">Video details</h2>
         <p>{variant.description}</p>
-        <p className="small muted">Free to copy, modify, share, and use commercially. No attribution required. Updated {variant.updatedAt}. Created by {variant.creator}. Hosted MP4 export is not available yet.</p>
+        <p className="small muted">Free to copy, modify, share, and use commercially. No attribution required. Updated {variant.updatedAt}. Created by {variant.creator}. {sharingConfigured ? 'Free full-resolution MP4 export.' : 'Hosted MP4 export is not available yet.'}</p>
         <div className="tags">
           {[...new Set([variant.purpose, ...variant.placement, ...variant.style, variant.tone,
             variant.energy <= 2 ? 'Calm' : variant.energy === 3 ? 'Medium' : 'High',

@@ -12,7 +12,10 @@ const base = process.env.BASE ?? '/voodoo/';
 const ga = process.env.VITE_GA_MEASUREMENT_ID ?? '';
 const license = 'MIT-0';
 const notice = 'Free to copy, modify, share, and use commercially. No attribution required.';
-const promise = '100% free to browse and edit. No account, watermark, credit card, or attribution required. Built for Claude, ChatGPT, Codex, and any coding agent.';
+const mp4 = Boolean(process.env.VITE_SHARE_API_ORIGIN);
+const exportStatus = mp4 ? 'Free, full resolution, no watermark' : 'Not available yet';
+const exportFact = mp4 ? 'Signed-in users can download a free full-resolution MP4 with no watermark.' : 'Hosted MP4 export is not available yet.';
+const promise = `100% free to browse and edit. No account, watermark, credit card, or attribution required.${mp4 ? ' Free MP4 downloads.' : ''} Built for Claude, ChatGPT, Codex, and any coding agent.`;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'));
 const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo']);
 
@@ -116,7 +119,7 @@ function templatePage(v) {
     path: v.path, title: `${v.title} Template | ${v.format} ${v.purpose} | cliphou.se`, description: v.seoDescription,
     image: absolute(`/previews/${v.id}.jpg`), video: absolute(`/previews/${v.id}.mp4`), updatedAt: v.updatedAt,
   };
-  const facts = [['Format', `${v.format} (${v.meta.width} x ${v.meta.height})`], ['Duration', `${v.seconds} seconds`], ['Purpose', v.purpose], ['Styles', v.style.join(', ')], ['Scenes', v.scenes.join(', ')], ['Editable text', v.roles.join(', ')], ['License', license], ['Hosted MP4 export', 'Not available yet'], ['Updated', v.updatedAt], ['Created by', v.creator]];
+  const facts = [['Format', `${v.format} (${v.meta.width} x ${v.meta.height})`], ['Duration', `${v.seconds} seconds`], ['Purpose', v.purpose], ['Styles', v.style.join(', ')], ['Scenes', v.scenes.join(', ')], ['Editable text', v.roles.join(', ')], ['License', license], ['MP4 export', exportStatus], ['Updated', v.updatedAt], ['Created by', v.creator]];
   const body = `<nav class="crumbs" aria-label="Breadcrumb"><a href="${local('/')}">Home</a><span>/</span><a href="${local('/motion-graphics-templates/')}">Templates</a><span>/</span>${esc(v.title)}</nav>
     <section class="seo-template"><div class="seo-video" style="aspect-ratio:${v.meta.width}/${v.meta.height};background:${esc(v.props.theme.background)}"><video src="${local(`/previews/${v.id}.mp4`)}" poster="${local(`/previews/${v.id}.jpg`)}" muted loop playsinline controls preload="metadata"></video></div>
     <div><h1>${esc(v.title)}</h1><p class="lead">${esc(v.seoDescription)}</p><p class="claim">${promise}</p><div class="actions"><a class="seo-button" data-editor="${esc(v.id)}" href="${local(`/#/v/${v.id}`)}">Edit free now</a><a class="seo-secondary" href="${local(`${v.path}agent.json`)}">Agent spec</a></div><p class="license-note">${notice} <a href="${local('/license/')}">Read the license</a>.</p>
@@ -193,7 +196,10 @@ for (const item of useCases) {
   if (items.length >= 3) outputs.push(collectionPage(item, items));
 }
 for (const item of editorialPages) outputs.push(collectionPage(item, visible.filter(item.match), sections(item)));
-for (const item of comparisons) outputs.push(collectionPage(item, visible.filter(item.match).slice(0, 6), comparisonExtra(item)));
+for (const item of comparisons) {
+  const rows = item.rows.map((r) => r[0] === 'Export' ? [r[0], mp4 ? 'Free full-resolution MP4 download with no watermark after Google sign-in. Developers can also copy a Remotion render command.' : r[1], r[2]] : r);
+  outputs.push(collectionPage(item, visible.filter(item.match).slice(0, 6), comparisonExtra({...item, rows})));
+}
 outputs.push(licensePage());
 
 const seen = {title: new Set(), description: new Set(), path: new Set()};
@@ -217,5 +223,5 @@ const catalogUpdated = date(...visible.map((v) => v.updatedAt));
 const fixed = [{path: '/', updatedAt: catalogUpdated}, {path: '/about/', updatedAt: reviewedAt}];
 const urls = [...fixed, ...outputs.map((o) => o.page)];
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${absolute(u.path)}</loc><lastmod>${u.updatedAt}</lastmod></url>`).join('\n')}\n</urlset>\n`);
-fs.writeFileSync(path.join(dist, 'llms.txt'), `# cliphou.se\n\n> cliphou.se is a free gallery of agent-compatible, editable AI-made motion graphics templates. ${promise}\n\n## Key pages\n\n- [Gallery](${site}/): Browse and filter templates.\n- [Motion graphics templates](${site}/motion-graphics-templates/): Crawlable catalog.\n- [Remotion templates](${site}/remotion-templates/): Remotion showcase and render handoff.\n- [Template license](${site}/license/): ${notice}\n\n## Agent specs\n\nEach template has a no-JavaScript JSON spec with current props, text limits, color roles, scenes, JSON Schema, source path, and render command.\n\n${visible.map((v) => `- [${v.title} agent spec](${absolute(`${v.path}agent.json`)})`).join('\n')}\n\n## Templates\n\n${visible.map((v) => `- [${v.title}](${absolute(v.path)}): ${v.seoDescription}`).join('\n')}\n\n## Product facts\n\n- Browsing and editing are free.\n- No account is required to browse or edit.\n- Templates are React and Remotion compositions.\n- Templates use shared text roles and five theme colors.\n- Hosted MP4 export is not available yet.\n- Rendering the code yourself uses Remotion, which has separate terms.\n`);
+fs.writeFileSync(path.join(dist, 'llms.txt'), `# cliphou.se\n\n> cliphou.se is a free gallery of agent-compatible, editable AI-made motion graphics templates. ${promise}\n\n## Key pages\n\n- [Gallery](${site}/): Browse and filter templates.\n- [Motion graphics templates](${site}/motion-graphics-templates/): Crawlable catalog.\n- [Remotion templates](${site}/remotion-templates/): Remotion showcase and render handoff.\n- [Template license](${site}/license/): ${notice}\n\n## Agent specs\n\nEach template has a no-JavaScript JSON spec with current props, text limits, color roles, scenes, JSON Schema, source path, and render command.\n\n${visible.map((v) => `- [${v.title} agent spec](${absolute(`${v.path}agent.json`)})`).join('\n')}\n\n## Templates\n\n${visible.map((v) => `- [${v.title}](${absolute(v.path)}): ${v.seoDescription}`).join('\n')}\n\n## Product facts\n\n- Browsing and editing are free.\n- No account is required to browse or edit.\n- Templates are React and Remotion compositions.\n- Templates use shared text roles and five theme colors.\n- ${exportFact}\n- Rendering the code yourself uses Remotion, which has separate terms.\n`);
 console.log(`Generated ${outputs.length} SEO pages, sitemap.xml, and llms.txt from ${visible.length} visible templates.`);

@@ -20,12 +20,15 @@ A read-only check on October 7, 2026 confirmed that `cliphouse-app` has no billi
 - `GET /api/shares/<id>` returns public composition data, never account identifiers.
 - `DELETE /api/shares/<id>` requires its owner's token. First-party caches expire after one minute; external copies cannot be recalled.
 - Published links appear under the account. The newest 20 are shown. Local unpublished drafts remain separate from shared compositions.
+- `POST /api/exports` requires the same verified Google identity and exact schema validation as publishing, then renders one full-resolution, silent H.264 MP4 (CRF 18, `yuv420p`). A retry of the same user's edit and render version reuses the completed file. `GET /api/exports/<random-id>/video.mp4` downloads it as an attachment and supports byte ranges. The editor shows the Download MP4 button only when `VITE_SHARE_API_ORIGIN` is set, and records `mp4_export` after a successful export.
 
 ## Storage And Limits
 
 `users/{uid}/drafts/{id}` stores private saved edits with a bounded JSON payload, title, template variant ID, and server timestamp. Only its verified Google owner can read or write it. Client validation checks the template schema on save and load; the publishing backend independently validates every field before rendering.
 
-`shares/{id}` stores the immutable composition and its owner. `users/{uid}/shares/{id}` stores the owner's private link index. `shareJobs/{digest}` stores retry state. Cloud Storage holds private `shares/{id}/preview.jpg` objects. Only the server serves public assets. No MP4 is generated or uploaded.
+`shares/{id}` stores the immutable composition and its owner. `users/{uid}/shares/{id}` stores the owner's private link index. `shareJobs/{digest}` stores retry state. `exports/{id}` and `exportJobs/{digest}` store MP4 export records. Cloud Storage holds private `shares/{id}/preview.jpg` and `exports/{id}/video.mp4` objects. Only the server serves these files.
+
+MP4 export shares the one-render-per-instance lock with thumbnails. It allows 10 attempts per user and 200 per project per UTC day, set by `EXPORTS_PER_USER_DAY` and `EXPORTS_PER_DAY`. A local 8-second 1080 by 1920 export took 9 seconds and produced a 638 KB file. Cloud Run timing still needs a production measurement.
 
 The server permits one active render per instance, 10 render attempts per user per UTC day, and 100 per project per day. Firestore transactions enforce the daily limits across instances. Failed attempts count. Ready retries do not. Cloud Run should use two CPUs, 2 GiB memory, zero minimum instances, at most two instances, concurrency eight, and a 300-second timeout. Budget alerts are not a spending cap.
 

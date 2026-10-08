@@ -4,6 +4,7 @@ import type {VideoProps} from '../videos/contract';
 const apiOrigin = (import.meta.env.VITE_SHARE_API_ORIGIN || '').replace(/\/$/, '');
 export const sharingConfigured = Boolean(apiOrigin);
 export type SharedVideo = {id: string; variantId: string; props: VideoProps; title: string; url: string; image: string};
+export type ExportedVideo = {id: string; path: string; filename: string; url: string};
 
 async function request(path: string, options: RequestInit = {}, authenticated = false) {
   const headers = new Headers(options.headers);
@@ -38,4 +39,14 @@ export async function loadSharedVideo(id: string, signal: AbortSignal): Promise<
 
 export async function deleteSharedVideo(id: string) {
   return request(`/api/shares/${encodeURIComponent(id)}`, {method: 'DELETE'}, true);
+}
+
+export async function exportVideo(variantId: string, props: VideoProps): Promise<ExportedVideo> {
+  if (!sharingConfigured) throw new Error('MP4 export is not available yet. Copy the render command instead.');
+  const body = await request('/api/exports', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({variantId, props}),
+  }, true);
+  return {...body, url: `${apiOrigin}${body.path}`};
 }

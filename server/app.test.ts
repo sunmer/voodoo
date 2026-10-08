@@ -4,7 +4,7 @@ import {createServer} from 'node:http';
 import {Readable} from 'node:stream';
 import manifest from '../src/catalog/manifest.json' with {type: 'json'};
 import {createHandler} from './app.ts';
-import {HttpError, byteRange, fingerprint, shareHtml, validateShare, type Published} from './model.ts';
+import {HttpError, byteRange, exportFilename, fingerprint, shareHtml, validateShare, type Exported, type Published} from './model.ts';
 import type {createStore} from './store.ts';
 
 const variant = manifest.variants[0];
@@ -15,7 +15,10 @@ const id = 'abcdefghijklmnopqrstuvwxyz123456';
 const data: Published = {...validateShare(payload), id, owner: 'alice', status: 'ready', createdAt: 1};
 const saved = new Map<string, Published>([[id, data]]);
 const completed = new Map<string, Published>();
+const exported = new Map<string, Exported>();
+const completedExports = new Map<string, Exported>();
 let renders = 0;
+let videoRenders = 0;
 let failRender = false;
 const bytes = Buffer.from('0123456789');
 const store = {
@@ -28,6 +31,14 @@ const store = {
   async get(key: string) { if (!saved.has(key)) throw new HttpError(404, 'This shared video is unavailable.'); return saved.get(key)!; },
   async remove(key: string, uid: string) { const item = await this.get(key); if (item.owner !== uid) throw new HttpError(403, 'Not your video.'); saved.delete(key); },
   async asset() { return {size: bytes.length, stream: (range?: {start: number; end: number}) => Readable.from(range ? bytes.subarray(range.start, range.end + 1) : bytes)}; },
+  async reserveExport(owner: string, key: string, value: ReturnType<typeof validateShare>) {
+    if (completedExports.has(key)) return {ready: completedExports.get(key)};
+    return {video: {id: exportId, owner, variantId: value.variantId, template: value.template, title: value.title, status: 'rendering', createdAt: 1}};
+  },
+  async finishExport(key: string, value: Exported) { const ready = {...value, status: 'ready'}; completedExports.set(key, ready); exported.set(ready.id, ready); return ready; },
+  async failExport() {},
+  async getExport(key: string) { if (!exported.has(key)) throw new HttpError(404, 'This MP4 is unavailable.'); return exported.get(key)!; },
+  async exportAsset() { return {size: bytes.length, stream: (range?: {start: number; end: number}) => Readable.from(range ? bytes.subarray(range.start, range.end + 1) : bytes)}; },
 } as ReturnType<typeof createStore>;
 const server = createServer(createHandler({
   store, origin: 'https://cliphou.se', origins: new Set(['https://cliphou.se']), version: 'test',
@@ -41,12 +52,16 @@ const server = createServer(createHandler({
     if (failRender) throw new Error('render failed');
     return {image: '/tmp/test.jpg', cleanup: async () => {}};
   },
+  renderVideo: async () => { videoRenders++; return {video: '/tmp/test.mp4', cleanup: async () => {}}; },
 }));
+const exportId = 'mp4mp4mp4mp4mp4mp4mp4mp4mp4mp4mp4';
 let origin: string;
 before(async () => { await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve)); origin = `http://127.0.0.1:${(server.address() as {port: number}).port}`; });
 after(() => new Promise<void>((resolve) => server.close(() => resolve())));
 const post = (body: unknown, token = 'alice', headers = {}) => fetch(`${origin}/api/shares`, {method: 'POST',
   headers: {'Content-Type': 'application/json', Authorization: `Bearer ${token}`, ...headers}, body: JSON.stringify(body)});
+const postExport = (body: unknown, token = 'alice') => fetch(`${origin}/api/exports`, {method: 'POST',
+  headers: {'Content-Type': 'application/json', Authorization: `Bearer ${token}`}, body: JSON.stringify(body)});
 
 test('all presets validate, unknown fields and active-content colors do not', () => {
   for (const v of manifest.variants) assert.doesNotThrow(() => validateShare({variantId: v.id, props: v.props}));
@@ -133,4 +148,22 @@ test('only the owner can remove a published link', async () => {
   assert.equal((await fetch(`${origin}/api/shares/${id}`, {method: 'DELETE', headers: {Authorization: 'Bearer bob'}})).status, 403);
   assert.equal((await fetch(`${origin}/api/shares/${id}`, {method: 'DELETE', headers: {Authorization: 'Bearer charlie'}})).status, 200);
   assert.equal((await fetch(`${origin}/s/${id}`)).status, 404);
+});
+test('MP4 export validates identity and props, reuses identical renders, and downloads as an attachment', async () => {
+  assert.equal((await fetch(`${origin}/api/exports`, {method: 'POST'})).status, 401);
+  assert.equal((await postExport(payload, 'anonymous')).status, 403);
+  assert.equal((await postExport({...payload, props: {...props, texts: {...props.texts, headline: 'x'.repeat(25)}}})).status, 400);
+  assert.equal(videoRenders, 0);
+  const first = await postExport(payload);
+  assert.equal(first.status, 201);
+  assert.deepEqual(await first.json(), {id: exportId, path: `/api/exports/${exportId}/video.mp4`, filename: 'my-shared-edit.mp4'});
+  assert.equal((await postExport(payload)).status, 200);
+  assert.equal(videoRenders, 1);
+  const download = await fetch(`${origin}/api/exports/${exportId}/video.mp4`);
+  assert.equal(download.headers.get('content-type'), 'video/mp4');
+  assert.equal(download.headers.get('content-disposition'), 'attachment; filename="my-shared-edit.mp4"');
+  assert.equal(await download.text(), '0123456789');
+  assert.equal((await fetch(`${origin}/api/exports/${exportId}/video.mp4`, {headers: {Range: 'bytes=2-3'}})).status, 206);
+  assert.equal((await fetch(`${origin}/api/exports/${'z'.repeat(32)}/video.mp4`)).status, 404);
+  assert.equal(exportFilename({variantId: 'fallback', title: '!!!'}), 'fallback.mp4');
 });
