@@ -8,16 +8,44 @@ export function ViewportVideo({src, poster, label, controls = true, autoplay = t
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const controller = useRef<ReturnType<typeof attachViewportVideo> | null>(null);
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [state, setState] = useState({ready: false, needsPlay: false});
+  const [playing, setPlaying] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   useEffect(() => {
-    if (!ref.current) return;
-    const playback = attachViewportVideo(ref.current, src, {autoplay, onState: setState});
+    const video = ref.current;
+    if (!video) return;
+    const onPlaying = () => setPlaying(true);
+    const onStopped = () => setPlaying(false);
+    video.addEventListener('playing', onPlaying);
+    video.addEventListener('pause', onStopped);
+    video.addEventListener('emptied', onStopped);
+    const playback = attachViewportVideo(video, src, {autoplay, onState: setState});
     controller.current = playback;
-    return () => { playback.dispose(); controller.current = null; };
+    return () => {
+      clearTimeout(hideTimer.current);
+      video.removeEventListener('playing', onPlaying);
+      video.removeEventListener('pause', onStopped);
+      video.removeEventListener('emptied', onStopped);
+      playback.dispose();
+      controller.current = null;
+    };
   }, [src, autoplay]);
+  const reveal = (duration?: number) => {
+    clearTimeout(hideTimer.current);
+    setRevealed(true);
+    if (duration) hideTimer.current = setTimeout(() => setRevealed(false), duration);
+  };
+  const conceal = () => { clearTimeout(hideTimer.current); setRevealed(false); };
+  const showControls = controls && !state.needsPlay && (!playing || revealed);
   return <div data-viewport-video style={{position: 'relative', width: '100%', height: '100%', ...style}}>
     <video ref={ref} data-video-src={src} aria-label={label} poster={poster} muted loop playsInline
-      controls={controls && !state.needsPlay} preload="none" disablePictureInPicture onError={onError}
+      controls={showControls} preload="none" disablePictureInPicture onError={onError}
+      onPointerEnter={(event) => { if (event.pointerType === 'mouse') reveal(); }}
+      onPointerMove={(event) => { if (event.pointerType === 'mouse' && !revealed) reveal(); }}
+      onPointerLeave={(event) => { if (event.pointerType === 'mouse') conceal(); }}
+      onPointerDown={(event) => { if (event.pointerType !== 'mouse') reveal(3000); }}
+      onFocus={() => reveal()} onBlur={conceal}
       style={{display: 'block', width: '100%', height: '100%', objectFit: 'contain', opacity: controls || state.ready ? 1 : 0}} />
     {controls && state.needsPlay && <button type="button" aria-label={`Play ${label}`} title="Play video"
       onClick={() => controller.current?.play()}

@@ -15,7 +15,7 @@ async function showVideo(video) {
 }
 
 async function check(browser, viewport, prefix) {
-  const context = await browser.newContext({viewport, reducedMotion: 'reduce'});
+  const context = await browser.newContext({viewport, reducedMotion: 'reduce', hasTouch: viewport.width <= 768});
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
@@ -88,6 +88,15 @@ async function check(browser, viewport, prefix) {
     await page.getByRole('button', {name: new RegExp(`^Play ${await submission.getAttribute('aria-label')}$`)}).click();
     await page.waitForFunction(() => [...document.querySelectorAll('.benchmark-card-media video')].some((el) => el.currentTime > 0.2));
     assert.ok(await submission.evaluate((el) => el.videoWidth > 0 && el.videoHeight > 0), 'real benchmark video decodes');
+    await page.mouse.move(0, 0);
+    if (viewport.width <= 768) await page.waitForTimeout(3200);
+    assert.equal(await submission.evaluate((el) => el.controls), false, 'playing video hides controls');
+    if (viewport.width > 768) {
+      const box = await submission.boundingBox();
+      await page.mouse.move(box.x + box.width / 2 + 8, box.y + box.height / 2 + 8);
+    }
+    else await submission.tap();
+    assert.equal(await submission.evaluate((el) => el.controls), true, 'hover or tap shows controls');
     await submission.evaluate((el) => el.pause());
   }
   const video = page.locator('.benchmark-reference video');
