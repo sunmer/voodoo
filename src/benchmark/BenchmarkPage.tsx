@@ -6,7 +6,7 @@ import protocol from './protocol.json';
 import resultsData from './results.json';
 import recoveryData from './recovery.json';
 import recoveryProtocol from './recovery-protocol.json';
-import {visualScore, withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries} from './types';
+import {withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries} from './types';
 
 // The publication build validates this JSON against the result schema.
 const defaultResults = resultsData as BenchmarkResults;
@@ -24,7 +24,6 @@ function ResultVideo({entry, base, label}: {entry: BenchmarkResult; base: string
 }
 
 function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; entry?: BenchmarkResult; base: string; run: number; brief: string}) {
-  const score = visualScore(entry);
   const truncated = entry?.error?.includes('Completion limit reached');
   const invalid = entry?.error?.startsWith('Invalid submission:');
   const failureLabel = truncated ? 'Token limit reached' : invalid ? 'Invalid response format' : 'Render failed';
@@ -44,7 +43,6 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
       <h3>{model.name}</h3>
       {entry?.recovery && <p className="benchmark-recovery-label">{entry.status === 'rendered' ? 'Recovered' : 'Repair limit reached'} / R1 &middot; {entry.recovery.attempts} additional attempt{entry.recovery.attempts === 1 ? '' : 's'}</p>}
       <dl className="benchmark-metrics">
-        <div><dt>Visual score</dt><dd>{score === null ? <span className="metric-pending">{entry?.status === 'rendered' ? 'Review pending' : 'Not scored'}</span> : <>{score.toFixed(1)}<small>/100</small></>}</dd></div>
         <div><dt>API cost</dt><dd>{entry ? money(entry.costUsd) : <span className="metric-pending">Pending</span>}</dd></div>
         <div><dt>Generation</dt><dd>{entry ? seconds(entry.generationMs) : <span className="metric-pending">Pending</span>}</dd></div>
       </dl>
@@ -75,30 +73,22 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
   const [briefId, setBriefId] = useState(protocol.briefs[0].id);
   const [run, setRun] = useState(1);
   const [sort, setSort] = useState('listed');
-  const [showRepairs, setShowRepairs] = useState(true);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const brief = protocol.briefs.find((item) => item.id === briefId)!;
   const completed = results.entries.length;
-  const planned = protocol.models.length * protocol.briefs.length * protocol.runs;
-  const originalSuccessful = results.entries.filter((entry) => entry.status === 'rendered').length;
-  const recovered = recoveries.entries.filter(entry => entry.status === 'rendered').length;
-  const successful = originalSuccessful + (showRepairs ? recovered : 0);
-  const reviewed = results.entries.filter((entry) => visualScore(entry) !== null).length;
   const entries = results.entries.filter((entry) => entry.brief === briefId && entry.run === run)
-    .map(entry => showRepairs ? withRecovery(entry, recoveries.entries.find(item => item.model === entry.model && item.brief === entry.brief && item.run === entry.run)) : entry);
+    .map(entry => withRecovery(entry, recoveries.entries.find(item => item.model === entry.model && item.brief === entry.brief && item.run === entry.run)));
   const findEntry = (key: string) => entries.find((entry) => entry.model === key);
   const models = [...protocol.models].sort((a, b) => {
     if (sort === 'name') return a.name.localeCompare(b.name);
     if (sort === 'cost') return (findEntry(a.key)?.costUsd ?? Infinity) - (findEntry(b.key)?.costUsd ?? Infinity);
-    if (sort === 'score') return (visualScore(findEntry(b.key)) ?? -1) - (visualScore(findEntry(a.key)) ?? -1);
     return 0;
   });
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (protocol.briefs.some((item) => item.id === params.get('brief'))) setBriefId(params.get('brief')!);
     if (params.get('run') === '2') setRun(2);
-    if (params.get('view') === 'original') setShowRepairs(false);
   }, []);
   useEffect(() => {
     if (!copied) return;
@@ -117,12 +107,6 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
     setRun(value);
     const url = new URL(location.href);
     url.searchParams.set('run', String(value));
-    history.replaceState(null, '', url);
-  }
-  function selectRepairs(value: boolean) {
-    setShowRepairs(value);
-    const url = new URL(location.href);
-    url.searchParams.set('view', value ? 'repairs' : 'original');
     history.replaceState(null, '', url);
   }
   async function copyPrompt() {
@@ -148,19 +132,6 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
         </nav>
       </header>
 
-      <section className="benchmark-progress" aria-label="Benchmark progress">
-        <div><span className="benchmark-status-dot" /><strong>{completed === 0 ? 'Protocol ready. Results pending.' : completed < planned ? 'Benchmark in progress.' : reviewed < successful ? 'Generation complete. Scores pending.' : 'Results published.'}</strong>
-          <p>{completed === 0 ? 'No benchmark videos have been generated or scored yet.' : `${successful} rendered videos. ${completed - successful} incomplete or failed submissions. ${reviewed} videos reviewed.`}</p></div>
-        <div className="benchmark-progress-count"><strong>{completed}<span>/{planned}</span></strong><span>runs completed</span></div>
-      </section>
-      {recoveries.entries.length > 0 && <aside className="benchmark-recovery-summary">
-        <p><strong>Automated repair pass R1:</strong> {recovered} of {recoveries.entries.length} original failures recovered. {money(recoveries.entries.reduce((sum, entry) => sum + entry.costUsd, 0))} in additional API costs. Original results are preserved.</p>
-        <div className="benchmark-run-control" role="group" aria-label="Result version">
-          <button aria-pressed={!showRepairs} onClick={() => selectRepairs(false)}>Original runs</button>
-          <button aria-pressed={showRepairs} onClick={() => selectRepairs(true)}>With repairs</button>
-        </div>
-      </aside>}
-
       <section id="comparison" className="benchmark-comparison" aria-labelledby="comparison-title">
         <div className="benchmark-section-heading"><div><span className="section-number">01 / Comparison</span><h2 id="comparison-title">One brief. Every model.</h2></div>
           <span className="benchmark-small">{protocol.models.length} models &middot; 2 independent runs</span></div>
@@ -172,7 +143,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
             <div className="benchmark-run-control" role="group" aria-label="Independent run">{[1, 2].map((value) => <button key={value} aria-pressed={run === value} onClick={() => selectRun(value)}>Run {value}</button>)}</div>
             <label className="benchmark-sort"><span className="article-sr-only">Sort models</span><select value={sort} onChange={(event) => setSort(event.target.value)}>
               <option value="listed">Shortlist order</option><option value="name">Model name</option>
-              <option value="score">Visual score</option><option value="cost">API cost</option>
+              <option value="cost">API cost</option>
             </select><ChevronDown size={13} aria-hidden="true" /></label>
           </div>
         </div>
@@ -190,8 +161,8 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
         </div>
         <p className="article-sr-only" aria-live="polite">{brief.name}, run {run}. {entries.length} completed entries.</p>
         <div className="benchmark-grid">{models.map((model) => <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={findEntry(model.key)} base={base} run={run} brief={brief.name} />)}</div>
-        <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed. Scores stay unpublished until two blind reviews are complete.</p>
-        {showRepairs && recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost and generation time, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered, not that visual quality or brief adherence has been approved. It is not first-attempt success.</p>}
+        <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed.</p>
+        {recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost and generation time, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered. It is not first-attempt success.</p>}
       </section>
 
       <section id="methodology" className="benchmark-section">
@@ -215,9 +186,8 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
             <div className="benchmark-facts"><div><strong>10</strong><span>models</span></div><div><strong>3</strong><span>fixed briefs</span></div><div><strong>2</strong><span>runs per brief</span></div></div>
           </div>
         </div>
-        <div className="benchmark-scoring"><h3>Visual quality, reviewed blind</h3><p>Two reviewers score each criterion from 1 (poor) to 5 (excellent), with model names and costs hidden. Weighted scores are averaged across reviewers. Both runs are published, including failures.</p>
-          <dl>{protocol.rubric.map((category) => <div key={category.id}><dt>{category.name}<span>{category.weight}%</span></dt><dd>{category.description}</dd></div>)}</dl>
-          <p className="benchmark-footnote">Visual quality does not include cost or reliability. Two runs are exploratory evidence, not a statistically definitive ranking. No aggregate winner is declared before every model has comparable coverage.</p>
+        <div className="benchmark-scoring">
+          <p className="benchmark-footnote">Both runs are published, including failures. Two runs are exploratory evidence, not a statistically definitive ranking.</p>
           <p className="benchmark-footnote"><strong>Protocol revision:</strong> A Haiku setup pilot used 13,309 reasoning tokens and was truncated at the original 16,000-token limit. Protocol 1.1 uses 32,000 tokens for all 60 comparable runs. The pilot cost $0.008 and remains in the spending record, outside the comparison.</p>
           <p className="benchmark-footnote"><strong>Repair-feedback limitation:</strong> In this pilot, compile-failure repairs received a stack trace without the detailed TypeScript diagnostics. Treat repair outcomes as provisional. First-attempt outcomes are unaffected.</p>
         </div>
