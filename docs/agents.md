@@ -5,7 +5,8 @@ Every cliphou.se video is deterministic code plus props. An agent can read it, e
 ## Light Path: Text And Colors
 
 - `/templates/<variant>/agent.json` is a static file. `/s/<share-id>/agent.json` comes from the share service. Neither needs JavaScript.
-- Each spec has the template version, source hash, current props, text roles and limits, color roles, scenes, format, a JSON Schema generated from zod, a handoff URL, and the source package link.
+- Each spec has the template version, source hash, generation model and effort, current props, text roles and limits, color roles, scenes, format, a JSON Schema generated from zod, a handoff URL, and the source package link.
+- Every catalog template must define `generation.model`, `generation.modelId`, `generation.provider`, and `generation.effort`. The build rejects missing values and agent names such as `Codex`.
 - The handoff URL is `/#/v/<variant>?props=<url-encoded JSON>`. Older versions add `&v=<version>`. Encoded props are limited to 8,000 characters.
 - The editor validates handoff props against the exact template schema. Unknown keys, missing keys, long text, blank text, control characters, and invalid colors are rejected with a message. Rejected props are not loaded, saved, published, or rendered. The handoff path never runs code.
 - The editor's Copy agent link action copies the spec URL and the current edit as a handoff URL.

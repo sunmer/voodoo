@@ -9,6 +9,7 @@ import manifest from '../src/catalog/manifest.json' with {type: 'json'};
 import {readHandoff, validateProps} from '../src/agent/handoff.ts';
 import {agentSpec} from '../src/agent/spec.ts';
 import {MAX_HANDOFF_CHARS, handoffPath, versions} from '../src/agent/versions.ts';
+import {generationErrors} from '../src/catalog/generation.ts';
 import {schemas} from '../src/videos/schemas.ts';
 import {ROLES} from '../src/videos/vocab.ts';
 
@@ -19,6 +20,7 @@ const spec = (v: (typeof visible)[number]) => agentSpec({site: 'https://cliphou.
 test('every template spec exports a JSON Schema that matches the zod schema', () => {
   for (const v of visible) {
     const s = spec(v);
+    assert.deepEqual(s.generation, {model: 'Claude Opus 5.5', modelId: 'claude-opus-5-5', provider: 'Anthropic', effort: 'medium'}, v.id);
     const roles = Object.keys(schemas[v.template].shape.texts.shape);
     assert.deepEqual(s.jsonSchema.properties.texts.required, roles, v.id);
     assert.equal(s.jsonSchema.properties.texts.additionalProperties, false);
@@ -29,6 +31,12 @@ test('every template spec exports a JSON Schema that matches the zod schema', ()
     const raw = new URLSearchParams(s.handoff.example.split('?')[1]).get('props')!;
     assert.ok(readHandoff(raw, schemas[v.template]).ok, v.id);
   }
+});
+
+test('generation metadata names a real model and effort', () => {
+  for (const t of manifest.templates) assert.deepEqual(generationErrors(t.id, t.generation), [], t.id);
+  assert.match(generationErrors('bad', {model: 'Codex', modelId: 'codex', provider: 'OpenAI', effort: 'medium'}).join(), /not an agent/);
+  assert.match(generationErrors('bad', {model: 'Claude Opus 5.5', modelId: 'claude-opus-5-5', provider: 'Anthropic'}).join(), /effort/);
 });
 
 test('valid handoffs open; invalid and oversized handoffs are rejected', () => {

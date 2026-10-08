@@ -46,235 +46,365 @@
       "id": "showreel",
       "title": "Showreel",
       "creator": "stephanlivera",
-      "model": "Claude Opus 5.5",
       "prompt": "Make a dynamic 15 second motion graphics video that shows off what an incredible motion designer you are. Imagine it's your showreel for a resume!",
       "createdAt": "2026-09-19",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "stack",
       "title": "Stack",
       "creator": "ajith_io",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical video for Reels: masked headline reveal, three stacked selling points sliding in, and a circular reveal to a CTA.",
       "createdAt": "2026-10-03",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "ticker",
       "title": "Ticker",
       "creator": "mo.graph",
-      "model": "Claude Opus 5.5",
       "prompt": "A loud 8 second square social ad: tilted scrolling marquee rows of the headline, a split-flap board for three offers, and a stamped CTA.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "terminal",
       "title": "Terminal",
       "creator": "devrel_kai",
-      "model": "Claude Opus 5.5",
       "prompt": "A 9 second 16:9 developer launch: a terminal window types a command, glitches in the headline, ticks off a build log, then a glitched logo reveal.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "pulse",
       "title": "Pulse",
       "creator": "datawren",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second 4:5 data recap for LinkedIn: a growth line draws behind the headline, three bars spring up with counting percentages, and a ring closes around the brand.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "folio",
       "title": "Folio",
       "creator": "atelier.no",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second editorial brand film in a magazine layout: serif headline masked in line by line, a pull quote, and a numbered index with a CTA.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "bento",
       "title": "Bento",
       "creator": "gridwork.studio",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second 16:9 product reveal in the bento-grid style: the headline sets word by word with a weight morph, then a grid of rounded tiles assembles with a live counter, progress ring and feature icons, and a tile grows into a gradient logo lockup.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "glass",
       "title": "Glass",
       "creator": "lumen.ui",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical app promo in a liquid-glass style: drifting color fields behind frosted panels, a glass hero card with a light sheen, lock-screen style notifications for three features, and a glass orb lockup.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "flex",
       "title": "Flex",
       "creator": "widthaxis",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second square kinetic type ad using a variable font: headline words breathe between condensed and expanded widths, an index list where the active row stretches, and a circular wipe to the brand.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "riso",
       "title": "Riso",
       "creator": "inkfold",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second 4:5 poster in a risograph style: halftone sun shapes, two-color misregistered type, scrambled text that resolves, halftone wipes and a rotating text-ring stamp.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "collage",
       "title": "Collage",
       "creator": "cutpaste.club",
-      "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical zine-style collage: torn paper scraps with tape drop in, hand-drawn scribbles draw on, a sticker badge pops, and the CTA lands on a pill.",
       "createdAt": "2026-10-07",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "cursor",
       "title": "Cursor",
       "creator": "interface.lab",
-      "model": "Codex",
       "prompt": "A clean 8 second 16:9 product demo: animated cursor selects a headline, toggles three features in an app window, and clicks a CTA.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "spotlight",
       "title": "Spotlight",
       "creator": "after.hours",
-      "model": "Codex",
       "prompt": "A cinematic 8 second vertical announcement with a moving stage light, beam-swept headline, lit stat cards, and circular CTA reveal.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "slice",
       "title": "Slice",
       "creator": "sharp.type",
-      "model": "Codex",
       "prompt": "A fast 8 second square social ad with diagonal slice reveals, angled list panels, and a split-screen CTA.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "swiss",
       "title": "Swiss",
       "creator": "grid.office",
-      "model": "Codex",
       "prompt": "A precise 8 second 4:5 editorial template on an animated Swiss grid, with modular point blocks and a clean brand lockup.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "prism",
       "title": "Prism",
       "creator": "light.form",
-      "model": "Codex",
       "prompt": "A premium 8 second 16:9 launch with prism light rays, 3D glass point cards, and a rotating diamond lockup.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "lowerthird",
       "title": "Lower Thirds",
       "creator": "broadcast.kit",
-      "model": "Codex",
       "prompt": "A 9 second 16:9 lower thirds pack: a name and title bar, a topic strap, and a social handle bubble over an interview frame.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "kinetic",
       "title": "Kinetic",
       "creator": "type.motion",
-      "model": "Codex",
       "prompt": "A 9 second square kinetic typography piece with one word per line, full-screen word flashes, and a bold brand outro.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "endscreen",
       "title": "End Screen",
       "creator": "channel.lab",
-      "model": "Codex",
       "prompt": "A 20 second 16:9 YouTube end screen and outro with two video placeholders and a subscribe circle.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "blackfriday",
       "title": "Black Friday",
       "creator": "promo.desk",
-      "model": "Codex",
       "prompt": "A 9 second 9:16 Black Friday sale video with caution-tape marquees, slamming deal cards, and a pulsing shop button.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "wordmark",
       "title": "Wordmark",
       "creator": "mark.studio",
-      "model": "Codex",
       "prompt": "A 6 second 16:9 wordmark logo reveal with a dot burst, letter mask reveal, gradient underline, and circle wipe.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "testimonial",
       "title": "Testimonial",
       "creator": "proof.co",
-      "model": "Codex",
       "prompt": "A 10 second 4:5 customer testimonial video with a serif quote reveal, five stars, an author card, and a result stat.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "ytintro",
       "title": "Channel Intro",
       "creator": "channel.lab",
-      "model": "Codex",
       "prompt": "A 6 second 16:9 YouTube intro with color bar wipes, a glitch channel name, and a tagline.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "wrapped",
       "title": "Wrapped",
       "creator": "recap.club",
-      "model": "Codex",
       "prompt": "A 10 second 9:16 year in review video with bold shapes, a ranked top-three list, and a share call to action.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "countdown",
       "title": "Countdown",
       "creator": "launch.clock",
-      "model": "Codex",
       "prompt": "An 8 second 9:16 countdown video from 5 to 1 with a progress ring, then a flash reveal and call to action.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     },
     {
       "id": "podcast",
       "title": "Podcast",
       "creator": "audio.club",
-      "model": "Codex",
       "prompt": "An 8 second square podcast intro with an episode badge, show title, animated waveform, and spinning record outro.",
       "createdAt": "2026-10-08",
-      "license": "MIT-0"
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [

@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import manifest from '../catalog/manifest.json' with {type: 'json'};
 import {templateMeta} from '../videos/meta.ts';
 import {schemas} from '../videos/schemas.ts';
 import {ROLES, SCENE_TYPES, THEME_ROLES, type Role, type VideoProps} from '../videos/vocab.ts';
@@ -30,11 +31,14 @@ export function agentSpec({site, kind, id, url, title, variant, props, version, 
   const texts = Object.fromEntries((Object.keys(schema.shape.texts.shape) as Role[]).map((role) =>
     [role, {label: ROLES[role].label, maxLength: ROLES[role].max, current: props.texts[role]}]));
   const pkg = `${site}${sourcePath(variant.template, pinned.version)}`;
+  const generation = manifest.templates.find((t) => t.id === variant.template)?.generation;
+  if (!generation) throw new Error(`Missing generation metadata for template ${variant.template}.`);
   const old = pinned.version !== latest.version ? `&v=${pinned.version}` : '';
   return {
-    schemaVersion: '1.1', kind, id, variantId: variant.id, template: variant.template, title, url,
+    schemaVersion: '1.2', kind, id, variantId: variant.id, template: variant.template, title, url,
     editorUrl: `${site}/#/v/${variant.id}`,
     templateVersion: pinned.version, latestTemplateVersion: latest.version, sourceHash: pinned.hash,
+    generation,
     ...(siteCommit ? {siteCommit} : {}),
     license: TEMPLATE_LICENSE, licenseUrl: `${site}/license/`, price: 'Free', attributionRequired: false,
     format: {

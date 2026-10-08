@@ -10,6 +10,8 @@ import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const MODEL = process.env.MODEL || 'eu.anthropic.claude-opus-5-5';
+const EFFORT = process.env.EFFORT || 'medium';
+if (!['low', 'medium', 'high', 'xhigh', 'max'].includes(EFFORT)) throw new Error(`Invalid EFFORT ${EFFORT}`);
 const REGION = process.env.AWS_REGION || 'eu-north-1';
 const [id, flag] = process.argv.slice(2);
 const briefs = JSON.parse(fs.readFileSync(path.join(root, 'generations/briefs.json'), 'utf8'));
@@ -61,7 +63,8 @@ if (flag === '--repair') {
   messages.push({role: 'user', content: [{text: `The type check failed:\n\n${errors}\n\nReturn all three files again, fixed, in the same format.`}]});
 }
 
-const input = {modelId: MODEL, system: [{text: system}], messages, inferenceConfig: {maxTokens: 32000}};
+const input = {modelId: MODEL, system: [{text: system}], messages, inferenceConfig: {maxTokens: 32000},
+  additionalModelRequestFields: {output_config: {effort: EFFORT}}};
 const tmp = path.join(os.tmpdir(), `gen-${id}.json`);
 fs.writeFileSync(tmp, JSON.stringify(input));
 const t0 = Date.now();
@@ -82,7 +85,8 @@ fs.mkdirSync(target, {recursive: true});
 for (const [, name, code] of files) fs.writeFileSync(path.join(target, name), code + '\n');
 
 const logPath = path.join(dir, 'log.json');
-const log = fs.existsSync(logPath) && flag === '--repair' ? JSON.parse(fs.readFileSync(logPath, 'utf8')) : {model: MODEL, system, attempts: []};
+const log = fs.existsSync(logPath) && flag === '--repair' ? JSON.parse(fs.readFileSync(logPath, 'utf8')) : {model: MODEL, effort: EFFORT, system, attempts: []};
+if (log.effort && log.effort !== EFFORT) throw new Error(`Repair effort ${EFFORT} does not match original effort ${log.effort}`);
 log.messages = messages;
 log.attempts.push({attempt, ms: Date.now() - t0, usage: out.usage, stopReason: out.stopReason, files: files.map((f) => f[1])});
 fs.writeFileSync(logPath, JSON.stringify(log, null, 2));

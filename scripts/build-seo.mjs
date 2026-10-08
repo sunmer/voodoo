@@ -6,6 +6,7 @@ import {ROLES, SCENE_TYPES} from '../src/videos/vocab.ts';
 import {comparisons, editorialPages, reviewedAt, useCases} from '../src/seo/content.mjs';
 import {agentSpec as buildAgentSpec} from '../src/agent/spec.ts';
 import {sourcePath, templateVersion} from '../src/agent/versions.ts';
+import {generationErrors} from '../src/catalog/generation.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -38,6 +39,7 @@ function validate() {
   const templates = new Map(manifest.templates.map((t) => [t.id, t]));
   const visible = manifest.variants.filter((v) => !v.hidden);
   for (const t of manifest.templates) if (t.license !== license) errors.push(`${t.id}: template license must be ${license}`);
+  for (const t of manifest.templates) errors.push(...generationErrors(t.id, t.generation));
   for (const field of ['id', 'title', 'seoDescription']) {
     const seen = new Map();
     for (const v of visible) {
