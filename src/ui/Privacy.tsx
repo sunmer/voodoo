@@ -3,6 +3,7 @@ import {Header} from './Header';
 export function SiteFooter() {
   return <footer className="site-footer">
       <a href="#/">cliphou.se</a>
+      <a href={`${import.meta.env.BASE_URL}benchmark/`}>Benchmark</a>
       <a href={`${import.meta.env.BASE_URL}about/`}>About</a>
       <a href={`${import.meta.env.BASE_URL}license/`}>License</a>
       <a href="#/privacy">Privacy</a>

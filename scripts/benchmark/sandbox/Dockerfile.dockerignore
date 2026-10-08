@@ -1,0 +1,10 @@
+*
+!package.json
+!package-lock.json
+!src
+!src/benchmark
+!src/benchmark/protocol.json
+!scripts
+!scripts/benchmark
+!scripts/benchmark/sandbox
+!scripts/benchmark/sandbox/**
