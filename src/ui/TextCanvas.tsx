@@ -57,7 +57,8 @@ function targetsIn(root: HTMLElement): Target[] {
   return result;
 }
 
-export function TextCanvas({children, player, props, playing, onCommit, onEditing}: {
+export function TextCanvas({ref, children, player, props, playing, onCommit, onEditing}: {
+  ref?: RefObject<HTMLDivElement | null>;
   children: ReactNode;
   player: RefObject<PlayerRef | null>;
   props: VideoProps;
@@ -66,6 +67,10 @@ export function TextCanvas({children, player, props, playing, onCommit, onEditin
   onEditing: (role: Role | null) => void;
 }) {
   const root = useRef<HTMLDivElement>(null);
+  const setRoot = useCallback((node: HTMLDivElement | null) => {
+    root.current = node;
+    if (ref) ref.current = node;
+  }, [ref]);
   const input = useRef<HTMLTextAreaElement>(null);
   const [targets, setTargets] = useState<Target[]>([]);
   const [active, setActive] = useState<Target | null>(null);
@@ -138,7 +143,7 @@ export function TextCanvas({children, player, props, playing, onCommit, onEditin
   const height = active ? Math.min(Math.max(active.height + 12, 60), Math.max(60, Math.min(220, availableBottom - availableTop - 48))) : 0;
   const top = active ? Math.max(availableTop, Math.min(active.top - 6, availableBottom - height - 48)) : 0;
   return (
-    <div ref={root} className={`text-canvas ${active ? 'is-editing' : ''}`} tabIndex={-1}
+    <div ref={setRoot} className={`text-canvas ${active ? 'is-editing' : ''}`} tabIndex={-1}
       onClickCapture={(event) => {
         if ((event.target as Element).closest('.inline-editor, .text-hit')) return;
         if (active) { finish(true); return; }

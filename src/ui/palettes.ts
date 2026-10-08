@@ -16,3 +16,58 @@ export function derivePalettes(original: Theme) {
   const same = (a: Theme) => JSON.stringify(a) === JSON.stringify(original);
   return [{name: 'Original', colors: original}, ...PRESETS.filter((p) => !same(p.colors))];
 }
+
+const hsl = (h: number, s: number, l: number) => {
+  s /= 100; l /= 100;
+  const k = (n: number) => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const channel = (n: number) => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))));
+  return `#${[0, 8, 4].map((n) => channel(n).toString(16).padStart(2, '0')).join('')}`;
+};
+const luminance = (hex: string) => {
+  const values = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((v) => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * values[0] + 0.7152 * values[1] + 0.0722 * values[2];
+};
+const contrast = (a: string, b: string) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+const between = (random: () => number, min: number, max: number) => min + random() * (max - min);
+const hue = (value: number) => ((value % 360) + 360) % 360;
+const NAMES = ['Signal', 'Studio', 'Bloom', 'Current', 'Atlas', 'Pop', 'Field', 'Vapor', 'Mono', 'Tide', 'Flare', 'Grove'];
+const HARMONIES = [150, 180, 210, -150, 120, -120];
+
+function generatePalette(index: number, random: () => number): Theme {
+  for (let attempt = 0; attempt < 40; attempt++) {
+    const base = random() * 360;
+    const dark = index % 3 !== 1;
+    const accentHue = hue(base + between(random, -18, 18));
+    const accent2Hue = hue(accentHue + HARMONIES[Math.floor(random() * HARMONIES.length)] + between(random, -12, 12));
+    const theme = dark ? {
+      background: hsl(base, between(random, 18, 48), between(random, 4, 9)),
+      surface: hsl(hue(base + between(random, -8, 8)), between(random, 18, 42), between(random, 12, 18)),
+      foreground: hsl(base, between(random, 8, 28), between(random, 93, 97)),
+      accent: hsl(accentHue, between(random, 78, 96), between(random, 54, 64)),
+      accent2: hsl(accent2Hue, between(random, 68, 92), between(random, 56, 68)),
+    } : {
+      background: hsl(base, between(random, 18, 48), between(random, 93, 97)),
+      surface: hsl(base, between(random, 20, 55), between(random, 98, 100)),
+      foreground: hsl(base, between(random, 25, 55), between(random, 8, 14)),
+      accent: hsl(accentHue, between(random, 72, 92), between(random, 38, 48)),
+      accent2: hsl(accent2Hue, between(random, 62, 88), between(random, 32, 44)),
+    };
+    // Keep generated themes legible for text and distinct enough for accent roles.
+    if (contrast(theme.foreground, theme.background) >= 12 && contrast(theme.foreground, theme.surface) >= 9 &&
+      contrast(theme.accent, theme.background) >= 3 && contrast(theme.accent2, theme.background) >= 3) return theme;
+  }
+  return PRESETS[index % PRESETS.length].colors;
+}
+
+export function generatePalettes(original: Theme, count = PRESETS.length, random = Math.random) {
+  const offset = Math.floor(random() * NAMES.length);
+  return [{name: 'Original', colors: original}, ...Array.from({length: count}, (_, i) => ({
+    name: `${NAMES[(offset + i) % NAMES.length]} ${i + 1}`,
+    colors: generatePalette(i, random),
+  }))];
+}

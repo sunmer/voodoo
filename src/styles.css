@@ -185,16 +185,19 @@ h1, h2, h3 { margin: 0; }
   .editor-bottom { bottom: max(8px, env(safe-area-inset-bottom)); left: max(10px, env(safe-area-inset-left)); right: max(10px, env(safe-area-inset-right)); }
 }
 
-.timeline { position: relative; height: 34px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); overflow: hidden; }
+.timeline { position: relative; height: 34px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); overflow: hidden; cursor: ew-resize; touch-action: none; user-select: none; -webkit-user-select: none; }
+.timeline.scrubbing { cursor: grabbing; }
+.timeline.disabled { cursor: default; }
 .scene {
   position: absolute; top: 0; bottom: 0; border: 0; border-right: 1px solid var(--line); background: transparent;
-  color: var(--muted); font-size: 11.5px; padding: 0 8px; text-align: left; overflow: hidden;
+  color: var(--muted); font-size: 11.5px; padding: 0 8px; text-align: left; overflow: hidden; cursor: inherit;
 }
 .scene span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
 .scene:hover { background: var(--panel-2); color: var(--text); }
 .scene.current { color: var(--text); background: rgba(255, 255, 255, 0.04); }
 .scene.linked { background: rgba(74, 222, 128, 0.14); color: var(--accent); }
-.playhead { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--accent); pointer-events: none; }
+.playhead { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--accent); pointer-events: none; }
+.timeline.scrubbing .playhead { width: 3px; margin-left: -1.5px; }
 
 /* Brand kit */
 .kit-btn {

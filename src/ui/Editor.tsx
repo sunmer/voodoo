@@ -1,11 +1,11 @@
 import {Player, type PlayerRef} from '@remotion/player';
-import {ArrowLeft, Check, Copy, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RotateCcw, Save, Shuffle, Undo2, Wand2} from 'lucide-react';
+import {ArrowLeft, Check, Copy, LoaderCircle, Maximize, Minimize, Pause, Play, Redo2, RefreshCw, RotateCcw, Save, Undo2, Wand2} from 'lucide-react';
 import {useCallback, useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import type {Variant} from '../catalog/catalog';
 import {THEME_LABELS, THEME_ROLES, type Role, type VideoProps} from '../videos/contract';
 import {compositions} from '../videos/registry';
 import {applyKit, kitHasValues, useBrandKit} from './brandKit';
-import {derivePalettes} from './palettes';
+import {derivePalettes, generatePalettes} from './palettes';
 import {TextCanvas} from './TextCanvas';
 import {Timeline} from './Timeline';
 import {StarButton, useAccount} from './Account';
@@ -50,13 +50,16 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
   const {props} = h;
   const player = useRef<PlayerRef>(null);
   const immersive = useRef<HTMLDivElement>(null);
+  const textCanvas = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [editing, setEditing] = useState<Role | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
   const [notice, setNotice] = useState('');
   const [hexes, setHexes] = useState(props.theme);
-  const palettes = useMemo(() => derivePalettes(variant.props.theme), [variant.props.theme]);
+  const defaultPalettes = useMemo(() => derivePalettes(variant.props.theme), [variant.props.theme]);
+  const [generatedPalettes, setGeneratedPalettes] = useState<typeof defaultPalettes | null>(null);
+  const palettes = generatedPalettes ?? defaultPalettes;
   const kitProps = kitHasValues(kit) ? applyKit(props, kit) : null;
   const kitDiffers = kitProps && JSON.stringify(kitProps) !== JSON.stringify(props);
 
@@ -85,6 +88,9 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
     finally { setSaving(false); }
   };
   useEffect(() => {
+    setGeneratedPalettes(null);
+  }, [variant.props.theme]);
+  useEffect(() => {
     const p = player.current;
     const on = () => setPlaying(true);
     const off = () => setPlaying(false);
@@ -98,6 +104,28 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       document.removeEventListener('visibilitychange', hidden);
     };
   }, []);
+  const focusEditor = useCallback(() => {
+    if (saving || editing || document.querySelector('dialog[open]')) return;
+    textCanvas.current?.focus({preventScroll: true});
+  }, [editing, saving]);
+  useEffect(() => {
+    focusEditor();
+    const settle = (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('input, textarea, select, [contenteditable="true"], dialog')) return;
+      requestAnimationFrame(() => {
+        const active = document.activeElement as HTMLElement | null;
+        if (!active || active === document.body || active.tagName === 'BUTTON' || active.classList.contains('text-hit')) focusEditor();
+      });
+    };
+    const blurred = () => requestAnimationFrame(() => { if (document.activeElement === document.body) focusEditor(); });
+    document.addEventListener('pointerup', settle);
+    document.addEventListener('focusout', blurred);
+    return () => {
+      document.removeEventListener('pointerup', settle);
+      document.removeEventListener('focusout', blurred);
+    };
+  }, [focusEditor]);
   useEffect(() => {
     if (!expanded) return;
     const overflow = document.body.style.overflow;
@@ -179,7 +207,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
         </header>
         <div className="editor-video-area">
           <div className="editor-video">
-            <TextCanvas player={player} props={props} playing={playing} onEditing={setEditing}
+            <TextCanvas ref={textCanvas} player={player} props={props} playing={playing} onEditing={setEditing}
               onCommit={(role, value) => h.set({...props, texts: {...props.texts, [role]: value}})}>
               <Player ref={player} component={c.component} inputProps={props} durationInFrames={c.durationInFrames}
                 compositionWidth={c.width} compositionHeight={c.height} fps={c.fps}
@@ -214,8 +242,8 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       <section className="editor-theme" aria-labelledby="theme-heading">
         <div className="theme-heading">
           <h2 id="theme-heading">Theme</h2>
-          <button className="icon-btn" title="Shuffle palette" aria-label="Shuffle palette" disabled={!!editing}
-            onClick={() => h.set({...props, theme: palettes[Math.floor(Math.random() * palettes.length)].colors})}><Shuffle size={18} /></button>
+          <button className="icon-btn" title="Generate palettes" aria-label="Generate palettes" disabled={!!editing}
+            onClick={() => setGeneratedPalettes(generatePalettes(variant.props.theme))}><RefreshCw size={18} /></button>
         </div>
         <div className="theme-content">
           <div className="palettes" role="group" aria-label="Palettes">

@@ -1,10 +1,13 @@
 import type {PlayerRef} from '@remotion/player';
-import {useEffect, useState, type RefObject} from 'react';
+import {useEffect, useRef, useState, type PointerEvent, type RefObject} from 'react';
 import {SCENE_TYPES, type Role, type TemplateMeta} from '../videos/vocab';
 
-// Scene strip under the player: shows where each scene sits, follows playback, seeks on click.
+// Scene strip under the player: shows where each scene sits, follows playback, and scrubs continuously.
 export function Timeline({meta, player, focusRole, disabled = false}: {meta: TemplateMeta; player: RefObject<PlayerRef | null>; focusRole: Role | null; disabled?: boolean}) {
   const [frame, setFrame] = useState(0);
+  const [scrubbing, setScrubbing] = useState(false);
+  const resume = useRef(false);
+  const active = useRef(false);
   useEffect(() => {
     const p = player.current;
     if (!p) return;
@@ -19,8 +22,40 @@ export function Timeline({meta, player, focusRole, disabled = false}: {meta: Tem
 
   const total = meta.durationInFrames;
   const scenes = meta.scenes.filter((s) => s.type !== 'transition');
+  const seekAt = (event: PointerEvent<HTMLDivElement>) => {
+    const box = event.currentTarget.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (event.clientX - box.left) / box.width));
+    const next = Math.min(total - 1, Math.round(ratio * (total - 1)));
+    setFrame(next);
+    player.current?.seekTo(next);
+  };
+  const finish = () => {
+    if (!active.current) return;
+    active.current = false;
+    setScrubbing(false);
+    if (resume.current) player.current?.play();
+  };
+  const stop = (event: PointerEvent<HTMLDivElement>) => {
+    finish();
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  };
   return (
-    <div className="timeline">
+    <div className={`timeline ${scrubbing ? 'scrubbing' : ''} ${disabled ? 'disabled' : ''}`}
+      onPointerDown={(event) => {
+        if (disabled || event.button !== 0) return;
+        // Keep focus on the editor so Space continues to control playback.
+        event.preventDefault();
+        event.currentTarget.setPointerCapture(event.pointerId);
+        resume.current = !!player.current?.isPlaying();
+        player.current?.pause();
+        active.current = true;
+        setScrubbing(true);
+        seekAt(event);
+      }}
+      onPointerMove={(event) => { if (active.current) seekAt(event); }}
+      onPointerUp={stop}
+      onPointerCancel={stop}
+      onLostPointerCapture={finish}>
       {scenes.map((s, i) => {
         const end = i < scenes.length - 1 ? scenes[i + 1].from : total;
         const current = frame >= s.from && frame < end;
@@ -33,7 +68,9 @@ export function Timeline({meta, player, focusRole, disabled = false}: {meta: Tem
             className={`scene ${current ? 'current' : ''} ${linked ? 'linked' : ''}`}
             style={{left: `${(s.from / total) * 100}%`, width: `${((end - s.from) / total) * 100}%`}}
             title={`${SCENE_TYPES[s.type]} · ${(s.from / meta.fps).toFixed(1)}s`}
-            onClick={() => {
+            onClick={(event) => {
+              // Pointer input scrubs on the strip; keyboard activation jumps to the scene.
+              if (event.detail !== 0) return;
               player.current?.seekTo(s.from + s.focus);
               player.current?.pause();
             }}
@@ -42,7 +79,7 @@ export function Timeline({meta, player, focusRole, disabled = false}: {meta: Tem
           </button>
         );
       })}
-      <div className="playhead" style={{left: `${(frame / total) * 100}%`}} />
+      <div className="playhead" style={{left: `${(frame / Math.max(1, total - 1)) * 100}%`}} />
     </div>
   );
 }
