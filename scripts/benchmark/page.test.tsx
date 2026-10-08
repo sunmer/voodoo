@@ -29,7 +29,7 @@ test('real rendered entry shows video, actual metrics, and base-aware downloads'
   assert.match(html, /5.2s/);
   assert.doesNotMatch(html, /12.3s/);
   assert.match(html, /gen-test/);
-  assert.match(html, /Review pending/);
+  assert.doesNotMatch(html, /Visual score|Review pending|Generation complete|Original runs/);
   assert.match(html, /href="\/voodoo\/benchmark\/media\/test\/source.tsx"/);
   assert.match(html, /Passed on first attempt/);
 });
@@ -43,7 +43,7 @@ test('failed entry is not a pending run or a fabricated video', () => {
   assert.doesNotMatch(html, /src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
   assert.match(html, /&lt;script&gt;unsafe&lt;\/script&gt;/);
 });
-test('visual scores require two reviewers and never penalize unreviewed output', () => {
+test('stored visual scores stay out of the public comparison', () => {
   const entry = sample();
   const review = {reviewer: 'A', scores: {design: 4, motion: 3, readability: 5, adherence: 4}};
   assert.equal(visualScore(entry), null);
@@ -51,7 +51,7 @@ test('visual scores require two reviewers and never penalize unreviewed output',
   assert.equal(visualScore(entry), null);
   entry.reviews.push({...review, reviewer: 'B'});
   assert.equal(visualScore(entry), 80);
-  assert.match(render(entry), /80.0/);
+  assert.doesNotMatch(render(entry), /80.0|Visual score/);
   assert.equal(visualScore({...entry, status: 'failed'}), null);
 });
 test('repaired output discloses repair instead of first-attempt success', () => {

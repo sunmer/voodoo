@@ -14,15 +14,15 @@ async function check(engine, viewport, name) {
     const protocol = await (await page.request.get(`${base}benchmark/protocol.json`)).json();
     const timings = await (await page.request.get(`${base}benchmark/timings.json`)).json();
     assert.equal(repairs.entries.length, baseline.entries.filter(entry => entry.status === 'failed').length);
-    const rendered = repairs.entries.filter(entry => entry.status === 'rendered').length;
-    assert.match(await page.locator('.benchmark-recovery-summary').innerText(), new RegExp(`${rendered} of ${repairs.entries.length}`));
+    assert.equal(await page.locator('.benchmark-recovery-summary, .benchmark-progress').count(), 0);
+    const originalLink = await page.getByRole('link', {name: 'Original results', exact: true}).getAttribute('href');
+    assert.deepEqual(await (await page.request.get(new URL(originalLink, base).href)).json(), baseline, 'original failures remain available unchanged');
     for (const brief of protocol.briefs) {
       await page.getByRole('button', {name: brief.name, exact: true}).click();
       for (const run of [1, 2]) {
         await page.getByRole('button', {name: `Run ${run}`, exact: true}).click();
         const originals = baseline.entries.filter(entry => entry.brief === brief.id && entry.run === run);
         const recoveries = repairs.entries.filter(entry => entry.brief === brief.id && entry.run === run);
-        await page.getByRole('button', {name: 'With repairs', exact: true}).click();
         assert.equal(await page.locator('.benchmark-card-media video').count(),
           originals.filter(entry => entry.status === 'rendered').length + recoveries.filter(entry => entry.status === 'rendered').length);
         assert.equal(await page.locator('.benchmark-recovery-label').count(), recoveries.length);
@@ -32,7 +32,7 @@ async function check(engine, viewport, name) {
           const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});
           const timing = timings.entries.find(timing => timing.video === entry.video);
           const expected = entry.status === 'failed' ? 'Not generated' : timing?.generationTimeMs == null ? 'Unavailable' : `${(timing.generationTimeMs / 1000).toFixed(1)}s`;
-          assert.equal(await card.locator('.benchmark-metrics dd').nth(2).textContent(), expected, `${model.name}: timing belongs to displayed video`);
+          assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('Generation', {exact: true})}).locator('dd').textContent(), expected, `${model.name}: timing belongs to displayed video`);
         }
         for (const recovery of recoveries) {
           const model = protocol.models.find(model => model.key === recovery.model);
@@ -41,18 +41,15 @@ async function check(engine, viewport, name) {
           assert.match(await card.innerText(), /Original outcome/);
           assert.match(await card.innerText(), /Additional repair cost/);
           const original = originals.find(entry => entry.model === recovery.model);
-          assert.equal(await card.locator('.benchmark-metrics dd').nth(1).textContent(), `$${(original.costUsd + recovery.costUsd).toFixed(original.costUsd + recovery.costUsd < 0.01 ? 4 : 3)}`);
+          assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('API cost', {exact: true})}).locator('dd').textContent(), `$${(original.costUsd + recovery.costUsd).toFixed(original.costUsd + recovery.costUsd < 0.01 ? 4 : 3)}`);
           if (recovery.video) assert.equal(await card.locator('video').getAttribute('data-video-src'), `/${recovery.video}`);
           await card.locator('summary').click();
         }
-        await page.getByRole('button', {name: 'Original runs', exact: true}).click();
-        assert.equal(await page.locator('.benchmark-card-media video').count(), originals.filter(entry => entry.status === 'rendered').length);
-        assert.equal(await page.locator('.benchmark-recovery-label').count(), 0);
       }
     }
     await page.reload({waitUntil: 'networkidle'});
-    assert.equal(await page.getByRole('button', {name: 'Original runs', exact: true}).getAttribute('aria-pressed'), 'true');
-    await page.getByRole('button', {name: 'With repairs', exact: true}).click();
+    assert.equal(await page.getByRole('button', {name: protocol.briefs.at(-1).name, exact: true}).getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.getByRole('button', {name: 'Run 2', exact: true}).getAttribute('aria-pressed'), 'true');
     await page.getByRole('button', {name: 'Product launch', exact: true}).click();
     await page.getByRole('button', {name: 'Run 1', exact: true}).click();
     const recoveredCard = page.locator('.benchmark-card').filter({has: page.locator('.benchmark-recovery-label')}).first();
@@ -65,7 +62,7 @@ async function check(engine, viewport, name) {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.screenshot({path: `/tmp/cliphouse-recovery-${name}.png`});
     assert.deepEqual(errors, []);
-    console.log(`${name}: all recovery/original selections, costs, source paths, URL state, and playback passed.`);
+    console.log(`${name}: all video timings, recovery costs, original records, source paths, URL state, and playback passed.`);
   } finally { await browser.close(); }
 }
 (async () => {

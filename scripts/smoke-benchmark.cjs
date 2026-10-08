@@ -20,16 +20,20 @@ async function check(browser, viewport, prefix) {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(`${base}benchmark/`, {waitUntil: 'networkidle'});
-  const results = await (await context.request.get(`${base}benchmark/results.json`)).json();
+  const original = await (await context.request.get(`${base}benchmark/results.json`)).json();
   const protocol = await (await context.request.get(`${base}benchmark/protocol.json`)).json();
   const recoveries = await (await context.request.get(`${base}benchmark/recovery.json`)).json();
   const timings = await (await context.request.get(`${base}benchmark/timings.json`)).json();
-  if (recoveries.entries.length) await page.getByRole('button', {name: 'Original runs', exact: true}).click();
+  const results = {...original, entries: original.entries.map((entry) => {
+    const repair = recoveries.entries.find((item) => item.model === entry.model && item.brief === entry.brief && item.run === entry.run);
+    return repair ? {...entry, ...repair} : entry;
+  })};
   await page.locator('.benchmark-card').first().waitFor();
   assert.equal(await page.locator('.benchmark-card').count(), 10);
   assert.equal(await page.locator('.filters').count(), 0);
   assert.equal(await page.getByRole('heading', {level: 1}).count(), 1);
-  assert.match(await page.locator('.benchmark-progress').innerText(), results.entries.length ? /rendered videos/ : /Results pending/);
+  assert.equal(await page.locator('.benchmark-progress, .benchmark-recovery-summary').count(), 0);
+  assert.doesNotMatch(await page.locator('#comparison').innerText(), /Visual score|Review pending/);
   assert.equal(await page.locator('.benchmark-card-media video').count(), results.entries.filter((entry) => entry.brief === 'product-launch' && entry.run === 1 && entry.status === 'rendered').length);
   const columns = await page.locator('.benchmark-grid').evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
   assert.equal(columns, viewport.width > 1000 ? 3 : viewport.width > 600 ? 2 : 1);
@@ -54,7 +58,7 @@ async function check(browser, viewport, prefix) {
         const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});
         const timing = timings.entries.find(timing => timing.video === entry.video);
         const expected = entry.status === 'failed' ? 'Not generated' : timing?.generationTimeMs == null ? 'Unavailable' : `${(timing.generationTimeMs / 1000).toFixed(1)}s`;
-        assert.equal(await card.locator('.benchmark-metrics dd').nth(2).textContent(), expected, `${model.name}: original view uses successful request metadata`);
+        assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('Generation', {exact: true})}).locator('dd').textContent(), expected, `${model.name}: uses successful request metadata`);
       }
     }
   }
