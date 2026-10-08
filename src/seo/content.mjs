@@ -157,6 +157,58 @@ export const useCases = [
       ['Can I edit the feature list?', 'Yes. Each template has editable points for features or benefits.'],
     ],
   },
+  {
+    path: '/hiring-video-templates/',
+    title: 'We Are Hiring Video Templates | Job Announcement | cliphou.se',
+    h1: 'Hiring video templates',
+    description: 'Free we are hiring and job announcement video templates for LinkedIn and Instagram. List your open roles and apply-by date, then edit online.',
+    intro: 'Announce open roles with motion. List the jobs, add a deadline, and point candidates to your careers page.',
+    match: (v) => v.useCases.includes('hiring'),
+    faq: [
+      ['How many roles can I list?', 'The role list accepts 2 to 6 roles separated by commas.'],
+      ['Which format works for LinkedIn?', 'The Hiring template is 4:5, which fills the LinkedIn and Instagram feeds on mobile.'],
+      ['Can I add a job link?', 'Put the link in your post text. Use the call to action in the video to point to it.'],
+    ],
+  },
+  {
+    path: '/stream-starting-soon-templates/',
+    title: 'Stream Starting Soon Screen Templates | cliphou.se',
+    h1: 'Stream starting soon screens',
+    description: 'Free stream starting soon screens for Twitch, YouTube Live, and webinars. Add your start time and topics, then edit the colors online.',
+    intro: 'Loopable 16:9 waiting screens that tell viewers when you go live and what you will cover.',
+    match: (v) => v.useCases.includes('livestream'),
+    faq: [
+      ['Does the screen loop?', 'Yes. Render the video and loop it in OBS or your streaming tool until you go live.'],
+      ['Can I show a real countdown?', 'The progress bar runs across the 10 second video. Put a live countdown in your streaming tool if you need an exact time.'],
+      ['Is there audio?', 'No. Add your own music in your streaming tool.'],
+    ],
+  },
+  {
+    path: '/animated-chart-templates/',
+    title: 'Animated Bar Chart and Stat Counter Templates | cliphou.se',
+    h1: 'Animated chart templates',
+    description: 'Free animated bar chart and counter animation templates. Type your labels and numbers, and the bars and counters animate in your browser.',
+    intro: 'Turn a few numbers into a short data story for social posts, reports, and presentations.',
+    match: (v) => v.useCases.includes('animated-chart') || v.useCases.includes('counter'),
+    faq: [
+      ['How do I enter chart data?', 'Type 2 to 6 label and value pairs separated by commas, for example "Q1 12, Q2 18, Q3 27".'],
+      ['Can numbers have units?', 'Yes. Values accept k, m, b, and % suffixes. Stats accept any prefix or suffix, such as $1,299 or 98%.'],
+      ['Is the chart scaled automatically?', 'Yes. The tallest bar fills the chart, and the other bars scale to it.'],
+    ],
+  },
+  {
+    path: '/cyber-monday-video-templates/',
+    title: 'Cyber Monday Video Templates | Sale Promo | cliphou.se',
+    h1: 'Cyber Monday video templates',
+    description: 'Free Cyber Monday sale video templates for Reels, TikTok, and Stories. Set your price, old price, and sale date, then edit online.',
+    intro: 'Announce Cyber Monday deals with a price reveal and a clear end date.',
+    match: (v) => v.useCases.includes('cyber-monday') || v.useCases.includes('black-friday'),
+    faq: [
+      ['When is Cyber Monday?', 'Cyber Monday is the Monday after US Thanksgiving. In 2026 it is November 30.'],
+      ['Can I show a sale price and an old price?', 'Yes. The Cyber Monday template has a price field and a price note for the old price or discount.'],
+      ['What format do these use?', 'The Cyber Monday template is 9:16 for Reels, TikTok, and Stories.'],
+    ],
+  },
 ];
 
 export const editorialPages = [

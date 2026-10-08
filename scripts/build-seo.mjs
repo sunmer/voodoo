@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {templateMeta} from '../src/videos/meta.ts';
-import {ROLES, SCENE_TYPES} from '../src/videos/vocab.ts';
+import {ROLES, SCENE_TYPES, roleError} from '../src/videos/vocab.ts';
 import {comparisons, editorialPages, reviewedAt, useCases} from '../src/seo/content.mjs';
 import {agentSpec as buildAgentSpec} from '../src/agent/spec.ts';
 import {sourcePath, templateVersion} from '../src/agent/versions.ts';
@@ -22,7 +22,12 @@ const exportStatus = mp4 ? 'Free, full resolution, no watermark' : 'Not availabl
 const exportFact = mp4 ? 'Signed-in users can download a free full-resolution MP4 with no watermark.' : 'Hosted MP4 export is not available yet.';
 const promise = `100% free to browse and edit. No account, watermark, credit card, or attribution required.${mp4 ? ' Free MP4 downloads.' : ''} Built for Claude, ChatGPT, and any coding agent.`;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'));
-const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo', 'lower-thirds', 'kinetic-typography', 'youtube-end-screen', 'black-friday', 'logo-reveal', 'testimonial', 'year-in-review', 'countdown', 'podcast-intro']);
+// Use-case slugs for all 50 demand-led templates (#7). Phase 2 batches should not need to add slugs.
+const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo', 'lower-thirds', 'kinetic-typography', 'youtube-end-screen', 'black-friday', 'logo-reveal', 'testimonial', 'year-in-review', 'countdown', 'podcast-intro',
+  'hiring', 'livestream', 'animated-chart', 'counter', 'timeline', 'cyber-monday', 'new-year', 'valentines', 'giveaway', 'thank-you', 'pricing',
+  'subscribe', 'channel-trailer', 'credits', 'gaming-intro', 'title-card', 'poll', 'quiz', 'before-after', 'progress-bar', 'comparison', 'top-list',
+  'agenda', 'flash-sale', 'case-study', 'speaker', 'webinar', 'tickets', 'coming-soon', 'announcement', 'anniversary', 'grand-opening', 'team-intro',
+  'partnership', 'newsletter', 'app-promo', 'feature-launch', 'quote', 'birthday']);
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const local = (p) => `${base.replace(/\/$/, '')}${p}`;
@@ -54,7 +59,7 @@ function validate() {
     const roles = templateMeta[v.template]?.scenes.flatMap((s) => s.roles) ?? [];
     for (const [role, value] of Object.entries(v.props?.texts ?? {})) {
       if (!ROLES[role]) errors.push(`${v.id}: unknown text role ${role}`);
-      else if (!value || value.length > ROLES[role].max) errors.push(`${v.id}: ${role} must be 1 to ${ROLES[role].max} characters`);
+      else if (roleError(role, value)) errors.push(`${v.id}: ${role}: ${roleError(role, value)}`);
       else if (!roles.includes(role)) errors.push(`${v.id}: ${role} is not assigned to a scene`);
     }
     for (const [role, value] of Object.entries(v.props?.theme ?? {})) if (!/^#[0-9a-fA-F]{6}$/.test(value)) errors.push(`${v.id}: invalid ${role} color`);

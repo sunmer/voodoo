@@ -25,6 +25,11 @@ import {tickerSchema} from './ticker/schema.ts';
 import {wordmarkSchema} from './wordmark/schema.ts';
 import {wrappedSchema} from './wrapped/schema.ts';
 import {ytintroSchema} from './ytintro/schema.ts';
+import {hiringSchema} from './hiring/schema.ts';
+import {livestreamSchema} from './livestream/schema.ts';
+import {barchartSchema} from './barchart/schema.ts';
+import {counterSchema} from './counter/schema.ts';
+import {cybermondaySchema} from './cybermonday/schema.ts';
 
 // Schemas without React components, so build scripts and the share server can validate props.
 export const schemas = {
@@ -34,4 +39,5 @@ export const schemas = {
   pulse: pulseSchema, riso: risoSchema, showreel: showreelSchema, slice: sliceSchema, spotlight: spotlightSchema,
   stack: stackSchema, swiss: swissSchema, terminal: terminalSchema, testimonial: testimonialSchema,
   ticker: tickerSchema, wordmark: wordmarkSchema, wrapped: wrappedSchema, ytintro: ytintroSchema,
+  hiring: hiringSchema, livestream: livestreamSchema, barchart: barchartSchema, counter: counterSchema, cybermonday: cybermondaySchema,
 } as unknown as Record<string, VideoSchema>;

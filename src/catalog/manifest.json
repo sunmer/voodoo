@@ -12,7 +12,10 @@
       "Creator video",
       "Logo reveal",
       "Testimonial",
-      "Holiday sale"
+      "Holiday sale",
+      "Hiring",
+      "Livestream",
+      "Data story"
     ],
     "style": [
       "Minimal",
@@ -397,6 +400,76 @@
       "title": "Podcast",
       "creator": "audio.club",
       "prompt": "An 8 second square podcast intro with an episode badge, show title, animated waveform, and spinning record outro.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "hiring",
+      "title": "Hiring",
+      "creator": "crewline",
+      "prompt": "A 10 second 4:5 hiring announcement for LinkedIn and Instagram: a masked WE ARE HIRING headline with a plus stamp, a numbered list of open roles, and a circle wipe to the apply date and CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "livestream",
+      "title": "Starting Soon",
+      "creator": "onair.tv",
+      "prompt": "A 10 second 16:9 stream starting soon screen: a pulsing live dot, a kinetic STARTING SOON headline, a start time, topic cards, and a progress bar that runs across the whole loop.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "barchart",
+      "title": "Bar Chart",
+      "creator": "datadesk",
+      "prompt": "A 9 second square animated bar chart: a headline card, bars that grow with counting values and a highlighted peak, and a source card.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "counter",
+      "title": "Stat Counter",
+      "creator": "metric.studio",
+      "prompt": "An 8 second vertical stat reveal: a giant condensed number that counts up over a tick meter, then a line of context, a source, and a CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "cybermonday",
+      "title": "Cyber Monday",
+      "creator": "gridsale",
+      "prompt": "A 9 second vertical Cyber Monday sale video: a glitched headline over a moving neon grid floor, a glowing price that counts up with a stamped note, and a ticket card with the sale date.",
       "createdAt": "2026-10-08",
       "license": "MIT-0",
       "generation": {
@@ -2396,6 +2469,255 @@
       "useCases": [
         "podcast-intro",
         "youtube-intro"
+      ]
+    },
+    {
+      "template": "hiring",
+      "creator": "crewline",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "hiring-open-roles",
+      "title": "We Are Hiring",
+      "description": "A bold hiring announcement with a plus stamp, numbered open roles, and an apply-by date.",
+      "purpose": "Hiring",
+      "style": [
+        "Bold",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "hiring video",
+        "we are hiring video",
+        "job announcement video",
+        "recruitment video template",
+        "hiring post template",
+        "linkedin",
+        "job post"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Northwind Labs",
+          "headline": "We are hiring",
+          "subhead": "Join a 30-person team building tools for clinics",
+          "items": "Product Designer, Senior iOS Engineer, Data Analyst",
+          "date": "Apply by Nov 15",
+          "cta": "See open roles"
+        },
+        "theme": {
+          "background": "#f4f1ea",
+          "surface": "#e6e0d3",
+          "foreground": "#14161a",
+          "accent": "#1f5eff",
+          "accent2": "#ff5a36"
+        }
+      },
+      "seoDescription": "A free we are hiring video template for LinkedIn and Instagram. List up to six open roles, add an apply-by date, and edit it online.",
+      "useCases": [
+        "hiring",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "livestream",
+      "creator": "onair.tv",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "livestream-starting-soon",
+      "title": "Stream Starting Soon",
+      "description": "A looping starting soon screen with a live pulse, start time, topic cards, and a progress bar.",
+      "purpose": "Livestream",
+      "style": [
+        "Neon",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "stream starting soon",
+        "starting soon screen",
+        "live stream intro",
+        "going live video",
+        "twitch",
+        "youtube live",
+        "webinar"
+      ],
+      "props": {
+        "texts": {
+          "brand": "LIVE ON NOVA",
+          "headline": "Starting soon",
+          "date": "Today at 7 PM CET",
+          "items": "Patch notes, Q and A, Giveaway",
+          "cta": "Grab a drink"
+        },
+        "theme": {
+          "background": "#0b0d17",
+          "surface": "#171a2b",
+          "foreground": "#f3f4ff",
+          "accent": "#ff3d71",
+          "accent2": "#3ddcff"
+        }
+      },
+      "seoDescription": "A free stream starting soon screen for Twitch, YouTube Live, and webinars. Add your start time and topics, then edit the colors online.",
+      "useCases": [
+        "livestream",
+        "youtube-intro",
+        "event-promo"
+      ]
+    },
+    {
+      "template": "barchart",
+      "creator": "datadesk",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "barchart-growth",
+      "title": "Animated Bar Chart",
+      "description": "Bars grow with counting values, the peak is highlighted, and a source card closes the story.",
+      "purpose": "Data story",
+      "style": [
+        "Minimal",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "animated bar chart",
+        "animated chart",
+        "bar chart race",
+        "animated graph video",
+        "chart animation",
+        "data visualization video",
+        "infographic video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Fieldnote",
+          "headline": "Revenue doubled",
+          "subhead": "Quarterly recurring revenue, in thousands of dollars",
+          "chart": "Q1 120, Q2 168, Q3 205, Q4 251",
+          "attribution": "Source: Fieldnote finance, 2026"
+        },
+        "theme": {
+          "background": "#fbfaf7",
+          "surface": "#eef1ec",
+          "foreground": "#17201b",
+          "accent": "#e4572e",
+          "accent2": "#2f6f5e"
+        }
+      },
+      "seoDescription": "A free animated bar chart video template. Type labels and values, watch the bars grow with counting numbers, and edit the colors online.",
+      "useCases": [
+        "animated-chart",
+        "data-recap",
+        "saas"
+      ]
+    },
+    {
+      "template": "counter",
+      "creator": "metric.studio",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "counter-stat",
+      "title": "Stat Counter",
+      "description": "A giant condensed number counts up over a tick meter, then a line of context and a CTA.",
+      "purpose": "Data story",
+      "style": [
+        "Bold",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "counter animation",
+        "number animation",
+        "animated statistics",
+        "stats video",
+        "milestone",
+        "followers milestone",
+        "stat reveal"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Loopwise",
+          "headline": "Teams onboarded",
+          "stat": "12,480",
+          "subhead": "Teams switched to Loopwise in the first year",
+          "attribution": "Internal data, Sept 2026",
+          "cta": "Join them"
+        },
+        "theme": {
+          "background": "#0f1115",
+          "surface": "#1b1e25",
+          "foreground": "#f5f6f8",
+          "accent": "#c6ff3d",
+          "accent2": "#5b8cff"
+        }
+      },
+      "seoDescription": "A free counter animation video template for Reels and TikTok. Enter any number, prefix, or suffix and watch it count up. Edit online.",
+      "useCases": [
+        "counter",
+        "data-recap",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "cybermonday",
+      "creator": "gridsale",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "cybermonday-sale",
+      "title": "Cyber Monday Sale",
+      "description": "A glitched headline over a neon grid, a glowing price reveal, and a ticket card with the sale date.",
+      "purpose": "Holiday sale",
+      "style": [
+        "Neon",
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "cyber monday video",
+        "cyber monday sale",
+        "cyber monday template",
+        "sale video",
+        "black friday",
+        "price reveal",
+        "promo video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "VOLT AUDIO",
+          "headline": "Cyber Monday",
+          "subhead": "Studio headphones, today only",
+          "price": "$129",
+          "priceNote": "Was $249",
+          "date": "Nov 30, ends midnight",
+          "cta": "Shop the drop"
+        },
+        "theme": {
+          "background": "#07060f",
+          "surface": "#141228",
+          "foreground": "#f7f5ff",
+          "accent": "#00f0ff",
+          "accent2": "#ff2bd6"
+        }
+      },
+      "seoDescription": "A free Cyber Monday sale video template for Reels, TikTok, and Stories. Set your price, old price, and sale date, then edit it online.",
+      "useCases": [
+        "cyber-monday",
+        "sale",
+        "social-ad",
+        "instagram-reel"
       ]
     }
   ]

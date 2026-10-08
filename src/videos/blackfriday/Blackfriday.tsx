@@ -28,7 +28,9 @@ const SceneTitle: React.FC<P> = ({texts, theme}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const words = texts.headline.split(' ');
-  const size = wrapFit(texts.headline, 230, W - PAD * 2, 3, 0.62);
+  // Each word is its own line, so fit the longest word to the width and all words to the height.
+  const longest = words.reduce((a, w) => (w.length > a.length ? w : a), '');
+  const size = Math.min(fit(longest, 230, W - PAD * 2, 0.78), 1040 / (words.length * 0.9));
   const sub = interpolate(frame, [40, 60], [0, 1], {...clamp, easing: easeOut});
   return (
     <AbsoluteFill style={{padding: PAD}}>

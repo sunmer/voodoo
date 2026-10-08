@@ -58,6 +58,16 @@ import {Countdown} from './countdown/Countdown';
 import {countdownSchema} from './countdown/schema';
 import {Podcast} from './podcast/Podcast';
 import {podcastSchema} from './podcast/schema';
+import {Hiring} from './hiring/Hiring';
+import {hiringSchema} from './hiring/schema';
+import {Livestream} from './livestream/Livestream';
+import {livestreamSchema} from './livestream/schema';
+import {Barchart} from './barchart/Barchart';
+import {barchartSchema} from './barchart/schema';
+import {Counter} from './counter/Counter';
+import {counterSchema} from './counter/schema';
+import {Cybermonday} from './cybermonday/Cybermonday';
+import {cybermondaySchema} from './cybermonday/schema';
 import {legacy} from './legacy';
 import {currentVersion} from '../agent/versions';
 
@@ -94,6 +104,11 @@ export const compositions: Record<string, CompositionDef> = {
   wrapped: {...templateMeta.wrapped, component: Wrapped, schema: wrappedSchema as unknown as VideoSchema},
   countdown: {...templateMeta.countdown, component: Countdown, schema: countdownSchema as unknown as VideoSchema},
   podcast: {...templateMeta.podcast, component: Podcast, schema: podcastSchema as unknown as VideoSchema},
+  hiring: {...templateMeta.hiring, component: Hiring, schema: hiringSchema as unknown as VideoSchema},
+  livestream: {...templateMeta.livestream, component: Livestream, schema: livestreamSchema as unknown as VideoSchema},
+  barchart: {...templateMeta.barchart, component: Barchart, schema: barchartSchema as unknown as VideoSchema},
+  counter: {...templateMeta.counter, component: Counter, schema: counterSchema as unknown as VideoSchema},
+  cybermonday: {...templateMeta.cybermonday, component: Cybermonday, schema: cybermondaySchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.

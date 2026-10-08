@@ -28,7 +28,7 @@ async function clickText(page, label, optional = false) {
   page.on('pageerror', (e) => errors.push(e.message));
   try {
     const {templateMeta} = await import('../src/videos/meta.ts');
-    const {ROLES} = await import('../src/videos/vocab.ts');
+    const {ROLES, roleExample} = await import('../src/videos/vocab.ts');
     for (const template of manifest.templates) {
       if (process.env.TEMPLATE && template.id !== process.env.TEMPLATE) continue;
       const v = manifest.variants.find((v) => v.template === template.id && !v.hidden);
@@ -48,9 +48,11 @@ async function clickText(page, label, optional = false) {
           assert(role, `Unknown role ${label}`);
           const field = page.getByRole('textbox', {name: ROLES[role].label, exact: true});
           assert.equal(await field.inputValue(), v.props.texts[role]);
-          await field.fill(`Edit ${role}`);
+          // Structured roles (price, stat, list, chart) need a value in their format.
+          const value = roleExample(role) ?? `Edit ${role}`;
+          await field.fill(value);
           await page.getByRole('button', {name: 'Save text', exact: true}).click();
-          assert.equal(await page.evaluate(({id, role}) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts[role], {id: v.id, role}), `Edit ${role}`);
+          assert.equal(await page.evaluate(({id, role}) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts[role], {id: v.id, role}), value);
           await page.getByRole('button', {name: 'Undo', exact: true}).click();
           await page.waitForTimeout(60);
           seen.add(label);

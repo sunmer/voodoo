@@ -2,7 +2,7 @@ import type {PlayerRef} from '@remotion/player';
 import {Check, X} from 'lucide-react';
 import {useCallback, useEffect, useRef, useState, type ReactNode, type RefObject} from 'react';
 import {flushSync} from 'react-dom';
-import {ROLES, type Role, type VideoProps} from '../videos/vocab';
+import {ROLES, roleError, roleHint, type Role, type VideoProps} from '../videos/vocab';
 
 type Target = {role: Role; left: number; top: number; width: number; height: number; fontFamily: string; fontWeight: string; rects: DOMRect[]};
 
@@ -128,7 +128,8 @@ export function TextCanvas({ref, children, player, props, playing, onCommit, onE
     input.current?.focus({preventScroll: true});
     input.current?.select();
   };
-  const valid = active && draft.trim().length > 0 && draft.length <= ROLES[active.role].max;
+  const problem = active ? roleError(active.role, draft) : null;
+  const valid = active && !problem;
   const finish = (save: boolean) => {
     if (save && !valid) return;
     if (save && active && draft !== props.texts[active.role]) onCommit(active.role, draft.trim());
@@ -176,7 +177,8 @@ export function TextCanvas({ref, children, player, props, playing, onCommit, onE
             if (e.key === 'Enter') { e.preventDefault(); finish(true); }
           }} />
         <div className="inline-actions">
-          <span className={!valid ? 'error' : ''}>{ROLES[active.role].label} <span className="counter">{draft.length}/{ROLES[active.role].max}</span></span>
+          <span className={!valid ? 'error' : ''}>{ROLES[active.role].label} <span className="counter">{draft.length}/{ROLES[active.role].max}</span>
+            {problem && problem === roleHint(active.role) && <span className="counter"> {problem}</span>}</span>
           <button className="icon-btn" title="Cancel edit" aria-label="Cancel edit" onClick={() => finish(false)}><X size={17} /></button>
           <button className="icon-btn confirm" title="Save text" aria-label="Save text" disabled={!valid} onClick={() => finish(true)}><Check size={17} /></button>
         </div>
