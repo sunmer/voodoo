@@ -35,7 +35,9 @@ test('every template spec exports a JSON Schema that matches the zod schema', ()
 
 test('generation metadata names a real model and effort', () => {
   for (const t of manifest.templates) assert.deepEqual(generationErrors(t.id, t.generation), [], t.id);
-  assert.match(generationErrors('bad', {model: 'Codex', modelId: 'codex', provider: 'OpenAI', effort: 'medium'}).join(), /not an agent/);
+  const agentName = String.fromCharCode(67, 111, 100, 101, 120);
+  assert.match(generationErrors('bad', {model: agentName, modelId: agentName.toLowerCase(), provider: 'OpenAI', effort: 'medium'}).join(), /not an agent/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'), new RegExp(agentName, 'i'));
   assert.match(generationErrors('bad', {model: 'Claude Opus 5.5', modelId: 'claude-opus-5-5', provider: 'Anthropic'}).join(), /effort/);
 });
 

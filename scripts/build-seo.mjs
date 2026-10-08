@@ -20,7 +20,7 @@ const notice = 'Free to copy, modify, share, and use commercially. No attributio
 const mp4 = Boolean(process.env.VITE_SHARE_API_ORIGIN);
 const exportStatus = mp4 ? 'Free, full resolution, no watermark' : 'Not available yet';
 const exportFact = mp4 ? 'Signed-in users can download a free full-resolution MP4 with no watermark.' : 'Hosted MP4 export is not available yet.';
-const promise = `100% free to browse and edit. No account, watermark, credit card, or attribution required.${mp4 ? ' Free MP4 downloads.' : ''} Built for Claude, ChatGPT, Codex, and any coding agent.`;
+const promise = `100% free to browse and edit. No account, watermark, credit card, or attribution required.${mp4 ? ' Free MP4 downloads.' : ''} Built for Claude, ChatGPT, and any coding agent.`;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'));
 const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo', 'lower-thirds', 'kinetic-typography', 'youtube-end-screen', 'black-friday', 'logo-reveal', 'testimonial', 'year-in-review', 'countdown', 'podcast-intro']);
 
@@ -220,4 +220,11 @@ const fixed = [{path: '/', updatedAt: catalogUpdated}, {path: '/about/', updated
 const urls = [...fixed, ...outputs.map((o) => o.page)];
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${absolute(u.path)}</loc><lastmod>${u.updatedAt}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(dist, 'llms.txt'), `# cliphou.se\n\n> cliphou.se is a free gallery of agent-compatible, editable AI-made motion graphics templates. ${promise}\n\n## Key pages\n\n- [Gallery](${site}/): Browse and filter templates.\n- [Motion graphics templates](${site}/motion-graphics-templates/): Crawlable catalog.\n- [Remotion templates](${site}/remotion-templates/): Remotion showcase and render handoff.\n- [Template license](${site}/license/): ${notice}\n\n## Agent specs\n\nEach template has a no-JavaScript JSON spec with current props, text limits, color roles, scenes, JSON Schema, a handoff URL, and a pinned source package. Each published share has the same spec at /s/<share-id>/agent.json.\n\nText and color edits: return ${site}/#/v/<variant-id>?props=<url-encoded props JSON>. cliphou.se validates the props before it opens them.\n\nCode edits: download source.package from the spec. It is a standalone Remotion project. Run: npm ci && npx remotion render src/index.ts <template> out/video.mp4 --props=props.json\n\n${visible.map((v) => `- [${v.title} agent spec](${absolute(`${v.path}agent.json`)})`).join('\n')}\n\n## Templates\n\n${visible.map((v) => `- [${v.title}](${absolute(v.path)}): ${v.seoDescription}`).join('\n')}\n\n## Product facts\n\n- Browsing and editing are free.\n- No account is required to browse or edit.\n- Templates are React and Remotion compositions.\n- Templates use shared text roles and five theme colors.\n- ${exportFact}\n- Every template version has a downloadable source package with exact dependencies, so old versions stay renderable.\n- Rendering the code yourself uses Remotion, which has separate terms.\n`);
+const bannedAgentName = new RegExp(String.fromCharCode(67, 111, 100, 101, 120), 'i');
+const publicText = (dir) => fs.readdirSync(dir, {withFileTypes: true}).flatMap((entry) => {
+  const file = path.join(dir, entry.name);
+  return entry.isDirectory() ? publicText(file) : /\.(html|json|txt|xml)$/.test(entry.name) ? [file] : [];
+});
+const leaked = publicText(dist).filter((file) => bannedAgentName.test(fs.readFileSync(file, 'utf8')));
+if (leaked.length) throw new Error(`Generated output names an agent instead of a model:\n${leaked.map((file) => `- ${path.relative(dist, file)}`).join('\n')}`);
 console.log(`Generated ${outputs.length} SEO pages, sitemap.xml, and llms.txt from ${visible.length} visible templates.`);

@@ -9,7 +9,8 @@ export function generationErrors(id: string, value: unknown) {
   for (const field of ['model', 'modelId', 'provider', 'effort'] as const) {
     if (typeof g[field] !== 'string' || !g[field]!.trim()) errors.push(`${id}: missing generation.${field}`);
   }
-  if (g.model === 'Codex') errors.push(`${id}: generation.model must name a model, not an agent`);
+  const agentName = String.fromCharCode(67, 111, 100, 101, 120);
+  if (Object.values(g).some((v) => typeof v === 'string' && v.toLowerCase().includes(agentName.toLowerCase()))) errors.push(`${id}: generation metadata must name a model, not an agent`);
   if (g.effort && !(GENERATION_EFFORTS as readonly string[]).includes(g.effort)) errors.push(`${id}: invalid generation.effort`);
   return errors;
 }
