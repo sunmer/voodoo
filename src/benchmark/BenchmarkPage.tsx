@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ArrowDown, ArrowDownToLine, ArrowUpRight, Check, ChevronDown, CircleDashed, Copy, FileCode2, FlaskConical, Play, XCircle} from 'lucide-react';
 import {ArticleLayout} from '../ui/ArticleLayout';
+import {ViewportVideo} from '../ui/ViewportVideo';
 import protocol from './protocol.json';
 import resultsData from './results.json';
 import {visualScore, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults} from './types';
@@ -13,28 +14,19 @@ const money = (value: number) => `$${value.toFixed(value < 0.01 ? 4 : 3)}`;
 const seconds = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
 
 function ResultVideo({entry, base, label}: {entry: BenchmarkResult; base: string; label: string}) {
-  const ref = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    const observer = new IntersectionObserver(([item]) => {
-      if (!item.isIntersecting) video.pause();
-    });
-    const visibility = () => { if (document.hidden) video.pause(); };
-    observer.observe(video);
-    document.addEventListener('visibilitychange', visibility);
-    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', visibility); };
-  }, []);
   return failed ? <div className="benchmark-pending"><XCircle size={22} /><span>Playback unavailable</span>
     <a href={`${base}${entry.video}`} download>Download video</a></div> :
-    <video ref={ref} aria-label={label} src={`${base}${entry.video}`} poster={entry.poster ? `${base}${entry.poster}` : undefined}
-      muted loop playsInline controls preload="none" onError={() => setFailed(true)} />;
+    <ViewportVideo label={label} src={`${base}${entry.video}`} poster={entry.poster ? `${base}${entry.poster}` : undefined}
+      onError={() => setFailed(true)} />;
 }
 
 function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; entry?: BenchmarkResult; base: string; run: number; brief: string}) {
   const score = visualScore(entry);
-  const failureLabel = entry?.error?.startsWith('Invalid submission:') ? 'Incomplete submission' : 'Render failed';
+  const truncated = entry?.error?.includes('Completion limit reached');
+  const invalid = entry?.error?.startsWith('Invalid submission:');
+  const failureLabel = truncated ? 'Token limit reached' : invalid ? 'Invalid response format' : 'Render failed';
+  const failureReason = truncated ? 'The response ended before the code was complete.' : invalid ? 'The response could not be read as the required JSON.' : 'The code did not compile or render.';
   return <article className="benchmark-card">
     <div className="benchmark-card-media">
       {entry?.status === 'rendered' ? <ResultVideo entry={entry} base={base} label={`${model.name}, ${brief}, run ${run}`} /> :
@@ -42,6 +34,7 @@ function ResultCard({model, entry, base, run, brief}: {model: BenchmarkModel; en
           {entry ? <XCircle size={25} strokeWidth={1.4} aria-hidden="true" /> : <CircleDashed size={25} strokeWidth={1.4} aria-hidden="true" />}
           <span>{entry ? failureLabel : 'Not run'}</span>
           <small>{entry ? `${entry.attempts} attempt${entry.attempts === 1 ? '' : 's'}` : `${brief} / Run ${run}`}</small>
+          {entry && <small className="benchmark-failure-reason">{failureReason}</small>}
         </div>}
     </div>
     <div className="benchmark-card-body">
@@ -159,6 +152,17 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
           </div>
         </div>
         <div className="benchmark-brief-line"><p>{brief.focus}</p><span>12 seconds &middot; 1080p &middot; 30 fps &middot; Silent</span></div>
+        <div id="briefs" className="benchmark-prompt-list">
+          <details key={brief.id} className="benchmark-prompt">
+            <summary><span>{`${brief.name} - full brief`}</span><ChevronDown size={18} aria-hidden="true" /></summary>
+            <pre>{brief.prompt}</pre>
+            <div className="benchmark-prompt-footer">
+              <p><a href={`${base}benchmark/contract.txt`}>Component contract</a> &middot; <a href={`${base}benchmark/protocol.json`} download>Full protocol <ArrowDownToLine size={13} /></a></p>
+              <button className="benchmark-copy" onClick={copyPrompt} title="Copy the selected brief" aria-label={copied ? 'Brief copied' : 'Copy selected brief'}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? 'Copied' : 'Copy brief'}</span></button>
+            </div>
+            {copyError && <p role="status">Clipboard access is unavailable. The complete brief is selectable above.</p>}
+          </details>
+        </div>
         <p className="article-sr-only" aria-live="polite">{brief.name}, run {run}. {entries.length} completed entries.</p>
         <div className="benchmark-grid">{models.map((model) => <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={findEntry(model.key)} base={base} run={run} brief={brief.name} />)}</div>
         <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed. Scores stay unpublished until two blind reviews are complete.</p>
@@ -177,7 +181,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
             <p>The exact model ID, provider, request, reasoning setting, source code, elapsed time, and API cost. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
           </div>
           <div className="benchmark-reference">
-            <figure><video src={`${base}previews/bento-launch.mp4`} poster={`${base}previews/bento-launch.jpg`} controls muted loop playsInline preload="none" aria-label="Existing Cliphouse motion graphics example" />
+            <figure><ViewportVideo src={`${base}previews/bento-launch.mp4`} poster={`${base}previews/bento-launch.jpg`} label="Existing Cliphouse motion graphics example" style={{aspectRatio: '16 / 9'}} />
               <figcaption><span><Play size={12} aria-hidden="true" />What we mean by motion graphics</span>Existing Cliphouse template. Not a benchmark submission.</figcaption></figure>
             <div className="benchmark-facts"><div><strong>10</strong><span>models</span></div><div><strong>3</strong><span>fixed briefs</span></div><div><strong>2</strong><span>runs per brief</span></div></div>
           </div>
@@ -190,20 +194,8 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
         </div>
       </section>
 
-      <section id="briefs" className="benchmark-section">
-        <div className="benchmark-section-heading"><div><span className="section-number">03 / The briefs</span><h2>The exact assignment.</h2></div>
-          <a className="benchmark-text-link" href={`${base}benchmark/protocol.json`} download><ArrowDownToLine size={15} />Full protocol</a></div>
-        <div className="benchmark-prompt-list">{protocol.briefs.map((item) => <details key={item.id} className="benchmark-prompt" open={item.id === briefId}>
-          <summary><span>{item.name}<small>{item.focus}</small></span><ChevronDown size={18} aria-hidden="true" /></summary>
-          <pre>{item.prompt}</pre>
-        </details>)}</div>
-        <div className="benchmark-prompt-footer"><p>Each brief is sent with the same <a href={`${base}benchmark/contract.txt`}>component contract</a>.</p>
-          <button className="benchmark-copy" onClick={copyPrompt} title="Copy the selected brief" aria-label={copied ? 'Brief copied' : 'Copy selected brief'}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? 'Copied' : `Copy ${brief.name.toLowerCase()} brief`}</span></button></div>
-        {copyError && <p role="status">Clipboard access is unavailable. The complete brief is selectable above.</p>}
-      </section>
-
       <section id="editions" className="benchmark-section benchmark-editions">
-        <div><span className="section-number">04 / Editions</span><h2>A record, not a moving target.</h2><p>New model versions join the live comparison. Monthly reports preserve the tested versions, protocol, and results. Changes to the test receive a new protocol version.</p></div>
+        <div><span className="section-number">03 / Editions</span><h2>A record, not a moving target.</h2><p>New model versions join the live comparison. Monthly reports preserve the tested versions, protocol, and results. Changes to the test receive a new protocol version.</p></div>
         <a className="benchmark-edition-link" href={`${base}benchmark/${edition ? '' : '2026-10/'}`}><span><strong>{edition ? 'Live comparison' : month}</strong><small>{edition ? 'Latest benchmark entries' : `Edition 01 / ${completed ? `${completed} runs published` : 'Results pending'}`}</small></span><ArrowUpRight size={20} aria-hidden="true" /></a>
       </section>
       <div className="benchmark-sources"><p>Model selection checked {dateLabel}. Availability and prices can change.</p><p>Sources: <a href="https://openrouter.ai/models">OpenRouter model catalog</a>, <a href="https://openrouter.ai/rankings">usage rankings</a>, and <a href="https://openrouter.ai/docs/guides/routing/provider-selection">provider routing</a>.</p></div>

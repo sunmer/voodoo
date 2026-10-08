@@ -45,6 +45,33 @@ original attempts. Before freezing the next protocol version, capture both outpu
 streams and test the repair feedback with a known compiler error. Do not silently
 rerun or replace this edition's submissions.
 
+Recommended next protocol: allow every model the same bounded automated feedback
+loop for format, truncation, compile, and render errors. Preserve all original
+responses and charges. No human code edits or aesthetic feedback are allowed.
+Report first-attempt success separately from success after recovery. Publish new
+recovery results as a labelled protocol revision rather than replacing v1.1.
+This recommendation has not changed or rerun the published October results.
+
+## Video Loading
+
+All React gallery and article videos and static template pages use
+`src/media/viewport-video.ts`. The initial HTML has no active video `src`.
+Autoplay starts after a 200 ms dwell with at least 35 percent of the video
+inside the viewport. Leaving the viewport or hiding the document clears the
+source and stops buffering. There is no ahead-of-viewport video prefetch.
+Reduced-motion, Save-Data, and reported 2G connections disable automatic loading.
+Article and template players provide explicit playback when autoplay is disabled
+or rejected. Posters remain available; gallery links still open their editor.
+
+Playback uses the existing MP4 files, not generation API calls. Hosting data
+transfer still scales with traffic. The published benchmark MP4s total about
+38.1 MB, averaging 0.79 MB each. Viewport gating reduces unnecessary transfers;
+it is not a hard hosting billing cap.
+
+`npm run test:video-policy` checks loading, unloading, preferences, manual
+fallbacks, and nonblank playback in desktop Chromium and mobile WebKit.
+The deployment workflow runs it before cloud authentication and deployment.
+
 ## Prerequisites
 
 - Configure a dedicated `OPENROUTER_API_KEY` in the shell environment.

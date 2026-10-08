@@ -18,6 +18,7 @@
     "benchmark:run": "node scripts/benchmark/run.mjs --execute",
     "test:benchmark": "node --import tsx --test scripts/benchmark/*.test.mjs scripts/benchmark/*.test.tsx",
     "test:benchmark-build": "node scripts/benchmark/check-build.mjs",
+    "test:video-policy": "node scripts/check-video-policy.mjs",
     "studio": "remotion studio src/remotion/index.ts",
     "typecheck": "tsc"
   },

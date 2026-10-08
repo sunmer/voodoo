@@ -19,15 +19,15 @@ async function check(engine, options, name) {
     await page.goto(base);
     await page.locator('.card .media').first().scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('.card video')].some((video) => !video.paused && video.currentTime > 0.1));
-    const initial = await page.locator('.card video').count();
+    const initial = await page.locator('.card video[src]').count();
     assert(initial > 0 && initial < manifest.variants.filter((v) => !v.hidden).length, `${name}: only visible videos mounted`);
     assert(await page.locator('.card video').evaluateAll((videos) => videos.every((v) => v.muted && v.playsInline)), `${name}: inline muted autoplay`);
     await page.screenshot({path: `/tmp/voodoo-autoplay-${name}.png`, scale: 'css'});
     await page.locator('.card').last().scrollIntoViewIfNeeded();
     await page.waitForTimeout(700);
-    assert.equal(await page.locator('.card').first().locator('video').count(), 0, `${name}: offscreen video released`);
+    assert.equal(await page.locator('.card').first().locator('video[src]').count(), 0, `${name}: offscreen video released`);
     await page.emulateMedia({reducedMotion: 'reduce'});
-    await page.waitForFunction(() => document.querySelectorAll('.card video').length === 0);
+    await page.waitForFunction(() => document.querySelectorAll('.card video[src]').length === 0);
     assert(await page.locator('.card img').last().evaluate((img) => img.complete && img.naturalWidth > 0), `${name}: poster fallback`);
     await page.emulateMedia({reducedMotion: 'no-preference'});
     await page.waitForFunction(() => [...document.querySelectorAll('.card video')].some((v) => !v.paused && v.currentTime > 0.1));
@@ -35,7 +35,7 @@ async function check(engine, options, name) {
       Object.defineProperty(document, 'hidden', {configurable: true, value: true});
       document.dispatchEvent(new Event('visibilitychange'));
     });
-    await page.waitForFunction(() => document.querySelectorAll('.card video').length === 0);
+    await page.waitForFunction(() => document.querySelectorAll('.card video[src]').length === 0);
     await page.evaluate(() => {
       delete document.hidden;
       document.dispatchEvent(new Event('visibilitychange'));
