@@ -25,6 +25,11 @@ import {ytintroMeta} from './ytintro/meta.ts';
 import {wrappedMeta} from './wrapped/meta.ts';
 import {countdownMeta} from './countdown/meta.ts';
 import {podcastMeta} from './podcast/meta.ts';
+import {hiringMeta} from './hiring/meta.ts';
+import {livestreamMeta} from './livestream/meta.ts';
+import {barchartMeta} from './barchart/meta.ts';
+import {counterMeta} from './counter/meta.ts';
+import {cybermondayMeta} from './cybermonday/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -53,4 +58,9 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [wrappedMeta.id]: wrappedMeta,
   [countdownMeta.id]: countdownMeta,
   [podcastMeta.id]: podcastMeta,
+  [hiringMeta.id]: hiringMeta,
+  [livestreamMeta.id]: livestreamMeta,
+  [barchartMeta.id]: barchartMeta,
+  [counterMeta.id]: counterMeta,
+  [cybermondayMeta.id]: cybermondayMeta,
 };

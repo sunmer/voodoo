@@ -1,0 +1,1634 @@
+[
+  {
+    "type": "hiring",
+    "keyword": "hiring video",
+    "searches": 70,
+    "competitionIndex": 28,
+    "highBidUsd": 117.14,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "hiring",
+    "keyword": "we are hiring video",
+    "searches": 10,
+    "competitionIndex": 29,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "hiring",
+    "keyword": "job announcement video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "hiring",
+    "keyword": "recruitment video template",
+    "searches": 10,
+    "competitionIndex": 39,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "hiring",
+    "keyword": "hiring post template",
+    "searches": 10,
+    "competitionIndex": 40,
+    "highBidUsd": 117.08,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "team-intro",
+    "keyword": "team introduction video",
+    "searches": 20,
+    "competitionIndex": 10,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "team-intro",
+    "keyword": "meet the team video",
+    "searches": 40,
+    "competitionIndex": 5,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "team-intro",
+    "keyword": "employee spotlight video",
+    "searches": 10,
+    "competitionIndex": 33,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "team-intro",
+    "keyword": "new employee announcement",
+    "searches": 320,
+    "competitionIndex": 4,
+    "highBidUsd": 113.89,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "partnership",
+    "keyword": "partnership announcement",
+    "searches": 210,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "partnership",
+    "keyword": "partnership announcement video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "partnership",
+    "keyword": "collaboration announcement",
+    "searches": 50,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "funding",
+    "keyword": "funding announcement",
+    "searches": 90,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "funding",
+    "keyword": "funding announcement video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "funding",
+    "keyword": "we raised announcement",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "milestone",
+    "keyword": "milestone video",
+    "searches": 140,
+    "competitionIndex": 11,
+    "highBidUsd": 208.5,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "milestone",
+    "keyword": "company milestone video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "milestone",
+    "keyword": "followers milestone",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "milestone",
+    "keyword": "thank you followers video",
+    "searches": 0,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "case-study",
+    "keyword": "case study video",
+    "searches": 110,
+    "competitionIndex": 33,
+    "highBidUsd": 188.96,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "case-study",
+    "keyword": "case study video template",
+    "searches": 10,
+    "competitionIndex": 86,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "case-study",
+    "keyword": "customer story video",
+    "searches": 10,
+    "competitionIndex": 79,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "subscribe",
+    "keyword": "subscribe button animation",
+    "searches": 110,
+    "competitionIndex": 28,
+    "highBidUsd": 45.76,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "subscribe",
+    "keyword": "subscribe animation",
+    "searches": 390,
+    "competitionIndex": 13,
+    "highBidUsd": 25.81,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "subscribe",
+    "keyword": "like and subscribe animation",
+    "searches": 390,
+    "competitionIndex": 15,
+    "highBidUsd": 30.99,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "subscribe",
+    "keyword": "subscribe reminder",
+    "searches": 20,
+    "competitionIndex": 19,
+    "highBidUsd": 72.29,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "channel-trailer",
+    "keyword": "channel trailer",
+    "searches": 170,
+    "competitionIndex": 3,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "channel-trailer",
+    "keyword": "youtube channel trailer",
+    "searches": 170,
+    "competitionIndex": 8,
+    "highBidUsd": 64.86,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "channel-trailer",
+    "keyword": "channel trailer template",
+    "searches": 10,
+    "competitionIndex": 34,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "episode-recap",
+    "keyword": "episode recap video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "episode-recap",
+    "keyword": "weekly recap video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "episode-recap",
+    "keyword": "recap video template",
+    "searches": 50,
+    "competitionIndex": 59,
+    "highBidUsd": 43.29,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "chapter-titles",
+    "keyword": "youtube chapter title",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "chapter-titles",
+    "keyword": "chapter title animation",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "chapter-titles",
+    "keyword": "section title animation",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "poll",
+    "keyword": "poll video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "poll",
+    "keyword": "this or that video",
+    "searches": 480,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "poll",
+    "keyword": "would you rather video template",
+    "searches": 10,
+    "competitionIndex": 7,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "giveaway",
+    "keyword": "giveaway video",
+    "searches": 20,
+    "competitionIndex": 7,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "giveaway",
+    "keyword": "giveaway announcement",
+    "searches": 70,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "giveaway",
+    "keyword": "giveaway template",
+    "searches": 210,
+    "competitionIndex": 33,
+    "highBidUsd": 72.34,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "giveaway",
+    "keyword": "giveaway post",
+    "searches": 320,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "feature-launch",
+    "keyword": "feature announcement",
+    "searches": 20,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "feature-launch",
+    "keyword": "new feature announcement",
+    "searches": 20,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "feature-launch",
+    "keyword": "feature launch video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "feature-launch",
+    "keyword": "product update video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "pricing",
+    "keyword": "pricing video",
+    "searches": 1000,
+    "competitionIndex": 9,
+    "highBidUsd": 39.53,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "pricing",
+    "keyword": "price reveal video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "pricing",
+    "keyword": "pricing announcement",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "discount",
+    "keyword": "discount video",
+    "searches": 2400,
+    "competitionIndex": 2,
+    "highBidUsd": 51.71,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "discount",
+    "keyword": "promo code video",
+    "searches": 10,
+    "competitionIndex": 4,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "discount",
+    "keyword": "coupon video",
+    "searches": 30,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "discount",
+    "keyword": "discount announcement",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "app-promo",
+    "keyword": "app promo video",
+    "searches": 140,
+    "competitionIndex": 48,
+    "highBidUsd": 138.99,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "app-promo",
+    "keyword": "app promo video template",
+    "searches": 20,
+    "competitionIndex": 75,
+    "highBidUsd": 104.87,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "app-promo",
+    "keyword": "app advertisement video",
+    "searches": 20,
+    "competitionIndex": 73,
+    "highBidUsd": 393.16,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "app-promo",
+    "keyword": "mobile app promo",
+    "searches": 10,
+    "competitionIndex": 35,
+    "highBidUsd": 382.32,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "waitlist",
+    "keyword": "waitlist announcement",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "waitlist",
+    "keyword": "coming soon video",
+    "searches": 210,
+    "competitionIndex": 10,
+    "highBidUsd": 58.46,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "waitlist",
+    "keyword": "coming soon template",
+    "searches": 110,
+    "competitionIndex": 16,
+    "highBidUsd": 60.09,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "waitlist",
+    "keyword": "pre launch video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "newsletter",
+    "keyword": "newsletter promo video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "newsletter",
+    "keyword": "newsletter announcement",
+    "searches": 260,
+    "competitionIndex": 8,
+    "highBidUsd": 130.25,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "newsletter",
+    "keyword": "subscribe to newsletter",
+    "searches": 590,
+    "competitionIndex": 40,
+    "highBidUsd": 137.04,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "webinar",
+    "keyword": "webinar promo video",
+    "searches": 10,
+    "competitionIndex": 86,
+    "highBidUsd": null,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "webinar",
+    "keyword": "webinar announcement",
+    "searches": 30,
+    "competitionIndex": 10,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "webinar",
+    "keyword": "webinar invitation",
+    "searches": 140,
+    "competitionIndex": 14,
+    "highBidUsd": 195.18,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "webinar",
+    "keyword": "webinar teaser",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "speaker",
+    "keyword": "speaker announcement",
+    "searches": 390,
+    "competitionIndex": 55,
+    "highBidUsd": 23.89,
+    "peakMonth": "MAY"
+  },
+  {
+    "type": "speaker",
+    "keyword": "speaker announcement template",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "speaker",
+    "keyword": "speaker card",
+    "searches": 110,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "speaker",
+    "keyword": "guest speaker announcement",
+    "searches": 20,
+    "competitionIndex": 3,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "agenda",
+    "keyword": "event agenda video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "agenda",
+    "keyword": "conference agenda",
+    "searches": 590,
+    "competitionIndex": 4,
+    "highBidUsd": 75.21,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "agenda",
+    "keyword": "event schedule video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "ticket",
+    "keyword": "tickets on sale video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "ticket",
+    "keyword": "ticket launch",
+    "searches": 210,
+    "competitionIndex": 16,
+    "highBidUsd": 12.19,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "ticket",
+    "keyword": "event announcement video",
+    "searches": 10,
+    "competitionIndex": 57,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "ticket",
+    "keyword": "event teaser video",
+    "searches": 10,
+    "competitionIndex": 15,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "livestream",
+    "keyword": "stream starting soon",
+    "searches": 1600,
+    "competitionIndex": 16,
+    "highBidUsd": 28.49,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "livestream",
+    "keyword": "starting soon screen",
+    "searches": 1000,
+    "competitionIndex": 25,
+    "highBidUsd": 34.88,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "livestream",
+    "keyword": "live stream intro",
+    "searches": 10,
+    "competitionIndex": 9,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "livestream",
+    "keyword": "going live video",
+    "searches": 20,
+    "competitionIndex": 13,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "thank-you",
+    "keyword": "thank you video",
+    "searches": 1000,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "thank-you",
+    "keyword": "thank you video template",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "thank-you",
+    "keyword": "thank you for watching",
+    "searches": 4400,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "MAY"
+  },
+  {
+    "type": "thank-you",
+    "keyword": "thank you message video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "stat-reveal",
+    "keyword": "animated statistics",
+    "searches": 30,
+    "competitionIndex": 5,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "stat-reveal",
+    "keyword": "stats video",
+    "searches": 70,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "stat-reveal",
+    "keyword": "number animation",
+    "searches": 140,
+    "competitionIndex": 5,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "stat-reveal",
+    "keyword": "counter animation",
+    "searches": 880,
+    "competitionIndex": 1,
+    "highBidUsd": 50.5,
+    "peakMonth": "JUNE"
+  },
+  {
+    "type": "chart-story",
+    "keyword": "animated bar chart",
+    "searches": 140,
+    "competitionIndex": 4,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "chart-story",
+    "keyword": "bar chart race",
+    "searches": 390,
+    "competitionIndex": 2,
+    "highBidUsd": 49.81,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "chart-story",
+    "keyword": "animated chart",
+    "searches": 390,
+    "competitionIndex": 8,
+    "highBidUsd": 99.98,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "chart-story",
+    "keyword": "animated graph video",
+    "searches": 10,
+    "competitionIndex": 29,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "timeline",
+    "keyword": "timeline video",
+    "searches": 320,
+    "competitionIndex": 3,
+    "highBidUsd": 121.62,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "timeline",
+    "keyword": "animated timeline",
+    "searches": 390,
+    "competitionIndex": 4,
+    "highBidUsd": 50.21,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "timeline",
+    "keyword": "timeline video template",
+    "searches": 50,
+    "competitionIndex": 42,
+    "highBidUsd": 59.46,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "timeline",
+    "keyword": "history timeline video",
+    "searches": 10,
+    "competitionIndex": 9,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "before-after",
+    "keyword": "before and after video",
+    "searches": 140,
+    "competitionIndex": 4,
+    "highBidUsd": 27.9,
+    "peakMonth": "JULY"
+  },
+  {
+    "type": "before-after",
+    "keyword": "before and after template",
+    "searches": 590,
+    "competitionIndex": 14,
+    "highBidUsd": 15.53,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "before-after",
+    "keyword": "before after slider video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "tutorial",
+    "keyword": "tutorial video template",
+    "searches": 10,
+    "competitionIndex": 57,
+    "highBidUsd": null,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "tutorial",
+    "keyword": "how to video template",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "tutorial",
+    "keyword": "step by step video",
+    "searches": 1000,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "AUGUST"
+  },
+  {
+    "type": "tutorial",
+    "keyword": "tutorial intro",
+    "searches": 30,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "comparison",
+    "keyword": "comparison video",
+    "searches": 140,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "AUGUST"
+  },
+  {
+    "type": "comparison",
+    "keyword": "versus video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "comparison",
+    "keyword": "vs video template",
+    "searches": 10,
+    "competitionIndex": 7,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "comparison",
+    "keyword": "comparison template",
+    "searches": 210,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "faq",
+    "keyword": "faq video",
+    "searches": 70,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "faq",
+    "keyword": "q and a video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "faq",
+    "keyword": "questions and answers video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "quote",
+    "keyword": "quote video",
+    "searches": 140,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "quote",
+    "keyword": "motivational quote video",
+    "searches": 110,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "quote",
+    "keyword": "quote animation",
+    "searches": 260,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "quote",
+    "keyword": "quote of the day video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "top-list",
+    "keyword": "top 5 video",
+    "searches": 90,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "top-list",
+    "keyword": "top 10 video template",
+    "searches": 10,
+    "competitionIndex": 21,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "top-list",
+    "keyword": "ranking video",
+    "searches": 320,
+    "competitionIndex": 3,
+    "highBidUsd": 67.05,
+    "peakMonth": "JULY"
+  },
+  {
+    "type": "top-list",
+    "keyword": "list video",
+    "searches": 320,
+    "competitionIndex": 4,
+    "highBidUsd": 167.97,
+    "peakMonth": "AUGUST"
+  },
+  {
+    "type": "cyber-monday",
+    "keyword": "cyber monday video",
+    "searches": 30,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "cyber-monday",
+    "keyword": "cyber monday sale",
+    "searches": 9900,
+    "competitionIndex": 6,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "cyber-monday",
+    "keyword": "cyber monday template",
+    "searches": 20,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "holiday-sale",
+    "keyword": "christmas sale video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "holiday-sale",
+    "keyword": "holiday sale video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "holiday-sale",
+    "keyword": "christmas promo video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "new-year",
+    "keyword": "happy new year video",
+    "searches": 480,
+    "competitionIndex": 8,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "new-year",
+    "keyword": "new year video template",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "new-year",
+    "keyword": "new year greeting video",
+    "searches": 20,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "new-year",
+    "keyword": "new year countdown",
+    "searches": 49500,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "valentines",
+    "keyword": "valentines day video",
+    "searches": 320,
+    "competitionIndex": 5,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "valentines",
+    "keyword": "valentines sale",
+    "searches": 3600,
+    "competitionIndex": 33,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "valentines",
+    "keyword": "valentines video template",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "back-to-school",
+    "keyword": "back to school video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "back-to-school",
+    "keyword": "back to school sale",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "back-to-school",
+    "keyword": "back to school template",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "anniversary",
+    "keyword": "company anniversary video",
+    "searches": 30,
+    "competitionIndex": 40,
+    "highBidUsd": 113.22,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "anniversary",
+    "keyword": "business anniversary",
+    "searches": 140,
+    "competitionIndex": 17,
+    "highBidUsd": 129.67,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "anniversary",
+    "keyword": "work anniversary video",
+    "searches": 10,
+    "competitionIndex": 6,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "anniversary",
+    "keyword": "anniversary video template",
+    "searches": 20,
+    "competitionIndex": 45,
+    "highBidUsd": 41.51,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "birthday",
+    "keyword": "happy birthday video",
+    "searches": 5400,
+    "competitionIndex": 28,
+    "highBidUsd": 24.92,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "birthday",
+    "keyword": "birthday video template",
+    "searches": 90,
+    "competitionIndex": 38,
+    "highBidUsd": 33.16,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "birthday",
+    "keyword": "birthday animation",
+    "searches": 720,
+    "competitionIndex": 9,
+    "highBidUsd": 17.47,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "event-recap",
+    "keyword": "event recap video",
+    "searches": 70,
+    "competitionIndex": 29,
+    "highBidUsd": 65.94,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "event-recap",
+    "keyword": "conference recap video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "event-recap",
+    "keyword": "highlight video",
+    "searches": 590,
+    "competitionIndex": 3,
+    "highBidUsd": 51.82,
+    "peakMonth": "JULY"
+  },
+  {
+    "type": "announcement",
+    "keyword": "announcement video",
+    "searches": 140,
+    "competitionIndex": 7,
+    "highBidUsd": 37.65,
+    "peakMonth": "AUGUST"
+  },
+  {
+    "type": "announcement",
+    "keyword": "announcement template",
+    "searches": 390,
+    "competitionIndex": 33,
+    "highBidUsd": 29.8,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "announcement",
+    "keyword": "big announcement video",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "grand-opening",
+    "keyword": "grand opening video",
+    "searches": 20,
+    "competitionIndex": 19,
+    "highBidUsd": 149.05,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "grand-opening",
+    "keyword": "grand opening announcement",
+    "searches": 70,
+    "competitionIndex": 10,
+    "highBidUsd": null,
+    "peakMonth": "AUGUST"
+  },
+  {
+    "type": "grand-opening",
+    "keyword": "store opening video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "flash-sale",
+    "keyword": "flash sale video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "MAY"
+  },
+  {
+    "type": "flash-sale",
+    "keyword": "flash sale",
+    "searches": 4400,
+    "competitionIndex": 29,
+    "highBidUsd": 32.86,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "flash-sale",
+    "keyword": "limited time offer video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "social-post",
+    "keyword": "animated social media post",
+    "searches": 30,
+    "competitionIndex": 43,
+    "highBidUsd": 150.13,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "social-post",
+    "keyword": "animated instagram post",
+    "searches": 10,
+    "competitionIndex": 17,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "social-post",
+    "keyword": "linkedin video post",
+    "searches": 260,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "map-route",
+    "keyword": "animated map",
+    "searches": 1600,
+    "competitionIndex": 4,
+    "highBidUsd": 37.24,
+    "peakMonth": "OCTOBER"
+  },
+  {
+    "type": "map-route",
+    "keyword": "travel map animation",
+    "searches": 260,
+    "competitionIndex": 10,
+    "highBidUsd": 17.69,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "map-route",
+    "keyword": "map route animation",
+    "searches": 140,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "progress",
+    "keyword": "progress bar animation",
+    "searches": 480,
+    "competitionIndex": 2,
+    "highBidUsd": 95.56,
+    "peakMonth": "MAY"
+  },
+  {
+    "type": "progress",
+    "keyword": "loading animation video",
+    "searches": 70,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "progress",
+    "keyword": "goal progress video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "date-reveal",
+    "keyword": "event date announcement",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "date-reveal",
+    "keyword": "date reveal",
+    "searches": 20,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "date-reveal",
+    "keyword": "save the date",
+    "searches": 49500,
+    "competitionIndex": 100,
+    "highBidUsd": 67.38,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "review",
+    "keyword": "product review video",
+    "searches": 90,
+    "competitionIndex": 13,
+    "highBidUsd": 112.3,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "review",
+    "keyword": "star rating animation",
+    "searches": 30,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JULY"
+  },
+  {
+    "type": "review",
+    "keyword": "review video template",
+    "searches": 10,
+    "competitionIndex": 32,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "mission",
+    "keyword": "mission statement video",
+    "searches": 10,
+    "competitionIndex": 4,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "mission",
+    "keyword": "company values video",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "mission",
+    "keyword": "about us video",
+    "searches": 20,
+    "competitionIndex": 26,
+    "highBidUsd": 91.07,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "menu",
+    "keyword": "menu video",
+    "searches": 30,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "menu",
+    "keyword": "digital menu board",
+    "searches": 2900,
+    "competitionIndex": 100,
+    "highBidUsd": 164.19,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "real-estate",
+    "keyword": "real estate video template",
+    "searches": 70,
+    "competitionIndex": 57,
+    "highBidUsd": 79.01,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "real-estate",
+    "keyword": "just listed video",
+    "searches": null,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": null
+  },
+  {
+    "type": "real-estate",
+    "keyword": "open house video",
+    "searches": 110,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "gaming",
+    "keyword": "gaming intro",
+    "searches": 210,
+    "competitionIndex": 6,
+    "highBidUsd": 33.14,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "gaming",
+    "keyword": "twitch intro",
+    "searches": 50,
+    "competitionIndex": 22,
+    "highBidUsd": 39.42,
+    "peakMonth": "JULY"
+  },
+  {
+    "type": "gaming",
+    "keyword": "stream overlay",
+    "searches": 4400,
+    "competitionIndex": 100,
+    "highBidUsd": 23.03,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "wedding",
+    "keyword": "wedding invitation video",
+    "searches": 390,
+    "competitionIndex": 100,
+    "highBidUsd": 32.39,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "wedding",
+    "keyword": "save the date video",
+    "searches": 320,
+    "competitionIndex": 100,
+    "highBidUsd": 36.51,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "quiz",
+    "keyword": "quiz video",
+    "searches": 590,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "quiz",
+    "keyword": "trivia video",
+    "searches": 210,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "quiz",
+    "keyword": "guess the video",
+    "searches": 50,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "tips",
+    "keyword": "tips video",
+    "searches": 70,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "MARCH"
+  },
+  {
+    "type": "tips",
+    "keyword": "tip of the day",
+    "searches": 1000,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "tips",
+    "keyword": "did you know video",
+    "searches": 110,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "JANUARY"
+  },
+  {
+    "type": "job-post",
+    "keyword": "job posting template",
+    "searches": 720,
+    "competitionIndex": 22,
+    "highBidUsd": 313.05,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "job-post",
+    "keyword": "job post linkedin",
+    "searches": 1900,
+    "competitionIndex": 26,
+    "highBidUsd": 1334.83,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "job-post",
+    "keyword": "job ad template",
+    "searches": 720,
+    "competitionIndex": 22,
+    "highBidUsd": 313.05,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "call-to-action",
+    "keyword": "call to action animation",
+    "searches": 20,
+    "competitionIndex": 2,
+    "highBidUsd": null,
+    "peakMonth": "NOVEMBER"
+  },
+  {
+    "type": "call-to-action",
+    "keyword": "cta animation",
+    "searches": 20,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "FEBRUARY"
+  },
+  {
+    "type": "call-to-action",
+    "keyword": "link in bio animation",
+    "searches": 10,
+    "competitionIndex": null,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "qr",
+    "keyword": "qr code video",
+    "searches": 320,
+    "competitionIndex": 49,
+    "highBidUsd": 54.68,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "qr",
+    "keyword": "scan qr code animation",
+    "searches": 10,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "SEPTEMBER"
+  },
+  {
+    "type": "title-card",
+    "keyword": "title card",
+    "searches": 5400,
+    "competitionIndex": 1,
+    "highBidUsd": 54.11,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "title-card",
+    "keyword": "title card template",
+    "searches": 110,
+    "competitionIndex": 11,
+    "highBidUsd": 52.03,
+    "peakMonth": "MAY"
+  },
+  {
+    "type": "title-card",
+    "keyword": "title screen",
+    "searches": 880,
+    "competitionIndex": 0,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "credits",
+    "keyword": "end credits template",
+    "searches": 1900,
+    "competitionIndex": 9,
+    "highBidUsd": 42.27,
+    "peakMonth": "DECEMBER"
+  },
+  {
+    "type": "credits",
+    "keyword": "rolling credits",
+    "searches": 1600,
+    "competitionIndex": 4,
+    "highBidUsd": 548.61,
+    "peakMonth": "APRIL"
+  },
+  {
+    "type": "credits",
+    "keyword": "credits animation",
+    "searches": 30,
+    "competitionIndex": 1,
+    "highBidUsd": null,
+    "peakMonth": "APRIL"
+  }
+]

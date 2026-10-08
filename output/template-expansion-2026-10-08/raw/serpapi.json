@@ -1,0 +1,2732 @@
+{
+  "checkedAt": "2026-10-08T19:39:04.343Z",
+  "provider": "SerpApi Google Search",
+  "geo": "US",
+  "serps": [
+    {
+      "type": "hiring",
+      "query": "hiring video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "vervoe.com",
+          "title": "The 14 Best Recruitment Videos of All Time"
+        },
+        {
+          "position": 2,
+          "host": "www.moonb.io",
+          "title": "12 Best Recruitment Videos From Top Brands (2026)"
+        },
+        {
+          "position": 3,
+          "host": "www.wevideo.com",
+          "title": "What Is a Recruiting Video? — Creative Examples to Emulate"
+        },
+        {
+          "position": 4,
+          "host": "behindthework.com",
+          "title": "How to Make a Recruitment Video in 8 Easy Steps"
+        },
+        {
+          "position": 5,
+          "host": "www.vecteezy.com",
+          "title": "Now Hiring Stock Video Footage for Free Download"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Recruiting and Hiring Tips | How to Hire or Recruit Employees"
+        },
+        {
+          "position": 7,
+          "host": "www.govideolink.com",
+          "title": "How to Use Video in Your Hiring Process: From Job Ads to ..."
+        }
+      ]
+    },
+    {
+      "type": "team-intro",
+      "query": "team introduction video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.animaker.com",
+          "title": "Team Members Intro Video Template"
+        },
+        {
+          "position": 2,
+          "host": "www.reddit.com",
+          "title": "Best team intro video? : r/CoDCompetitive"
+        },
+        {
+          "position": 3,
+          "host": "www.pinterest.com",
+          "title": "Team Intro Video"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Meet the Team | Video Ideas for Businesses"
+        },
+        {
+          "position": 5,
+          "host": "www.makewebvideo.com",
+          "title": "Create Corporate Team Introduction Video"
+        },
+        {
+          "position": 6,
+          "host": "www.vecteezy.com",
+          "title": "Team Introduction Stock Video Footage for Free Download"
+        },
+        {
+          "position": 7,
+          "host": "www.instagram.com",
+          "title": "Here is a fun video of our team introduction put together by ..."
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "2017 Staff Introduction Video"
+        }
+      ]
+    },
+    {
+      "type": "partnership",
+      "query": "partnership announcement",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.pinterest.com",
+          "title": "Partnership Announcement"
+        },
+        {
+          "position": 2,
+          "host": "www.ereleases.com",
+          "title": "Partnership Announcement Press Release Examples"
+        },
+        {
+          "position": 3,
+          "host": "wearesculpt.com",
+          "title": "How to Announce a Partnership on Social Media - Sculpt"
+        },
+        {
+          "position": 4,
+          "host": "www.prezly.com",
+          "title": "Writing Guide: Partnership Press Releases (With Examples)"
+        },
+        {
+          "position": 5,
+          "host": "www.larksuite.com",
+          "title": "Press Release Template For Partnership Announcement"
+        },
+        {
+          "position": 6,
+          "host": "www.linkedin.com",
+          "title": "Event Partnership Announcements"
+        },
+        {
+          "position": 7,
+          "host": "www.compelling.ai",
+          "title": "Partnership Announcements"
+        },
+        {
+          "position": 8,
+          "host": "www.shadow.inc",
+          "title": "How to Announce a Strategic Partnership - Shadow Inc"
+        }
+      ]
+    },
+    {
+      "type": "funding",
+      "query": "funding announcement",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.grants.gov",
+          "title": "Grants.gov Releases"
+        },
+        {
+          "position": 2,
+          "host": "mifundinghub.org",
+          "title": "MI Funding Hub: Michigan Grants & Funding Opportunities"
+        },
+        {
+          "position": 3,
+          "host": "www.grantsoffice.com",
+          "title": "Grant News"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "$1k Instant Grants #165 & $20000 In Grants Announcement"
+        },
+        {
+          "position": 5,
+          "host": "seed.nih.gov",
+          "title": "Find Funding"
+        },
+        {
+          "position": 6,
+          "host": "grantwitness.org",
+          "title": "Grant Witness"
+        },
+        {
+          "position": 7,
+          "host": "www.grants.gov",
+          "title": "View Grant Opportunity"
+        },
+        {
+          "position": 8,
+          "host": "www.grantwatch.com",
+          "title": "Most Organizations Don't Know These Grant Opportunities ..."
+        }
+      ]
+    },
+    {
+      "type": "milestone",
+      "query": "milestone video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.milestonesys.com",
+          "title": "Milestone Systems"
+        },
+        {
+          "position": 2,
+          "host": "vimeo.com",
+          "title": "Milestone Systems"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Milestone Systems Learning"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "How to use the playback controls on the Milestone XProtect ..."
+        },
+        {
+          "position": 5,
+          "host": "doc.milestonesys.com",
+          "title": "Find and view video recordings - Milestone Documentation"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Milestone XProtect Video Management Software (VMS)"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "Milestone Care - Winning is a team effort"
+        },
+        {
+          "position": 8,
+          "host": "www.securityinfowatch.com",
+          "title": "Milestone Systems"
+        }
+      ]
+    },
+    {
+      "type": "case-study",
+      "query": "case study video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Examples of Great Case Studies to Follow"
+        },
+        {
+          "position": 2,
+          "host": "www.hbs.edu",
+          "title": "Videos - Case Method 100 Years"
+        },
+        {
+          "position": 3,
+          "host": "zelios.agency",
+          "title": "8 Best Case Study Video Examples for B2B Brands"
+        },
+        {
+          "position": 4,
+          "host": "www.indirap.com",
+          "title": "10 Video Marketing Case Studies With Real Results (2026)"
+        },
+        {
+          "position": 5,
+          "host": "www.turbinecreative.co.uk",
+          "title": "Why Case Study Videos are the Secret Weapon in Marketing."
+        },
+        {
+          "position": 6,
+          "host": "www.allyandmo.co.uk",
+          "title": "The Anatomy of a High-Converting Case Study Video"
+        },
+        {
+          "position": 7,
+          "host": "vocalvideo.com",
+          "title": "All About Video Case Studies + How to Make Your Own"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "How To Create Case Studies for Your Business"
+        }
+      ]
+    },
+    {
+      "type": "subscribe",
+      "query": "subscribe button animation",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.capcut.com",
+          "title": "Free YouTube Subscribe Button Animation Template for ..."
+        },
+        {
+          "position": 2,
+          "host": "elements.envato.com",
+          "title": "Youtube Subscribe Editable Video Templates"
+        },
+        {
+          "position": 3,
+          "host": "www.pinterest.com",
+          "title": "Subscribe Button Video Animation"
+        },
+        {
+          "position": 4,
+          "host": "lottiefiles.com",
+          "title": "Free youtube subscribe Animations"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Free Subscribe Animation"
+        },
+        {
+          "position": 6,
+          "host": "www.magnific.com",
+          "title": "Subscribe animation button animation Images"
+        },
+        {
+          "position": 7,
+          "host": "www.motionartsmedia.net",
+          "title": "1000+ Subscribe Buttons – Animations, PNGs & GIFs for ..."
+        }
+      ]
+    },
+    {
+      "type": "channel-trailer",
+      "query": "channel trailer",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.reddit.com",
+          "title": "What makes a good channel trailer? : r/NewTubers"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "THE CHANNEL Official Trailer (2023)"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "How to make a channel trailer"
+        },
+        {
+          "position": 4,
+          "host": "www.subsub.io",
+          "title": "How to Make a YouTube Channel Trailer That Converts ..."
+        },
+        {
+          "position": 5,
+          "host": "wave.video",
+          "title": "YouTube Channel Trailer: How to Create a Killer ..."
+        },
+        {
+          "position": 6,
+          "host": "clipchamp.com",
+          "title": "How to make YouTube channel trailers"
+        },
+        {
+          "position": 7,
+          "host": "vidiq.com",
+          "title": "How to Make a YouTube Channel Trailer That Converts in ..."
+        },
+        {
+          "position": 8,
+          "host": "www.pinterest.com",
+          "title": "Youtube Channel Trailer Ideas"
+        }
+      ]
+    },
+    {
+      "type": "episode-recap",
+      "query": "episode recap video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.courtlistener.com",
+          "title": "Advanced RECAP Archive Search for PACER"
+        },
+        {
+          "position": 2,
+          "host": "www.autodesk.com",
+          "title": "Download & Buy ReCap Pro"
+        },
+        {
+          "position": 3,
+          "host": "free.law",
+          "title": "RECAP Suite — Turning PACER Around Since 2009"
+        },
+        {
+          "position": 4,
+          "host": "recap.princeton.edu",
+          "title": "The Research Collections and Preservation Consortium ..."
+        },
+        {
+          "position": 5,
+          "host": "www.recap.org",
+          "title": "RECAP – \"Helping People. Changing Lives\""
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Brewers vs. Padres NLDS Game 4 Shorts Recap"
+        },
+        {
+          "position": 7,
+          "host": "www.deq.louisiana.gov",
+          "title": "Risk Evaluation / Corrective Action Program (RECAP)"
+        }
+      ]
+    },
+    {
+      "type": "chapter-titles",
+      "query": "youtube chapter title",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.gling.ai",
+          "title": "Creating YouTube Chapters: A Complete Guide"
+        },
+        {
+          "position": 2,
+          "host": "www.reddit.com",
+          "title": "Chapters in the YouTube's videos : r/NewTubers"
+        },
+        {
+          "position": 3,
+          "host": "www.wikihow.com",
+          "title": "Easy Ways to Add Chapters to YouTube Videos"
+        },
+        {
+          "position": 4,
+          "host": "reduct.video",
+          "title": "Create YouTube Chapters in Minutes — No Experience ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "How to Copy-Paste YouTube Chapters Add ..."
+        },
+        {
+          "position": 6,
+          "host": "increditors.com",
+          "title": "YouTube Chapters and Metadata: Ranking Guide"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "How Chapters Work & How to Add Chapters To Your Videos"
+        },
+        {
+          "position": 8,
+          "host": "meetclaras.com",
+          "title": "YouTube Chapter Generator — Add Chapters to Any Video Free"
+        }
+      ]
+    },
+    {
+      "type": "poll",
+      "query": "poll video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Create a Poll ⎸ Polls Tutorial"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Polling 101: How can I find an accurate poll?"
+        },
+        {
+          "position": 3,
+          "host": "www.shutterstock.com",
+          "title": "19507 Poll Stock Video Footage - 4K and HD Video Clips"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Trump's midterm campaigning persists as alarming new poll ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Voters More Likely to Believe Poll Favoring Favorite Candidate?"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "The Poll Hero Project is encouraging and helping students ..."
+        },
+        {
+          "position": 7,
+          "host": "clipchamp.com",
+          "title": "How to use YouTube polls to create more engagement"
+        },
+        {
+          "position": 8,
+          "host": "www.nbcnews.com",
+          "title": "Trump's support among Latinos fades in new poll"
+        }
+      ]
+    },
+    {
+      "type": "giveaway",
+      "query": "giveaway video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "video.google.com",
+          "title": "Google Video"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "YouTube"
+        },
+        {
+          "position": 3,
+          "host": "developer.mozilla.org",
+          "title": "<video> HTML video embed element - HTML - MDN Web Docs"
+        },
+        {
+          "position": 4,
+          "host": "www.csb.gov",
+          "title": "Fatal Fire at BP-Husky - Safety Videos - Multimedia | CSB"
+        },
+        {
+          "position": 5,
+          "host": "support.zoom.com",
+          "title": "Testing your video"
+        },
+        {
+          "position": 6,
+          "host": "www.kofc.org",
+          "title": "Into the Breach Video Series"
+        },
+        {
+          "position": 7,
+          "host": "www.ncaa.com",
+          "title": "NCAA college sports video, highlights"
+        },
+        {
+          "position": 8,
+          "host": "www.facebook.com",
+          "title": "Bailey Zimmerman \"Chevy Silverado\" Official Music Video Out ..."
+        }
+      ]
+    },
+    {
+      "type": "feature-launch",
+      "query": "feature announcement",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "flows.sh",
+          "title": "Feature announcement – Example - Flows"
+        },
+        {
+          "position": 2,
+          "host": "www.chameleon.io",
+          "title": "Feature Announcement Examples | Chameleon"
+        },
+        {
+          "position": 3,
+          "host": "www.howdygo.com",
+          "title": "10 new feature announcement examples with interactive ..."
+        },
+        {
+          "position": 4,
+          "host": "usersnap.com",
+          "title": "Ways To Elevate Your Next New Feature Announcement ..."
+        },
+        {
+          "position": 5,
+          "host": "www.userflow.com",
+          "title": "Feature Announcement Best Practices"
+        },
+        {
+          "position": 6,
+          "host": "www.arcade.software",
+          "title": "14 Feature Announcement Examples for 2026 (AI Video & ..."
+        },
+        {
+          "position": 7,
+          "host": "www.candu.ai",
+          "title": "How to Launch a New Product Feature - Candu"
+        },
+        {
+          "position": 8,
+          "host": "www.boldare.com",
+          "title": "Part 2: How to announce new product features?"
+        }
+      ]
+    },
+    {
+      "type": "pricing",
+      "query": "pricing video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "HOW TO PRICE PRODUCTS for Your Small Business"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "7 Pricing Strategies - How To Price A Product"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "How to Price Like a Pro (the truth about PRICING) | LIVE Q&A"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "New Venture Coaches | How to Price Your Products?"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "How to Price your Products - The Dark Art"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Why is setting the right price important?"
+        },
+        {
+          "position": 7,
+          "host": "www.linkedin.com",
+          "title": "Effective Pricing Strategies for Video Production"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "How To Price Products | 8 Minute Guide"
+        }
+      ]
+    },
+    {
+      "type": "discount",
+      "query": "discount video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.localbiznetwork.com",
+          "title": "Discount 24 Hour Video"
+        },
+        {
+          "position": 2,
+          "host": "www.yelp.com",
+          "title": "I am a new comer to the store and the lifestyle, very ..."
+        },
+        {
+          "position": 3,
+          "host": "www.yelp.com",
+          "title": "TOP 10 BEST Adult Video 24 Hours in Houston, TX"
+        },
+        {
+          "position": 4,
+          "host": "www.shutterstock.com",
+          "title": "848 65% Discount Stock Video Footage - 4K and HD ..."
+        },
+        {
+          "position": 5,
+          "host": "www.reddit.com",
+          "title": "24/7 video stores : r/houston"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "DEALS DEALS DEALS | Discounty | Demo"
+        },
+        {
+          "position": 7,
+          "host": "www.shutterstock.com",
+          "title": "30% Discount royalty-free stock footage"
+        },
+        {
+          "position": 8,
+          "host": "community.houstonpress.com",
+          "title": "Discount 24 Hr Video | Memorial | Adult | General"
+        }
+      ]
+    },
+    {
+      "type": "app-promo",
+      "query": "app promo video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "clipchamp.com",
+          "title": "Promo video maker"
+        },
+        {
+          "position": 2,
+          "host": "www.reddit.com",
+          "title": "Best way to create a mobile app promo video? : r/developers"
+        },
+        {
+          "position": 3,
+          "host": "www.veed.io",
+          "title": "App Promo Videos | Create Videos with AI"
+        },
+        {
+          "position": 4,
+          "host": "www.makewebvideo.com",
+          "title": "Mobile App Promo Videos. Create Business Marketing Video"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Mobile App Promo Intro Video - After Effects Template"
+        },
+        {
+          "position": 6,
+          "host": "www.magnific.com",
+          "title": "Mobile app promo video Images - Free Download on ..."
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "How To Make App Promo Video In Canva (2026)"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "Best App Marketing Animation Video Example"
+        }
+      ]
+    },
+    {
+      "type": "waitlist",
+      "query": "waitlist announcement",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.ivyscholars.com",
+          "title": "How Long Should You Wait to Hear from the Waitlist?"
+        },
+        {
+          "position": 2,
+          "host": "toptieradmissions.com",
+          "title": "Waitlisted? Action Plan and Notification Dates"
+        },
+        {
+          "position": 3,
+          "host": "www.bestcolleges.com",
+          "title": "Got Waitlisted? How to Write a Letter of Continued Interest"
+        },
+        {
+          "position": 4,
+          "host": "www.ivycoach.com",
+          "title": "What Does 'Waitlisted' Mean in College Admissions?"
+        },
+        {
+          "position": 5,
+          "host": "www.ivycoach.com",
+          "title": "College Waitlist Admission Rates & Statistics | Class of 2030"
+        },
+        {
+          "position": 6,
+          "host": "en.wikipedia.org",
+          "title": "Wait list"
+        },
+        {
+          "position": 7,
+          "host": "www.facebook.com",
+          "title": "Check to see how many students were accepted off the ..."
+        },
+        {
+          "position": 8,
+          "host": "www.eliteopenschool.org",
+          "title": "You've Been Waitlisted. Now What? (A 6-Step Action Plan)"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "query": "newsletter promo video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "How to Add Videos to Your Newsletters"
+        },
+        {
+          "position": 2,
+          "host": "www.southpointfilms.com",
+          "title": "How To Use Video In An Email Marketing Campaign"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Free Video Newsletter Template (Customizable) - FlexClip"
+        },
+        {
+          "position": 4,
+          "host": "www.shutterstock.com",
+          "title": "Newsletter Template royalty-free stock footage"
+        },
+        {
+          "position": 5,
+          "host": "www.argil.ai",
+          "title": "How To Create a Video Newsletter: 6 Easy Steps"
+        },
+        {
+          "position": 6,
+          "host": "flockler.com",
+          "title": "How to embed videos in email newsletters: 3 best ways"
+        },
+        {
+          "position": 7,
+          "host": "www.moonb.io",
+          "title": "6 Promotional Video Examples Worth Studying"
+        },
+        {
+          "position": 8,
+          "host": "blog.hubspot.com",
+          "title": "8 Really Cool Ways to Use Video in Email Marketing"
+        }
+      ]
+    },
+    {
+      "type": "webinar",
+      "query": "webinar promo video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "wideo.co",
+          "title": "Promote Events & Webinars with Video Templates"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "13 Ways To Promote Your Webinar & Drive Registrations (2022 ..."
+        },
+        {
+          "position": 3,
+          "host": "elements.envato.com",
+          "title": "Webinar Editable Video Templates"
+        },
+        {
+          "position": 4,
+          "host": "www.beaconlive.com",
+          "title": "How to Promote Your Webinar with a Video Teaser Clip"
+        },
+        {
+          "position": 5,
+          "host": "pexo.ai",
+          "title": "What Is a Webinar Promo Video? Definition, Examples ..."
+        },
+        {
+          "position": 6,
+          "host": "www.flexclip.com",
+          "title": "Free Webinar Video Maker with Free Templates & AI"
+        },
+        {
+          "position": 7,
+          "host": "vimeo.com",
+          "title": "Webinar Promotion Examples and Strategies to Drive ..."
+        },
+        {
+          "position": 8,
+          "host": "www.linkedin.com",
+          "title": "Webinar Teaser Campaigns"
+        }
+      ]
+    },
+    {
+      "type": "speaker",
+      "query": "speaker announcement",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.magnific.com",
+          "title": "Speaker announcement Images - Free Download on ..."
+        },
+        {
+          "position": 2,
+          "host": "www.speakinc.com",
+          "title": "Announcing Your Keynote Speaker"
+        },
+        {
+          "position": 3,
+          "host": "johnmattone.com",
+          "title": "Keynote Speaker Announcements: These 5 Elements ..."
+        },
+        {
+          "position": 4,
+          "host": "www.magnific.com",
+          "title": "Speaker announcement Photos - Download Free High- ..."
+        },
+        {
+          "position": 5,
+          "host": "www.pinterest.com",
+          "title": "Speaker announcement poster design"
+        },
+        {
+          "position": 6,
+          "host": "www.postermywall.com",
+          "title": "Keynote Speaker Announcement Template"
+        },
+        {
+          "position": 7,
+          "host": "www.magnific.com",
+          "title": "Speaker announcement Vectors - Download Free High- ..."
+        }
+      ]
+    },
+    {
+      "type": "agenda",
+      "query": "event agenda video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.pexels.com",
+          "title": "Free Event Plan Videos"
+        },
+        {
+          "position": 2,
+          "host": "www.gettyimages.com.au",
+          "title": "13293 Event Organizer Videos, Clips and Stock Footage"
+        },
+        {
+          "position": 3,
+          "host": "www.istockphoto.com",
+          "title": "Event Calendar Stock Videos and Footage"
+        },
+        {
+          "position": 4,
+          "host": "www.vecteezy.com",
+          "title": "Planning events with a simple calendar layout Free Video"
+        },
+        {
+          "position": 5,
+          "host": "www.pexels.com",
+          "title": "Free Meeting Agenda Videos"
+        },
+        {
+          "position": 6,
+          "host": "www.shutterstock.com",
+          "title": "Agenda Corporative royalty-free stock footage"
+        },
+        {
+          "position": 7,
+          "host": "www.foxbusiness.com",
+          "title": "There is a 'broader agenda being implemented' in France ..."
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "introduction to event management"
+        }
+      ]
+    },
+    {
+      "type": "ticket",
+      "query": "tickets on sale video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.instagram.com",
+          "title": "100 AT THE GARDEN. Phish returns to Madison Square ..."
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Event Tickets Center"
+        },
+        {
+          "position": 3,
+          "host": "www.mlb.com",
+          "title": "Yamamoto, Sale tip their caps to one another - Los Angeles"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "TikTok Addicts Are Buying Up All The Concert Tickets To Hear ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "What are some of the summer concerts Live Nation is offering ..."
+        },
+        {
+          "position": 6,
+          "host": "www.1011now.com",
+          "title": "Def Leppard, Goo Goo Dolls to play Lincoln in 2027"
+        },
+        {
+          "position": 7,
+          "host": "www.tiktok.com",
+          "title": "How are you not gonna watch? Tickets for my Preposterous ..."
+        },
+        {
+          "position": 8,
+          "host": "www.mlb.com",
+          "title": "Condensed Game: MIL@SD - Game 4 | 10/07/2026"
+        }
+      ]
+    },
+    {
+      "type": "livestream",
+      "query": "stream starting soon",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "I Made \"Starting Soon Screens\" for Twitch Streamers"
+        },
+        {
+          "position": 2,
+          "host": "www.reddit.com",
+          "title": "Stream Starting Soon Screen Help : r/Twitch"
+        },
+        {
+          "position": 3,
+          "host": "stock.adobe.com",
+          "title": "Starting Soon Screen Twitch Streamer Images"
+        },
+        {
+          "position": 4,
+          "host": "www.pinterest.com",
+          "title": "Stream Starting Soon Png"
+        },
+        {
+          "position": 5,
+          "host": "placeit.net",
+          "title": "Customizable Twitch Screen Templates"
+        },
+        {
+          "position": 6,
+          "host": "www.facebook.com",
+          "title": "How to create an animated starting soon screen for live ..."
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "FREE Starting Soon Screen Overlay for OBS Studio"
+        }
+      ]
+    },
+    {
+      "type": "thank-you",
+      "query": "thank you video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "A Moment of Gratitude: Truly Thankful!"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Thankyou written in Style"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "10 MILLION VIEWS-Thankyou"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Grateful for the ones who stood by me ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Thankyou all"
+        },
+        {
+          "position": 6,
+          "host": "vimeo.com",
+          "title": "Thank You | Videos & Movies on Vimeo"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "감사합니다"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "YouTube"
+        }
+      ]
+    },
+    {
+      "type": "stat-reveal",
+      "query": "animated statistics",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "yihui.r-universe.dev",
+          "title": "A Gallery of Animations in Statistics and Utilities to Create ..."
+        },
+        {
+          "position": 2,
+          "host": "kr.pinterest.com",
+          "title": "Statistic Animation"
+        },
+        {
+          "position": 3,
+          "host": "iconscout.com",
+          "title": "Statistical Analysis Animations - Free Download in GIF, ..."
+        },
+        {
+          "position": 4,
+          "host": "iconscout.com",
+          "title": "Data Statistics Dashboard Animations - Free Download in ..."
+        },
+        {
+          "position": 5,
+          "host": "elements.envato.com",
+          "title": "Data Animation Editable Video Templates"
+        },
+        {
+          "position": 6,
+          "host": "easymotion.io",
+          "title": "Animated Chart Maker for Bar Races and CSV"
+        },
+        {
+          "position": 7,
+          "host": "www.vev.design",
+          "title": "Using Animated Charts in Your Digital Content for ..."
+        }
+      ]
+    },
+    {
+      "type": "chart-story",
+      "query": "animated bar chart",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "flourish.studio",
+          "title": "Make a bar chart race without coding"
+        },
+        {
+          "position": 2,
+          "host": "livingcharts.com",
+          "title": "Bar Chart Race Maker | Create Animated Data Visualizations"
+        },
+        {
+          "position": 3,
+          "host": "jitter.video",
+          "title": "Free animated chart templates"
+        },
+        {
+          "position": 4,
+          "host": "lottiefiles.com",
+          "title": "Free Bar Chart Animations | Download in GIF, MP4, and ..."
+        },
+        {
+          "position": 5,
+          "host": "www.canva.com",
+          "title": "Visualize changes over time with bar race charts"
+        },
+        {
+          "position": 6,
+          "host": "dribbble.com",
+          "title": "bar chart animation"
+        },
+        {
+          "position": 7,
+          "host": "marketplace.microsoft.com",
+          "title": "Animated Bar Chart Race"
+        },
+        {
+          "position": 8,
+          "host": "easymotion.io",
+          "title": "Animated Chart Maker for Bar Races and CSV"
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "query": "timeline video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Timeline template for visual forensics (After Effects)"
+        },
+        {
+          "position": 2,
+          "host": "www.vecteezy.com",
+          "title": "Timeline Stock Video Footage for Free Download"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "How to Create an Animated Timeline Video ( ..."
+        },
+        {
+          "position": 4,
+          "host": "www.powtoon.com",
+          "title": "Timeline Template - Present Facts with a Timeline"
+        },
+        {
+          "position": 5,
+          "host": "invideo.io",
+          "title": "Timeline Video Templates"
+        },
+        {
+          "position": 6,
+          "host": "pixabay.com",
+          "title": "12+ Free Timeline 4K & HD Stock Videos"
+        },
+        {
+          "position": 7,
+          "host": "www.magnific.com",
+          "title": "Timeline Videos - HD and 4K to download"
+        },
+        {
+          "position": 8,
+          "host": "www.flexclip.com",
+          "title": "Free Timeline Stock Videos & Templates"
+        }
+      ]
+    },
+    {
+      "type": "before-after",
+      "query": "before and after video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.animaker.com",
+          "title": "Before After Video Template"
+        },
+        {
+          "position": 2,
+          "host": "www.facebook.com",
+          "title": "Before vs. After … | Usally my editing steps are less then 7 ..."
+        },
+        {
+          "position": 3,
+          "host": "www.facebook.com",
+          "title": "Before vs After Editing… #editing #balance #unexpected #funny"
+        },
+        {
+          "position": 4,
+          "host": "insense.pro",
+          "title": "How To Make a Before And After Video [With Examples]"
+        },
+        {
+          "position": 5,
+          "host": "www.pexels.com",
+          "title": "Free Before And After Videos"
+        },
+        {
+          "position": 6,
+          "host": "zsky.ai",
+          "title": "Free AI Before & After Video Maker (From 2 Photos)"
+        }
+      ]
+    },
+    {
+      "type": "tutorial",
+      "query": "tutorial video template",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.flexclip.com",
+          "title": "Free Online Instructional Video Maker | Templates & Tools"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "How To Turn Any Template Into Videos (Quick Tutorial)"
+        },
+        {
+          "position": 3,
+          "host": "www.powtoon.com",
+          "title": "13 Training Video Templates that Are the Best"
+        },
+        {
+          "position": 4,
+          "host": "www.pinterest.com",
+          "title": "Video Template Design"
+        },
+        {
+          "position": 5,
+          "host": "www.videoleapapp.com",
+          "title": "Video Templates - Customizable & Easy-to-Use"
+        },
+        {
+          "position": 6,
+          "host": "www.vmaker.com",
+          "title": "tutorial video template - Vmaker Blog: Best of AI ..."
+        },
+        {
+          "position": 7,
+          "host": "www.canva.com",
+          "title": "Free animated video templates to customize"
+        },
+        {
+          "position": 8,
+          "host": "www.steve.ai",
+          "title": "Tutorial Video Maker - Create Engaging How-to ..."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "query": "comparison video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "community.adobe.com",
+          "title": "How to create a size comparison video?"
+        },
+        {
+          "position": 2,
+          "host": "getcompress.com",
+          "title": "Compare videos online with synchronized playback"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Comparison video"
+        },
+        {
+          "position": 4,
+          "host": "www.vecteezy.com",
+          "title": "Comparison Stock Video Footage for Free Download"
+        },
+        {
+          "position": 5,
+          "host": "nerdist.com",
+          "title": "This Video Compares the Tiniest and Largest Things in ..."
+        },
+        {
+          "position": 6,
+          "host": "pixabay.com",
+          "title": "14+ Free Comparison 4K & HD Stock Videos"
+        },
+        {
+          "position": 7,
+          "host": "www.media.io",
+          "title": "Comparison Video | AI Video Creator Online"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "Comparison: Things That Bring the Most Pleasure"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "query": "faq video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "wyzowl.com",
+          "title": "How to Create an Amazing FAQ Video (Tips & Examples)"
+        },
+        {
+          "position": 2,
+          "host": "www.pexels.com",
+          "title": "Free Frequently Asked Questions Videos"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "FAQ Video Example for Business and Marketing"
+        },
+        {
+          "position": 4,
+          "host": "www.visla.us",
+          "title": "How do I make customer support FAQ videos that actually ..."
+        },
+        {
+          "position": 5,
+          "host": "www.reddit.com",
+          "title": "What are good examples of FAQ videos? : r/videography"
+        },
+        {
+          "position": 6,
+          "host": "apps.apple.com",
+          "title": "FAQ Videos - App Store - Apple"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "4 Questions to Answer in Your FAQs"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "FAQ Video Template"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "query": "quote video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Quotes"
+        },
+        {
+          "position": 2,
+          "host": "pixabay.com",
+          "title": "30+ Free Quote 4K & HD Stock Videos"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Wisdom Quotes"
+        },
+        {
+          "position": 4,
+          "host": "www.gettyimages.com",
+          "title": "232 Motivational Quotes Videos, Clips and Stock Footage"
+        },
+        {
+          "position": 5,
+          "host": "www.brainyquote.com",
+          "title": "Videos Quotes"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Top 10 Motivational Quotes | 1 minute Short Quotes to Inspire you"
+        },
+        {
+          "position": 7,
+          "host": "pixabay.com",
+          "title": "224+ Free Motivational Quotes 4K & HD Stock Videos"
+        }
+      ]
+    },
+    {
+      "type": "top-list",
+      "query": "top 5 video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Top5"
+        },
+        {
+          "position": 2,
+          "host": "stats.videoamigo.com",
+          "title": "Most Viewed YouTube Videos: Overall - Top 100 Videos"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Top 5 Best"
+        },
+        {
+          "position": 4,
+          "host": "www.42courses.com",
+          "title": "Top Ten Most Popular Youtube Videos Of All Time"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "The TOP 5 BEST & WORST Brawlers In Brawl Stars ..."
+        },
+        {
+          "position": 6,
+          "host": "tubestats.io",
+          "title": "Top5best Videos - Performance Analytics & Metrics"
+        },
+        {
+          "position": 7,
+          "host": "vimeo.com",
+          "title": "Top5 | Videos & Movies on Vimeo"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "Ranking Top 5 Most Impressive Moments pt.35 #best #epic"
+        }
+      ]
+    },
+    {
+      "type": "cyber-monday",
+      "query": "cyber monday video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Cyber Monday expected to be biggest online shopping day of ..."
+        },
+        {
+          "position": 2,
+          "host": "www.amazon.com",
+          "title": "Cyber Monday Deals 2025"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "The BEST Cyber Monday DEALS You Need to Grab NOW!"
+        },
+        {
+          "position": 4,
+          "host": "abcnews.com",
+          "title": "Video The major deals to grab for Cyber Monday"
+        },
+        {
+          "position": 5,
+          "host": "www.bestbuy.com",
+          "title": "Shop Cyber Monday 2026 Deals"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Scoring Deals for Cyber Monday | NBC 6 News"
+        },
+        {
+          "position": 7,
+          "host": "www.shutterstock.com",
+          "title": "10747 Cyber Monday Videos"
+        },
+        {
+          "position": 8,
+          "host": "www.cnet.com",
+          "title": "How to Shop Black Friday and Cyber Monday Deals Like a Pro"
+        }
+      ]
+    },
+    {
+      "type": "holiday-sale",
+      "query": "christmas sale video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.vecteezy.com",
+          "title": "Holiday Sale Stock Video Footage for Free Download"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Handmade Christmas Live Sale! Sunday 12/7 at ..."
+        },
+        {
+          "position": 3,
+          "host": "www.shutterstock.com",
+          "title": "85054 Holiday Sale Stock Video Footage"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Christmas Shopping: You Won't Believe What We Found!"
+        },
+        {
+          "position": 5,
+          "host": "www.shutterstock.com",
+          "title": "209 70% Off Christmas Stock Video Footage - 4K and HD ..."
+        },
+        {
+          "position": 6,
+          "host": "videohive.net",
+          "title": "Christmas Sale-1 by doomodesigns"
+        },
+        {
+          "position": 7,
+          "host": "www.shutterstock.com",
+          "title": "Christmas Sale Animation Special Offer Discount Stock ..."
+        },
+        {
+          "position": 8,
+          "host": "artefacti.art",
+          "title": "Make Your Holiday Content Shine with the 350 Christmas ..."
+        }
+      ]
+    },
+    {
+      "type": "new-year",
+      "query": "happy new year video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.vecteezy.com",
+          "title": "Happy New Year Stock Video Footage for Free Download"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Funny Happy New Year Greeting Video 2026(To send & Share)"
+        },
+        {
+          "position": 3,
+          "host": "www.gettyimages.com",
+          "title": "Happy New Year - HD stock video"
+        },
+        {
+          "position": 4,
+          "host": "pixabay.com",
+          "title": "2296+ Free New Year'S Greetings 4K & HD Stock Videos"
+        },
+        {
+          "position": 5,
+          "host": "www.perfectcorp.com",
+          "title": "50+ Happy New Year Videos Ideas for 2026 (Download Free)"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Happy New Year 2026(Greeting Video to send & share)"
+        },
+        {
+          "position": 7,
+          "host": "www.funimada.com",
+          "title": "Happy New Year 2027 Videos"
+        }
+      ]
+    },
+    {
+      "type": "valentines",
+      "query": "valentines day video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.tumblr.com",
+          "title": "phans-v-day-video-blog"
+        },
+        {
+          "position": 2,
+          "host": "pbskids.org",
+          "title": "PBS KIDS Celebrates Valentine's Day Video Collection"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Best Valentine's Day Ever"
+        },
+        {
+          "position": 4,
+          "host": "the-phandom.fandom.com",
+          "title": "The Valentine's Day video | The Phandom Wiki - Fandom"
+        },
+        {
+          "position": 5,
+          "host": "www.canva.com",
+          "title": "Free Valentine's Day video templates you can customize"
+        },
+        {
+          "position": 6,
+          "host": "www.vecteezy.com",
+          "title": "Valentines Day Stock Video Footage for Free Download"
+        },
+        {
+          "position": 7,
+          "host": "www.facebook.com",
+          "title": "another valentines day surprise for all of u!! celebrate a long ..."
+        },
+        {
+          "position": 8,
+          "host": "www.gettyimages.com",
+          "title": "9684 Happy Valentines Day Videos, Clips and Stock Footage"
+        }
+      ]
+    },
+    {
+      "type": "back-to-school",
+      "query": "back to school video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Easy back-to-school ideas to help kids start the year strong"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "Welcome Back to School!"
+        },
+        {
+          "position": 3,
+          "host": "mixkit.co",
+          "title": "Free Vertical Back To School Stock Videos | 4k & HD"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Students Return for the First Day of School!"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Back To School"
+        },
+        {
+          "position": 6,
+          "host": "www.gettyimages.com",
+          "title": "Kids Going Back To School Stock Videos"
+        }
+      ]
+    },
+    {
+      "type": "anniversary",
+      "query": "company anniversary video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "forgeapollo.com",
+          "title": "6 of The Best Corporate Videos of All Time"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "10th Office Anniversary Celebration Ideas | Corporate"
+        },
+        {
+          "position": 3,
+          "host": "www.vecteezy.com",
+          "title": "Business Anniversary Stock Video Footage for Free ..."
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Corporate video of company's Anniversary"
+        },
+        {
+          "position": 5,
+          "host": "www.postermywall.com",
+          "title": "83+ Free Work Anniversary Video Social Media Templates"
+        },
+        {
+          "position": 6,
+          "host": "www.vecteezy.com",
+          "title": "Corporate Anniversary Stock Video Footage for Free ..."
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "Celebrating A Journey Of 2 Years | Company Anniversary Video"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "Celebrating 30th Anniversary of Company from Employees"
+        }
+      ]
+    },
+    {
+      "type": "birthday",
+      "query": "happy birthday video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Your Happy Birthday Song"
+        },
+        {
+          "position": 2,
+          "host": "music.youtube.com",
+          "title": "One Day, One Celebration 🎉 A Magical Happy Birthday ..."
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "MARIAM Happy Birthday Song Update Version"
+        },
+        {
+          "position": 4,
+          "host": "music.youtube.com",
+          "title": "Happy Birthday To You! 🥳 Birthday Song"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "Happy Birthday"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Cute Little Girl Happy Birthday Wish Sweet Child Voice"
+        },
+        {
+          "position": 7,
+          "host": "music.youtube.com",
+          "title": "HEARTFELT HAPPY BIRTHDAY MESSAGE... WITH ..."
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "Happy Birthday Tamkeen"
+        }
+      ]
+    },
+    {
+      "type": "event-recap",
+      "query": "event recap video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Event Recap Videos"
+        },
+        {
+          "position": 2,
+          "host": "www.flowvideo.com",
+          "title": "What Makes an Event Recap Video Great?"
+        },
+        {
+          "position": 3,
+          "host": "evolutionmarketing.com",
+          "title": "Custom-Made Event Recap Video Services Rochester NY"
+        },
+        {
+          "position": 4,
+          "host": "www.kometmedia.com",
+          "title": "5 Amazing Event Recap Video Examples for 2026"
+        },
+        {
+          "position": 5,
+          "host": "elements.envato.com",
+          "title": "Recap Event Editable Video Templates"
+        },
+        {
+          "position": 6,
+          "host": "www.yuzzit.video",
+          "title": "How to make a recap video: A guide for professional editors"
+        },
+        {
+          "position": 7,
+          "host": "www.ngram.com",
+          "title": "Event Recap Video Maker - Ship Recaps in Hours | ngram.com"
+        }
+      ]
+    },
+    {
+      "type": "announcement",
+      "query": "announcement video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "How to Create an Announcement"
+        },
+        {
+          "position": 2,
+          "host": "www.vecteezy.com",
+          "title": "Big Announcement Stock Video Footage for Free Download"
+        },
+        {
+          "position": 3,
+          "host": "www.flexclip.com",
+          "title": "How to Make An Engaging Announcement Video Online"
+        },
+        {
+          "position": 4,
+          "host": "biteable.com",
+          "title": "Workplace Announcement | Animated Video Templates"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "SHORT ANNOUNCEMENT VIDEO.. that's all"
+        },
+        {
+          "position": 6,
+          "host": "create.vista.com",
+          "title": "Stock videos of The announcement"
+        },
+        {
+          "position": 7,
+          "host": "advids.co",
+          "title": "Product Announcement Video Examples: 18 High-Impact ..."
+        },
+        {
+          "position": 8,
+          "host": "www.instagram.com",
+          "title": "Announcement Videos • 400+ reels on ..."
+        }
+      ]
+    },
+    {
+      "type": "grand-opening",
+      "query": "grand opening video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.storyblocks.com",
+          "title": "Grand Opening Stock Footage: Royalty-Free Video Clips"
+        },
+        {
+          "position": 2,
+          "host": "www.shutterstock.com",
+          "title": "Grand Opening Background Colorful Display Illustration Stock ..."
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "The Grand Opening"
+        },
+        {
+          "position": 4,
+          "host": "hiltoneu.co.za",
+          "title": "Grand opening video com Browse 5134 amazing Opening ..."
+        },
+        {
+          "position": 5,
+          "host": "www.shutterstock.com",
+          "title": "391 Grand Opening Soon Stock Video Footage"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Grand Opening Official Movie Trailer"
+        },
+        {
+          "position": 7,
+          "host": "stock.adobe.com",
+          "title": "\"Grand Opening\" Images – Browse 39511 ..."
+        },
+        {
+          "position": 8,
+          "host": "www.gettyimages.com",
+          "title": "81817 Opening Event Videos, Clips and Stock Footage"
+        }
+      ]
+    },
+    {
+      "type": "flash-sale",
+      "query": "flash sale video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.vecteezy.com",
+          "title": "Sale Stock Video Footage for Free Download"
+        },
+        {
+          "position": 2,
+          "host": "www.shutterstock.com",
+          "title": "Flash Sale Animation Green Screen Shopping Stock Footage ..."
+        },
+        {
+          "position": 3,
+          "host": "www.vecteezy.com",
+          "title": "Sale Promotion Stock Video Footage for Free Download"
+        },
+        {
+          "position": 4,
+          "host": "www.shutterstock.com",
+          "title": "Year End Sale royalty-free stock footage"
+        },
+        {
+          "position": 5,
+          "host": "www.vecteezy.com",
+          "title": "Summer Sale Stock Video Footage for Free Download"
+        },
+        {
+          "position": 6,
+          "host": "www.shutterstock.com",
+          "title": "781 Sale 99 Stock Video Footage - 4K and HD Video Clips"
+        },
+        {
+          "position": 7,
+          "host": "www.shutterstock.com",
+          "title": "Black Friday Sale Flash Sale Neon Stock Footage Video (100% ..."
+        },
+        {
+          "position": 8,
+          "host": "www.pinterest.com",
+          "title": "First iteration of flash sale animation"
+        }
+      ]
+    },
+    {
+      "type": "social-post",
+      "query": "animated social media post",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.magnific.com",
+          "title": "Social media post animation Images - Free Download on ..."
+        },
+        {
+          "position": 2,
+          "host": "www.instagram.com",
+          "title": "✨ New trend alert: Animated posts are taking ..."
+        },
+        {
+          "position": 3,
+          "host": "www.reddit.com",
+          "title": "Suggest tools to create animated social posts without ..."
+        },
+        {
+          "position": 4,
+          "host": "jitter.video",
+          "title": "Free motion graphics templates"
+        },
+        {
+          "position": 5,
+          "host": "lottiefiles.com",
+          "title": "Free Social Media Animations | Download in GIF, MP4, and ..."
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "After Effects Social Media Animation Tutorial | Motion Graphics ..."
+        },
+        {
+          "position": 7,
+          "host": "www.portotheme.com",
+          "title": "Boost Your Social Media Graphics Using These 7 Animation ..."
+        }
+      ]
+    },
+    {
+      "type": "map-route",
+      "query": "animated map",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "maps.google.com",
+          "title": "Google Maps"
+        },
+        {
+          "position": 2,
+          "host": "docs.oracle.com",
+          "title": "Map (Java Platform SE 8 )"
+        },
+        {
+          "position": 3,
+          "host": "www.arduino.cc",
+          "title": "map() | Arduino Documentation"
+        },
+        {
+          "position": 4,
+          "host": "developer.android.com",
+          "title": "Map | API reference"
+        },
+        {
+          "position": 5,
+          "host": "www.fhfa.gov",
+          "title": "FHFA Conforming Loan Limit Values Map"
+        },
+        {
+          "position": 6,
+          "host": "www.nato.int",
+          "title": "Membership Action Plan (MAP)"
+        },
+        {
+          "position": 7,
+          "host": "www.arcgis.com",
+          "title": "APHA Interactive Avian Influenza Disease Map"
+        },
+        {
+          "position": 8,
+          "host": "www.wmata.com",
+          "title": "Maps and Schedules"
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "query": "progress bar animation",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.vecteezy.com",
+          "title": "30 Second Progress Bar Videos"
+        },
+        {
+          "position": 2,
+          "host": "www.figma.com",
+          "title": "Interactive UI - Animated Progress Bars & Loaders ..."
+        },
+        {
+          "position": 3,
+          "host": "iconscout.com",
+          "title": "Loading Bar Animations - Free Download in GIF, Lottie JSON"
+        },
+        {
+          "position": 4,
+          "host": "lottiefiles.com",
+          "title": "Free Progress Bar Animation Animation by KimTomasik"
+        },
+        {
+          "position": 5,
+          "host": "pixabay.com",
+          "title": "Progress, Bar, Loading. Free Stock Video"
+        },
+        {
+          "position": 6,
+          "host": "www.pinterest.com",
+          "title": "Animated Gif Animated Gif Progress Bar"
+        },
+        {
+          "position": 7,
+          "host": "giphy.com",
+          "title": "Progress Bar GIFs - Find & Share on GIPHY"
+        }
+      ]
+    },
+    {
+      "type": "date-reveal",
+      "query": "event date announcement",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.regfox.com",
+          "title": "Event Announcements: Tips to Boost Attendance & ..."
+        },
+        {
+          "position": 2,
+          "host": "www.bizzabo.com",
+          "title": "Templates: Email Announcements for Upcoming Events"
+        },
+        {
+          "position": 3,
+          "host": "help-organizers.brella.io",
+          "title": "Announcement examples to enhance your event's ..."
+        },
+        {
+          "position": 4,
+          "host": "www.pinterest.com",
+          "title": "Event Announcement Template"
+        },
+        {
+          "position": 5,
+          "host": "www.ereleases.com",
+          "title": "The Do's and Don'ts of an Effective Event Announcement"
+        },
+        {
+          "position": 6,
+          "host": "attendir.com",
+          "title": "Event Announcement Examples: LinkedIn, Email and ..."
+        },
+        {
+          "position": 7,
+          "host": "www.airmeet.com",
+          "title": "Event Announcements—Examples & Templates for Every ..."
+        },
+        {
+          "position": 8,
+          "host": "www.pinterest.com",
+          "title": "Date Announcement Graphic Design"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "query": "product review video",
+      "error": "Google hasn't returned any results for this query."
+    },
+    {
+      "type": "mission",
+      "query": "mission statement video",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "Creating A Mission Statement For Your Business"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "How to write an effective Mission Statement for your company?"
+        },
+        {
+          "position": 3,
+          "host": "timmilesandco.com",
+          "title": "The Two Best Videos About Mission Statements In The History ..."
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Your Mission and Vision Statement | How to Create a Business ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "The Power of A Mission Statement"
+        },
+        {
+          "position": 6,
+          "host": "www.visualbridgecommunication.com",
+          "title": "How to create a video content mission statement - Val Brown"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "Vision and Mission Statements - Top 10 Successful Companies"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "How to write a \"Mission Statement\" with a presentation template"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "query": "menu video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.shutterstock.com",
+          "title": "Open Menu royalty-free stock footage"
+        },
+        {
+          "position": 2,
+          "host": "www.youtube.com",
+          "title": "menu"
+        },
+        {
+          "position": 3,
+          "host": "www.vecteezy.com",
+          "title": "Restaurant Menu Stock Video Footage for Free Download"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "How to Make a RESTAURANT MENU in VIDEO (High Impact ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "The Menu Bureau"
+        },
+        {
+          "position": 6,
+          "host": "www.shutterstock.com",
+          "title": "297 Recommend Food Menu Stock Video Footage"
+        },
+        {
+          "position": 7,
+          "host": "www.youtube.com",
+          "title": "Motion graphics food Menu Opener | After Effect Tutorials"
+        }
+      ]
+    },
+    {
+      "type": "real-estate",
+      "query": "real estate video template",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "animoto.com",
+          "title": "Best Real Estate Video Templates of 2026"
+        },
+        {
+          "position": 2,
+          "host": "www.capcut.com",
+          "title": "Online Free Real Estate Video Maker"
+        },
+        {
+          "position": 3,
+          "host": "biteable.com",
+          "title": "Real Estate Video Templates"
+        },
+        {
+          "position": 4,
+          "host": "elements.envato.com",
+          "title": "720p (HD) After Effects Real Estate Editable Video Templates"
+        },
+        {
+          "position": 5,
+          "host": "www.postermywall.com",
+          "title": "450+ Real Estate Youtube Short Video Templates"
+        },
+        {
+          "position": 6,
+          "host": "www.renderforest.com",
+          "title": "Real Estate Promo Reel (Portrait)"
+        },
+        {
+          "position": 7,
+          "host": "www.pinterest.com",
+          "title": "Real Estate Video Content Ideas"
+        },
+        {
+          "position": 8,
+          "host": "vimeo.com",
+          "title": "14 Real Estate Video Examples to Grow Your Business"
+        }
+      ]
+    },
+    {
+      "type": "gaming",
+      "query": "gaming intro",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "BEST INTRO GAMING"
+        },
+        {
+          "position": 2,
+          "host": "www.pinterest.com",
+          "title": "Gaming Intro Videos"
+        },
+        {
+          "position": 3,
+          "host": "www.capcut.com",
+          "title": "Intro Gaming YouTube: Create Engaging Channel ..."
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Top 5 Gaming Free Intro Templates for Premiere Pro"
+        },
+        {
+          "position": 5,
+          "host": "www.pippit.ai",
+          "title": "Gaming Intro Template"
+        },
+        {
+          "position": 6,
+          "host": "www.vecteezy.com",
+          "title": "Gaming Intro Stock Video Footage for Free Download"
+        },
+        {
+          "position": 7,
+          "host": "www.flexclip.com",
+          "title": "Free YouTube Gaming Intro Generator from Templates and ..."
+        },
+        {
+          "position": 8,
+          "host": "elements.envato.com",
+          "title": "Gaming Editable Opener Templates"
+        }
+      ]
+    },
+    {
+      "type": "wedding",
+      "query": "wedding invitation video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "invitoai.com",
+          "title": "Wedding Video Invitation | AI-1010"
+        },
+        {
+          "position": 2,
+          "host": "www.pinterest.com",
+          "title": "Wedding Invitation Video"
+        },
+        {
+          "position": 3,
+          "host": "www.adobe.com",
+          "title": "Free Invitation Video Maker | Adobe Express"
+        },
+        {
+          "position": 4,
+          "host": "www.youtube.com",
+          "title": "Wedding Invitation Video Template Free Download"
+        },
+        {
+          "position": 5,
+          "host": "seemymarriage.com",
+          "title": "Free Online Invitation And Save The Date Video Maker Cum ..."
+        },
+        {
+          "position": 6,
+          "host": "www.pinterest.com",
+          "title": "Floral Wedding Invitation Video | Digital Invite | E-card"
+        },
+        {
+          "position": 7,
+          "host": "videogiri.com",
+          "title": "VideoGiri: Digital Invitation & Wedding Video Maker"
+        },
+        {
+          "position": 8,
+          "host": "www.gettyimages.com",
+          "title": "338 Wedding Invitation Videos, Clips and Stock Footage"
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "query": "quiz video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "PlayQuiz - Trivia"
+        },
+        {
+          "position": 2,
+          "host": "www.flexclip.com",
+          "title": "AI Quizzes & Free Quiz Video Templates"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Can You Pass This General Knowledge Quiz?"
+        },
+        {
+          "position": 4,
+          "host": "www.quiz.video",
+          "title": "Browse Quizzes - Find Your Next Challenge"
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "The Quiz Channel"
+        },
+        {
+          "position": 6,
+          "host": "www.magicform.app",
+          "title": "YouTube to Quiz Generator – Create Quizzes from Videos"
+        },
+        {
+          "position": 7,
+          "host": "www.shutterstock.com",
+          "title": "10794 Quiz Stock Video Footage - 4K and HD Video Clips"
+        },
+        {
+          "position": 8,
+          "host": "www.youtube.com",
+          "title": "How Good is Your General Knowledge? Take This 40 ..."
+        }
+      ]
+    },
+    {
+      "type": "tips",
+      "query": "tips video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.youtube.com",
+          "title": "6 Tips for Budget-Friendly Professional Video"
+        },
+        {
+          "position": 2,
+          "host": "bizibl.com",
+          "title": "Videography Guide: 12 Tips for Shooting Like a Pro"
+        },
+        {
+          "position": 3,
+          "host": "www.youtube.com",
+          "title": "Top 5 Video Editing Tips For Beginners"
+        },
+        {
+          "position": 4,
+          "host": "blog.hootsuite.com",
+          "title": "17 Not-So-Secret Social Media Video Tips from Hootsuite's ..."
+        },
+        {
+          "position": 5,
+          "host": "www.youtube.com",
+          "title": "How To Make Better Videos"
+        },
+        {
+          "position": 6,
+          "host": "www.martingroup.co",
+          "title": "30 Production Tips to Get Video Right Every Time"
+        },
+        {
+          "position": 7,
+          "host": "www.videomaker.com",
+          "title": "Home Video Hints: Ten Tips for Great Travel Video"
+        },
+        {
+          "position": 8,
+          "host": "ucanr.edu",
+          "title": "Videos 101 - Tips and Techniques"
+        }
+      ]
+    },
+    {
+      "type": "job-post",
+      "query": "job posting template",
+      "videos": false,
+      "organic": [
+        {
+          "position": 1,
+          "host": "delivery-p143253-e1476319.adobeaemcloud.com",
+          "title": "Job Postings Toolkit - adobeaemcloud.com"
+        },
+        {
+          "position": 2,
+          "host": "technologyadvice.com",
+          "title": "How to Write a Job Posting Template in 5 Steps"
+        },
+        {
+          "position": 3,
+          "host": "resources.workable.com",
+          "title": "Job Description Examples & Templates [Free 1000+]"
+        },
+        {
+          "position": 4,
+          "host": "www.canva.com",
+          "title": "Free customizable LinkedIn hiring post templates"
+        },
+        {
+          "position": 5,
+          "host": "www.goco.io",
+          "title": "How to Write a Great Job Posting [+Template & Examples]"
+        },
+        {
+          "position": 6,
+          "host": "www.agendrix.com",
+          "title": "Free Job Posting Template"
+        },
+        {
+          "position": 7,
+          "host": "piktochart.com",
+          "title": "Creative Job Posting Templates: Attract Top Talent"
+        },
+        {
+          "position": 8,
+          "host": "gfhjmcvbntre.com",
+          "title": "sample job posting template"
+        }
+      ]
+    },
+    {
+      "type": "call-to-action",
+      "query": "call to action animation",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.figma.com",
+          "title": "Animated CTA Buttons"
+        },
+        {
+          "position": 2,
+          "host": "pixabay.com",
+          "title": "7979+ Free Twitch Call To Action Animation 4K & HD Stock ..."
+        },
+        {
+          "position": 3,
+          "host": "darvideo.tv",
+          "title": "How to create a compelling CTA for your animated video?"
+        },
+        {
+          "position": 4,
+          "host": "iconscout.com",
+          "title": "Call To Action Pointer Animations - Free Download in GIF ..."
+        },
+        {
+          "position": 5,
+          "host": "lottiefiles.com",
+          "title": "Button Call To Action Lottie Animations Pack"
+        },
+        {
+          "position": 6,
+          "host": "dribbble.com",
+          "title": "Cta Animation"
+        },
+        {
+          "position": 7,
+          "host": "www.figma.com",
+          "title": "FREE 🎉 The Perfect Main Call To Action (Button 21)"
+        }
+      ]
+    },
+    {
+      "type": "qr",
+      "query": "qr code video",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.facebook.com",
+          "title": "How to add a video to your QR Code… using FREE and paid ..."
+        },
+        {
+          "position": 2,
+          "host": "www.qr-code-generator.com",
+          "title": "Enhancing Video Marketing with QR Codes: A Practical ..."
+        },
+        {
+          "position": 3,
+          "host": "www.reddit.com",
+          "title": "Does adding a QR code to short videos seem like it makes ..."
+        },
+        {
+          "position": 4,
+          "host": "screenapp.io",
+          "title": "free video to QR code generator"
+        },
+        {
+          "position": 5,
+          "host": "ar-code.com",
+          "title": "AR Video: Play Videos Over Augmented Reality QR Codes"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Introduction to QR codes"
+        },
+        {
+          "position": 7,
+          "host": "elements.envato.com",
+          "title": "Royalty-Free Qr Code Videos"
+        }
+      ]
+    },
+    {
+      "type": "title-card",
+      "query": "title card",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "www.behance.net",
+          "title": "Title Card Projects :: Photos, videos, logos, illustrations and ..."
+        },
+        {
+          "position": 2,
+          "host": "dribbble.com",
+          "title": "Browse thousands of Title Card images for design inspiration"
+        },
+        {
+          "position": 3,
+          "host": "www.reddit.com",
+          "title": "What's your favorite title card? : r/movies"
+        },
+        {
+          "position": 4,
+          "host": "www.magnific.com",
+          "title": "Title card Images - Free Download on ..."
+        },
+        {
+          "position": 5,
+          "host": "intromaker.com",
+          "title": "Title Intro Maker"
+        },
+        {
+          "position": 6,
+          "host": "www.premiumbeat.com",
+          "title": "Stylize Your Storytelling with Character Title Cards"
+        },
+        {
+          "position": 7,
+          "host": "dribbble.com",
+          "title": "Title Card"
+        }
+      ]
+    },
+    {
+      "type": "credits",
+      "query": "end credits template",
+      "videos": true,
+      "organic": [
+        {
+          "position": 1,
+          "host": "endcrawl.com",
+          "title": "Endcrawl · Perfect End Credits for Film & TV"
+        },
+        {
+          "position": 2,
+          "host": "www.storyblocks.com",
+          "title": "Royalty-Free Credits Templates"
+        },
+        {
+          "position": 3,
+          "host": "motionarray.com",
+          "title": "End Credits by Tyler - After Effects Templates"
+        },
+        {
+          "position": 4,
+          "host": "www.pinterest.com",
+          "title": "End Credits Design"
+        },
+        {
+          "position": 5,
+          "host": "www.capcut.com",
+          "title": "Credit Roll Template Premiere Free: Boost Your Videos"
+        },
+        {
+          "position": 6,
+          "host": "www.youtube.com",
+          "title": "Create Film Rolling Credits in Davinci Resolve"
+        },
+        {
+          "position": 7,
+          "host": "elements.envato.com",
+          "title": "Rolling Credits Editable Titles Templates"
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import {z} from 'zod';
 import manifest from '../catalog/manifest.json' with {type: 'json'};
 import {templateMeta} from '../videos/meta.ts';
 import {schemas} from '../videos/schemas.ts';
-import {ROLES, SCENE_TYPES, THEME_ROLES, type Role, type VideoProps} from '../videos/vocab.ts';
+import {ROLES, SCENE_TYPES, THEME_ROLES, roleHint, type Role, type VideoProps} from '../videos/vocab.ts';
 import {MAX_HANDOFF_CHARS, REPOSITORY, TEMPLATE_LICENSE, handoffPath, sourcePath, templateVersion} from './versions.ts';
 
 type SpecInput = {
@@ -29,7 +29,7 @@ export function agentSpec({site, kind, id, url, title, variant, props, version, 
   const latest = templateVersion(variant.template);
   const ratio = meta.width / meta.height;
   const texts = Object.fromEntries((Object.keys(schema.shape.texts.shape) as Role[]).map((role) =>
-    [role, {label: ROLES[role].label, maxLength: ROLES[role].max, current: props.texts[role]}]));
+    [role, {label: ROLES[role].label, maxLength: ROLES[role].max, ...(roleHint(role) ? {format: roleHint(role)} : {}), current: props.texts[role]}]));
   const pkg = `${site}${sourcePath(variant.template, pinned.version)}`;
   const generation = manifest.templates.find((t) => t.id === variant.template)?.generation;
   if (!generation) throw new Error(`Missing generation metadata for template ${variant.template}.`);

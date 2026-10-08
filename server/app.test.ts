@@ -136,10 +136,11 @@ test('shares publish a crawlable agent spec pinned to their template version', a
 });
 test('share validation pins and checks template versions', () => {
   assert.equal(validateShare(payload).templateVersion, data.templateVersion);
-  assert.equal(validateShare({...payload, templateVersion: 1}).composition, variant.template);
+  // v1 renders with the current code only while it is the latest version.
+  assert.equal(validateShare({...payload, templateVersion: 1}).composition, data.templateVersion === 1 ? variant.template : `${variant.template}-v1`);
   for (const templateVersion of [0, 99, '1', 1.5, null]) assert.throws(() => validateShare({...payload, templateVersion}), HttpError);
   const a = validateShare(payload);
-  assert.notEqual(fingerprint('alice', a, '1'), fingerprint('alice', {...a, templateVersion: 2}, '1'));
+  assert.notEqual(fingerprint('alice', a, '1'), fingerprint('alice', {...a, templateVersion: a.templateVersion + 1}, '1'));
 });
 test('untrusted copy cannot escape metadata or introduce scripts', () => {
   const html = shareHtml({...data, title: '\"><script>alert(1)</script>'}, 'https://cliphou.se', {file: 'assets/a.js'});

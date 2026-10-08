@@ -8,6 +8,9 @@ const assert = (cond, msg) => {
 
 (async () => {
   const base = process.env.URL || 'http://localhost:5180/voodoo/';
+  const {templateMeta} = await import('../src/videos/meta.ts');
+  const visible = manifest.variants.filter((v) => !v.hidden);
+  const expectedVertical = visible.filter((v) => templateMeta[v.template].width / templateMeta[v.template].height < 0.7).length;
   const browser = await chromium.launch();
   const errs = [];
   const report = {};
@@ -56,7 +59,7 @@ const assert = (cond, msg) => {
     await page.screenshot({path: `/tmp/voodoo-editor-${vp.n}.png`, scale: 'css'});
     await page.close();
     report[vp.n] = {total, vertical, kitThumbs, linked, applyVisible, brandValue};
-    assert(total === manifest.variants.filter((v) => !v.hidden).length && vertical === 7, 'facet counts');
+    assert(total === visible.length && vertical === expectedVertical, `facet counts ${total}/${vertical}`);
     assert(linked === 'List', 'focus links point to list scene');
     assert(brandValue === 'ACME', 'brand kit applied in editor');
   }
