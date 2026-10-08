@@ -1,0 +1,221 @@
+// Generate crawlable pages and discovery files from the public catalog after Vite builds.
+import fs from 'node:fs';
+import path from 'node:path';
+import {templateMeta} from '../src/videos/meta.ts';
+import {ROLES, SCENE_TYPES} from '../src/videos/vocab.ts';
+import {comparisons, editorialPages, reviewedAt, useCases} from '../src/seo/content.mjs';
+
+const root = path.resolve(import.meta.dirname, '..');
+const dist = path.join(root, 'dist');
+const site = 'https://cliphou.se';
+const base = process.env.BASE ?? '/voodoo/';
+const ga = process.env.VITE_GA_MEASUREMENT_ID ?? '';
+const license = 'MIT-0';
+const notice = 'Free to copy, modify, share, and use commercially. No attribution required.';
+const promise = '100% free to browse and edit. No account, watermark, credit card, or attribution required. Built for Claude, ChatGPT, Codex, and any coding agent.';
+const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifest.json'), 'utf8'));
+const validCases = new Set(['showreel', 'youtube-intro', 'instagram-reel', 'social-ad', 'product-launch', 'sale', 'saas', 'data-recap', 'brand-intro', 'event-promo']);
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const local = (p) => `${base.replace(/\/$/, '')}${p}`;
+const absolute = (p) => `${site}${p}`;
+const json = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
+const date = (...values) => values.filter(Boolean).sort().at(-1);
+const formatOf = (m) => {
+  const r = m.width / m.height;
+  return r > 1.2 ? '16:9' : r < 0.7 ? '9:16' : r < 0.9 ? '4:5' : '1:1';
+};
+
+function validate() {
+  const errors = [];
+  const templates = new Map(manifest.templates.map((t) => [t.id, t]));
+  const visible = manifest.variants.filter((v) => !v.hidden);
+  for (const t of manifest.templates) if (t.license !== license) errors.push(`${t.id}: template license must be ${license}`);
+  for (const field of ['id', 'title', 'seoDescription']) {
+    const seen = new Map();
+    for (const v of visible) {
+      const value = String(v[field] ?? '').trim();
+      if (!value) errors.push(`${v.id || '(missing id)'}: missing ${field}`);
+      if (value && seen.has(value.toLowerCase())) errors.push(`${v.id}: duplicate ${field} also used by ${seen.get(value.toLowerCase())}`);
+      seen.set(value.toLowerCase(), v.id);
+    }
+  }
+  for (const v of visible) {
+    if (!templates.has(v.template) || !templateMeta[v.template]) errors.push(`${v.id}: unknown template ${v.template}`);
+    if (!/^[a-z0-9-]+$/.test(v.id)) errors.push(`${v.id}: slug must use lowercase letters, numbers, and hyphens`);
+    if (v.seoDescription?.length < 80 || v.seoDescription?.length > 170) errors.push(`${v.id}: seoDescription must be 80 to 170 characters`);
+    if (!manifest.vocab.purpose.includes(v.purpose)) errors.push(`${v.id}: invalid purpose`);
+    if (!Array.isArray(v.style) || !v.style.length || v.style.some((s) => !manifest.vocab.style.includes(s))) errors.push(`${v.id}: invalid style`);
+    if (!Array.isArray(v.useCases) || !v.useCases.length || new Set(v.useCases).size !== v.useCases.length || v.useCases.some((u) => !validCases.has(u))) errors.push(`${v.id}: invalid useCases`);
+    for (const ext of ['jpg', 'mp4']) if (!fs.existsSync(path.join(root, 'public/previews', `${v.id}.${ext}`))) errors.push(`${v.id}: missing preview ${ext}`);
+  }
+  if (errors.length) throw new Error(`SEO catalog validation failed:\n${errors.map((e) => `- ${e}`).join('\n')}`);
+  return visible.map((v) => {
+    const tmpl = templates.get(v.template);
+    const meta = templateMeta[v.template];
+    return {
+      ...v, tmpl, meta, format: formatOf(meta), seconds: Math.round(meta.durationInFrames / meta.fps),
+      updatedAt: date(v.createdAt, tmpl.createdAt), path: `/templates/${v.id}/`,
+      scenes: meta.scenes.filter((s) => s.type !== 'transition').map((s) => SCENE_TYPES[s.type]),
+      roles: Object.keys(v.props.texts).map((r) => ROLES[r].label),
+    };
+  });
+}
+
+function layout({page, body, schema, landing = true}) {
+  const analytics = /^G-[A-Z0-9]+$/.test(ga) ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${esc(ga)}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config',${json(ga)},{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});${landing ? `try{sessionStorage.getItem('cliphouse:landing')||sessionStorage.setItem('cliphouse:landing',${json(page.path)})}catch{}` : ''}gtag('event','page_view',{page_title:${json(page.title)},page_location:location.href,landing_page:${json(page.path)}});document.addEventListener('click',function(e){var a=e.target.closest('a[data-editor]');if(a)gtag('event','landing_editor_open',{landing_page:${json(page.path)},variant_id:a.dataset.editor})});</script>` : '';
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e0f12" />
+    <link rel="icon" type="image/svg+xml" href="${local('/favicon.svg')}" />
+    <title>${esc(page.title)}</title>
+    <meta name="description" content="${esc(page.description)}" />
+    <link rel="canonical" href="${absolute(page.path)}" />
+    <meta property="og:site_name" content="cliphou.se" />
+    <meta property="og:title" content="${esc(page.title)}" />
+    <meta property="og:description" content="${esc(page.description)}" />
+    <meta property="og:type" content="${page.video ? 'video.other' : 'website'}" />
+    <meta property="og:url" content="${absolute(page.path)}" />
+    <meta property="og:image" content="${esc(page.image ?? `${site}/social.png`)}" />
+    ${page.video ? `<meta property="og:video" content="${esc(page.video)}" />` : ''}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${esc(page.title)}" />
+    <meta name="twitter:description" content="${esc(page.description)}" />
+    <meta name="twitter:image" content="${esc(page.image ?? `${site}/social.png`)}" />
+    <link rel="stylesheet" href="${local('/seo.css')}" />
+    <script type="application/ld+json">${json({'@context': 'https://schema.org', '@graph': schema})}</script>
+    ${analytics}
+  </head>
+  <body>
+    <header class="seo-top"><a class="seo-logo" href="${local('/')}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"></circle><path d="M8.12 8.12 12 12"></path><path d="M20 4 8.12 15.88"></path><circle cx="6" cy="18" r="3"></circle><path d="M14.8 14.8 20 20"></path></svg>cliphou.se</a><a class="seo-browse" href="${local('/')}">Browse videos</a></header>
+    <main class="seo-main">${body}</main>
+    <footer class="seo-footer"><a href="${local('/motion-graphics-templates/')}">Templates</a><a href="${local('/remotion-templates/')}">Remotion</a><a href="${local('/license/')}">License</a><a href="${local('/about/')}">About</a><a href="${local('/#/privacy')}">Privacy</a></footer>
+  </body>
+</html>
+`;
+}
+
+const pageSchema = (page, type = 'WebPage') => ({
+  '@type': type, '@id': `${absolute(page.path)}#page`, url: absolute(page.path), name: page.title, description: page.description,
+  isPartOf: {'@id': `${site}/#website`}, dateModified: page.updatedAt,
+});
+const breadcrumb = (items) => ({'@type': 'BreadcrumbList', itemListElement: items.map(([name, p], i) => ({'@type': 'ListItem', position: i + 1, name, item: absolute(p)}))});
+const list = (items) => ({'@type': 'ItemList', itemListElement: items.map((v, i) => ({'@type': 'ListItem', position: i + 1, url: absolute(v.path), name: v.title}))});
+const faqSchema = (faq) => ({'@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({'@type': 'Question', name: q, acceptedAnswer: {'@type': 'Answer', text: a}}))});
+
+function cards(items) {
+  return `<div class="seo-grid">${items.map((v) => `<article class="seo-card"><a href="${local(v.path)}"><img src="${local(`/previews/${v.id}.jpg`)}" alt="${esc(v.title)} preview" width="480" height="${Math.round(480 * v.meta.height / v.meta.width)}" loading="lazy" /><span>${esc(v.title)}</span></a><p>${esc(v.format)} · ${v.seconds}s · ${esc(v.purpose)}</p></article>`).join('')}</div>`;
+}
+
+function templatePage(v) {
+  const page = {
+    path: v.path, title: `${v.title} Template | ${v.format} ${v.purpose} | cliphou.se`, description: v.seoDescription,
+    image: absolute(`/previews/${v.id}.jpg`), video: absolute(`/previews/${v.id}.mp4`), updatedAt: v.updatedAt,
+  };
+  const facts = [['Format', `${v.format} (${v.meta.width} x ${v.meta.height})`], ['Duration', `${v.seconds} seconds`], ['Purpose', v.purpose], ['Styles', v.style.join(', ')], ['Scenes', v.scenes.join(', ')], ['Editable text', v.roles.join(', ')], ['License', license], ['Hosted MP4 export', 'Not available yet'], ['Updated', v.updatedAt], ['Created by', v.creator]];
+  const body = `<nav class="crumbs" aria-label="Breadcrumb"><a href="${local('/')}">Home</a><span>/</span><a href="${local('/motion-graphics-templates/')}">Templates</a><span>/</span>${esc(v.title)}</nav>
+    <section class="seo-template"><div class="seo-video" style="aspect-ratio:${v.meta.width}/${v.meta.height};background:${esc(v.props.theme.background)}"><video src="${local(`/previews/${v.id}.mp4`)}" poster="${local(`/previews/${v.id}.jpg`)}" muted loop playsinline controls preload="metadata"></video></div>
+    <div><h1>${esc(v.title)}</h1><p class="lead">${esc(v.seoDescription)}</p><p class="claim">${promise}</p><div class="actions"><a class="seo-button" data-editor="${esc(v.id)}" href="${local(`/#/v/${v.id}`)}">Edit free now</a><a class="seo-secondary" href="${local(`${v.path}agent.json`)}">Agent spec</a></div><p class="license-note">${notice} <a href="${local('/license/')}">Read the license</a>.</p>
+    <dl class="facts">${facts.map(([k, val]) => `<div><dt>${k}</dt><dd>${esc(val)}</dd></div>`).join('')}</dl></div></section>`;
+  const schema = [pageSchema(page), breadcrumb([['Home', '/'], ['Templates', '/motion-graphics-templates/'], [v.title, v.path]]), {
+    '@type': 'VideoObject', '@id': `${absolute(v.path)}#video`, name: v.title, description: v.seoDescription,
+    thumbnailUrl: [page.image], contentUrl: page.video, embedUrl: absolute(v.path), uploadDate: v.createdAt,
+    dateModified: v.updatedAt, duration: `PT${v.seconds}S`, width: v.meta.width, height: v.meta.height, inLanguage: 'en',
+    license: absolute('/license/'), creator: {'@type': 'Person', name: v.creator},
+  }];
+  return {page, html: layout({page, body, schema})};
+}
+
+function collectionPage(item, items, extra = '') {
+  const page = {...item, updatedAt: date(...items.map((v) => v.updatedAt))};
+  const faq = item.faq ?? [];
+  const body = `<section class="seo-intro"><h1>${esc(item.h1)}</h1><p class="lead">${esc(item.intro)}</p><p class="claim">${promise}</p></section>${extra}
+    <section class="seo-section"><h2>Templates</h2>${cards(items)}</section>
+    ${faq.length ? `<section class="seo-section"><h2>Questions</h2>${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join('')}</section>` : ''}`;
+  const schema = [pageSchema(page, 'CollectionPage'), breadcrumb([['Home', '/'], [item.h1, item.path]]), list(items)];
+  if (faq.length) schema.push(faqSchema(faq));
+  return {page, html: layout({page, body, schema})};
+}
+
+function sections(item) {
+  return item.sections.map(([h, p]) => `<section class="seo-section"><h2>${esc(h)}</h2><p>${esc(p)}</p></section>`).join('');
+}
+
+function comparisonExtra(item) {
+  const labels = ['Area', 'cliphou.se', item.competitor];
+  return `<section class="seo-section"><h2>Comparison</h2><p class="reviewed">Last reviewed ${reviewedAt}.</p><div class="table-wrap"><table><thead><tr>${labels.map((l) => `<th>${esc(l)}</th>`).join('')}</tr></thead><tbody>${item.rows.map((r) => `<tr>${r.map((c, i) => i ? `<td data-label="${esc(labels[i])}">${esc(c)}</td>` : `<th>${esc(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div><p>Source: ${item.sources.map(([n, u]) => `<a href="${u}" rel="nofollow">${esc(n)}</a>`).join(', ')}.</p></section>`;
+}
+
+function licensePage() {
+  const page = {path: '/license/', title: 'Template License: MIT-0 | cliphou.se', description: 'cliphou.se templates are free to copy, modify, share, and use commercially under MIT-0. No attribution is required.', updatedAt: reviewedAt};
+  const body = `<section class="seo-intro"><h1>Template license</h1><p class="lead">${notice}</p></section><section class="seo-section"><h2>What MIT-0 covers</h2><p>The license covers cliphou.se template code, template metadata, starter text, color presets, agent specs, and preview images and videos.</p><p>You do not need to credit cliphou.se or template creators.</p><p>Rendering the code yourself uses Remotion, which has separate terms.</p><p><a href="${local('/LICENSE.txt')}">Read the full license text</a>.</p></section>`;
+  return {page, html: layout({page, body, schema: [pageSchema(page), breadcrumb([['Home', '/'], ['License', '/license/']])]})};
+}
+
+function write(page, html) {
+  const file = path.join(dist, page.path, 'index.html');
+  fs.mkdirSync(path.dirname(file), {recursive: true});
+  fs.writeFileSync(file, html);
+}
+
+function agentSpec(v) {
+  const texts = Object.fromEntries(Object.entries(v.props.texts).map(([role, value]) => [role, {label: ROLES[role].label, maxLength: ROLES[role].max, current: value}]));
+  return {
+    schemaVersion: '1.0', id: v.id, template: v.template, title: v.title, url: absolute(v.path), editorUrl: absolute(`/#/v/${v.id}`),
+    license: license, licenseUrl: absolute('/license/'), price: 'Free', attributionRequired: false,
+    format: {aspectRatio: v.format, width: v.meta.width, height: v.meta.height, fps: v.meta.fps, durationInFrames: v.meta.durationInFrames, seconds: v.seconds},
+    scenes: v.meta.scenes.map((s) => ({type: s.type, label: SCENE_TYPES[s.type], from: s.from, duration: s.duration, roles: s.roles})),
+    props: v.props,
+    editableFields: {texts, theme: Object.fromEntries(Object.entries(v.props.theme).map(([role, value]) => [role, {format: '#RRGGBB', current: value}]))},
+    jsonSchema: {
+      type: 'object', additionalProperties: false, required: ['texts', 'theme'],
+      properties: {
+        texts: {type: 'object', additionalProperties: false, required: Object.keys(texts), properties: Object.fromEntries(Object.entries(texts).map(([r, f]) => [r, {type: 'string', minLength: 1, maxLength: f.maxLength}]))},
+        theme: {type: 'object', additionalProperties: false, required: Object.keys(v.props.theme), properties: Object.fromEntries(Object.keys(v.props.theme).map((r) => [r, {type: 'string', pattern: '^#[0-9a-fA-F]{6}$'}]))},
+      },
+    },
+    instructions: ['Edit only texts and theme.', 'Keep every text within maxLength.', 'Return props JSON that matches jsonSchema.', 'Render with the command in render.command from a checkout of the source repository.'],
+    source: {repository: 'https://github.com/sunmer/voodoo', path: `src/videos/${v.template}/`, entryPoint: 'src/remotion/index.ts'},
+    render: {command: `npx remotion render src/remotion/index.ts ${v.template} out/${v.id}.mp4 --props='<props-json>'`, note: 'Rendering the code yourself uses Remotion, which has separate terms.'},
+  };
+}
+
+if (!fs.existsSync(dist)) throw new Error('Run vite build before generating SEO pages.');
+const visible = validate();
+const outputs = [];
+for (const v of visible) outputs.push(templatePage(v));
+for (const item of useCases) {
+  const items = visible.filter(item.match);
+  if (items.length >= 3) outputs.push(collectionPage(item, items));
+}
+for (const item of editorialPages) outputs.push(collectionPage(item, visible.filter(item.match), sections(item)));
+for (const item of comparisons) outputs.push(collectionPage(item, visible.filter(item.match).slice(0, 6), comparisonExtra(item)));
+outputs.push(licensePage());
+
+const seen = {title: new Set(), description: new Set(), path: new Set()};
+for (const v of visible) {
+  const file = path.join(dist, v.path, 'agent.json');
+  fs.mkdirSync(path.dirname(file), {recursive: true});
+  fs.writeFileSync(file, `${JSON.stringify(agentSpec(v), null, 2)}\n`);
+}
+for (const {page, html} of outputs) {
+  for (const key of Object.keys(seen)) {
+    if (seen[key].has(page[key])) throw new Error(`Duplicate generated ${key}: ${page[key]}`);
+    seen[key].add(page[key]);
+  }
+  JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  write(page, html);
+}
+
+fs.copyFileSync(path.join(root, 'src/seo/pages.css'), path.join(dist, 'seo.css'));
+fs.copyFileSync(path.join(root, 'LICENSE'), path.join(dist, 'LICENSE.txt'));
+const catalogUpdated = date(...visible.map((v) => v.updatedAt));
+const fixed = [{path: '/', updatedAt: catalogUpdated}, {path: '/about/', updatedAt: reviewedAt}];
+const urls = [...fixed, ...outputs.map((o) => o.page)];
+fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${absolute(u.path)}</loc><lastmod>${u.updatedAt}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(dist, 'llms.txt'), `# cliphou.se\n\n> cliphou.se is a free gallery of agent-compatible, editable AI-made motion graphics templates. ${promise}\n\n## Key pages\n\n- [Gallery](${site}/): Browse and filter templates.\n- [Motion graphics templates](${site}/motion-graphics-templates/): Crawlable catalog.\n- [Remotion templates](${site}/remotion-templates/): Remotion showcase and render handoff.\n- [Template license](${site}/license/): ${notice}\n\n## Agent specs\n\nEach template has a no-JavaScript JSON spec with current props, text limits, color roles, scenes, JSON Schema, source path, and render command.\n\n${visible.map((v) => `- [${v.title} agent spec](${absolute(`${v.path}agent.json`)})`).join('\n')}\n\n## Templates\n\n${visible.map((v) => `- [${v.title}](${absolute(v.path)}): ${v.seoDescription}`).join('\n')}\n\n## Product facts\n\n- Browsing and editing are free.\n- No account is required to browse or edit.\n- Templates are React and Remotion compositions.\n- Templates use shared text roles and five theme colors.\n- Hosted MP4 export is not available yet.\n- Rendering the code yourself uses Remotion, which has separate terms.\n`);
+console.log(`Generated ${outputs.length} SEO pages, sitemap.xml, and llms.txt from ${visible.length} visible templates.`);

@@ -26,6 +26,7 @@ h1, h2, h3 { margin: 0; }
 .muted { color: var(--muted); }
 .small { font-size: 12px; }
 .mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 .topbar {
   position: sticky; top: 0; z-index: 10;
@@ -320,7 +321,14 @@ h1, h2, h3 { margin: 0; }
 .account-shares h3 { font-size: 13px; margin-bottom: 8px; color: var(--muted); }
 .account-share { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 42px; border-bottom: 1px solid var(--line); }
 .account-share a { overflow-wrap: anywhere; }
-.google-signin { width: 100%; margin: 8px 0 20px; background: #f2f2f2; color: #1f1f1f; font-family: Arial, sans-serif; font-weight: 500; }
+.google-signin {
+  width: 100%; min-height: 40px; margin: 8px 0 20px; gap: 10px; padding: 0 12px;
+  border-color: #747775; border-radius: 4px; background: #fff; color: #1f1f1f;
+  font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0;
+}
+.google-signin:hover:not(:disabled) { background: #f7f8f8; }
+.google-signin:disabled { opacity: .6; }
+.google-mark { width: 20px; height: 20px; flex: none; }
 .privacy-link { display: block; margin-top: 18px; width: fit-content; color: var(--muted); text-decoration: underline; }
 .account-error { color: var(--danger); }
 .account-notice {

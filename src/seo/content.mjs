@@ -1,0 +1,139 @@
+export const reviewedAt = '2026-10-08';
+
+export const useCases = [
+  {
+    path: '/motion-graphics-templates/',
+    title: 'Editable Motion Graphics Templates | cliphou.se',
+    h1: 'Motion graphics templates',
+    description: 'Browse editable AI-made motion graphics templates for launches, reels, ads, events, and recaps. Change text and colors in your browser.',
+    intro: 'Free, agent-compatible motion graphics templates. Start with finished motion, then replace the words and colors in seconds.',
+    match: () => true,
+    faq: [
+      ['Can I edit these motion graphics templates without After Effects?', 'Yes. Open a template on cliphou.se, click its text to edit it, and choose a palette or set five colors.'],
+      ['Can I use the templates commercially?', 'Yes. The template code, metadata, starter text, color presets, and previews use MIT-0. You can copy, modify, share, and sell them without attribution.'],
+      ['Are new templates added automatically?', 'Yes. This page is generated from the public catalog on every deploy.'],
+    ],
+  },
+  {
+    path: '/product-launch-video-templates/',
+    title: 'Product Launch Video Templates | cliphou.se',
+    h1: 'Product launch video templates',
+    description: 'Find editable product launch video templates for apps, SaaS, AI tools, developer products, and limited releases.',
+    intro: 'Use these templates to announce a product, explain three benefits, and finish with a clear call to action.',
+    match: (v) => v.useCases.includes('product-launch'),
+    faq: [
+      ['What should a product launch video include?', 'Lead with the product name and one clear promise. Add up to three proof points, then end with one action.'],
+      ['Which format should I use?', 'Use 16:9 for websites, YouTube, and slides. Use 9:16 for Reels, TikTok, and Stories.'],
+      ['Can I match my brand colors?', 'Yes. Each template uses five editable theme colors, and the brand kit can apply your saved text and colors.'],
+    ],
+  },
+  {
+    path: '/instagram-reel-templates/',
+    title: 'Instagram Reel Templates for Motion Graphics | cliphou.se',
+    h1: 'Instagram Reel templates',
+    description: 'Browse vertical 9:16 motion graphics templates for Instagram Reels, TikTok, and Stories, then edit text and colors online.',
+    intro: 'These vertical templates are built for mobile screens, short attention spans, and clear calls to action.',
+    match: (v) => v.format === '9:16' && v.useCases.includes('instagram-reel'),
+    faq: [
+      ['What size are these Reel templates?', 'They use a 1080 by 1920 pixel composition, which is a 9:16 vertical format.'],
+      ['Can I use them on TikTok and Stories?', 'Yes. The same vertical format works for Reels, TikTok, and Stories. Check each platform for its current safe areas.'],
+      ['Can I add my own photos or audio?', 'Not yet. The current editor changes text and colors.'],
+    ],
+  },
+  {
+    path: '/youtube-intro-templates/',
+    title: 'YouTube Intro Templates | Editable Motion Graphics | cliphou.se',
+    h1: 'YouTube intro templates',
+    description: 'Choose a widescreen YouTube intro template with editable text and colors for channels, product demos, studios, and creators.',
+    intro: 'These 16:9 openers introduce a channel, product, or studio before the main video starts.',
+    match: (v) => v.format === '16:9' && v.useCases.includes('youtube-intro'),
+    faq: [
+      ['How long should a YouTube intro be?', 'Keep it short. Most templates here run for 8 to 10 seconds, so trim the opening if your audience needs to reach the content faster.'],
+      ['Do these intros include music?', 'No. The templates are silent so you can add licensed audio in your video editor.'],
+      ['Can I use an intro on another platform?', 'Yes. The 16:9 format also fits websites, slides, and landscape social posts.'],
+    ],
+  },
+  {
+    path: '/saas-video-templates/',
+    title: 'SaaS Video Templates for Launches and Demos | cliphou.se',
+    h1: 'SaaS video templates',
+    description: 'Find SaaS video templates for feature launches, app promos, developer tools, product demos, and KPI updates.',
+    intro: 'Use these templates to show what changed, why it matters, and what the viewer should do next.',
+    match: (v) => v.useCases.includes('saas'),
+    faq: [
+      ['What is a good SaaS launch video structure?', 'Use one headline, three concrete benefits, and one call to action. Keep claims specific.'],
+      ['Can I make a product demo without screen recording?', 'Yes. Templates such as Workflow Demo and Bento Launch present features with motion graphics.'],
+      ['Can developers render the code?', 'Yes. The editor can copy a Remotion render command with your text and colors.'],
+    ],
+  },
+];
+
+export const editorialPages = [
+  {
+    path: '/remotion-templates/',
+    title: 'Remotion Templates with Editable Text and Colors | cliphou.se',
+    h1: 'Remotion templates',
+    description: 'Browse finished Remotion templates, edit their text and colors in the browser, and copy a render command for local rendering.',
+    intro: 'Free Remotion templates built for humans and coding agents. Compare finished motion, edit copy and colors, then hand off clean props and source paths to your agent.',
+    match: () => true,
+    sections: [
+      ['What you get', 'Each template is a React and Remotion composition. A shared contract defines seven text roles, five theme colors, and scene metadata. The editor and catalog read the same contract.'],
+      ['How to use a template', 'Open a template, edit text in the preview, and choose colors. Copy the render command to render the composition from this repository with your current props.'],
+      ['Licensing', 'The cliphou.se templates use MIT-0. Rendering the code yourself uses Remotion, which has separate terms.'],
+    ],
+  },
+  {
+    path: '/guides/ai-motion-graphics-with-remotion/',
+    title: 'How to Make Motion Graphics with AI and Remotion | cliphou.se',
+    h1: 'Make motion graphics with AI and Remotion',
+    description: 'A practical guide to making motion graphics with Claude, ChatGPT, or another coding agent plus Remotion, including review and editing steps.',
+    intro: 'A coding agent can write a Remotion composition, but the first draft still needs a clear brief, a working project, visual review, and a simple way to edit copy.',
+    match: (v) => ['bento-launch', 'cursor-workflow', 'prism-launch', 'showreel-nocturne'].includes(v.id),
+    sections: [
+      ['1. Write a constrained brief', 'Give the agent the size, frame rate, duration, scene order, text roles, and colors. Ask for deterministic code with no network assets.'],
+      ['2. Run and inspect the result', 'Render a still and the full video. Check the text at maximum length, movement between scenes, and the first and last frames.'],
+      ['3. Separate content from motion', 'Pass text and colors as props. This keeps the motion reusable and lets non-developers edit it safely.'],
+      ['4. Choose from finished work', 'Start from a cliphou.se template when you want to compare finished motion before you change the code. Use its spec as context for your agent.'],
+      ['Limits', 'AI-generated motion is not automatically production-ready. Review the timing, legibility, accessibility, rights to any added assets, and Remotion license requirements before publishing.'],
+    ],
+  },
+];
+
+export const comparisons = [
+  {
+    path: '/canva-video-alternative/',
+    title: 'Canva Video Alternative for Motion Graphics | cliphou.se',
+    h1: 'A Canva video alternative for motion graphics',
+    description: 'Compare cliphou.se and Canva for motion graphics templates, editing, export, licensing, and price. Last reviewed October 8, 2026.',
+    intro: 'Want bespoke motion without a subscription? cliphou.se gives you free, editable, agent-compatible motion graphics templates that stay real code.',
+    competitor: 'Canva',
+    sources: [['Canva video templates', 'https://www.canva.com/video-editor/templates/']],
+    rows: [
+      ['Discovery', 'Browse a curated motion graphics catalog by purpose, format, style, energy, tone, and scene.', 'Browse a broad template library across many design and video uses.'],
+      ['Motion', 'Each template is a bespoke Remotion composition.', 'Templates are edited in Canva\'s design and video editor.'],
+      ['Editing', 'Edit text roles and five theme colors. Media and audio editing are not available.', 'Use a general editor with broader media, layout, and timeline controls.'],
+      ['Export', 'Hosted MP4 export is not available yet. Copy a Remotion render command.', 'Check Canva for current export options and plan limits.'],
+      ['Licensing', 'Template code, metadata, starter text, color presets, and previews use MIT-0.', 'Check Canva\'s current content license and plan terms.'],
+      ['Price', 'Browsing and editing on cliphou.se are free.', 'Check Canva\'s current pricing page.'],
+    ],
+    match: (v) => v.purpose === 'Social ad' || v.useCases.includes('product-launch'),
+  },
+  {
+    path: '/capcut-template-alternative/',
+    title: 'CapCut Template Alternative for Motion Graphics | cliphou.se',
+    h1: 'A CapCut template alternative for motion graphics',
+    description: 'Compare cliphou.se and CapCut templates for motion graphics, editing, export, licensing, and price. Last reviewed October 8, 2026.',
+    intro: 'Need motion graphics, not another clip template? cliphou.se is free, agent-compatible, and built on templates you can copy, modify, and sell.',
+    competitor: 'CapCut',
+    sources: [['CapCut templates', 'https://www.capcut.com/template']],
+    rows: [
+      ['Discovery', 'Browse a curated catalog of AI-made motion graphics.', 'Browse trending and categorized templates for social, holiday, business, and other uses.'],
+      ['Motion', 'Templates use Remotion code with shared text and color roles.', 'Templates are used in CapCut\'s editing apps and online editor.'],
+      ['Editing', 'Edit text and theme colors. Clip, photo, and audio editing are not available.', 'Check CapCut for current clip, photo, effect, and audio controls.'],
+      ['Export', 'Hosted MP4 export is not available yet. Copy a Remotion render command.', 'Check CapCut for current export options and plan limits.'],
+      ['Licensing', 'Template code, metadata, starter text, color presets, and previews use MIT-0.', 'Check CapCut\'s current terms and template license.'],
+      ['Price', 'Browsing and editing on cliphou.se are free.', 'Check CapCut\'s current plan information.'],
+    ],
+    match: (v) => v.format === '9:16' || v.purpose === 'Social ad',
+  },
+];

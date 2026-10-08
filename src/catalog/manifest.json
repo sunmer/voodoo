@@ -45,7 +45,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "Make a dynamic 15 second motion graphics video that shows off what an incredible motion designer you are. Imagine it's your showreel for a resume!",
       "createdAt": "2026-09-19",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "stack",
@@ -54,7 +54,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical video for Reels: masked headline reveal, three stacked selling points sliding in, and a circular reveal to a CTA.",
       "createdAt": "2026-10-03",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "ticker",
@@ -63,7 +63,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "A loud 8 second square social ad: tilted scrolling marquee rows of the headline, a split-flap board for three offers, and a stamped CTA.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "terminal",
@@ -72,7 +72,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "A 9 second 16:9 developer launch: a terminal window types a command, glitches in the headline, ticks off a build log, then a glitched logo reveal.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "pulse",
@@ -81,7 +81,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second 4:5 data recap for LinkedIn: a growth line draws behind the headline, three bars spring up with counting percentages, and a ring closes around the brand.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "folio",
@@ -90,7 +90,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second editorial brand film in a magazine layout: serif headline masked in line by line, a pull quote, and a numbered index with a CTA.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "bento",
@@ -99,7 +99,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second 16:9 product reveal in the bento-grid style: the headline sets word by word with a weight morph, then a grid of rounded tiles assembles with a live counter, progress ring and feature icons, and a tile grows into a gradient logo lockup.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "glass",
@@ -108,7 +108,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical app promo in a liquid-glass style: drifting color fields behind frosted panels, a glass hero card with a light sheen, lock-screen style notifications for three features, and a glass orb lockup.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "flex",
@@ -117,7 +117,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second square kinetic type ad using a variable font: headline words breathe between condensed and expanded widths, an index list where the active row stretches, and a circular wipe to the brand.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "riso",
@@ -126,7 +126,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second 4:5 poster in a risograph style: halftone sun shapes, two-color misregistered type, scrambled text that resolves, halftone wipes and a rotating text-ring stamp.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "collage",
@@ -135,7 +135,7 @@
       "model": "Claude Opus 5.5",
       "prompt": "An 8 second vertical zine-style collage: torn paper scraps with tape drop in, hand-drawn scribbles draw on, a sticker badge pops, and the CTA lands on a pill.",
       "createdAt": "2026-10-07",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "cursor",
@@ -144,7 +144,7 @@
       "model": "Codex",
       "prompt": "A clean 8 second 16:9 product demo: animated cursor selects a headline, toggles three features in an app window, and clicks a CTA.",
       "createdAt": "2026-10-08",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "spotlight",
@@ -153,7 +153,7 @@
       "model": "Codex",
       "prompt": "A cinematic 8 second vertical announcement with a moving stage light, beam-swept headline, lit stat cards, and circular CTA reveal.",
       "createdAt": "2026-10-08",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "slice",
@@ -162,7 +162,7 @@
       "model": "Codex",
       "prompt": "A fast 8 second square social ad with diagonal slice reveals, angled list panels, and a split-screen CTA.",
       "createdAt": "2026-10-08",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "swiss",
@@ -171,7 +171,7 @@
       "model": "Codex",
       "prompt": "A precise 8 second 4:5 editorial template on an animated Swiss grid, with modular point blocks and a clean brand lockup.",
       "createdAt": "2026-10-08",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     },
     {
       "id": "prism",
@@ -180,7 +180,7 @@
       "model": "Codex",
       "prompt": "A premium 8 second 16:9 launch with prism light rays, 3D glass point cards, and a rotating diamond lockup.",
       "createdAt": "2026-10-08",
-      "license": "Remix with credit"
+      "license": "MIT-0"
     }
   ],
   "variants": [
@@ -223,7 +223,12 @@
           "accent": "#ff4d2e",
           "accent2": "#3dd6c6"
         }
-      }
+      },
+      "seoDescription": "A bold 10-second motion designer showreel with kinetic type, 3D stat cards, an orbit tagline, and a circular logo reveal.",
+      "useCases": [
+        "showreel",
+        "youtube-intro"
+      ]
     },
     {
       "id": "launch-orbit",
@@ -482,7 +487,13 @@
           "accent": "#d4ff3a",
           "accent2": "#ff5c39"
         }
-      }
+      },
+      "seoDescription": "A vertical sneaker or product drop reel with a masked headline, three stacked selling points, and a circular call-to-action reveal.",
+      "useCases": [
+        "instagram-reel",
+        "social-ad",
+        "product-launch"
+      ]
     },
     {
       "id": "stack-orbit",
@@ -651,7 +662,12 @@
           "accent": "#ff3b30",
           "accent2": "#ffd60a"
         }
-      }
+      },
+      "seoDescription": "A square flash sale video with scrolling marquee type and split-flap offers for Instagram feed and LinkedIn campaigns.",
+      "useCases": [
+        "social-ad",
+        "sale"
+      ]
     },
     {
       "id": "ticker-festival",
@@ -737,7 +753,13 @@
           "accent": "#3fb950",
           "accent2": "#58a6ff"
         }
-      }
+      },
+      "seoDescription": "A developer tool launch video with terminal typing, glitch accents, and three product points for a CLI, API, or SDK.",
+      "useCases": [
+        "product-launch",
+        "saas",
+        "youtube-intro"
+      ]
     },
     {
       "id": "terminal-hackathon",
@@ -823,7 +845,12 @@
           "accent": "#2f6bff",
           "accent2": "#12b886"
         }
-      }
+      },
+      "seoDescription": "A 4:5 quarterly results video with an animated growth line and bar chart for KPI, investor, and LinkedIn updates.",
+      "useCases": [
+        "data-recap",
+        "saas"
+      ]
     },
     {
       "id": "pulse-fitness",
@@ -910,7 +937,12 @@
           "accent": "#b4442c",
           "accent2": "#2d5a4a"
         }
-      }
+      },
+      "seoDescription": "An editorial brand film template for studios and boutiques, with magazine layouts, line draws, and calm masked reveals.",
+      "useCases": [
+        "brand-intro",
+        "youtube-intro"
+      ]
     },
     {
       "id": "folio-journal",
@@ -996,7 +1028,12 @@
           "accent": "#7c5cff",
           "accent2": "#2ee6a6"
         }
-      }
+      },
+      "seoDescription": "A widescreen SaaS feature launch video that reveals product benefits in a clean bento grid with kinetic headline motion.",
+      "useCases": [
+        "product-launch",
+        "saas"
+      ]
     },
     {
       "id": "bento-light",
@@ -1082,7 +1119,13 @@
           "accent": "#ff6ad5",
           "accent2": "#4fd1ff"
         }
-      }
+      },
+      "seoDescription": "A vertical mobile app promo with liquid-glass panels, sliding feature cards, and a circular reveal for Reels and Stories.",
+      "useCases": [
+        "instagram-reel",
+        "product-launch",
+        "saas"
+      ]
     },
     {
       "id": "glass-sunset",
@@ -1165,7 +1208,12 @@
           "accent": "#c6ff00",
           "accent2": "#ff3d7f"
         }
-      }
+      },
+      "seoDescription": "A square streetwear drop ad driven by breathing variable type, quick wipes, and punchy short selling points.",
+      "useCases": [
+        "social-ad",
+        "product-launch"
+      ]
     },
     {
       "id": "flex-gallery",
@@ -1251,7 +1299,11 @@
           "accent": "#ff4f8b",
           "accent2": "#2c6bff"
         }
-      }
+      },
+      "seoDescription": "A two-color risograph gig poster video with halftone texture and scrambled type for concerts, clubs, and live events.",
+      "useCases": [
+        "event-promo"
+      ]
     },
     {
       "id": "riso-bakery",
@@ -1337,7 +1389,12 @@
           "accent": "#ff4d2e",
           "accent2": "#2b59ff"
         }
-      }
+      },
+      "seoDescription": "A vertical cut-and-paste zine collage for creators, podcasts, and personal brands sharing a short story on Reels.",
+      "useCases": [
+        "instagram-reel",
+        "brand-intro"
+      ]
     },
     {
       "id": "collage-sale",
@@ -1423,7 +1480,13 @@
           "accent2": "#14b8a6"
         }
       },
-      "createdAt": "2026-10-08"
+      "createdAt": "2026-10-08",
+      "seoDescription": "A SaaS product demo template where an animated cursor selects the headline, toggles features, and clicks the final CTA.",
+      "useCases": [
+        "product-launch",
+        "saas",
+        "youtube-intro"
+      ]
     },
     {
       "id": "spotlight-premiere",
@@ -1466,7 +1529,13 @@
           "accent2": "#ff4f6d"
         }
       },
-      "createdAt": "2026-10-08"
+      "createdAt": "2026-10-08",
+      "seoDescription": "A cinematic vertical premiere teaser with stage-light sweeps and masked reveals for launches and limited releases.",
+      "useCases": [
+        "instagram-reel",
+        "event-promo",
+        "product-launch"
+      ]
     },
     {
       "id": "slice-drop",
@@ -1507,7 +1576,12 @@
           "accent2": "#00c2a8"
         }
       },
-      "createdAt": "2026-10-08"
+      "createdAt": "2026-10-08",
+      "seoDescription": "A square retail campaign ad with diagonal slices, angled offer panels, and fast wipes for social promotions.",
+      "useCases": [
+        "social-ad",
+        "sale"
+      ]
     },
     {
       "id": "swiss-studio",
@@ -1550,7 +1624,11 @@
           "accent2": "#2563eb"
         }
       },
-      "createdAt": "2026-10-08"
+      "createdAt": "2026-10-08",
+      "seoDescription": "A 4:5 Swiss-style studio index with precise grid motion, line draws, and editorial type for agencies and portfolios.",
+      "useCases": [
+        "brand-intro"
+      ]
     },
     {
       "id": "prism-launch",
@@ -1593,7 +1671,13 @@
           "accent2": "#06b6d4"
         }
       },
-      "createdAt": "2026-10-08"
+      "createdAt": "2026-10-08",
+      "seoDescription": "A premium tech launch video with prism light rays, 3D glass cards, and a rotating brand lockup for AI products.",
+      "useCases": [
+        "product-launch",
+        "saas",
+        "youtube-intro"
+      ]
     }
   ]
 }

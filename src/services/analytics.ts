@@ -38,11 +38,18 @@ export function startAnalytics() {
   document.head.append(script);
 }
 
-export function track(name: 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'share_publish', params: Record<string, string> = {}) {
+type EventName = 'page_view' | 'bookmark_add' | 'bookmark_remove' | 'login' | 'share_publish' | 'editor_open' | 'text_edit' | 'color_edit' | 'save_video' | 'render_command_copy' | 'mp4_export';
+
+function landingPage() {
+  try { return sessionStorage.getItem('cliphouse:landing') ?? ''; } catch { return ''; }
+}
+
+export function track(name: EventName, params: Record<string, string> = {}) {
   if (!analyticsConfigured) return;
   startAnalytics();
   // No account identifiers, search queries, or edited text enter Analytics.
-  target.gtag?.('event', name, {...pageContext(), ...params});
+  const landing = landingPage();
+  target.gtag?.('event', name, {...pageContext(), ...(landing ? {landing_page: landing} : {}), ...params});
 }
 
 export function trackPage(id?: string) {

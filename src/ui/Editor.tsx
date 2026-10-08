@@ -12,6 +12,7 @@ import {StarButton, useAccount} from './Account';
 import {ShareButton} from './Share';
 import {saveDraft} from '../services/drafts';
 import type {SharedVideo} from '../services/sharing';
+import {track} from '../services/analytics';
 
 const storageKey = (id: string) => `voodoo:v2:${id}`;
 type LockableOrientation = ScreenOrientation & {lock?: (orientation: 'landscape') => Promise<void>};
@@ -63,6 +64,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
   const kitProps = kitHasValues(kit) ? applyKit(props, kit) : null;
   const kitDiffers = kitProps && JSON.stringify(kitProps) !== JSON.stringify(props);
 
+  useEffect(() => { track('editor_open', {variant_id: variant.id}); }, [variant.id]);
   useEffect(() => {
     setHexes(props.theme);
     // Account drafts remain private; do not copy them into anonymous browser storage.
@@ -75,6 +77,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
     if (draft.current?.uid !== user.uid) draft.current = {uid: user.uid, id: crypto.randomUUID().replaceAll('-', '')};
     const id = await saveDraft(user.uid, draft.current.id, variant, props);
     setSavedKey(JSON.stringify(props));
+    track('save_video', {variant_id: variant.id});
     return id;
   };
   const saveAndOpen = async () => {
@@ -185,13 +188,17 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
     const json = JSON.stringify(props).replace(/'/g, `'\\''`);
     try {
       await navigator.clipboard.writeText(`npx remotion render src/remotion/index.ts ${variant.template} out/${variant.id}.mp4 --props='${json}'`);
+      track('render_command_copy', {variant_id: variant.id});
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch { setNotice('Clipboard is unavailable. Use Share to keep a copy of your edit.'); }
   };
   const changeHex = (key: typeof THEME_ROLES[number], value: string) => {
     setHexes((old) => ({...old, [key]: value}));
-    if (/^#[0-9a-f]{6}$/i.test(value)) h.set({...props, theme: {...props.theme, [key]: value}});
+    if (/^#[0-9a-f]{6}$/i.test(value) && value.toLowerCase() !== props.theme[key].toLowerCase()) {
+      h.set({...props, theme: {...props.theme, [key]: value}});
+      track('color_edit', {variant_id: variant.id, color_role: key});
+    }
   };
 
   return (
@@ -208,7 +215,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
         <div className="editor-video-area">
           <div className="editor-video">
             <TextCanvas ref={textCanvas} player={player} props={props} playing={playing} onEditing={setEditing}
-              onCommit={(role, value) => h.set({...props, texts: {...props.texts, [role]: value}})}>
+              onCommit={(role, value) => { h.set({...props, texts: {...props.texts, [role]: value}}); track('text_edit', {variant_id: variant.id, text_role: role}); }}>
               <Player ref={player} component={c.component} inputProps={props} durationInFrames={c.durationInFrames}
                 compositionWidth={c.width} compositionHeight={c.height} fps={c.fps}
                 initialFrame={c.posterFrame} loop autoPlay={playing} controls={false} clickToPlay={false}
@@ -249,7 +256,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
           <div className="palettes" role="group" aria-label="Palettes">
             {palettes.map((p) => <button key={p.name} className={`palette-btn ${JSON.stringify(p.colors) === JSON.stringify(props.theme) ? 'on' : ''}`}
               title={p.name} aria-label={p.name} aria-pressed={JSON.stringify(p.colors) === JSON.stringify(props.theme)}
-              disabled={!!editing} onClick={() => h.set({...props, theme: p.colors})}>
+              disabled={!!editing} onClick={() => { h.set({...props, theme: p.colors}); track('color_edit', {variant_id: variant.id, color_role: 'palette'}); }}>
               {THEME_ROLES.map((role) => <span key={role} style={{background: p.colors[role]}} />)}
             </button>)}
           </div>
@@ -271,6 +278,7 @@ export function Editor({variant, sharedProps, shareId, draftId, published, openS
       <section className="video-details" aria-labelledby="video-details-heading">
         <h2 id="video-details-heading">Video details</h2>
         <p>{variant.description}</p>
+        <p className="small muted">Free to copy, modify, share, and use commercially. No attribution required. Updated {variant.updatedAt}. Created by {variant.creator}. Hosted MP4 export is not available yet.</p>
         <div className="tags">
           {[...new Set([variant.purpose, ...variant.placement, ...variant.style, variant.tone,
             variant.energy <= 2 ? 'Calm' : variant.energy === 3 ? 'Medium' : 'High',

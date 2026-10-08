@@ -20,6 +20,7 @@ export type Variant = Omit<RawVariant, 'props'> & {
   roles: Role[];
   sceneLabels: string[];
   motion: string[];
+  updatedAt: string;
 };
 
 export const vocab = manifest.vocab;
@@ -58,6 +59,7 @@ export const variants: Variant[] = manifest.variants.map((v) => {
     roles: Object.keys(v.props.texts) as Role[],
     sceneLabels: m.scenes.filter((s) => s.type !== 'transition').map((s) => SCENE_TYPES[s.type]),
     motion: m.motion,
+    updatedAt: [v.createdAt, tmpl.createdAt].sort().at(-1)!,
   };
 });
 

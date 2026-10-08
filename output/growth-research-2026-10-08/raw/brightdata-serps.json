@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-08T08:50:50.056Z",
+  "provider": "BrightData SERP API",
+  "zone": "serp_api2",
+  "geo": "US",
+  "language": "en",
+  "serps": [
+    {
+      "query": "canva alternative",
+      "error": "BrightData timed out for canva alternative"
+    },
+    {
+      "query": "open source canva alternative",
+      "error": "BrightData timed out for open source canva alternative"
+    },
+    {
+      "query": "canva video templates",
+      "error": "BrightData timed out for canva video templates"
+    },
+    {
+      "query": "free video templates",
+      "error": "BrightData timed out for free video templates"
+    },
+    {
+      "query": "motion graphics templates",
+      "error": "BrightData timed out for motion graphics templates"
+    },
+    {
+      "query": "ai motion graphics generator",
+      "error": "BrightData timed out for ai motion graphics generator"
+    },
+    {
+      "query": "remotion templates",
+      "error": "BrightData timed out for remotion templates"
+    },
+    {
+      "query": "claude video generator",
+      "error": "BrightData timed out for claude video generator"
+    },
+    {
+      "query": "instagram reel templates",
+      "error": "BrightData timed out for instagram reel templates"
+    },
+    {
+      "query": "product launch video template",
+      "error": "BrightData timed out for product launch video template"
+    }
+  ]
+}

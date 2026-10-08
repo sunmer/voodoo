@@ -10,13 +10,13 @@
     "build:sharing": "node scripts/build-share.mjs",
     "start:sharing": "node --import tsx server/index.ts",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node --import tsx scripts/build-seo.mjs",
     "studio": "remotion studio src/remotion/index.ts",
     "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT-0",
   "type": "module",
   "overrides": {
     "@grpc/grpc-js": "^1.14.5"
