@@ -20,7 +20,10 @@ export type BenchmarkResult = {
   request?: string;
   error?: string;
   reviews: {reviewer: string; scores: {design: number; motion: number; readability: number; adherence: number}}[];
+  recovery?: BenchmarkRecovery & {originalError?: string; originalAttempts: number; originalCostUsd: number};
 };
+export type BenchmarkRecovery = Omit<BenchmarkResult, 'reviews' | 'firstAttemptPassed' | 'recovery'>;
+export type BenchmarkRecoveries = {version: string; entries: BenchmarkRecovery[]};
 export type BenchmarkResults = {
   version: string;
   edition: string;
@@ -28,6 +31,16 @@ export type BenchmarkResults = {
   status: string;
   entries: BenchmarkResult[];
 };
+
+export function withRecovery(original: BenchmarkResult, recovery?: BenchmarkRecovery): BenchmarkResult {
+  if (!recovery || original.status !== 'failed') return original;
+  return {...original, ...recovery, error: recovery.error, firstAttemptPassed: false, reviews: [],
+    attempts: original.attempts + recovery.attempts,
+    costUsd: original.costUsd + recovery.costUsd,
+    generationMs: original.generationMs + recovery.generationMs,
+    renderMs: original.renderMs + recovery.renderMs,
+    recovery: {...recovery, originalError: original.error, originalAttempts: original.attempts, originalCostUsd: original.costUsd}};
+}
 
 export function visualScore(entry?: BenchmarkResult) {
   if (!entry || entry.status !== 'rendered' || entry.reviews.length < 2) return null;

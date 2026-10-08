@@ -1,0 +1,8 @@
+{
+  "version": "R1",
+  "baselineVersion": "1.1",
+  "maxAttempts": 3,
+  "maxTokens": 64000,
+  "repairBudgetUsd": 10,
+  "policy": "Only original failures receive up to three additional automated repair requests. Keep the same model, pinned provider, reasoning effort, brief, fonts, palette, and renderer. Return complete TSX directly; a single code fence or valid source JSON wrapper is accepted without editing the code. Supply the previous response and complete compiler/render diagnostics. Stop at the first successful render. No human code edits or creative feedback. Preserve original outcomes and report additional attempts and costs separately."
+}

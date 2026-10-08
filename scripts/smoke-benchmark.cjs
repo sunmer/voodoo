@@ -2,6 +2,18 @@ const {chromium, webkit} = require('playwright');
 const assert = require('node:assert/strict');
 const base = process.env.URL || 'http://127.0.0.1:5182/';
 
+async function showVideo(video) {
+  await video.evaluate((el) => el.scrollIntoView({block: 'center', behavior: 'instant'}));
+  await video.evaluate((el) => new Promise((resolve) => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.35) return;
+      observer.disconnect();
+      requestAnimationFrame(() => requestAnimationFrame(resolve));
+    }, {threshold: [0, 0.35]});
+    observer.observe(el);
+  }));
+}
+
 async function check(browser, viewport, prefix) {
   const context = await browser.newContext({viewport, reducedMotion: 'reduce'});
   const page = await context.newPage();
@@ -10,6 +22,8 @@ async function check(browser, viewport, prefix) {
   await page.goto(`${base}benchmark/`, {waitUntil: 'networkidle'});
   const results = await (await context.request.get(`${base}benchmark/results.json`)).json();
   const protocol = await (await context.request.get(`${base}benchmark/protocol.json`)).json();
+  const recoveries = await (await context.request.get(`${base}benchmark/recovery.json`)).json();
+  if (recoveries.entries.length) await page.getByRole('button', {name: 'Original runs', exact: true}).click();
   await page.locator('.benchmark-card').first().waitFor();
   assert.equal(await page.locator('.benchmark-card').count(), 10);
   assert.equal(await page.locator('.filters').count(), 0);
@@ -70,14 +84,14 @@ async function check(browser, viewport, prefix) {
   await page.screenshot({path: `/tmp/cliphouse-benchmark-grid-${prefix}-${viewport.width}.png`, fullPage: false});
   const submission = page.locator('.benchmark-card-media video').first();
   if (await submission.count()) {
-    await submission.scrollIntoViewIfNeeded();
+    await showVideo(submission);
     await page.getByRole('button', {name: new RegExp(`^Play ${await submission.getAttribute('aria-label')}$`)}).click();
     await page.waitForFunction(() => [...document.querySelectorAll('.benchmark-card-media video')].some((el) => el.currentTime > 0.2));
     assert.ok(await submission.evaluate((el) => el.videoWidth > 0 && el.videoHeight > 0), 'real benchmark video decodes');
     await submission.evaluate((el) => el.pause());
   }
-  await page.locator('#methodology').scrollIntoViewIfNeeded();
   const video = page.locator('.benchmark-reference video');
+  await showVideo(video);
   await page.getByRole('button', {name: 'Play Existing Cliphouse motion graphics example', exact: true}).click();
   await page.waitForFunction(() => document.querySelector('.benchmark-reference video').currentTime > 0.2);
   const frame = await video.evaluate((el) => {
@@ -100,7 +114,7 @@ async function check(browser, viewport, prefix) {
   assert.equal(await page.locator('.benchmark-card').count(), 10);
   await page.getByRole('link', {name: 'Templates', exact: true}).click();
   await page.locator('.card').first().waitFor();
-  await page.getByRole('link', {name: 'Motion Graphics Benchmark', exact: true}).click();
+  await page.getByRole('link', {name: /New monthly benchmark:.*Compare models/}).click();
   await page.locator('.benchmark-card').first().waitFor();
   assert.deepEqual(errors, [], 'no runtime or hydration errors');
   await context.close();

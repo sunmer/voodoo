@@ -5,10 +5,12 @@ import {loadEnv} from 'vite';
 import {renderToString} from 'react-dom/server';
 import {BenchmarkPage} from '../src/benchmark/BenchmarkPage';
 import {contract, digest, protocol, root, validateResults} from './benchmark/protocol.mjs';
+import {recoveryProtocol, validateRecovery} from './benchmark/recovery.mjs';
 
 const dist = path.join(root, 'dist');
 const base = process.env.BASE ?? '/voodoo/';
 const results = validateResults(JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/results.json'), 'utf8')), path.join(root, 'public'));
+const recovery = validateRecovery(JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/recovery.json'), 'utf8')), results, path.join(root, 'public'));
 const ga = process.env.VITE_GA_MEASUREMENT_ID ?? loadEnv('production', root, 'VITE_').VITE_GA_MEASUREMENT_ID ?? '';
 const description = results.entries.length
   ? `Compare ${results.entries.length} actual AI motion graphics runs across ten models and three Remotion briefs, with generated videos, failures, and measured API costs.`
@@ -36,4 +38,6 @@ for (const edition of [false, true]) {
 fs.writeFileSync(path.join(dist, 'benchmark/protocol.json'), `${JSON.stringify({...protocol, sha256: digest}, null, 2)}\n`);
 fs.writeFileSync(path.join(dist, 'benchmark/contract.txt'), `${contract}\n`);
 fs.writeFileSync(path.join(dist, 'benchmark/results.json'), `${JSON.stringify(results, null, 2)}\n`);
+fs.writeFileSync(path.join(dist, 'benchmark/recovery.json'), `${JSON.stringify(recovery, null, 2)}\n`);
+fs.writeFileSync(path.join(dist, 'benchmark/recovery-protocol.json'), `${JSON.stringify(recoveryProtocol, null, 2)}\n`);
 console.log('Prerendered benchmark and October edition, validated results, and exported protocol.');
