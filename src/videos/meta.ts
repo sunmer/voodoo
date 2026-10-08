@@ -30,6 +30,13 @@ import {livestreamMeta} from './livestream/meta.ts';
 import {barchartMeta} from './barchart/meta.ts';
 import {counterMeta} from './counter/meta.ts';
 import {cybermondayMeta} from './cybermonday/meta.ts';
+import {apppromoMeta} from './apppromo/meta.ts';
+import {pricingMeta} from './pricing/meta.ts';
+import {casestudyMeta} from './casestudy/meta.ts';
+import {featureMeta} from './feature/meta.ts';
+import {quotecardMeta} from './quotecard/meta.ts';
+import {linechartMeta} from './linechart/meta.ts';
+import {flashsaleMeta} from './flashsale/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -63,4 +70,11 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [barchartMeta.id]: barchartMeta,
   [counterMeta.id]: counterMeta,
   [cybermondayMeta.id]: cybermondayMeta,
+  [apppromoMeta.id]: apppromoMeta,
+  [pricingMeta.id]: pricingMeta,
+  [casestudyMeta.id]: casestudyMeta,
+  [featureMeta.id]: featureMeta,
+  [quotecardMeta.id]: quotecardMeta,
+  [linechartMeta.id]: linechartMeta,
+  [flashsaleMeta.id]: flashsaleMeta,
 };

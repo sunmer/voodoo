@@ -209,6 +209,32 @@ export const useCases = [
       ['What format do these use?', 'The Cyber Monday template is 9:16 for Reels, TikTok, and Stories.'],
     ],
   },
+  {
+    path: '/flash-sale-video-templates/',
+    title: 'Flash Sale Video Templates | Limited Time Offer | cliphou.se',
+    h1: 'Flash sale video templates',
+    description: 'Free flash sale and limited time offer video templates. Set your discount, product, and end date, then edit text and colors online.',
+    intro: 'Short, loud sale videos that put the discount and the deadline on screen in a few seconds.',
+    match: (v) => v.useCases.includes('flash-sale') || v.useCases.includes('sale'),
+    faq: [
+      ['What should a flash sale video show?', 'Show the discount, what is on sale, and when the offer ends. Finish with one action, such as Shop now.'],
+      ['Can I change the discount and end date?', 'Yes. Click the price, price note, or date on the video and type a new value.'],
+      ['Which format should I use?', 'Use 4:5 for Instagram and Facebook feed ads. Use a 9:16 template for Reels, TikTok, and Stories.'],
+    ],
+  },
+  {
+    path: '/quote-animation-templates/',
+    title: 'Quote Animation Templates | Motivational Quote Videos | cliphou.se',
+    h1: 'Quote animation templates',
+    description: 'Free quote animation and motivational quote video templates. Type a quote and author, and the words animate in your browser.',
+    intro: 'Turn a quote into a short animated video for Reels, TikTok, Stories, and posts.',
+    match: (v) => v.useCases.includes('quote') || v.useCases.includes('testimonial'),
+    faq: [
+      ['How long can the quote be?', 'Quotes can be up to 140 characters. The text size adjusts so the full quote fits.'],
+      ['Can I credit the author?', 'Yes. Each quote template has an author field and an attribution line for the source or title.'],
+      ['Is there audio?', 'No. Add music or a voiceover in your video editor or social app.'],
+    ],
+  },
 ];
 
 export const editorialPages = [
