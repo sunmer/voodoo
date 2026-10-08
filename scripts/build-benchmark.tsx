@@ -12,7 +12,7 @@ const results = validateResults(JSON.parse(fs.readFileSync(path.join(root, 'src/
 const ga = process.env.VITE_GA_MEASUREMENT_ID ?? loadEnv('production', root, 'VITE_').VITE_GA_MEASUREMENT_ID ?? '';
 const description = results.entries.length
   ? `Compare ${results.entries.length} actual AI motion graphics runs across ten models and three Remotion briefs, with generated videos, failures, and measured API costs.`
-  : 'A controlled comparison of AI-written Remotion motion graphics. The first results are pending.';
+  : 'Find the right AI model for motion graphics without testing every model yourself. The first results are pending.';
 const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
 for (const edition of [false, true]) {
   const url = `https://cliphou.se/benchmark/${edition ? '2026-10/' : ''}`;

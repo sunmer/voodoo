@@ -119,8 +119,8 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
       <header className="benchmark-intro">
         <div className="benchmark-kicker"><FlaskConical size={15} aria-hidden="true" /><span>Cliphouse Research</span><span className="benchmark-edition">{month} / v{protocol.version}</span></div>
         <h1>Motion Graphics<br />Benchmark<span className="benchmark-period">.</span></h1>
-        <p className="benchmark-deck">The same brief. Ten AI models.<br className="mobile-break" /> The videos speak for themselves.</p>
-        <p className="benchmark-description">A controlled comparison of AI-written motion graphics. Each model writes Remotion code from the same three briefs. We compare the rendered videos, first-attempt reliability, and actual API cost.</p>
+        <p className="benchmark-deck">Find the right AI model for motion graphics<br className="mobile-break" /> without testing every model yourself.</p>
+        <p className="benchmark-description">We give ten leading models the same three Remotion briefs and render every result. Compare the videos side by side, see which models work on the first attempt, and check the actual API cost before you choose.</p>
         <div className="benchmark-byline"><span>By cliphou.se</span><span>{dateLabel}</span><span>{edition ? 'Monthly edition' : 'Live comparison'}</span></div>
         <nav className="benchmark-contents" aria-label="In this article">
           <a href="#comparison">Compare models <ArrowDown size={14} /></a>
