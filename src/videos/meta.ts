@@ -37,6 +37,13 @@ import {featureMeta} from './feature/meta.ts';
 import {quotecardMeta} from './quotecard/meta.ts';
 import {linechartMeta} from './linechart/meta.ts';
 import {flashsaleMeta} from './flashsale/meta.ts';
+import {comingsoonMeta} from './comingsoon/meta.ts';
+import {announcementMeta} from './announcement/meta.ts';
+import {teamintroMeta} from './teamintro/meta.ts';
+import {partnershipMeta} from './partnership/meta.ts';
+import {newsletterMeta} from './newsletter/meta.ts';
+import {anniversaryMeta} from './anniversary/meta.ts';
+import {grandopeningMeta} from './grandopening/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -77,4 +84,11 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [quotecardMeta.id]: quotecardMeta,
   [linechartMeta.id]: linechartMeta,
   [flashsaleMeta.id]: flashsaleMeta,
+  [comingsoonMeta.id]: comingsoonMeta,
+  [announcementMeta.id]: announcementMeta,
+  [teamintroMeta.id]: teamintroMeta,
+  [partnershipMeta.id]: partnershipMeta,
+  [newsletterMeta.id]: newsletterMeta,
+  [anniversaryMeta.id]: anniversaryMeta,
+  [grandopeningMeta.id]: grandopeningMeta,
 };

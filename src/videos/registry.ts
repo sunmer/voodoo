@@ -68,6 +68,20 @@ import {Counter} from './counter/Counter';
 import {counterSchema} from './counter/schema';
 import {Cybermonday} from './cybermonday/Cybermonday';
 import {cybermondaySchema} from './cybermonday/schema';
+import {Comingsoon} from './comingsoon/Comingsoon';
+import {comingsoonSchema} from './comingsoon/schema';
+import {Announcement} from './announcement/Announcement';
+import {announcementSchema} from './announcement/schema';
+import {Teamintro} from './teamintro/Teamintro';
+import {teamintroSchema} from './teamintro/schema';
+import {Partnership} from './partnership/Partnership';
+import {partnershipSchema} from './partnership/schema';
+import {Newsletter} from './newsletter/Newsletter';
+import {newsletterSchema} from './newsletter/schema';
+import {Anniversary} from './anniversary/Anniversary';
+import {anniversarySchema} from './anniversary/schema';
+import {Grandopening} from './grandopening/Grandopening';
+import {grandopeningSchema} from './grandopening/schema';
 import {legacy} from './legacy';
 import {currentVersion} from '../agent/versions';
 import {Apppromo} from './apppromo/Apppromo';
@@ -130,6 +144,13 @@ export const compositions: Record<string, CompositionDef> = {
   quotecard: {...templateMeta.quotecard, component: Quotecard, schema: quotecardSchema as unknown as VideoSchema},
   linechart: {...templateMeta.linechart, component: Linechart, schema: linechartSchema as unknown as VideoSchema},
   flashsale: {...templateMeta.flashsale, component: Flashsale, schema: flashsaleSchema as unknown as VideoSchema},
+  comingsoon: {...templateMeta.comingsoon, component: Comingsoon, schema: comingsoonSchema as unknown as VideoSchema},
+  announcement: {...templateMeta.announcement, component: Announcement, schema: announcementSchema as unknown as VideoSchema},
+  teamintro: {...templateMeta.teamintro, component: Teamintro, schema: teamintroSchema as unknown as VideoSchema},
+  partnership: {...templateMeta.partnership, component: Partnership, schema: partnershipSchema as unknown as VideoSchema},
+  newsletter: {...templateMeta.newsletter, component: Newsletter, schema: newsletterSchema as unknown as VideoSchema},
+  anniversary: {...templateMeta.anniversary, component: Anniversary, schema: anniversarySchema as unknown as VideoSchema},
+  grandopening: {...templateMeta.grandopening, component: Grandopening, schema: grandopeningSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.

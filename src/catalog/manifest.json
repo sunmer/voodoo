@@ -576,6 +576,104 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "comingsoon",
+      "title": "Coming Soon",
+      "creator": "soonhouse",
+      "prompt": "A 10 second 9:16 coming soon teaser: venetian blind slats turn away to reveal a huge headline, then a clock dial sweeps a full turn to the launch date with a pulsing notify button.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "announcement",
+      "title": "Big Announcement",
+      "creator": "loudspeaker.co",
+      "prompt": "A 9 second 16:9 announcement video: nested frames rush toward the camera, the headline punches in at the center, then a color wipe reveals the details and a CTA with pulse rings.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "teamintro",
+      "title": "Meet the Team",
+      "creator": "peoplecard",
+      "prompt": "A 10 second 4:5 new employee announcement: an ID badge drops in on a lanyard with initials, name, and role, a stamp labels it, then the badge flips to show a quote from the new hire.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "partnership",
+      "title": "Partnership",
+      "creator": "twofold.studio",
+      "prompt": "A 10 second 1:1 partnership announcement: two halves slide together, two circles orbit and overlap with a plus sign, then a connector line leads into the details, date, and CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "newsletter",
+      "title": "Newsletter Promo",
+      "creator": "inkpost",
+      "prompt": "A 10 second 9:16 newsletter promo: an envelope flap opens and a letter with the newsletter name rises out, a checklist shows what each issue covers, then an email field types and a subscribe button presses.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "anniversary",
+      "title": "Company Anniversary",
+      "creator": "milestone.club",
+      "prompt": "A 10 second 4:5 company anniversary video: a rotating ray laurel frames a count-up of the years, an italic serif headline unmasks, confetti falls, then a since-date card and CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "grandopening",
+      "title": "Grand Opening",
+      "creator": "ribboncut",
+      "prompt": "A 10 second 9:16 grand opening video: striped curtains part, a ribbon is cut and falls away under the headline, then a stamped doors-open date card, an address pin, and a CTA.",
+      "createdAt": "2026-10-08",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -3155,6 +3253,343 @@
         "sale",
         "social-ad"
       ]
+    },
+    {
+      "template": "comingsoon",
+      "creator": "soonhouse",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "comingsoon-launch",
+      "title": "Coming Soon Teaser",
+      "description": "A vertical coming soon teaser with blind slats, a sweeping clock dial, and a launch date.",
+      "purpose": "Product launch",
+      "style": [
+        "Bold",
+        "Minimal"
+      ],
+      "energy": 4,
+      "keywords": [
+        "coming soon video",
+        "coming soon template",
+        "coming soon teaser",
+        "launch teaser video",
+        "stay tuned video",
+        "reels",
+        "stories"
+      ],
+      "seoDescription": "A free coming soon video template for Reels, TikTok, and Stories. Blind slats reveal your teaser, a clock dial counts to launch day. Edit online.",
+      "useCases": [
+        "coming-soon",
+        "product-launch",
+        "instagram-reel"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Halcyon Audio",
+          "headline": "Something new is coming",
+          "date": "Launching Nov 20",
+          "cta": "Get notified"
+        },
+        "theme": {
+          "background": "#f2efe6",
+          "surface": "#d9d3c4",
+          "foreground": "#121417",
+          "accent": "#ff4f1f",
+          "accent2": "#1c6bff"
+        }
+      }
+    },
+    {
+      "template": "announcement",
+      "creator": "loudspeaker.co",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "announcement-big-news",
+      "title": "Big Announcement",
+      "description": "A 16:9 announcement with a zooming frame tunnel, a punch-in headline, and a details wipe.",
+      "purpose": "Brand intro",
+      "style": [
+        "Bold",
+        "Neon"
+      ],
+      "energy": 5,
+      "keywords": [
+        "announcement video",
+        "announcement template",
+        "big announcement video",
+        "company announcement video",
+        "news announcement template",
+        "youtube",
+        "website"
+      ],
+      "seoDescription": "A free announcement video template in 16:9. Frames zoom toward the camera, your headline punches in, and the details follow. Edit the text online.",
+      "useCases": [
+        "announcement",
+        "brand-intro",
+        "youtube-intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Orbitly",
+          "headline": "Big news",
+          "subhead": "We are opening our API to every team, starting today",
+          "cta": "Read the post"
+        },
+        "theme": {
+          "background": "#0b0d12",
+          "surface": "#2a2f3a",
+          "foreground": "#f5f6f8",
+          "accent": "#c6ff3d",
+          "accent2": "#ff3d8b"
+        }
+      }
+    },
+    {
+      "template": "teamintro",
+      "creator": "peoplecard",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "teamintro-new-hire",
+      "title": "Meet Our New Hire",
+      "description": "A 4:5 new employee card that drops in on a lanyard and flips to a quote from the new hire.",
+      "purpose": "Hiring",
+      "style": [
+        "Minimal",
+        "Editorial"
+      ],
+      "energy": 3,
+      "keywords": [
+        "new employee announcement",
+        "meet the team video",
+        "welcome new employee video",
+        "new hire announcement",
+        "team introduction video",
+        "linkedin",
+        "instagram feed"
+      ],
+      "seoDescription": "A free new employee announcement video for LinkedIn and Instagram. An ID badge shows name and role, then flips to their quote. Edit it online.",
+      "useCases": [
+        "team-intro",
+        "hiring"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Fieldnote",
+          "headline": "New hire",
+          "author": "Maya Lindqvist",
+          "attribution": "Head of Customer Success, Stockholm",
+          "quote": "I joined because this team listens to customers first. I cannot wait to meet all of you."
+        },
+        "theme": {
+          "background": "#e9eef2",
+          "surface": "#ffffff",
+          "foreground": "#14202b",
+          "accent": "#0f7b6c",
+          "accent2": "#ff7a1a"
+        }
+      }
+    },
+    {
+      "template": "partnership",
+      "creator": "twofold.studio",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "partnership-announcement",
+      "title": "Partnership Announcement",
+      "description": "A square partnership announcement where two shapes orbit and merge before the details.",
+      "purpose": "Brand intro",
+      "style": [
+        "Minimal",
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "partnership announcement",
+        "collaboration announcement",
+        "partnership video",
+        "brand collaboration video",
+        "we are partnering",
+        "linkedin",
+        "instagram feed"
+      ],
+      "seoDescription": "A free partnership announcement video template in 1:1. Two shapes orbit and merge, then show what the collaboration means and when it starts.",
+      "useCases": [
+        "partnership",
+        "brand-intro",
+        "social-ad"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Lumio x Parcel",
+          "headline": "Better together",
+          "subhead": "Same-day delivery now ships from every Lumio store",
+          "date": "Starts Dec 1",
+          "cta": "Learn more"
+        },
+        "theme": {
+          "background": "#fbf7f0",
+          "surface": "#ffe2c8",
+          "foreground": "#1b1a24",
+          "accent": "#3d5afe",
+          "accent2": "#ff6b4a"
+        }
+      }
+    },
+    {
+      "template": "newsletter",
+      "creator": "inkpost",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "newsletter-weekly",
+      "title": "Newsletter Promo",
+      "description": "A vertical newsletter promo with an opening envelope, a topic checklist, and a subscribe field.",
+      "purpose": "Creator video",
+      "style": [
+        "Editorial",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "newsletter announcement",
+        "subscribe to newsletter",
+        "newsletter promo video",
+        "email newsletter video",
+        "newsletter signup video",
+        "reels",
+        "stories"
+      ],
+      "seoDescription": "A free newsletter promo video for Reels and Stories. An envelope opens, a checklist shows what each issue covers, then a subscribe button. Edit online.",
+      "useCases": [
+        "newsletter",
+        "instagram-reel"
+      ],
+      "props": {
+        "texts": {
+          "brand": "The Sunday Brief",
+          "headline": "Design news in 5 minutes",
+          "items": "One deep dive, Three tools to try, A job board",
+          "cta": "Subscribe free"
+        },
+        "theme": {
+          "background": "#f6f1e7",
+          "surface": "#fffdf8",
+          "foreground": "#1c1b19",
+          "accent": "#2e5d4b",
+          "accent2": "#e8a33d"
+        }
+      }
+    },
+    {
+      "template": "anniversary",
+      "creator": "milestone.club",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "anniversary-years",
+      "title": "Company Anniversary",
+      "description": "A 4:5 anniversary video with a count-up of the years, a ray laurel, and falling confetti.",
+      "purpose": "Brand intro",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "company anniversary video",
+        "business anniversary",
+        "work anniversary video",
+        "anniversary celebration video",
+        "years in business video",
+        "instagram feed",
+        "linkedin"
+      ],
+      "seoDescription": "A free company anniversary video template. The years count up inside a rotating laurel, confetti falls, and a since-date card closes. Edit online.",
+      "useCases": [
+        "anniversary",
+        "brand-intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Oak & Ember Bakery",
+          "headline": "Thank you for every loaf",
+          "stat": "10 years",
+          "date": "Baking since 2016",
+          "cta": "Visit us"
+        },
+        "theme": {
+          "background": "#fff8ee",
+          "surface": "#f2c6a0",
+          "foreground": "#2b1d14",
+          "accent": "#b23a48",
+          "accent2": "#2f6f9f"
+        }
+      }
+    },
+    {
+      "template": "grandopening",
+      "creator": "ribboncut",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-08",
+      "id": "grandopening-store",
+      "title": "Grand Opening",
+      "description": "A vertical grand opening video with parting curtains, a ribbon cut, and a stamped opening date.",
+      "purpose": "Event promo",
+      "style": [
+        "Bold",
+        "Editorial"
+      ],
+      "energy": 4,
+      "keywords": [
+        "grand opening video",
+        "grand opening announcement",
+        "store opening video",
+        "now open video",
+        "ribbon cutting video",
+        "reels",
+        "stories"
+      ],
+      "seoDescription": "A free grand opening video template for Reels and Stories. Curtains part, a ribbon is cut, then the opening date and address appear. Edit it online.",
+      "useCases": [
+        "grand-opening",
+        "event-promo",
+        "instagram-reel"
+      ],
+      "props": {
+        "texts": {
+          "brand": "Verde Cafe",
+          "headline": "Grand opening",
+          "date": "Saturday, Nov 14",
+          "attribution": "214 Market Street, Portland",
+          "cta": "Plan your visit"
+        },
+        "theme": {
+          "background": "#13201a",
+          "surface": "#2c4a3b",
+          "foreground": "#fdf6e8",
+          "accent": "#c8302f",
+          "accent2": "#f2c14e"
+        }
+      }
     }
   ]
 }
