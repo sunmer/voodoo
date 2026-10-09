@@ -67,6 +67,9 @@ import {ticketsMeta} from './tickets/meta.ts';
 import {webinarMeta} from './webinar/meta.ts';
 import {orbit3dMeta} from './orbit3d/meta.ts';
 import {phototitleMeta} from './phototitle/meta.ts';
+import {photoquoteMeta} from './photoquote/meta.ts';
+import {vhsintroMeta} from './vhsintro/meta.ts';
+import {logo3dMeta} from './logo3d/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -137,4 +140,7 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [webinarMeta.id]: webinarMeta,
   [orbit3dMeta.id]: orbit3dMeta,
   [phototitleMeta.id]: phototitleMeta,
+  [photoquoteMeta.id]: photoquoteMeta,
+  [vhsintroMeta.id]: vhsintroMeta,
+  [logo3dMeta.id]: logo3dMeta,
 };

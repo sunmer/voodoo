@@ -694,8 +694,32 @@
   "phototitle": [
     {
       "version": 1,
-      "hash": "407acc164393c615",
-      "sha256": "aecfc875c8028c3433859ae00ede2219231e71f41e077d833239cc790b465b42",
+      "hash": "37bc75e267d73f03",
+      "sha256": "c5ac0a0eeb5f6f71faf877f40035ba3ef94c73d1cfc0e4b6ad68b40d265326f2",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "logo3d": [
+    {
+      "version": 1,
+      "hash": "e062c3f29a46aa08",
+      "sha256": "9b439df021c12084bcaa3baa9e7ab39ce5d2d0a90435173d29a2b660bb83c9a0",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "vhsintro": [
+    {
+      "version": 1,
+      "hash": "4bab8e31d53966c5",
+      "sha256": "042b52f91d8a393e73c22f9b1d4bfba269af3317dbc2efce5097a889d7f7d610",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "photoquote": [
+    {
+      "version": 1,
+      "hash": "80bc7fe9a97c2f7a",
+      "sha256": "8bf5aa053ad4a9262988be440a08d34610a0f54bd5fa6be875ac51a4522f2357",
       "createdAt": "2026-10-09"
     }
   ]

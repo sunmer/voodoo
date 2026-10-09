@@ -1,0 +1,24 @@
+{
+  "logo3d": {
+    "name": "Logo3d",
+    "kind": "3d",
+    "width": 1920, "height": 1080, "fps": 30, "durationInFrames": 210,
+    "roles": ["brand", "headline", "cta"],
+    "prompt": "A 7 second 16:9 3D logo reveal for any brand. A cluster of glossy shards (thin beveled boxes and tetrahedrons in accent and accent2) floats in deep space, then snaps together into a solid faceted emblem in the center while the camera dollies in and orbits 30 degrees. A sharp light sweep crosses the emblem at the moment it locks. The brand name rises in large letters under the emblem, then the headline appears as a smaller line, and finally a short call to action pill fades in at the bottom. Background is a dark gradient from theme.background to theme.surface with a soft floor reflection. Calm settle for the last second so it loops well as an intro."
+  },
+  "photoquote": {
+    "name": "Photoquote",
+    "kind": "image",
+    "slots": ["background"],
+    "width": 1080, "height": 1920, "fps": 30, "durationInFrames": 240,
+    "roles": ["quote", "author", "brand"],
+    "prompt": "An 8 second 9:16 photo quote for Reels and Stories. A full-frame photo slowly drifts upward with a gentle zoom. A large opening quotation mark draws in with accent color, then the quote reveals line by line in a big serif font in the lower half, followed by a thin rule and the author name. The brand sits small at the top. Use the Backdrop component so the quote stays readable over any of the template's photos and themes. Quiet, editorial pacing."
+  },
+  "vhsintro": {
+    "name": "Vhsintro",
+    "kind": "2d",
+    "width": 1920, "height": 1080, "fps": 30, "durationInFrames": 180,
+    "roles": ["brand", "headline", "date"],
+    "prompt": "A 6 second 16:9 retro VHS intro. Start on tracking noise and rolling horizontal bands, then a blue-screen PLAY overlay in the corner with a blinking timecode built from the date text. The headline appears in chunky italic type with chromatic aberration (offset accent and accent2 copies) and slight horizontal jitter, then stabilizes. Scanlines, a soft vignette, and occasional tape warp lines cross the frame. The brand appears like a channel bug in the top right. Use deterministic random(seed) for all noise. End stable for one second."
+  }
+}

@@ -1001,6 +1001,48 @@
         "provider": "OpenAI",
         "effort": "medium"
       }
+    },
+    {
+      "id": "logo3d",
+      "title": "3D Logo Reveal",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 16:9 3D logo reveal for any brand. A cluster of glossy shards (thin beveled boxes and tetrahedrons in accent and accent2) floats in deep space, then snaps together into a solid faceted emblem in the center while the camera dollies in and orbits 30 degrees. A sharp light sweep crosses the emblem at the moment it locks. The brand name rises in large letters under the emblem, then the headline appears as a smaller line, and finally a short call to action pill fades in at the bottom. Background is a dark gradient from theme.background to theme.surface with a soft floor reflection. Calm settle for the last second so it loops well as an intro.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "vhsintro",
+      "title": "VHS Intro",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 retro VHS intro. Start on tracking noise and rolling horizontal bands, then a blue-screen PLAY overlay in the corner with a blinking timecode built from the date text. The headline appears in chunky italic type with chromatic aberration (offset accent and accent2 copies) and slight horizontal jitter, then stabilizes. Scanlines, a soft vignette, and occasional tape warp lines cross the frame. The brand appears like a channel bug in the top right. Use deterministic random(seed) for all noise. End stable for one second.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "photoquote",
+      "title": "Photo Quote",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 9:16 photo quote for Reels and Stories. A full-frame photo slowly drifts upward with a gentle zoom. A large opening quotation mark draws in with accent color, then the quote reveals line by line in a big serif font in the lower half, followed by a thin rule and the author name. The brand sits small at the top. Use the Backdrop component so the quote stays readable over any of the template's photos and themes. Quiet, editorial pacing.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -4977,6 +5019,240 @@
         "title-card",
         "youtube-intro",
         "brand-intro"
+      ]
+    },
+    {
+      "template": "logo3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "logo3d-shards",
+      "title": "3D Shard Logo Reveal",
+      "description": "Glossy 3D shards fly together into a faceted emblem with a light sweep, then your brand name and tagline settle in.",
+      "purpose": "Logo reveal",
+      "style": [
+        "3D",
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "3d logo reveal",
+        "3d logo animation",
+        "logo intro 3d",
+        "logo reveal template",
+        "3d brand intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "KESTREL",
+          "headline": "Engineered for speed",
+          "cta": "kestrel.io"
+        },
+        "theme": {
+          "background": "#05060a",
+          "surface": "#1a1f33",
+          "foreground": "#f4f6ff",
+          "accent": "#7c5cff",
+          "accent2": "#22d3ee"
+        }
+      },
+      "seoDescription": "A free 3D logo reveal template. Glossy shards assemble into an emblem, then your brand name and tagline appear. Edit text and colors online.",
+      "useCases": [
+        "logo-reveal",
+        "brand-intro",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "vhsintro",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "vhsintro-tape",
+      "title": "Retro VHS Intro",
+      "description": "Tracking noise, a PLAY overlay with a running timecode, and a chunky chromatic title that wobbles into place.",
+      "purpose": "Creator video",
+      "style": [
+        "Retro",
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "vhs intro",
+        "retro intro template",
+        "vhs effect video",
+        "80s intro",
+        "vintage video intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "CH 4",
+          "headline": "Summer Tapes",
+          "date": "JUL 14 1989"
+        },
+        "theme": {
+          "background": "#0b0a14",
+          "surface": "#1d2a6b",
+          "foreground": "#f8f5ff",
+          "accent": "#ff3d8b",
+          "accent2": "#3df5ff"
+        }
+      },
+      "seoDescription": "A free retro VHS intro template with tracking noise, a PLAY overlay, and a glitchy chromatic title. Edit the title, date, and channel online.",
+      "useCases": [
+        "youtube-intro",
+        "title-card",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "photoquote",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "photoquote-ridge",
+      "title": "Photo Quote Story",
+      "description": "A vertical photo drifts upward while a large quote reveals line by line, signed with the author name.",
+      "purpose": "Social ad",
+      "style": [
+        "Photo",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "quote video",
+        "photo quote template",
+        "instagram quote reel",
+        "motivational quote video",
+        "quote story template"
+      ],
+      "props": {
+        "texts": {
+          "quote": "The best view comes after the hardest climb. Keep going, one step at a time.",
+          "author": "Maya Lindqvist",
+          "brand": "NORTHBOUND"
+        },
+        "theme": {
+          "background": "#0d1220",
+          "surface": "#1c2840",
+          "foreground": "#ffffff",
+          "accent": "#ffb454",
+          "accent2": "#7dd3fc"
+        },
+        "media": {
+          "background": "mountain"
+        }
+      },
+      "seoDescription": "A free vertical photo quote template for Reels and Stories. Pick a background photo, add a quote and author, and edit the text online.",
+      "useCases": [
+        "quote",
+        "instagram-reel",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "photoquote",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "photoquote-studio",
+      "title": "Light Photo Quote",
+      "description": "A calm, light photo quote with a window-lit room and a warm serif quote, sized for Reels and Stories.",
+      "purpose": "Testimonial",
+      "style": [
+        "Photo",
+        "Minimal"
+      ],
+      "energy": 1,
+      "keywords": [
+        "quote reel template",
+        "aesthetic quote video",
+        "minimal quote template",
+        "testimonial video vertical",
+        "quote of the day video"
+      ],
+      "props": {
+        "texts": {
+          "quote": "Slow mornings, good light, and a cup of coffee. That is where the best ideas start.",
+          "author": "Studio Notes",
+          "brand": "DAILY"
+        },
+        "theme": {
+          "background": "#f6f1e7",
+          "surface": "#e6dccb",
+          "foreground": "#1a1714",
+          "accent": "#b45309",
+          "accent2": "#0f766e"
+        },
+        "media": {
+          "background": "studio"
+        }
+      },
+      "seoDescription": "A free light photo quote template for Instagram Reels and Stories. Pick a bundled photo, add your quote and author, and edit online.",
+      "useCases": [
+        "quote",
+        "instagram-reel",
+        "testimonial"
+      ]
+    },
+    {
+      "template": "phototitle",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "phototitle-city",
+      "title": "City Night Title Card",
+      "description": "A night skyline pushes in slowly while a bold title and subtitle reveal over the dark water.",
+      "purpose": "Brand intro",
+      "style": [
+        "Photo",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "city title card",
+        "night city intro",
+        "cinematic city intro",
+        "urban title template",
+        "skyline video intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "NEW YORK",
+          "headline": "After Hours",
+          "subhead": "A guide to the city that never sleeps"
+        },
+        "theme": {
+          "background": "#070b16",
+          "surface": "#18223a",
+          "foreground": "#ffffff",
+          "accent": "#f9b94a",
+          "accent2": "#60a5fa"
+        },
+        "media": {
+          "background": "city"
+        }
+      },
+      "seoDescription": "A free city night title card template with a slow push-in on a skyline photo. Add a title and subtitle, swap the photo, and edit online.",
+      "useCases": [
+        "title-card",
+        "brand-intro",
+        "youtube-intro"
       ]
     }
   ]
