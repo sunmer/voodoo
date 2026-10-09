@@ -3,6 +3,7 @@ import manifest from '../catalog/manifest.json' with {type: 'json'};
 import {templateMeta} from '../videos/meta.ts';
 import {schemas} from '../videos/schemas.ts';
 import {ROLES, SCENE_TYPES, THEME_ROLES, roleHint, type Role, type VideoProps} from '../videos/vocab.ts';
+import {mediaOf, mediaSlots, slotOptions} from '../videos/media/catalog.ts';
 import {MAX_HANDOFF_CHARS, REPOSITORY, TEMPLATE_LICENSE, handoffPath, sourcePath, templateVersion} from './versions.ts';
 
 type SpecInput = {
@@ -31,6 +32,7 @@ export function agentSpec({site, kind, id, url, title, variant, props, version, 
   const texts = Object.fromEntries((Object.keys(schema.shape.texts.shape) as Role[]).map((role) =>
     [role, {label: ROLES[role].label, maxLength: ROLES[role].max, ...(roleHint(role) ? {format: roleHint(role)} : {}), current: props.texts[role]}]));
   const pkg = `${site}${sourcePath(variant.template, pinned.version)}`;
+  const slots = mediaSlots(schema);
   const generation = manifest.templates.find((t) => t.id === variant.template)?.generation;
   if (!generation) throw new Error(`Missing generation metadata for template ${variant.template}.`);
   const old = pinned.version !== latest.version ? `&v=${pinned.version}` : '';
@@ -51,6 +53,9 @@ export function agentSpec({site, kind, id, url, title, variant, props, version, 
     editableFields: {
       texts,
       theme: Object.fromEntries(THEME_ROLES.map((role) => [role, {format: '#RRGGBB', current: props.theme[role]}])),
+      ...(slots.length ? {media: Object.fromEntries(slots.map((slot) => [slot, {
+        format: 'Image ID', options: slotOptions(schema, slot), current: mediaOf(props)?.[slot],
+      }]))} : {}),
     },
     jsonSchema: z.toJSONSchema(schema),
     handoff: {
@@ -67,7 +72,7 @@ export function agentSpec({site, kind, id, url, title, variant, props, version, 
       note: 'Rendering uses Remotion, which has separate license terms: https://remotion.dev/license',
     },
     instructions: [
-      'For text and color edits, change only props.texts and props.theme. Keep each text within maxLength and each color as #RRGGBB.',
+      'For text, color, and image edits, change only props.texts, props.theme, and props.media when present. Keep each text within maxLength, each color as #RRGGBB, and each image as one of its listed options.',
       'Return text and color edits as handoff.urlTemplate with the props JSON URL-encoded.',
       'For layout, motion, timing, or scene edits, download source.package, extract it, and edit the code.',
       'Render the source package with source.renderCommand. Edit props.json to change text and colors.',

@@ -140,6 +140,10 @@ import {Tickets} from './tickets/Tickets';
 import {ticketsSchema} from './tickets/schema';
 import {Webinar} from './webinar/Webinar';
 import {webinarSchema} from './webinar/schema';
+import {Orbit3d} from './orbit3d/Orbit3d';
+import {orbit3dSchema} from './orbit3d/schema';
+import {Phototitle} from './phototitle/Phototitle';
+import {phototitleSchema} from './phototitle/schema';
 
 export type CompositionDef = TemplateMeta & {
   component: React.FC<any>;
@@ -214,6 +218,8 @@ export const compositions: Record<string, CompositionDef> = {
   agenda: {...templateMeta.agenda, component: Agenda, schema: agendaSchema as unknown as VideoSchema},
   tickets: {...templateMeta.tickets, component: Tickets, schema: ticketsSchema as unknown as VideoSchema},
   webinar: {...templateMeta.webinar, component: Webinar, schema: webinarSchema as unknown as VideoSchema},
+  orbit3d: {...templateMeta.orbit3d, component: Orbit3d, schema: orbit3dSchema as unknown as VideoSchema},
+  phototitle: {...templateMeta.phototitle, component: Phototitle, schema: phototitleSchema as unknown as VideoSchema},
 };
 
 // Saved and shared videos keep the template version they were made with.

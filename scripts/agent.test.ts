@@ -20,7 +20,8 @@ const spec = (v: (typeof visible)[number]) => agentSpec({site: 'https://cliphou.
 test('every template spec exports a JSON Schema that matches the zod schema', () => {
   for (const v of visible) {
     const s = spec(v);
-    assert.deepEqual(s.generation, {model: 'Claude Opus 5.5', modelId: 'claude-opus-5-5', provider: 'Anthropic', effort: 'medium'}, v.id);
+    assert.deepEqual(s.generation, manifest.templates.find((t) => t.id === v.template)!.generation, v.id);
+    assert.deepEqual(generationErrors(v.template, s.generation), [], v.id);
     const roles = Object.keys(schemas[v.template].shape.texts.shape);
     assert.deepEqual(s.jsonSchema.properties.texts.required, roles, v.id);
     assert.equal(s.jsonSchema.properties.texts.additionalProperties, false);
@@ -65,6 +66,46 @@ test('valid handoffs open; invalid and oversized handoffs are rejected', () => {
     assert.equal(result.ok, false, input.slice(0, 60));
     if (!result.ok) assert.ok(result.error.length > 10);
   }
+});
+
+test('image templates accept only their own image IDs', () => {
+  const v = visible.find((x) => 'media' in x.props)!;
+  const schema = schemas[v.template];
+  const props = structuredClone(v.props) as typeof v.props & {media: Record<string, string>};
+  const s = spec(v);
+  const slot = Object.keys(props.media)[0];
+  assert.ok(s.editableFields.media?.[slot].options.length);
+  assert.equal(s.jsonSchema.properties.media.additionalProperties, false);
+  assert.ok(validateProps(schema, {...props, media: {[slot]: s.editableFields.media![slot].options.at(-1)!.id}}).ok);
+  for (const bad of [
+    {texts: props.texts, theme: props.theme},
+    {...props, media: {[slot]: 'https://evil.test/a.jpg'}},
+    {...props, media: {[slot]: '../../secret'}},
+    {...props, media: {[slot]: 'lake'}},
+    {...props, media: {...props.media, extra: 'coast'}},
+    {...props, media: {}},
+  ]) assert.equal(validateProps(schema, bad).ok, false, JSON.stringify(bad.media));
+  const plain = visible.find((x) => !('media' in x.props))!;
+  assert.equal(validateProps(schemas[plain.template], {...plain.props, media: {background: 'coast'}}).ok, false);
+});
+
+test('template image assets match their records and stay readable in every preset', async () => {
+  const {overlayFor, zoneTones, mediaSlots, slotOptions} = await import('../src/videos/media/catalog.ts');
+  for (const t of manifest.templates) {
+    const dir = path.join(root, 'src/videos', t.id, 'assets');
+    if (!fs.existsSync(path.join(dir, 'records.json'))) { assert.equal(mediaSlots(schemas[t.id]).length, 0, t.id); continue; }
+    const records = JSON.parse(fs.readFileSync(path.join(dir, 'records.json'), 'utf8'));
+    const prompts = JSON.parse(fs.readFileSync(path.join(dir, 'prompts.json'), 'utf8'));
+    for (const r of records) {
+      assert.equal(createHash('sha256').update(fs.readFileSync(path.join(dir, r.file))).digest('hex'), r.sha256, `${t.id}/${r.id}: file hash`);
+      assert.equal(prompts.find((p: {id: string}) => p.id === r.id)?.prompt, r.prompt, `${t.id}/${r.id}: prompt matches record`);
+      for (const f of ['model', 'prompt', 'size', 'quality', 'createdAt']) assert.ok(r[f], `${t.id}/${r.id}: ${f}`);
+      assert.equal(r.tones.length, 16, `${t.id}/${r.id}: tones`);
+    }
+    for (const slot of mediaSlots(schemas[t.id])) for (const o of slotOptions(schemas[t.id], slot)) assert.ok(records.some((r: {id: string}) => r.id === o.id), `${t.id}: ${o.id} has a record`);
+    assert.ok(records.length >= 2, `${t.id}: at least two images`);
+  }
+  assert.ok(overlayFor(zoneTones(Array(16).fill({lo: 0, hi: 1}), [0, 0, 1, 1]), '#000000', '#ffffff') > 0.5);
 });
 
 test('versions are immutable, sequential, and match their committed packages', () => {

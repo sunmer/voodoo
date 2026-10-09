@@ -65,6 +65,8 @@ import {speakerMeta} from './speaker/meta.ts';
 import {agendaMeta} from './agenda/meta.ts';
 import {ticketsMeta} from './tickets/meta.ts';
 import {webinarMeta} from './webinar/meta.ts';
+import {orbit3dMeta} from './orbit3d/meta.ts';
+import {phototitleMeta} from './phototitle/meta.ts';
 
 export const templateMeta: Record<string, TemplateMeta> = {
   [showreelMeta.id]: showreelMeta,
@@ -133,4 +135,6 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [agendaMeta.id]: agendaMeta,
   [ticketsMeta.id]: ticketsMeta,
   [webinarMeta.id]: webinarMeta,
+  [orbit3dMeta.id]: orbit3dMeta,
+  [phototitleMeta.id]: phototitleMeta,
 };

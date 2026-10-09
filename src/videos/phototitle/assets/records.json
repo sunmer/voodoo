@@ -1,0 +1,160 @@
+[
+  {
+    "id": "coast",
+    "label": "Coastline at dusk",
+    "file": "coast.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "84f8c4644a90702d865a6f6f727edcb3f9021b8ae6eea28633c7b805f83c88bc",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide cinematic landscape photograph of a rugged ocean coastline at dusk, sea stacks rising from calm water, low mist along the cliffs, soft natural light, muted cool tones. The left 45 percent of the frame is open sea and sky with very little detail, for a title overlay. Shot on a full-frame camera, 24mm lens, long exposure. No text, no people, no logos, no watermark.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.1051,
+        "hi": 0.224
+      },
+      {
+        "lo": 0.1707,
+        "hi": 0.3685
+      },
+      {
+        "lo": 0.1304,
+        "hi": 0.4569
+      },
+      {
+        "lo": 0.0082,
+        "hi": 0.3302
+      },
+      {
+        "lo": 0.0611,
+        "hi": 0.2286
+      },
+      {
+        "lo": 0.1399,
+        "hi": 0.3754
+      },
+      {
+        "lo": 0.0169,
+        "hi": 0.3886
+      },
+      {
+        "lo": 0.006,
+        "hi": 0.1564
+      },
+      {
+        "lo": 0.0321,
+        "hi": 0.0996
+      },
+      {
+        "lo": 0.0691,
+        "hi": 0.1866
+      },
+      {
+        "lo": 0.012,
+        "hi": 0.2375
+      },
+      {
+        "lo": 0.0044,
+        "hi": 0.1818
+      },
+      {
+        "lo": 0.0166,
+        "hi": 0.0547
+      },
+      {
+        "lo": 0.028,
+        "hi": 0.2587
+      },
+      {
+        "lo": 0.0044,
+        "hi": 0.1876
+      },
+      {
+        "lo": 0.004,
+        "hi": 0.2208
+      }
+    ]
+  },
+  {
+    "id": "city",
+    "label": "City at night",
+    "file": "city.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "d2e87457a88107a1921fe891e07ba542c507f497b5fea9e50c0617a5212486b6",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide cinematic photograph of a modern city skyline at night seen across a river, warm window lights and soft reflections on the water, gentle haze, deep blue sky. The skyline sits in the right half and lower third; the left 45 percent of the frame is mostly calm sky and dark water with little detail, for a title overlay. Shot on a full-frame camera, 35mm lens. No text, no readable signs, no people, no logos, no watermark.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.014,
+        "hi": 0.0261
+      },
+      {
+        "lo": 0.0263,
+        "hi": 0.0441
+      },
+      {
+        "lo": 0.037,
+        "hi": 0.0543
+      },
+      {
+        "lo": 0.0303,
+        "hi": 0.0617
+      },
+      {
+        "lo": 0.0144,
+        "hi": 0.0302
+      },
+      {
+        "lo": 0.028,
+        "hi": 0.071
+      },
+      {
+        "lo": 0.0191,
+        "hi": 0.2438
+      },
+      {
+        "lo": 0.0095,
+        "hi": 0.2186
+      },
+      {
+        "lo": 0.0083,
+        "hi": 0.0358
+      },
+      {
+        "lo": 0.015,
+        "hi": 0.0964
+      },
+      {
+        "lo": 0.0157,
+        "hi": 0.4047
+      },
+      {
+        "lo": 0.0097,
+        "hi": 0.259
+      },
+      {
+        "lo": 0.0018,
+        "hi": 0.0104
+      },
+      {
+        "lo": 0.0031,
+        "hi": 0.0239
+      },
+      {
+        "lo": 0.0057,
+        "hi": 0.1716
+      },
+      {
+        "lo": 0.0062,
+        "hi": 0.116
+      }
+    ]
+  }
+]

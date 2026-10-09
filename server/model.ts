@@ -2,6 +2,7 @@ import {createHash} from 'node:crypto';
 import manifest from '../src/catalog/manifest.json' with {type: 'json'};
 import {templateMeta} from '../src/videos/meta.ts';
 import {ROLES, THEME_ROLES} from '../src/videos/vocab.ts';
+import {mediaSlots, slotOptions} from '../src/videos/media/catalog.ts';
 import type {VideoProps} from '../src/videos/vocab.ts';
 import {currentVersion, templateVersion} from '../src/agent/versions.ts';
 import {agentSpec} from '../src/agent/spec.ts';
@@ -21,16 +22,21 @@ function exactKeys(value: unknown, keys: string[]): value is Record<string, unkn
 export function validateShare(body: unknown) {
   if (!object(body) || !exactKeys(body, Object.hasOwn(body, 'templateVersion') ? ['variantId', 'props', 'templateVersion'] : ['variantId', 'props'])) throw new HttpError(400, 'Invalid video.');
   const variant = manifest.variants.find((v) => v.id === body.variantId);
-  if (!variant || !exactKeys(body.props, ['texts', 'theme'])) throw new HttpError(400, 'Invalid video.');
+  if (!variant || !object(body.props)) throw new HttpError(400, 'Invalid video.');
   // Clients send the version they edited. Older clients omit it and get the current version.
   const version = Object.hasOwn(body, 'templateVersion') ? body.templateVersion : currentVersion(variant.template);
   if (typeof version !== 'number' || !Number.isInteger(version)) throw new HttpError(400, 'Invalid template version.');
   try { templateVersion(variant.template, version); } catch { throw new HttpError(400, 'Unknown template version.'); }
   const schema = version === currentVersion(variant.template) ? schemas[variant.template] : legacySchemas[variant.template]?.[version];
   if (!schema) throw new HttpError(400, 'Unknown template version.');
-  const {texts, theme} = body.props;
+  const slots = mediaSlots(schema);
+  if (!exactKeys(body.props, slots.length ? ['texts', 'theme', 'media'] : ['texts', 'theme'])) throw new HttpError(400, 'Invalid video.');
+  const {texts, theme, media} = body.props;
   const roles = Object.keys(schema.shape.texts.shape) as (keyof typeof ROLES)[];
   if (!exactKeys(texts, roles) || !exactKeys(theme, [...THEME_ROLES])) throw new HttpError(400, 'Invalid video fields.');
+  if (slots.length && (!exactKeys(media, slots) || slots.some((s) => !slotOptions(schema, s).some((o) => o.id === media[s])))) {
+    throw new HttpError(400, 'Invalid video photo.');
+  }
   for (const role of roles) {
     const text = texts[role];
     if (typeof text !== 'string' || !text.trim() || text.length > ROLES[role].max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(text)) {
@@ -45,6 +51,7 @@ export function validateShare(body: unknown) {
   const props = {
     texts: Object.fromEntries(roles.map((role) => [role, texts[role]])),
     theme: Object.fromEntries(THEME_ROLES.map((role) => [role, theme[role]])),
+    ...(slots.length ? {media: Object.fromEntries(slots.map((s) => [s, (media as Record<string, unknown>)[s]]))} : {}),
   } as VideoProps;
   return {variantId: variant.id, template: variant.template, templateVersion: version, props,
     composition: version === currentVersion(variant.template) ? variant.template : `${variant.template}-v${version}`,

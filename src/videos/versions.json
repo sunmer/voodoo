@@ -682,5 +682,21 @@
       "sha256": "c6c25163b8585adb4fd012056936b83e6b1c35802876c39db4f597c1153dfa69",
       "createdAt": "2026-10-08"
     }
+  ],
+  "orbit3d": [
+    {
+      "version": 1,
+      "hash": "c9ada04a94825533",
+      "sha256": "af5c56ca2a4534990a9118da69c51379e66f2b03febed3858809dcd2c9892f3d",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "phototitle": [
+    {
+      "version": 1,
+      "hash": "407acc164393c615",
+      "sha256": "aecfc875c8028c3433859ae00ede2219231e71f41e077d833239cc790b465b42",
+      "createdAt": "2026-10-09"
+    }
   ]
 }

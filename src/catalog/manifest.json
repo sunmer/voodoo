@@ -22,7 +22,12 @@
       "Editorial",
       "Neon",
       "Bold",
-      "Tech"
+      "Tech",
+      "3D",
+      "Photo",
+      "Retro",
+      "Playful",
+      "Handmade"
     ],
     "placement": {
       "16:9": [
@@ -966,6 +971,34 @@
         "model": "Claude Opus 5.5",
         "modelId": "claude-opus-5-5",
         "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "orbit3d",
+      "title": "3D Orbit Reveal",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 16:9 3D reveal: a ring of glossy blocks spins in, settles in orbit, and frames a brand line, title, and subtitle.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "GPT-5",
+        "modelId": "gpt-5",
+        "provider": "OpenAI",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "phototitle",
+      "title": "Photo Title Card",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 photo title card: a full-bleed photo pushes in while a colored rule and gradient wipe in, then a title reveals from the left.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "GPT-5",
+        "modelId": "gpt-5",
+        "provider": "OpenAI",
         "effort": "medium"
       }
     }
@@ -4851,6 +4884,99 @@
         "webinar",
         "event-promo",
         "saas"
+      ]
+    },
+    {
+      "template": "orbit3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "orbit3d-launch",
+      "title": "3D Orbit Logo Reveal",
+      "description": "Glossy 3D blocks spin into orbit and settle around a brand name, title, and subtitle.",
+      "purpose": "Logo reveal",
+      "style": [
+        "3D",
+        "Tech"
+      ],
+      "energy": 4,
+      "keywords": [
+        "3d logo reveal",
+        "3d logo animation",
+        "3d intro",
+        "logo reveal template",
+        "3d title animation"
+      ],
+      "props": {
+        "texts": {
+          "brand": "NORTHWIND",
+          "headline": "Built to move",
+          "subhead": "A new chapter in motion design starts here"
+        },
+        "theme": {
+          "background": "#07090f",
+          "surface": "#1b2340",
+          "foreground": "#f5f7ff",
+          "accent": "#6ee7ff",
+          "accent2": "#ff5c8a"
+        }
+      },
+      "seoDescription": "A free 3D logo reveal template with glossy blocks orbiting your brand name and title. Edit the text and colors online, then export.",
+      "useCases": [
+        "logo-reveal",
+        "brand-intro",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "phototitle",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "phototitle-coast",
+      "title": "Photo Title Card",
+      "description": "A full-bleed photo pushes in slowly while a colored rule and title reveal over a soft gradient.",
+      "purpose": "Creator video",
+      "style": [
+        "Photo",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "photo title card",
+        "title card with photo",
+        "travel intro",
+        "photo intro video",
+        "image title template"
+      ],
+      "props": {
+        "texts": {
+          "brand": "EPISODE 04",
+          "headline": "Where the coast ends",
+          "subhead": "Three days on the edge of the Pacific"
+        },
+        "theme": {
+          "background": "#0b1218",
+          "surface": "#1e2b36",
+          "foreground": "#ffffff",
+          "accent": "#ffd166",
+          "accent2": "#4cc9f0"
+        },
+        "media": {
+          "background": "coast"
+        }
+      },
+      "seoDescription": "A free photo title card template. Pick a bundled photo, add a title and subtitle, and get a slow push-in with a clean text reveal.",
+      "useCases": [
+        "title-card",
+        "youtube-intro",
+        "brand-intro"
       ]
     }
   ]

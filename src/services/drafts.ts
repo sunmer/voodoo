@@ -30,7 +30,7 @@ export async function loadDraft(uid: string, id: string): Promise<Draft> {
   if (!variant) throw new Error('This video template is unavailable.');
   // Drafts saved before versioning use v1, the first published source package.
   const templateVersion = typeof data.templateVersion === 'number' ? data.templateVersion : 1;
-  const props = compositionFor(variant.template, templateVersion).schema.parse(JSON.parse(data.propsJson));
+  const props = compositionFor(variant.template, templateVersion).schema.parse(JSON.parse(data.propsJson)) as VideoProps;
   return {id, variant, props, templateVersion};
 }
 export async function deleteDraft(uid: string, id: string) {
