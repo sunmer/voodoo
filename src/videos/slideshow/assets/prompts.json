@@ -1,0 +1,22 @@
+[
+  {
+    "id": "peaks",
+    "label": "Mountain peaks",
+    "prompt": "Wide landscape photograph of jagged mountain peaks above a valley at golden hour, crisp air, dramatic side light, a calm lake in the foreground. Lower left area is calm water with little detail. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "harbor",
+    "label": "Harbor town",
+    "prompt": "Wide photograph of a colorful harbor town at blue hour, painted houses along the water, boats moored, warm window lights reflected in calm water. Lower left area is calm water with little detail. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "dunes",
+    "label": "Desert dunes",
+    "prompt": "Wide photograph of rolling desert sand dunes at sunrise with long soft shadows and clean ripples, warm orange and rose tones, clear sky. Lower left area is smooth sand with little detail. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "forest",
+    "label": "Misty forest",
+    "prompt": "Wide photograph of a misty pine forest at dawn, sun rays through tall trunks, soft green and gold tones, a mossy forest floor. Lower left area is soft moss with little detail. No text, no readable signs, no logos, no watermark. No people."
+  }
+]

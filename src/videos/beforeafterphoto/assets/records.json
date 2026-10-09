@@ -1,0 +1,318 @@
+[
+  {
+    "id": "roombefore",
+    "label": "Room, before",
+    "file": "roombefore.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "a8ad842b051532aade094c7a1d4820369b633e49ad052cc47c73d54ce0d4635f",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide interior photograph of an empty, worn living room before renovation: bare concrete floor, patchy grey walls, a single bare bulb, dusty window, flat dull light. Straight-on view from the doorway, eye level, centered window. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0414,
+        "hi": 0.1725
+      },
+      {
+        "lo": 0.0849,
+        "hi": 0.3258
+      },
+      {
+        "lo": 0.0744,
+        "hi": 0.3126
+      },
+      {
+        "lo": 0.0358,
+        "hi": 0.189
+      },
+      {
+        "lo": 0.044,
+        "hi": 0.3426
+      },
+      {
+        "lo": 0.0927,
+        "hi": 0.8593
+      },
+      {
+        "lo": 0.0871,
+        "hi": 0.9018
+      },
+      {
+        "lo": 0.0432,
+        "hi": 0.3366
+      },
+      {
+        "lo": 0.0295,
+        "hi": 0.3685
+      },
+      {
+        "lo": 0.0391,
+        "hi": 0.3734
+      },
+      {
+        "lo": 0.0451,
+        "hi": 0.3856
+      },
+      {
+        "lo": 0.0413,
+        "hi": 0.3927
+      },
+      {
+        "lo": 0.065,
+        "hi": 0.1803
+      },
+      {
+        "lo": 0.0988,
+        "hi": 0.267
+      },
+      {
+        "lo": 0.1064,
+        "hi": 0.2702
+      },
+      {
+        "lo": 0.0329,
+        "hi": 0.2378
+      }
+    ]
+  },
+  {
+    "id": "roomafter",
+    "label": "Room, after",
+    "file": "roomafter.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "49c21fc8a83ed4c5c57040f1e931e88a1783095525cc45d5a75013735ad711ae",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide interior photograph of a bright renovated living room: light oak floor, warm white walls, a linen sofa, a plant, soft daylight through a clean window. Straight-on view from the doorway, eye level, centered window, same framing as a before photo of an empty room. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.2512,
+        "hi": 0.5701
+      },
+      {
+        "lo": 0.2462,
+        "hi": 0.7666
+      },
+      {
+        "lo": 0.1248,
+        "hi": 0.9029
+      },
+      {
+        "lo": 0.2032,
+        "hi": 0.571
+      },
+      {
+        "lo": 0.0706,
+        "hi": 0.6038
+      },
+      {
+        "lo": 0.2004,
+        "hi": 0.772
+      },
+      {
+        "lo": 0.0607,
+        "hi": 0.7331
+      },
+      {
+        "lo": 0.0716,
+        "hi": 0.5137
+      },
+      {
+        "lo": 0.0201,
+        "hi": 0.4992
+      },
+      {
+        "lo": 0.0561,
+        "hi": 0.8507
+      },
+      {
+        "lo": 0.0385,
+        "hi": 0.5721
+      },
+      {
+        "lo": 0.0507,
+        "hi": 0.4779
+      },
+      {
+        "lo": 0.1517,
+        "hi": 0.2957
+      },
+      {
+        "lo": 0.1129,
+        "hi": 0.5208
+      },
+      {
+        "lo": 0.069,
+        "hi": 0.33
+      },
+      {
+        "lo": 0.0331,
+        "hi": 0.3103
+      }
+    ]
+  },
+  {
+    "id": "yardbefore",
+    "label": "Garden, before",
+    "file": "yardbefore.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "2ab28130ac9359b8f25713a19e824b79bd79422b7444e58415d9d8b3e81bc921",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide photograph of an overgrown neglected backyard: patchy dry grass, weeds, a broken fence, grey overcast light. Straight-on view from the back door at eye level, fence centered at the back. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0416,
+        "hi": 0.5267
+      },
+      {
+        "lo": 0.0564,
+        "hi": 0.5194
+      },
+      {
+        "lo": 0.039,
+        "hi": 0.5073
+      },
+      {
+        "lo": 0.0384,
+        "hi": 0.4606
+      },
+      {
+        "lo": 0.0253,
+        "hi": 0.1991
+      },
+      {
+        "lo": 0.0441,
+        "hi": 0.2363
+      },
+      {
+        "lo": 0.0384,
+        "hi": 0.2476
+      },
+      {
+        "lo": 0.0197,
+        "hi": 0.1946
+      },
+      {
+        "lo": 0.0208,
+        "hi": 0.1968
+      },
+      {
+        "lo": 0.0957,
+        "hi": 0.2649
+      },
+      {
+        "lo": 0.0858,
+        "hi": 0.2731
+      },
+      {
+        "lo": 0.0422,
+        "hi": 0.2092
+      },
+      {
+        "lo": 0.0179,
+        "hi": 0.1985
+      },
+      {
+        "lo": 0.0446,
+        "hi": 0.2007
+      },
+      {
+        "lo": 0.0719,
+        "hi": 0.2084
+      },
+      {
+        "lo": 0.0389,
+        "hi": 0.2202
+      }
+    ]
+  },
+  {
+    "id": "yardafter",
+    "label": "Garden, after",
+    "file": "yardafter.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "07aa36f7f372f87f76659d9bdbca337ee9418b441ba2efdae7006dad5e5b7a62",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide photograph of a beautifully landscaped backyard: green lawn, stone path, flower beds, a new wooden fence, warm late afternoon sun. Straight-on view from the back door at eye level, fence centered at the back, same framing as a before photo. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.017,
+        "hi": 0.3704
+      },
+      {
+        "lo": 0.0304,
+        "hi": 0.4499
+      },
+      {
+        "lo": 0.0554,
+        "hi": 0.8714
+      },
+      {
+        "lo": 0.0843,
+        "hi": 0.6935
+      },
+      {
+        "lo": 0.037,
+        "hi": 0.4256
+      },
+      {
+        "lo": 0.0144,
+        "hi": 0.2157
+      },
+      {
+        "lo": 0.0196,
+        "hi": 0.3309
+      },
+      {
+        "lo": 0.0191,
+        "hi": 0.2256
+      },
+      {
+        "lo": 0.0375,
+        "hi": 0.5725
+      },
+      {
+        "lo": 0.0274,
+        "hi": 0.3276
+      },
+      {
+        "lo": 0.0217,
+        "hi": 0.4221
+      },
+      {
+        "lo": 0.0312,
+        "hi": 0.3862
+      },
+      {
+        "lo": 0.0102,
+        "hi": 0.5398
+      },
+      {
+        "lo": 0.053,
+        "hi": 0.5077
+      },
+      {
+        "lo": 0.0125,
+        "hi": 0.3441
+      },
+      {
+        "lo": 0.0064,
+        "hi": 0.269
+      }
+    ]
+  }
+]

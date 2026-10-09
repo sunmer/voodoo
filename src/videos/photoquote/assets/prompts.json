@@ -1,0 +1,14 @@
+[
+  {
+    "id": "mountain",
+    "label": "Mountain ridge",
+    "size": "1024x1536",
+    "prompt": "Tall vertical landscape photograph of a mountain ridge at sunrise above a sea of low clouds, soft golden light on the peaks, deep shadow in the valleys. The lower 55 percent of the frame is calm cloud and shadow with little detail, for a quote overlay. Shot on a full-frame camera, 50mm lens. No text, no people, no logos, no watermark."
+  },
+  {
+    "id": "studio",
+    "label": "Window light",
+    "size": "1024x1536",
+    "prompt": "Tall vertical photograph of a quiet minimalist room: soft window light falling across a plaster wall, a single green plant in a ceramic pot near the top, long gentle shadows. The lower 55 percent of the frame is plain wall and floor with little detail, for a quote overlay. Muted natural tones. Shot on a full-frame camera, 35mm lens. No text, no people, no logos, no watermark."
+  }
+]

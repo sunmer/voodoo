@@ -72,6 +72,15 @@ test('all presets validate, unknown fields and active-content colors do not', ()
     {...payload, props: {...props, texts: {...props.texts, headline: '   '}}},
   ]) assert.throws(() => validateShare(input), HttpError);
 });
+test('image presets validate only the template\'s own image IDs', () => {
+  const photo = manifest.variants.find((v) => 'media' in v.props)!;
+  const base = photo.props as typeof photo.props & {media: Record<string, string>};
+  assert.deepEqual((validateShare({variantId: photo.id, props: {...base, media: {background: 'city'}}}).props as {media?: unknown}).media, {background: 'city'});
+  for (const media of [{background: 'https://evil.test/x.jpg'}, {background: 'toString'}, {background: 'lake'}, {}, {background: 'coast', extra: 'coast'}, undefined]) {
+    assert.throws(() => validateShare({variantId: photo.id, props: {...base, media}}), HttpError);
+  }
+  assert.throws(() => validateShare({...payload, props: {...props, media: {background: 'coast'}}}), HttpError);
+});
 test('fingerprints distinguish users and edits but not input property order', () => {
   const a = validateShare(payload);
   const reordered = validateShare({...payload, props: {theme: props.theme, texts: Object.fromEntries(Object.entries(props.texts).reverse())}});

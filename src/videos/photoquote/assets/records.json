@@ -1,0 +1,160 @@
+[
+  {
+    "id": "mountain",
+    "label": "Mountain ridge",
+    "file": "mountain.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "52dd6eb4e1be67e4490825f849fbe8d38590fed685341370fd3344af35bc7401",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical landscape photograph of a mountain ridge at sunrise above a sea of low clouds, soft golden light on the peaks, deep shadow in the valleys. The lower 55 percent of the frame is calm cloud and shadow with little detail, for a quote overlay. Shot on a full-frame camera, 50mm lens. No text, no people, no logos, no watermark.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.1073,
+        "hi": 0.767
+      },
+      {
+        "lo": 0.0567,
+        "hi": 0.6068
+      },
+      {
+        "lo": 0.0298,
+        "hi": 0.5268
+      },
+      {
+        "lo": 0.0233,
+        "hi": 0.4801
+      },
+      {
+        "lo": 0.0816,
+        "hi": 0.4839
+      },
+      {
+        "lo": 0.0461,
+        "hi": 0.4158
+      },
+      {
+        "lo": 0.028,
+        "hi": 0.2584
+      },
+      {
+        "lo": 0.0202,
+        "hi": 0.1774
+      },
+      {
+        "lo": 0.0291,
+        "hi": 0.0735
+      },
+      {
+        "lo": 0.0259,
+        "hi": 0.0693
+      },
+      {
+        "lo": 0.0233,
+        "hi": 0.063
+      },
+      {
+        "lo": 0.0263,
+        "hi": 0.0634
+      },
+      {
+        "lo": 0.0096,
+        "hi": 0.0268
+      },
+      {
+        "lo": 0.0089,
+        "hi": 0.0238
+      },
+      {
+        "lo": 0.0104,
+        "hi": 0.024
+      },
+      {
+        "lo": 0.0103,
+        "hi": 0.0248
+      }
+    ]
+  },
+  {
+    "id": "studio",
+    "label": "Window light",
+    "file": "studio.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "adee98f9806a010a9b5380a0748459dd020b83ba820695ffe9ff0f65454456bd",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical photograph of a quiet minimalist room: soft window light falling across a plaster wall, a single green plant in a ceramic pot near the top, long gentle shadows. The lower 55 percent of the frame is plain wall and floor with little detail, for a quote overlay. Muted natural tones. Shot on a full-frame camera, 35mm lens. No text, no people, no logos, no watermark.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0173,
+        "hi": 0.7588
+      },
+      {
+        "lo": 0.0298,
+        "hi": 0.5953
+      },
+      {
+        "lo": 0.2214,
+        "hi": 0.7036
+      },
+      {
+        "lo": 0.1972,
+        "hi": 0.6588
+      },
+      {
+        "lo": 0.0579,
+        "hi": 0.4851
+      },
+      {
+        "lo": 0.1086,
+        "hi": 0.4688
+      },
+      {
+        "lo": 0.163,
+        "hi": 0.629
+      },
+      {
+        "lo": 0.0185,
+        "hi": 0.5471
+      },
+      {
+        "lo": 0.0851,
+        "hi": 0.2184
+      },
+      {
+        "lo": 0.1039,
+        "hi": 0.2839
+      },
+      {
+        "lo": 0.1299,
+        "hi": 0.5281
+      },
+      {
+        "lo": 0.1485,
+        "hi": 0.4817
+      },
+      {
+        "lo": 0.1429,
+        "hi": 0.2161
+      },
+      {
+        "lo": 0.1183,
+        "hi": 0.1637
+      },
+      {
+        "lo": 0.1236,
+        "hi": 0.2221
+      },
+      {
+        "lo": 0.0968,
+        "hi": 0.1882
+      }
+    ]
+  }
+]

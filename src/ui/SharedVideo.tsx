@@ -3,6 +3,7 @@ import {variants} from '../catalog/catalog';
 import {compositionFor} from '../videos/registry';
 import {loadSharedVideo, type SharedVideo as SharedVideoData} from '../services/sharing';
 import {Editor} from './Editor';
+import type {VideoProps} from '../videos/vocab';
 
 export function SharedVideo({id, openShare}: {id: string; openShare?: boolean}) {
   const [video, setVideo] = useState<SharedVideoData | null>(null);
@@ -17,7 +18,7 @@ export function SharedVideo({id, openShare}: {id: string; openShare?: boolean}) 
       try { schema = variant && compositionFor(variant.template, data.templateVersion ?? 1).schema; } catch { schema = undefined; }
       const result = schema?.safeParse(data.props);
       if (!result?.success) throw new Error('This video is not supported by this version of cliphou.se.');
-      if (!controller.signal.aborted) setVideo({...data, props: result.data});
+      if (!controller.signal.aborted) setVideo({...data, props: result.data as VideoProps});
     }).catch((e) => { if (!controller.signal.aborted) setError(e.message); });
     return () => controller.abort();
   }, [id, attempt]);

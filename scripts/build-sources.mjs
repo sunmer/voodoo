@@ -17,6 +17,13 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/catalog/manifes
 const versions = fs.existsSync(versionsFile) ? JSON.parse(fs.readFileSync(versionsFile, 'utf8')) : {};
 const read = (p) => fs.readFileSync(path.join(root, p));
 const shared = ['src/videos/contract.ts', 'src/videos/vocab.ts', ...fs.readdirSync(path.join(root, 'src/videos/shared')).sort().map((f) => `src/videos/shared/${f}`)];
+const tree = (dir) => fs.readdirSync(path.join(root, dir), {withFileTypes: true}).sort((a, b) => a.name.localeCompare(b.name))
+  .flatMap((e) => e.isDirectory() ? tree(`${dir}/${e.name}`) : [`${dir}/${e.name}`]);
+// Optional modules. A package includes one only when its template imports it, so older packages keep their hashes.
+const optional = [
+  {dir: 'src/videos/media', pattern: /from '\.\.\/media\//, template: 'scripts/source-template/media'},
+  {dir: 'src/videos/three', pattern: /from '\.\.\/three\//, template: 'scripts/source-template/three'},
+];
 const template = JSON.parse(read('scripts/source-template/package.json'));
 const lock = read('scripts/source-template/package-lock.json');
 const license = read('LICENSE');
@@ -28,14 +35,21 @@ function files(id, version) {
   const name = component.replace(/\.tsx$/, '');
   const variant = manifest.variants.find((v) => v.template === id && !v.hidden) ?? manifest.variants.find((v) => v.template === id);
   const out = new Map();
-  for (const f of [...fs.readdirSync(path.join(root, dir)).sort().map((f) => `${dir}/${f}`), ...shared]) out.set(f, read(f));
-  out.set('package.json', Buffer.from(`${JSON.stringify({...template, name: template.name, description: `cliphou.se ${pascal(id)} template v${version}`,
+  // prompts.json is generator input; records.json in the package holds each asset's exact prompt.
+  const own = tree(dir).filter((f) => !f.endsWith('/assets/prompts.json'));
+  const code = own.filter((f) => /\.tsx?$/.test(f)).map((f) => read(f).toString()).join('\n');
+  const used = optional.filter((o) => o.pattern.test(code));
+  for (const f of [...own, ...shared, ...used.flatMap((o) => tree(o.dir))]) out.set(f, read(f));
+  // A module with extra npm dependencies brings its own package.json and lockfile.
+  const deps = used.findLast((o) => fs.existsSync(path.join(root, o.template, 'package.json')));
+  const pkgTemplate = deps ? JSON.parse(read(`${deps.template}/package.json`)) : template;
+  out.set('package.json', Buffer.from(`${JSON.stringify({...pkgTemplate, name: pkgTemplate.name, description: `cliphou.se ${pascal(id)} template v${version}`,
     scripts: {render: `remotion render src/index.ts ${id} out/video.mp4 --props=props.json`, studio: 'remotion studio src/index.ts'}}, null, 2)}\n`));
-  out.set('package-lock.json', lock);
+  out.set('package-lock.json', deps ? read(`${deps.template}/package-lock.json`) : lock);
   out.set('LICENSE', license);
   out.set('props.json', Buffer.from(`${JSON.stringify(variant.props, null, 2)}\n`));
   out.set('tsconfig.json', Buffer.from(`${JSON.stringify({compilerOptions: {target: 'ES2022', module: 'ESNext', moduleResolution: 'bundler', jsx: 'react-jsx', strict: true, resolveJsonModule: true, esModuleInterop: true, skipLibCheck: true, noEmit: true, allowImportingTsExtensions: true}, include: ['src']}, null, 2)}\n`));
-  out.set('src/fonts.d.ts', Buffer.from("declare module '*.woff2' {\n  const url: string;\n  export default url;\n}\n"));
+  out.set('src/fonts.d.ts', Buffer.from(`declare module '*.woff2' {\n  const url: string;\n  export default url;\n}\n${used.some((o) => o.dir.endsWith('media')) ? "declare module '*.webp' {\n  const url: string;\n  export default url;\n}\n" : ''}`));
   out.set('src/index.ts', Buffer.from("import {registerRoot} from 'remotion';\nimport {RemotionRoot} from './Root';\n\nregisterRoot(RemotionRoot);\n"));
   out.set('src/Root.tsx', Buffer.from(`import React from 'react';
 import {Composition} from 'remotion';
@@ -59,9 +73,9 @@ npx remotion render src/index.ts ${id} out/video.mp4 --props=props.json
 npx remotion studio src/index.ts
 \`\`\`
 
-- Change text and colors in \`props.json\`. The schema is in \`src/videos/${id}/schema.ts\`.
+- Change text and colors${used.some((o) => o.dir.endsWith('media')) ? ', and choose a bundled image by ID,' : ''} in \`props.json\`. The schema is in \`src/videos/${id}/schema.ts\`.
 - Change layout, motion, and timing in \`src/videos/${id}/\`. Scene timing is in \`meta.ts\`.
-- Fonts come from pinned Fontsource packages. The template uses no network assets and no unseeded randomness.
+- Fonts come from pinned Fontsource packages.${used.some((o) => o.dir.endsWith('media')) ? ` Images are bundled in \`src/videos/${id}/assets/\`; \`records.json\` lists each image's prompt, model, size, and hash.` : ''} The template uses no network assets and no unseeded randomness.
 - The same template version, dependency versions, and props render the same video.
 
 The template is MIT-0: copy, modify, sell, and share it without attribution. Remotion has separate license terms: https://remotion.dev/license

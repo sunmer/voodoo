@@ -1,0 +1,12 @@
+[
+  {
+    "id": "coast",
+    "label": "Coastline at dusk",
+    "prompt": "Wide cinematic landscape photograph of a rugged ocean coastline at dusk, sea stacks rising from calm water, low mist along the cliffs, soft natural light, muted cool tones. The left 45 percent of the frame is open sea and sky with very little detail, for a title overlay. Shot on a full-frame camera, 24mm lens, long exposure. No text, no people, no logos, no watermark."
+  },
+  {
+    "id": "city",
+    "label": "City at night",
+    "prompt": "Wide cinematic photograph of a modern city skyline at night seen across a river, warm window lights and soft reflections on the water, gentle haze, deep blue sky. The skyline sits in the right half and lower third; the left 45 percent of the frame is mostly calm sky and dark water with little detail, for a title overlay. Shot on a full-frame camera, 35mm lens. No text, no readable signs, no people, no logos, no watermark."
+  }
+]

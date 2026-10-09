@@ -1,0 +1,160 @@
+[
+  {
+    "id": "speaker1",
+    "label": "Portrait, warm",
+    "file": "speaker1.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "026ba6bf5d75597357d975e875598060fd1e4197842a45c305075f5d22a3ba49",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical professional portrait photograph of a smiling woman in her thirties with short dark hair and a navy blazer, soft window light, warm neutral studio background, shoulders up, centered, natural skin texture. No text, no readable signs, no logos, no watermark.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0413,
+        "hi": 0.8576
+      },
+      {
+        "lo": 0.009,
+        "hi": 0.6039
+      },
+      {
+        "lo": 0.003,
+        "hi": 0.1768
+      },
+      {
+        "lo": 0.0314,
+        "hi": 0.366
+      },
+      {
+        "lo": 0.0354,
+        "hi": 0.7423
+      },
+      {
+        "lo": 0.0561,
+        "hi": 0.6085
+      },
+      {
+        "lo": 0.0056,
+        "hi": 0.3999
+      },
+      {
+        "lo": 0.0122,
+        "hi": 0.3917
+      },
+      {
+        "lo": 0.0089,
+        "hi": 0.6961
+      },
+      {
+        "lo": 0.0092,
+        "hi": 0.5896
+      },
+      {
+        "lo": 0.0042,
+        "hi": 0.5318
+      },
+      {
+        "lo": 0.0068,
+        "hi": 0.2353
+      },
+      {
+        "lo": 0.0094,
+        "hi": 0.0296
+      },
+      {
+        "lo": 0.0116,
+        "hi": 0.7946
+      },
+      {
+        "lo": 0.0042,
+        "hi": 0.4206
+      },
+      {
+        "lo": 0.0023,
+        "hi": 0.0183
+      }
+    ]
+  },
+  {
+    "id": "speaker2",
+    "label": "Portrait, studio",
+    "file": "speaker2.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "b409ebd01dc3fe7863ba1e6b666a9c78dadd7c12863c406c8783c5a92594996d",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical professional portrait photograph of a friendly man in his forties with a beard and a grey sweater, soft studio light, cool neutral background, shoulders up, centered, natural skin texture. No text, no readable signs, no logos, no watermark.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.1805,
+        "hi": 0.2877
+      },
+      {
+        "lo": 0.011,
+        "hi": 0.5113
+      },
+      {
+        "lo": 0.0057,
+        "hi": 0.2557
+      },
+      {
+        "lo": 0.0894,
+        "hi": 0.1943
+      },
+      {
+        "lo": 0.2489,
+        "hi": 0.3082
+      },
+      {
+        "lo": 0.0436,
+        "hi": 0.658
+      },
+      {
+        "lo": 0.0121,
+        "hi": 0.4002
+      },
+      {
+        "lo": 0.1051,
+        "hi": 0.2111
+      },
+      {
+        "lo": 0.0807,
+        "hi": 0.2695
+      },
+      {
+        "lo": 0.1046,
+        "hi": 0.5587
+      },
+      {
+        "lo": 0.0216,
+        "hi": 0.3097
+      },
+      {
+        "lo": 0.0305,
+        "hi": 0.1581
+      },
+      {
+        "lo": 0.0243,
+        "hi": 0.1552
+      },
+      {
+        "lo": 0.0406,
+        "hi": 0.2326
+      },
+      {
+        "lo": 0.0292,
+        "hi": 0.1568
+      },
+      {
+        "lo": 0.017,
+        "hi": 0.1516
+      }
+    ]
+  }
+]
