@@ -7,7 +7,10 @@ export function Header({children}: {children?: ReactNode}) {
     <header className="topbar">
       <a className="logo" href="#/">
         <Scissors size={22} />
-        cliphou.se
+        <span className="logo-copy">
+          <span>cliphou.se</span>
+          <span className="logo-tagline">Instant motion graphics for your videos</span>
+        </span>
       </a>
       <div className="topbar-slot">{children}</div>
       <AccountButton />
