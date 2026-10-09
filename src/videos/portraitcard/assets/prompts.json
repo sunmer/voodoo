@@ -1,0 +1,14 @@
+[
+  {
+    "id": "speaker1",
+    "label": "Portrait, warm",
+    "size": "1024x1536",
+    "prompt": "Tall vertical professional portrait photograph of a smiling woman in her thirties with short dark hair and a navy blazer, soft window light, warm neutral studio background, shoulders up, centered, natural skin texture. No text, no readable signs, no logos, no watermark."
+  },
+  {
+    "id": "speaker2",
+    "label": "Portrait, studio",
+    "size": "1024x1536",
+    "prompt": "Tall vertical professional portrait photograph of a friendly man in his forties with a beard and a grey sweater, soft studio light, cool neutral background, shoulders up, centered, natural skin texture. No text, no readable signs, no logos, no watermark."
+  }
+]

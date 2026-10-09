@@ -1,0 +1,12 @@
+[
+  {
+    "id": "office",
+    "label": "Studio office",
+    "prompt": "Wide cinematic photograph of a bright modern studio office with plants, wooden desks, and large windows, shallow depth of field, soft daylight, calm and uncluttered. The lower third of the frame is softly out of focus floor and desk surfaces with little detail. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "stage",
+    "label": "Event stage",
+    "prompt": "Wide cinematic photograph of an empty conference stage with warm spotlights, a dark auditorium, and soft haze in the light beams. The lower third of the frame is dark stage floor with little detail. No text, no readable signs, no logos, no watermark. No people."
+  }
+]

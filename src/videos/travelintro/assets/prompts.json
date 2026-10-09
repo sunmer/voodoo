@@ -1,0 +1,14 @@
+[
+  {
+    "id": "coastroad",
+    "label": "Coastal road",
+    "size": "1024x1536",
+    "prompt": "Tall vertical aerial photograph of a winding coastal road along turquoise water and white cliffs on a sunny day, the road curving from the bottom to the top of the frame. The center band of the frame has open water with little detail. No text, no readable signs, no logos, no watermark. No people, no cars."
+  },
+  {
+    "id": "oldtown",
+    "label": "Old town street",
+    "size": "1024x1536",
+    "prompt": "Tall vertical photograph of a narrow cobblestone street in a sunlit old European town, pastel buildings, flower boxes, a bright sky strip at the top. The center of the frame is the open street with soft shadows. No text, no readable signs, no logos, no watermark. No people."
+  }
+]

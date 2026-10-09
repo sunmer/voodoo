@@ -300,6 +300,45 @@ export const useCases = [
       ['Which format do these use?', 'These creator templates use 16:9 for YouTube and other landscape videos.'],
     ],
   },
+  {
+    path: '/3d-video-templates/',
+    title: '3D Video Templates: 3D Logo Reveals, Titles, and Product Spins | cliphou.se',
+    h1: '3D video templates',
+    description: 'Free 3D motion graphics templates: logo reveals, title cards, product turntables, countdowns, chrome and clay intros. Edit text and colors online.',
+    intro: 'Real-time 3D scenes for intros, logo reveals, product spins, and countdowns. Change the text and theme colors, and the 3D scene updates with them.',
+    match: (v) => v.style.includes('3D'),
+    faq: [
+      ['Do I need 3D software?', 'No. The scenes render in your browser and in the MP4 export. Edit the text and colors like any other template.'],
+      ['Can I change the 3D shapes?', 'Download the source package. Each template is a Remotion project that uses Three.js, so you or a coding agent can change the geometry, lights, and camera.'],
+      ['Do the colors change the 3D materials?', 'Yes. The five theme colors drive the materials and lights as well as the text.'],
+    ],
+  },
+  {
+    path: '/photo-video-templates/',
+    title: 'Photo Video Templates: Slideshows, Photo Titles, and Quotes | cliphou.se',
+    h1: 'Photo video templates',
+    description: 'Free photo video templates: slideshows, photo title cards, quotes, lower thirds, before and after, and travel intros. Switch photos and edit online.',
+    intro: 'Templates built around photography. Each one includes its own photos that you can switch between, and the text stays readable over every photo and color theme.',
+    match: (v) => v.style.includes('Photo'),
+    faq: [
+      ['Can I upload my own photos?', 'Not yet. Each template includes photos you can switch between. To use your own, download the source package and replace the files in its assets folder.'],
+      ['Will my text be readable over the photo?', 'Yes. A soft scrim in your background color sits under the text, with its strength set from the photo under it, so text and accent colors stay readable on light and dark themes.'],
+      ['Can I use the photos commercially?', 'Yes. The photos ship with the template under the same license as the template.'],
+    ],
+  },
+  {
+    path: '/retro-video-templates/',
+    title: 'Retro, VHS, Pixel, and Glitch Intro Templates | cliphou.se',
+    h1: 'Retro and glitch intro templates',
+    description: 'Free retro video templates: VHS intros, pixel arcade titles, cyber glitch effects, paper cutouts, and doodles. Edit the text and colors online.',
+    intro: 'Stylized intros for creators: tape noise and timecodes, 8-bit pixels, RGB glitches, torn paper, and hand-drawn marker lines.',
+    match: (v) => ['Retro', 'Handmade', 'Playful'].some((s) => v.style.includes(s)) || v.id.startsWith('glitch-'),
+    faq: [
+      ['Is the noise random every time?', 'No. Every effect is seeded, so the same text and colors always render the same video.'],
+      ['Which format do these use?', 'Most are 16:9 for YouTube. Check each template for its format.'],
+      ['Do they include sound?', 'No. Add music or sound effects in your video editor.'],
+    ],
+  },
 ];
 
 export const editorialPages = [

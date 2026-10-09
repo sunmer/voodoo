@@ -144,6 +144,40 @@ import {Orbit3d} from './orbit3d/Orbit3d';
 import {orbit3dSchema} from './orbit3d/schema';
 import {Phototitle} from './phototitle/Phototitle';
 import {phototitleSchema} from './phototitle/schema';
+import {Portraitcard} from './portraitcard/Portraitcard';
+import {portraitcardSchema} from './portraitcard/schema';
+import {Travelintro} from './travelintro/Travelintro';
+import {travelintroSchema} from './travelintro/schema';
+import {Beforeafterphoto} from './beforeafterphoto/Beforeafterphoto';
+import {beforeafterphotoSchema} from './beforeafterphoto/schema';
+import {Slideshow} from './slideshow/Slideshow';
+import {slideshowSchema} from './slideshow/schema';
+import {Photolower} from './photolower/Photolower';
+import {photolowerSchema} from './photolower/schema';
+import {Glitch} from './glitch/Glitch';
+import {glitchSchema} from './glitch/schema';
+import {Liquid} from './liquid/Liquid';
+import {liquidSchema} from './liquid/schema';
+import {Magazine} from './magazine/Magazine';
+import {magazineSchema} from './magazine/schema';
+import {Doodle} from './doodle/Doodle';
+import {doodleSchema} from './doodle/schema';
+import {Pixel} from './pixel/Pixel';
+import {pixelSchema} from './pixel/schema';
+import {Papercut} from './papercut/Papercut';
+import {papercutSchema} from './papercut/schema';
+import {Clay} from './clay/Clay';
+import {claySchema} from './clay/schema';
+import {Iso3d} from './iso3d/Iso3d';
+import {iso3dSchema} from './iso3d/schema';
+import {Chrome3d} from './chrome3d/Chrome3d';
+import {chrome3dSchema} from './chrome3d/schema';
+import {Countdown3d} from './countdown3d/Countdown3d';
+import {countdown3dSchema} from './countdown3d/schema';
+import {Turntable} from './turntable/Turntable';
+import {turntableSchema} from './turntable/schema';
+import {Title3d} from './title3d/Title3d';
+import {title3dSchema} from './title3d/schema';
 import {Photoquote} from './photoquote/Photoquote';
 import {photoquoteSchema} from './photoquote/schema';
 import {Vhsintro} from './vhsintro/Vhsintro';
@@ -226,6 +260,23 @@ export const compositions: Record<string, CompositionDef> = {
   webinar: {...templateMeta.webinar, component: Webinar, schema: webinarSchema as unknown as VideoSchema},
   orbit3d: {...templateMeta.orbit3d, component: Orbit3d, schema: orbit3dSchema as unknown as VideoSchema},
   phototitle: {...templateMeta.phototitle, component: Phototitle, schema: phototitleSchema as unknown as VideoSchema},
+  portraitcard: {...templateMeta.portraitcard, component: Portraitcard, schema: portraitcardSchema as unknown as VideoSchema},
+  travelintro: {...templateMeta.travelintro, component: Travelintro, schema: travelintroSchema as unknown as VideoSchema},
+  beforeafterphoto: {...templateMeta.beforeafterphoto, component: Beforeafterphoto, schema: beforeafterphotoSchema as unknown as VideoSchema},
+  slideshow: {...templateMeta.slideshow, component: Slideshow, schema: slideshowSchema as unknown as VideoSchema},
+  photolower: {...templateMeta.photolower, component: Photolower, schema: photolowerSchema as unknown as VideoSchema},
+  glitch: {...templateMeta.glitch, component: Glitch, schema: glitchSchema as unknown as VideoSchema},
+  liquid: {...templateMeta.liquid, component: Liquid, schema: liquidSchema as unknown as VideoSchema},
+  magazine: {...templateMeta.magazine, component: Magazine, schema: magazineSchema as unknown as VideoSchema},
+  doodle: {...templateMeta.doodle, component: Doodle, schema: doodleSchema as unknown as VideoSchema},
+  pixel: {...templateMeta.pixel, component: Pixel, schema: pixelSchema as unknown as VideoSchema},
+  papercut: {...templateMeta.papercut, component: Papercut, schema: papercutSchema as unknown as VideoSchema},
+  clay: {...templateMeta.clay, component: Clay, schema: claySchema as unknown as VideoSchema},
+  iso3d: {...templateMeta.iso3d, component: Iso3d, schema: iso3dSchema as unknown as VideoSchema},
+  chrome3d: {...templateMeta.chrome3d, component: Chrome3d, schema: chrome3dSchema as unknown as VideoSchema},
+  countdown3d: {...templateMeta.countdown3d, component: Countdown3d, schema: countdown3dSchema as unknown as VideoSchema},
+  turntable: {...templateMeta.turntable, component: Turntable, schema: turntableSchema as unknown as VideoSchema},
+  title3d: {...templateMeta.title3d, component: Title3d, schema: title3dSchema as unknown as VideoSchema},
   photoquote: {...templateMeta.photoquote, component: Photoquote, schema: photoquoteSchema as unknown as VideoSchema},
   vhsintro: {...templateMeta.vhsintro, component: Vhsintro, schema: vhsintroSchema as unknown as VideoSchema},
   logo3d: {...templateMeta.logo3d, component: Logo3d, schema: logo3dSchema as unknown as VideoSchema},

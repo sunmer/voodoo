@@ -1,0 +1,318 @@
+[
+  {
+    "id": "peaks",
+    "label": "Mountain peaks",
+    "file": "peaks.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "b4532287fedc45537eced8deba6ec5b518d715f7cef2b96050478c2ac309048c",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide landscape photograph of jagged mountain peaks above a valley at golden hour, crisp air, dramatic side light, a calm lake in the foreground. Lower left area is calm water with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.2818,
+        "hi": 0.6848
+      },
+      {
+        "lo": 0.0836,
+        "hi": 0.5367
+      },
+      {
+        "lo": 0.0582,
+        "hi": 0.4236
+      },
+      {
+        "lo": 0.0377,
+        "hi": 0.3133
+      },
+      {
+        "lo": 0.0202,
+        "hi": 0.6741
+      },
+      {
+        "lo": 0.034,
+        "hi": 0.3215
+      },
+      {
+        "lo": 0.0212,
+        "hi": 0.2615
+      },
+      {
+        "lo": 0.0217,
+        "hi": 0.199
+      },
+      {
+        "lo": 0.0073,
+        "hi": 0.4751
+      },
+      {
+        "lo": 0.0086,
+        "hi": 0.2358
+      },
+      {
+        "lo": 0.0098,
+        "hi": 0.0949
+      },
+      {
+        "lo": 0.008,
+        "hi": 0.0883
+      },
+      {
+        "lo": 0.1472,
+        "hi": 0.5762
+      },
+      {
+        "lo": 0.0627,
+        "hi": 0.2859
+      },
+      {
+        "lo": 0.0047,
+        "hi": 0.1269
+      },
+      {
+        "lo": 0.0055,
+        "hi": 0.1352
+      }
+    ]
+  },
+  {
+    "id": "harbor",
+    "label": "Harbor town",
+    "file": "harbor.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "746ceb940900c22103cf892dc2308ebce9b248230af880cbf006fb655bf1cc18",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide photograph of a colorful harbor town at blue hour, painted houses along the water, boats moored, warm window lights reflected in calm water. Lower left area is calm water with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0648,
+        "hi": 0.2468
+      },
+      {
+        "lo": 0.076,
+        "hi": 0.1567
+      },
+      {
+        "lo": 0.0046,
+        "hi": 0.1409
+      },
+      {
+        "lo": 0.0052,
+        "hi": 0.1407
+      },
+      {
+        "lo": 0.0108,
+        "hi": 0.3106
+      },
+      {
+        "lo": 0.008,
+        "hi": 0.261
+      },
+      {
+        "lo": 0.0086,
+        "hi": 0.3327
+      },
+      {
+        "lo": 0.0167,
+        "hi": 0.3577
+      },
+      {
+        "lo": 0.0863,
+        "hi": 0.2351
+      },
+      {
+        "lo": 0.034,
+        "hi": 0.2521
+      },
+      {
+        "lo": 0.0089,
+        "hi": 0.3952
+      },
+      {
+        "lo": 0.0006,
+        "hi": 0.4078
+      },
+      {
+        "lo": 0.0259,
+        "hi": 0.0779
+      },
+      {
+        "lo": 0.0237,
+        "hi": 0.0777
+      },
+      {
+        "lo": 0.0222,
+        "hi": 0.0741
+      },
+      {
+        "lo": 0.0079,
+        "hi": 0.2369
+      }
+    ]
+  },
+  {
+    "id": "dunes",
+    "label": "Desert dunes",
+    "file": "dunes.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "e90ae7def964927f8da90853690fe8c594e671129010ae4efb9fa4b4bc15cfd2",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide photograph of rolling desert sand dunes at sunrise with long soft shadows and clean ripples, warm orange and rose tones, clear sky. Lower left area is smooth sand with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.1022,
+        "hi": 0.6278
+      },
+      {
+        "lo": 0.0974,
+        "hi": 0.6082
+      },
+      {
+        "lo": 0.038,
+        "hi": 0.4985
+      },
+      {
+        "lo": 0.0294,
+        "hi": 0.388
+      },
+      {
+        "lo": 0.0445,
+        "hi": 0.339
+      },
+      {
+        "lo": 0.0359,
+        "hi": 0.3269
+      },
+      {
+        "lo": 0.0328,
+        "hi": 0.1852
+      },
+      {
+        "lo": 0.0271,
+        "hi": 0.0605
+      },
+      {
+        "lo": 0.105,
+        "hi": 0.198
+      },
+      {
+        "lo": 0.13,
+        "hi": 0.2563
+      },
+      {
+        "lo": 0.0639,
+        "hi": 0.2331
+      },
+      {
+        "lo": 0.029,
+        "hi": 0.1263
+      },
+      {
+        "lo": 0.0609,
+        "hi": 0.1081
+      },
+      {
+        "lo": 0.0696,
+        "hi": 0.1217
+      },
+      {
+        "lo": 0.069,
+        "hi": 0.1236
+      },
+      {
+        "lo": 0.061,
+        "hi": 0.1054
+      }
+    ]
+  },
+  {
+    "id": "forest",
+    "label": "Misty forest",
+    "file": "forest.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "ec45d2fd665eebe88bd9c2827c7a16c1f00bd9ee4f7e5d6a063b302b4b139a5f",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide photograph of a misty pine forest at dawn, sun rays through tall trunks, soft green and gold tones, a mossy forest floor. Lower left area is soft moss with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0578,
+        "hi": 0.6172
+      },
+      {
+        "lo": 0.0256,
+        "hi": 0.5116
+      },
+      {
+        "lo": 0.0843,
+        "hi": 0.8479
+      },
+      {
+        "lo": 0.016,
+        "hi": 0.3424
+      },
+      {
+        "lo": 0.0507,
+        "hi": 0.2108
+      },
+      {
+        "lo": 0.023,
+        "hi": 0.2442
+      },
+      {
+        "lo": 0.0364,
+        "hi": 0.3564
+      },
+      {
+        "lo": 0.0135,
+        "hi": 0.1474
+      },
+      {
+        "lo": 0.0576,
+        "hi": 0.1413
+      },
+      {
+        "lo": 0.0161,
+        "hi": 0.1333
+      },
+      {
+        "lo": 0.0108,
+        "hi": 0.1542
+      },
+      {
+        "lo": 0.0058,
+        "hi": 0.068
+      },
+      {
+        "lo": 0.0343,
+        "hi": 0.0988
+      },
+      {
+        "lo": 0.0342,
+        "hi": 0.1486
+      },
+      {
+        "lo": 0.0216,
+        "hi": 0.1884
+      },
+      {
+        "lo": 0.0098,
+        "hi": 0.1073
+      }
+    ]
+  }
+]

@@ -2,23 +2,309 @@
   "logo3d": {
     "name": "Logo3d",
     "kind": "3d",
-    "width": 1920, "height": 1080, "fps": 30, "durationInFrames": 210,
-    "roles": ["brand", "headline", "cta"],
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "brand",
+      "headline",
+      "cta"
+    ],
     "prompt": "A 7 second 16:9 3D logo reveal for any brand. A cluster of glossy shards (thin beveled boxes and tetrahedrons in accent and accent2) floats in deep space, then snaps together into a solid faceted emblem in the center while the camera dollies in and orbits 30 degrees. A sharp light sweep crosses the emblem at the moment it locks. The brand name rises in large letters under the emblem, then the headline appears as a smaller line, and finally a short call to action pill fades in at the bottom. Background is a dark gradient from theme.background to theme.surface with a soft floor reflection. Calm settle for the last second so it loops well as an intro."
   },
   "photoquote": {
     "name": "Photoquote",
     "kind": "image",
-    "slots": ["background"],
-    "width": 1080, "height": 1920, "fps": 30, "durationInFrames": 240,
-    "roles": ["quote", "author", "brand"],
+    "slots": [
+      "background"
+    ],
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "quote",
+      "author",
+      "brand"
+    ],
     "prompt": "An 8 second 9:16 photo quote for Reels and Stories. A full-frame photo slowly drifts upward with a gentle zoom. A large opening quotation mark draws in with accent color, then the quote reveals line by line in a big serif font in the lower half, followed by a thin rule and the author name. The brand sits small at the top. Use the Backdrop component so the quote stays readable over any of the template's photos and themes. Quiet, editorial pacing."
   },
   "vhsintro": {
     "name": "Vhsintro",
     "kind": "2d",
-    "width": 1920, "height": 1080, "fps": 30, "durationInFrames": 180,
-    "roles": ["brand", "headline", "date"],
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "brand",
+      "headline",
+      "date"
+    ],
     "prompt": "A 6 second 16:9 retro VHS intro. Start on tracking noise and rolling horizontal bands, then a blue-screen PLAY overlay in the corner with a blinking timecode built from the date text. The headline appears in chunky italic type with chromatic aberration (offset accent and accent2 copies) and slight horizontal jitter, then stabilizes. Scanlines, a soft vignette, and occasional tape warp lines cross the frame. The brand appears like a channel bug in the top right. Use deterministic random(seed) for all noise. End stable for one second."
+  },
+  "title3d": {
+    "name": "Title3d",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "brand",
+      "headline",
+      "subhead"
+    ],
+    "prompt": "A 6 second 16:9 3D title card. A row of 11 tall glossy pillars (boxes, surface color with accent tops) rises out of a dark matte floor in a wave from left to right, filling the lower two thirds of the frame, while the camera slowly tracks sideways and tilts down from slightly above. The pillars settle into a gentle stepped skyline centered behind the title. Use only directional, hemisphere, and ambient lights (no spotlight cones, no colored bands, no reflective floor plane). The headline appears in large bold HTML type over the upper middle once the wave passes the center, with the brand above it and the subhead below. Calm final second."
+  },
+  "turntable": {
+    "name": "Turntable",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "brand",
+      "headline",
+      "price",
+      "cta"
+    ],
+    "prompt": "An 8 second 16:9 3D product turntable for any product. A generic premium object (a rounded capsule-shaped device built from a torus, a cylinder, and a sphere, in surface and accent colors) rotates slowly on a round pedestal with a soft reflection and a ring of light under it. The camera orbits 45 degrees and dollies in. On the left, the brand appears small, then the headline in large type, then a price tag chip, then a call to action button that pulses once. Studio lighting with a key, fill, and accent rim light. Smooth and premium."
+  },
+  "countdown3d": {
+    "name": "Countdown3d",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "brand",
+      "headline",
+      "date"
+    ],
+    "prompt": "An 8 second 16:9 3D countdown. Three large extruded numerals made from stacked boxes (3, 2, 1, each built from a 5x7 grid of cubes) appear one after the other: the cubes of each numeral fly in from depth and assemble, hold, then scatter outward as the next one forms. Each numeral lasts about 60 frames. After 1 scatters, the headline appears in large HTML type with the date below and the brand above. Accent and accent2 colored cubes, dark background with depth fog."
+  },
+  "chrome3d": {
+    "name": "Chrome3d",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "brand",
+      "headline",
+      "cta"
+    ],
+    "prompt": "A 6 second 16:9 chrome intro. A cluster of polished metallic shapes (torus, sphere, rounded box, cone) floats in a soft gradient studio and slowly rotates, reflecting accent and accent2 colored lights (use metalness 1 and low roughness with colored point lights so the reflections read as chrome). The shapes drift apart to the edges to open the center, where the headline appears in very large type, with the brand above and a small call to action below. Glossy, Y2K, premium."
+  },
+  "iso3d": {
+    "name": "Iso3d",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 270,
+    "roles": [
+      "headline",
+      "point1",
+      "point2",
+      "point3",
+      "cta"
+    ],
+    "prompt": "A 9 second 16:9 isometric feature list. An orthographic-style camera (narrow field of view, far away) looks down at an isometric grid floor. Three isometric blocks of different heights rise one by one from the floor, each with a small icon-like shape on top (a sphere, a cone, a ring). As each block rises, its feature label (point1, point2, point3) appears in HTML next to it with a short connector line. The headline sits at the top left; the call to action appears at the end. Clean, friendly, product-explainer style."
+  },
+  "photolower": {
+    "name": "Photolower",
+    "kind": "image",
+    "slots": [
+      "background"
+    ],
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "author",
+      "attribution",
+      "brand"
+    ],
+    "prompt": "A 6 second 16:9 lower third over a full-frame photo. The photo pushes in slowly. A lower third slides in at the bottom left: an accent bar wipes in, then the author name in bold, then the attribution line (role or title) below it, and the brand as a small tag at the right end of the bar. Hold, then the lower third slides out in the last 20 frames. Use one zone for the lower third area only, so the photo stays clear elsewhere."
+  },
+  "slideshow": {
+    "name": "Slideshow",
+    "kind": "image",
+    "slots": [
+      "photo1",
+      "photo2",
+      "photo3"
+    ],
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 300,
+    "roles": [
+      "headline",
+      "items",
+      "brand"
+    ],
+    "prompt": "A 10 second 16:9 photo slideshow with three photos. Each photo fills the frame for about 90 frames with a slow Ken Burns move (alternate push-in and pull-out, alternate pan direction), joined by a quick diagonal wipe in the accent color. Each slide shows one item from the items list (split by comma) as a caption in the lower left. The headline appears on the first slide above its caption; the brand sits small in the top right throughout. Use Backdrop for each slide with a zone over the caption area."
+  },
+  "beforeafterphoto": {
+    "name": "Beforeafterphoto",
+    "kind": "image",
+    "slots": [
+      "before",
+      "after"
+    ],
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "headline",
+      "point1",
+      "point2",
+      "brand"
+    ],
+    "prompt": "An 8 second 16:9 before and after reveal with two photos of the same place. The before photo fills the frame first. A vertical divider with a round handle sweeps from the left edge to the center, revealing the after photo on its left side, then nudges right and back. Label chips read point1 on the before side and point2 on the after side. The headline appears at the top center, the brand small at the bottom. Use inline Img for both photos inside clipped containers and a Backdrop-style scrim only behind the headline."
+  },
+  "travelintro": {
+    "name": "Travelintro",
+    "kind": "image",
+    "slots": [
+      "background"
+    ],
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "headline",
+      "date",
+      "brand"
+    ],
+    "prompt": "A 7 second 9:16 travel or location intro for Reels. A full-frame vertical photo slowly pushes in. A thin route line draws a looping path across the upper area and ends in a location pin. The headline (a place name) appears very large in the center in bold condensed type, letter by letter, with the date below it in a pill and the brand at the bottom. Adventurous and bright."
+  },
+  "portraitcard": {
+    "name": "Portraitcard",
+    "kind": "image",
+    "slots": [
+      "photo"
+    ],
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "author",
+      "attribution",
+      "quote",
+      "brand"
+    ],
+    "prompt": "A 7 second 9:16 speaker or profile card. A photo appears inside a large rounded rectangle frame in the upper half (inline Img, not full frame), sliding up with a subtle parallax. Below it, the name (author) in large bold type, the role (attribution) in a smaller line, and a short quote in a card. The brand sits at the top. Theme background fills the frame; the photo is the hero element."
+  },
+  "papercut": {
+    "name": "Papercut",
+    "kind": "2d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "brand",
+      "headline",
+      "subhead"
+    ],
+    "prompt": "A 7 second 16:9 paper cutout title. Layered torn-paper hills and clouds (SVG shapes with slightly irregular edges and soft drop shadows between layers) slide in from the bottom and top with a gentle parallax and a small bounce. Each layer uses a theme color. The headline appears as a cut-out paper label with a slight rotation and a shadow, then the subhead below it, with the brand on a small paper tag pinned at the top. Handmade and warm."
+  },
+  "pixel": {
+    "name": "Pixel",
+    "kind": "2d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "headline",
+      "subhead",
+      "cta"
+    ],
+    "prompt": "A 6 second 16:9 pixel arcade intro. A blocky pixel grid scene: a starfield of square pixels scrolls down, a chunky pixel frame draws itself, and the headline appears in a blocky pixel style (render letters with heavy weight, uppercase, and a hard stepped drop shadow; no external pixel fonts). A blinking PRESS START style cta appears below, and the subhead scrolls in like a game prompt. Use stepped (frame-quantized) motion for an 8-bit feel. Deterministic random(seed) for stars."
+  },
+  "doodle": {
+    "name": "Doodle",
+    "kind": "2d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "headline",
+      "point1",
+      "point2",
+      "point3"
+    ],
+    "prompt": "A 7 second 16:9 hand-drawn doodle explainer. Sketchy SVG lines draw on (stroke-dashoffset) as if drawn with a marker: an underline under the headline, circles around three points, arrows between them, and small stars. Lines have a slight wobble (precomputed with random(seed)). The headline is written first, then point1, point2, point3 appear in a row each circled by a drawn loop with an arrow to the next. Paper-white or theme background, ink in foreground color with accent highlights."
+  },
+  "magazine": {
+    "name": "Magazine",
+    "kind": "2d",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "brand",
+      "headline",
+      "subhead",
+      "date"
+    ],
+    "prompt": "An 8 second 9:16 editorial magazine cover. The brand is a huge masthead across the top in a condensed serif, revealed by a mask wipe. Thin rules and a small date line sit under it. A large color block (accent) slides in as the cover image area with a subtle animated grain and geometric shapes. The headline is set as a big cover line in serif italic at the lower left, the subhead as a smaller coverline. A barcode-like stripe pattern appears at the bottom corner. Fashion editorial pacing."
+  },
+  "liquid": {
+    "name": "Liquid",
+    "kind": "2d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 240,
+    "roles": [
+      "brand",
+      "headline",
+      "cta"
+    ],
+    "prompt": "An 8 second 16:9 liquid gradient intro. Large soft blobs of accent, accent2, and surface color flow and morph slowly behind a frosted layer (animated SVG path morphs or radial gradients moving on looping paths), producing a smooth flowing liquid gradient. Do not use separate decorative orbs; the blobs must merge into one continuous gradient field. The headline reveals word by word in large clean type, the brand above, the cta as a glassy pill below. Calm and modern."
+  },
+  "glitch": {
+    "name": "Glitch",
+    "kind": "2d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 180,
+    "roles": [
+      "brand",
+      "headline",
+      "date"
+    ],
+    "prompt": "A 6 second 16:9 cyber glitch title. A dark grid with scanning lines and a HUD frame. The headline appears through digital glitch bursts: horizontal slice offsets, RGB split copies in accent and accent2, block noise, and brief character scrambles that settle into the real text. The date appears as a terminal-style readout, the brand as a HUD tag in the corner. Bursts at irregular but deterministic frames (random(seed)). End stable."
+  },
+  "clay": {
+    "name": "Clay",
+    "kind": "3d",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 210,
+    "roles": [
+      "brand",
+      "headline",
+      "subhead"
+    ],
+    "prompt": "A 7 second 16:9 soft clay 3D intro. Chunky rounded clay-like shapes (spheres, capsules made from cylinders with sphere caps, rounded boxes) in pastel versions of the theme colors bounce in with squash-and-stretch (scale on landing) onto a soft floor, then settle into a playful arrangement around the center. Use meshStandardMaterial with high roughness (0.8) and no metalness for a matte clay look, with soft lighting. The headline pops in with a bouncy scale, the brand above, the subhead below. Playful and friendly."
   }
 }

@@ -1043,6 +1043,244 @@
         "provider": "Anthropic",
         "effort": "medium"
       }
+    },
+    {
+      "id": "title3d",
+      "title": "3D Title Card",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 3D title card. A row of tall glossy pillars (one per letter-sized slot, 9 to 12 pillars) rises out of a reflective floor in a wave from left to right while the camera slowly tracks sideways and tilts down. The pillars settle into a gentle stepped skyline behind the title. The headline appears in large bold HTML type over the scene once the wave passes the center, with the brand above it and the subhead below. Lighting is a soft key from the top left with accent rim light. Calm final second.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "turntable",
+      "title": "3D Product Turntable",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 16:9 3D product turntable for any product. A generic premium object (a rounded capsule-shaped device built from a torus, a cylinder, and a sphere, in surface and accent colors) rotates slowly on a round pedestal with a soft reflection and a ring of light under it. The camera orbits 45 degrees and dollies in. On the left, the brand appears small, then the headline in large type, then a price tag chip, then a call to action button that pulses once. Studio lighting with a key, fill, and accent rim light. Smooth and premium.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "countdown3d",
+      "title": "3D Countdown",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 16:9 3D countdown. Three large extruded numerals made from stacked boxes (3, 2, 1, each built from a 5x7 grid of cubes) appear one after the other: the cubes of each numeral fly in from depth and assemble, hold, then scatter outward as the next one forms. Each numeral lasts about 60 frames. After 1 scatters, the headline appears in large HTML type with the date below and the brand above. Accent and accent2 colored cubes, dark background with depth fog.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "chrome3d",
+      "title": "Chrome Intro",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 chrome intro. A cluster of polished metallic shapes (torus, sphere, rounded box, cone) floats in a soft gradient studio and slowly rotates, reflecting accent and accent2 colored lights (use metalness 1 and low roughness with colored point lights so the reflections read as chrome). The shapes drift apart to the edges to open the center, where the headline appears in very large type, with the brand above and a small call to action below. Glossy, Y2K, premium.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "iso3d",
+      "title": "Isometric Feature List",
+      "creator": "cliphou.se",
+      "prompt": "A 9 second 16:9 isometric feature list. An orthographic-style camera (narrow field of view, far away) looks down at an isometric grid floor. Three isometric blocks of different heights rise one by one from the floor, each with a small icon-like shape on top (a sphere, a cone, a ring). As each block rises, its feature label (point1, point2, point3) appears in HTML next to it with a short connector line. The headline sits at the top left; the call to action appears at the end. Clean, friendly, product-explainer style.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "clay",
+      "title": "Clay 3D Intro",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 16:9 soft clay 3D intro. Chunky rounded clay-like shapes (spheres, capsules made from cylinders with sphere caps, rounded boxes) in pastel versions of the theme colors bounce in with squash-and-stretch (scale on landing) onto a soft floor, then settle into a playful arrangement around the center. Use meshStandardMaterial with high roughness (0.8) and no metalness for a matte clay look, with soft lighting. The headline pops in with a bouncy scale, the brand above, the subhead below. Playful and friendly.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "papercut",
+      "title": "Paper Cutout Title",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 16:9 paper cutout title. Layered torn-paper hills and clouds (SVG shapes with slightly irregular edges and soft drop shadows between layers) slide in from the bottom and top with a gentle parallax and a small bounce. Each layer uses a theme color. The headline appears as a cut-out paper label with a slight rotation and a shadow, then the subhead below it, with the brand on a small paper tag pinned at the top. Handmade and warm.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "pixel",
+      "title": "Pixel Arcade Intro",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 pixel arcade intro. A blocky pixel grid scene: a starfield of square pixels scrolls down, a chunky pixel frame draws itself, and the headline appears in a blocky pixel style (render letters with heavy weight, uppercase, and a hard stepped drop shadow; no external pixel fonts). A blinking PRESS START style cta appears below, and the subhead scrolls in like a game prompt. Use stepped (frame-quantized) motion for an 8-bit feel. Deterministic random(seed) for stars.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "doodle",
+      "title": "Doodle Explainer",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 16:9 hand-drawn doodle explainer. Sketchy SVG lines draw on (stroke-dashoffset) as if drawn with a marker: an underline under the headline, circles around three points, arrows between them, and small stars. Lines have a slight wobble (precomputed with random(seed)). The headline is written first, then point1, point2, point3 appear in a row each circled by a drawn loop with an arrow to the next. Paper-white or theme background, ink in foreground color with accent highlights.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "magazine",
+      "title": "Magazine Cover",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 9:16 editorial magazine cover. The brand is a huge masthead across the top in a condensed serif, revealed by a mask wipe. Thin rules and a small date line sit under it. A large color block (accent) slides in as the cover image area with a subtle animated grain and geometric shapes. The headline is set as a big cover line in serif italic at the lower left, the subhead as a smaller coverline. A barcode-like stripe pattern appears at the bottom corner. Fashion editorial pacing.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "liquid",
+      "title": "Liquid Gradient",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 16:9 liquid gradient intro. Large soft blobs of accent, accent2, and surface color flow and morph slowly behind a frosted layer (animated SVG path morphs or radial gradients moving on looping paths), producing a smooth flowing liquid gradient. Do not use separate decorative orbs; the blobs must merge into one continuous gradient field. The headline reveals word by word in large clean type, the brand above, the cta as a glassy pill below. Calm and modern.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "glitch",
+      "title": "Cyber Glitch Title",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 cyber glitch title. A dark grid with scanning lines and a HUD frame. The headline appears through digital glitch bursts: horizontal slice offsets, RGB split copies in accent and accent2, block noise, and brief character scrambles that settle into the real text. The date appears as a terminal-style readout, the brand as a HUD tag in the corner. Bursts at irregular but deterministic frames (random(seed)). End stable.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "photolower",
+      "title": "Photo Lower Third",
+      "creator": "cliphou.se",
+      "prompt": "A 6 second 16:9 lower third over a full-frame photo. The photo pushes in slowly. A lower third slides in at the bottom left: an accent bar wipes in, then the author name in bold, then the attribution line (role or title) below it, and the brand as a small tag at the right end of the bar. Hold, then the lower third slides out in the last 20 frames. Use one zone for the lower third area only, so the photo stays clear elsewhere.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "slideshow",
+      "title": "Photo Slideshow",
+      "creator": "cliphou.se",
+      "prompt": "A 10 second 16:9 photo slideshow with three photos. Each photo fills the frame for about 90 frames with a slow Ken Burns move (alternate push-in and pull-out, alternate pan direction), joined by a quick diagonal wipe in the accent color. Each slide shows one item from the items list (split by comma) as a caption in the lower left. The headline appears on the first slide above its caption; the brand sits small in the top right throughout. Use Backdrop for each slide with a zone over the caption area.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "beforeafterphoto",
+      "title": "Before and After Photo",
+      "creator": "cliphou.se",
+      "prompt": "An 8 second 16:9 before and after reveal with two photos of the same place. The before photo fills the frame first. A vertical divider with a round handle sweeps from the left edge to the center, revealing the after photo on its left side, then nudges right and back. Label chips read point1 on the before side and point2 on the after side. The headline appears at the top center, the brand small at the bottom. Use inline Img for both photos inside clipped containers and a Backdrop-style scrim only behind the headline.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "travelintro",
+      "title": "Travel Intro",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 9:16 travel or location intro for Reels. A full-frame vertical photo slowly pushes in. A thin route line draws a looping path across the upper area and ends in a location pin. The headline (a place name) appears very large in the center in bold condensed type, letter by letter, with the date below it in a pill and the brand at the bottom. Adventurous and bright.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "portraitcard",
+      "title": "Portrait Speaker Card",
+      "creator": "cliphou.se",
+      "prompt": "A 7 second 9:16 speaker or profile card. A photo appears inside a large rounded rectangle frame in the upper half (inline Img, not full frame), sliding up with a subtle parallax. Below it, the name (author) in large bold type, the role (attribution) in a smaller line, and a short quote in a card. The brand sits at the top. Theme background fills the frame; the photo is the hero element.",
+      "createdAt": "2026-10-09",
+      "license": "MIT-0",
+      "generation": {
+        "model": "Claude Opus 5.5",
+        "modelId": "claude-opus-5-5",
+        "provider": "Anthropic",
+        "effort": "medium"
+      }
     }
   ],
   "variants": [
@@ -5253,6 +5491,796 @@
         "title-card",
         "brand-intro",
         "youtube-intro"
+      ]
+    },
+    {
+      "template": "title3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "title3d-pillars",
+      "title": "3D Pillar Title Card",
+      "description": "Glossy 3D pillars rise in a wave from a reflective floor and settle into a skyline behind a bold title.",
+      "purpose": "Creator video",
+      "style": [
+        "3D",
+        "Bold"
+      ],
+      "energy": 3,
+      "keywords": [
+        "3d title card",
+        "3d title animation",
+        "3d intro template",
+        "cinematic 3d title",
+        "3d text intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "SEASON TWO",
+          "headline": "Rise Together",
+          "subhead": "A new series about building things that last"
+        },
+        "theme": {
+          "background": "#06070d",
+          "surface": "#1c2033",
+          "foreground": "#f7f8ff",
+          "accent": "#5eead4",
+          "accent2": "#f472b6"
+        }
+      },
+      "seoDescription": "A free 3D title card template where glossy pillars rise behind your title. Edit the title, brand, and subtitle online, then export.",
+      "useCases": [
+        "title-card",
+        "youtube-intro",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "turntable",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "turntable-device",
+      "title": "3D Product Turntable",
+      "description": "A premium device rotates on a lit pedestal while the brand, headline, price, and a call to action slide in beside it.",
+      "purpose": "Product launch",
+      "style": [
+        "3D",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "3d product animation",
+        "product turntable video",
+        "3d product showcase",
+        "product reveal 3d",
+        "product spin video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "HALO",
+          "headline": "Sound, reshaped",
+          "price": "$249",
+          "cta": "Pre-order now"
+        },
+        "theme": {
+          "background": "#0a0b10",
+          "surface": "#22252f",
+          "foreground": "#f5f6fa",
+          "accent": "#f97316",
+          "accent2": "#60a5fa"
+        }
+      },
+      "seoDescription": "A free 3D product turntable template. A device spins on a lit pedestal next to your headline, price, and call to action. Edit online.",
+      "useCases": [
+        "product-launch",
+        "social-ad",
+        "saas"
+      ]
+    },
+    {
+      "template": "countdown3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "countdown3d-cubes",
+      "title": "3D Cube Countdown",
+      "description": "Cubes fly in from depth to build 3, 2, 1, scatter between numbers, and reveal your headline and date.",
+      "purpose": "Event promo",
+      "style": [
+        "3D",
+        "Bold"
+      ],
+      "energy": 5,
+      "keywords": [
+        "3d countdown",
+        "countdown video 3d",
+        "3 2 1 countdown animation",
+        "launch countdown 3d",
+        "countdown intro"
+      ],
+      "props": {
+        "texts": {
+          "brand": "ORBIT CONF",
+          "headline": "Doors open",
+          "date": "Nov 12, 9 AM CET"
+        },
+        "theme": {
+          "background": "#05050c",
+          "surface": "#191935",
+          "foreground": "#ffffff",
+          "accent": "#a78bfa",
+          "accent2": "#34d399"
+        }
+      },
+      "seoDescription": "A free 3D countdown template where cubes assemble into 3, 2, 1 and reveal your event headline and date. Edit text and colors online.",
+      "useCases": [
+        "countdown",
+        "event-promo",
+        "youtube-intro"
+      ]
+    },
+    {
+      "template": "chrome3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "chrome3d-y2k",
+      "title": "Chrome 3D Intro",
+      "description": "Polished chrome shapes float and reflect colored lights, then drift apart to reveal a huge headline.",
+      "purpose": "Brand intro",
+      "style": [
+        "3D",
+        "Neon"
+      ],
+      "energy": 3,
+      "keywords": [
+        "chrome text intro",
+        "y2k intro",
+        "chrome 3d animation",
+        "metallic logo intro",
+        "3d chrome title"
+      ],
+      "props": {
+        "texts": {
+          "brand": "NOVA",
+          "headline": "Liquid Metal",
+          "cta": "Out now"
+        },
+        "theme": {
+          "background": "#0b0a12",
+          "surface": "#272338",
+          "foreground": "#ffffff",
+          "accent": "#e879f9",
+          "accent2": "#22d3ee"
+        }
+      },
+      "seoDescription": "A free chrome 3D intro template with floating metallic shapes and a large headline reveal. Edit the brand, headline, and colors online.",
+      "useCases": [
+        "brand-intro",
+        "youtube-intro",
+        "logo-reveal"
+      ]
+    },
+    {
+      "template": "iso3d",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "iso3d-features",
+      "title": "Isometric Feature List",
+      "description": "Three isometric blocks rise one by one, each with a labeled feature, under a headline and a closing call to action.",
+      "purpose": "Product launch",
+      "style": [
+        "3D",
+        "Tech"
+      ],
+      "energy": 3,
+      "keywords": [
+        "isometric animation",
+        "feature list video",
+        "isometric explainer",
+        "product features animation",
+        "3d infographic video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Why teams switch",
+          "point1": "Sync in seconds",
+          "point2": "Always private",
+          "point3": "Works offline",
+          "cta": "Start free"
+        },
+        "theme": {
+          "background": "#f4f6fb",
+          "surface": "#dfe5f2",
+          "foreground": "#111827",
+          "accent": "#2563eb",
+          "accent2": "#f59e0b"
+        }
+      },
+      "seoDescription": "A free isometric feature list template. Three 3D blocks rise with your feature labels and a call to action. Edit the text and colors online.",
+      "useCases": [
+        "saas",
+        "product-launch",
+        "feature-launch"
+      ]
+    },
+    {
+      "template": "clay",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "clay-bounce",
+      "title": "Clay 3D Intro",
+      "description": "Soft matte clay shapes bounce in with squash and stretch and settle around a playful headline.",
+      "purpose": "Brand intro",
+      "style": [
+        "3D",
+        "Playful"
+      ],
+      "energy": 4,
+      "keywords": [
+        "clay animation intro",
+        "claymation intro",
+        "soft 3d intro",
+        "playful logo intro",
+        "cute 3d title"
+      ],
+      "props": {
+        "texts": {
+          "brand": "PLAYDATE",
+          "headline": "Make it fun",
+          "subhead": "Games and toys for curious kids"
+        },
+        "theme": {
+          "background": "#fff4ea",
+          "surface": "#ffe1c7",
+          "foreground": "#2b1b3f",
+          "accent": "#ff7a9a",
+          "accent2": "#6ec6ff"
+        }
+      },
+      "seoDescription": "A free clay 3D intro template with bouncy matte shapes and a playful headline. Edit the brand, headline, and colors online.",
+      "useCases": [
+        "brand-intro",
+        "youtube-intro",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "papercut",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "papercut-hills",
+      "title": "Paper Cutout Title",
+      "description": "Torn paper hills and clouds slide in with parallax, then a cut-out paper label carries the title.",
+      "purpose": "Creator video",
+      "style": [
+        "Handmade",
+        "Playful"
+      ],
+      "energy": 2,
+      "keywords": [
+        "paper cut animation",
+        "paper cutout intro",
+        "paper craft title",
+        "handmade video intro",
+        "paper animation template"
+      ],
+      "props": {
+        "texts": {
+          "brand": "FIELD NOTES",
+          "headline": "Into the hills",
+          "subhead": "Weekend walks and the stories behind them"
+        },
+        "theme": {
+          "background": "#f3ead8",
+          "surface": "#c9b38a",
+          "foreground": "#2d2418",
+          "accent": "#d9603b",
+          "accent2": "#5f8f5a"
+        }
+      },
+      "seoDescription": "A free paper cutout title template with layered torn-paper hills and a handmade label. Edit the title and colors online, then export.",
+      "useCases": [
+        "title-card",
+        "youtube-intro",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "pixel",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "pixel-arcade",
+      "title": "Pixel Arcade Intro",
+      "description": "A pixel starfield, a blocky frame, and a chunky arcade headline with a blinking press-start prompt.",
+      "purpose": "Creator video",
+      "style": [
+        "Retro",
+        "Playful"
+      ],
+      "energy": 5,
+      "keywords": [
+        "pixel art intro",
+        "8 bit intro",
+        "retro game intro",
+        "arcade intro template",
+        "pixel title animation"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Level Up",
+          "subhead": "New episode every Friday",
+          "cta": "Press start"
+        },
+        "theme": {
+          "background": "#0b0b1e",
+          "surface": "#23234d",
+          "foreground": "#ffffff",
+          "accent": "#ffd23f",
+          "accent2": "#ff4f79"
+        }
+      },
+      "seoDescription": "A free pixel arcade intro template with an 8-bit starfield and blocky title. Edit the headline and prompt online, then export.",
+      "useCases": [
+        "gaming-intro",
+        "youtube-intro",
+        "title-card"
+      ]
+    },
+    {
+      "template": "doodle",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "doodle-sketch",
+      "title": "Doodle Explainer",
+      "description": "Marker lines draw on as a headline is underlined and three points are circled and joined with arrows.",
+      "purpose": "Data story",
+      "style": [
+        "Handmade",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "doodle animation",
+        "whiteboard animation",
+        "hand drawn explainer",
+        "sketch video template",
+        "doodle video"
+      ],
+      "props": {
+        "texts": {
+          "headline": "How it works",
+          "point1": "Plan",
+          "point2": "Build",
+          "point3": "Share"
+        },
+        "theme": {
+          "background": "#fbfaf5",
+          "surface": "#ece8da",
+          "foreground": "#1d1d1f",
+          "accent": "#ef4444",
+          "accent2": "#2563eb"
+        }
+      },
+      "seoDescription": "A free hand-drawn doodle explainer template. Marker lines circle three steps under your headline. Edit the text and colors online.",
+      "useCases": [
+        "saas",
+        "feature-launch",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "magazine",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "magazine-cover",
+      "title": "Magazine Cover Reel",
+      "description": "A vertical editorial cover with a masked masthead, a color block, and serif cover lines.",
+      "purpose": "Social ad",
+      "style": [
+        "Editorial",
+        "Bold"
+      ],
+      "energy": 2,
+      "keywords": [
+        "magazine cover template",
+        "magazine reel",
+        "editorial instagram reel",
+        "fashion intro video",
+        "magazine style video"
+      ],
+      "props": {
+        "texts": {
+          "brand": "MERIDIAN",
+          "headline": "The quiet issue",
+          "subhead": "Slow design for loud times",
+          "date": "Issue 12, Fall 2026"
+        },
+        "theme": {
+          "background": "#f5f0e8",
+          "surface": "#d8cfc0",
+          "foreground": "#141414",
+          "accent": "#c2410c",
+          "accent2": "#1e3a8a"
+        }
+      },
+      "seoDescription": "A free vertical magazine cover template for Reels and Stories. A masked masthead and serif cover lines animate in. Edit online.",
+      "useCases": [
+        "instagram-reel",
+        "brand-intro",
+        "social-ad"
+      ]
+    },
+    {
+      "template": "liquid",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "liquid-flow",
+      "title": "Liquid Gradient Intro",
+      "description": "A slow-flowing liquid gradient behind frosted glass, with a word-by-word headline and a glassy call to action.",
+      "purpose": "Brand intro",
+      "style": [
+        "Minimal",
+        "Tech"
+      ],
+      "energy": 2,
+      "keywords": [
+        "liquid gradient background",
+        "gradient animation intro",
+        "fluid gradient video",
+        "modern intro template",
+        "mesh gradient animation"
+      ],
+      "props": {
+        "texts": {
+          "brand": "FLOWSTATE",
+          "headline": "Work that moves you",
+          "cta": "Join the beta"
+        },
+        "theme": {
+          "background": "#0c0f1f",
+          "surface": "#2a2f55",
+          "foreground": "#ffffff",
+          "accent": "#7c3aed",
+          "accent2": "#06b6d4"
+        }
+      },
+      "seoDescription": "A free liquid gradient intro template with a flowing color field and a clean headline reveal. Edit the brand, headline, and colors online.",
+      "useCases": [
+        "brand-intro",
+        "saas",
+        "product-launch"
+      ]
+    },
+    {
+      "template": "glitch",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "glitch-cyber",
+      "title": "Cyber Glitch Title",
+      "description": "Digital glitch bursts with RGB split and slice offsets settle into a headline on a HUD grid.",
+      "purpose": "Creator video",
+      "style": [
+        "Neon",
+        "Tech"
+      ],
+      "energy": 5,
+      "keywords": [
+        "glitch title",
+        "glitch intro template",
+        "cyberpunk intro",
+        "digital glitch effect",
+        "cyber title animation"
+      ],
+      "props": {
+        "texts": {
+          "brand": "NODE//07",
+          "headline": "System Online",
+          "date": "2026.11.03 21:00"
+        },
+        "theme": {
+          "background": "#05070d",
+          "surface": "#0f1a2a",
+          "foreground": "#e9fbff",
+          "accent": "#00e5ff",
+          "accent2": "#ff2bd6"
+        }
+      },
+      "seoDescription": "A free cyber glitch title template with RGB split and HUD details. Edit the headline, date, and colors online, then export.",
+      "useCases": [
+        "gaming-intro",
+        "youtube-intro",
+        "title-card"
+      ]
+    },
+    {
+      "template": "photolower",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "photolower-studio",
+      "title": "Photo Lower Third",
+      "description": "A lower third slides in over a softly lit studio photo with a name, role, and brand tag.",
+      "purpose": "Creator video",
+      "style": [
+        "Photo",
+        "Minimal"
+      ],
+      "energy": 2,
+      "keywords": [
+        "lower third template",
+        "lower third with photo",
+        "name title template",
+        "interview lower third",
+        "speaker name lower third"
+      ],
+      "props": {
+        "texts": {
+          "author": "Elena Varga",
+          "attribution": "Head of Design, Northwind",
+          "brand": "LIVE"
+        },
+        "theme": {
+          "background": "#0e1116",
+          "surface": "#232a35",
+          "foreground": "#ffffff",
+          "accent": "#38bdf8",
+          "accent2": "#f43f5e"
+        },
+        "media": {
+          "background": "office"
+        }
+      },
+      "seoDescription": "A free photo lower third template. A name and role slide in over a studio photo, which viewers can switch. Edit the text and colors online.",
+      "useCases": [
+        "lower-thirds",
+        "youtube-intro",
+        "webinar"
+      ]
+    },
+    {
+      "template": "slideshow",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "slideshow-travel",
+      "title": "Photo Slideshow",
+      "description": "Three photos glide by with slow Ken Burns moves, diagonal wipes, and a caption for each slide.",
+      "purpose": "Showreel",
+      "style": [
+        "Photo",
+        "Editorial"
+      ],
+      "energy": 3,
+      "keywords": [
+        "photo slideshow template",
+        "slideshow video",
+        "travel slideshow",
+        "image slideshow animation",
+        "photo montage template"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Summer in the north",
+          "items": "Mountains, Harbors, Forests",
+          "brand": "NORDIC"
+        },
+        "theme": {
+          "background": "#0b1220",
+          "surface": "#1e293b",
+          "foreground": "#ffffff",
+          "accent": "#fbbf24",
+          "accent2": "#38bdf8"
+        },
+        "media": {
+          "photo1": "peaks",
+          "photo2": "harbor",
+          "photo3": "forest"
+        }
+      },
+      "seoDescription": "A free three-photo slideshow template with Ken Burns moves, wipes, and captions. Pick the photos and edit the captions online.",
+      "useCases": [
+        "showreel",
+        "instagram-reel",
+        "brand-intro"
+      ]
+    },
+    {
+      "template": "beforeafterphoto",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "beforeafterphoto-room",
+      "title": "Before and After Photo",
+      "description": "A slider divider sweeps across to reveal the after photo, with labels on each side and a headline.",
+      "purpose": "Social ad",
+      "style": [
+        "Photo",
+        "Minimal"
+      ],
+      "energy": 3,
+      "keywords": [
+        "before and after photo",
+        "before after slider video",
+        "renovation before after",
+        "transformation video template",
+        "before and after reveal"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Living room refresh",
+          "point1": "Before",
+          "point2": "After",
+          "brand": "HOMELAB"
+        },
+        "theme": {
+          "background": "#111214",
+          "surface": "#2a2c31",
+          "foreground": "#ffffff",
+          "accent": "#f59e0b",
+          "accent2": "#10b981"
+        },
+        "media": {
+          "before": "roombefore",
+          "after": "roomafter"
+        }
+      },
+      "seoDescription": "A free before and after photo template with a sliding reveal. Choose the before and after photos and edit the labels online.",
+      "useCases": [
+        "before-after",
+        "social-ad",
+        "instagram-reel"
+      ]
+    },
+    {
+      "template": "travelintro",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "travelintro-coast",
+      "title": "Travel Intro",
+      "description": "A vertical coastal photo pushes in while a route line draws to a pin and a bold place name types in.",
+      "purpose": "Creator video",
+      "style": [
+        "Photo",
+        "Bold"
+      ],
+      "energy": 4,
+      "keywords": [
+        "travel intro",
+        "travel reel template",
+        "location intro video",
+        "vlog intro template",
+        "travel video intro"
+      ],
+      "props": {
+        "texts": {
+          "headline": "Amalfi Coast",
+          "date": "June 2026",
+          "brand": "WANDER"
+        },
+        "theme": {
+          "background": "#06131c",
+          "surface": "#123047",
+          "foreground": "#ffffff",
+          "accent": "#facc15",
+          "accent2": "#22d3ee"
+        },
+        "media": {
+          "background": "coastroad"
+        }
+      },
+      "seoDescription": "A free vertical travel intro template for Reels. A route line draws to a pin over a coastal photo and your place name appears. Edit online.",
+      "useCases": [
+        "instagram-reel",
+        "youtube-intro",
+        "title-card"
+      ]
+    },
+    {
+      "template": "portraitcard",
+      "creator": "cliphou.se",
+      "stats": {
+        "exports": 0,
+        "remixes": 0
+      },
+      "createdAt": "2026-10-09",
+      "id": "portraitcard-speaker",
+      "title": "Framed Speaker Profile",
+      "description": "A framed portrait slides up with the speaker name, role, and a short quote card below it.",
+      "purpose": "Event promo",
+      "style": [
+        "Photo",
+        "Editorial"
+      ],
+      "energy": 2,
+      "keywords": [
+        "speaker card template",
+        "speaker announcement video",
+        "profile card animation",
+        "meet the speaker",
+        "team member intro"
+      ],
+      "props": {
+        "texts": {
+          "author": "Sofia Marin",
+          "attribution": "VP Engineering, Kite",
+          "quote": "Ship small, learn fast, and keep the user in the room.",
+          "brand": "DEVDAYS"
+        },
+        "theme": {
+          "background": "#f5f3ef",
+          "surface": "#e5e0d6",
+          "foreground": "#161616",
+          "accent": "#7c3aed",
+          "accent2": "#0ea5e9"
+        },
+        "media": {
+          "photo": "speaker1"
+        }
+      },
+      "seoDescription": "A free vertical speaker card template with a framed portrait, name, role, and quote. Switch the portrait and edit the text online.",
+      "useCases": [
+        "speaker",
+        "event-promo",
+        "team-intro"
       ]
     }
   ]

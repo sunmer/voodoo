@@ -1,0 +1,160 @@
+[
+  {
+    "id": "office",
+    "label": "Studio office",
+    "file": "office.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "c1aa79b314967589cb7b02f0ca55a355fa3b430f5908e2a1d17176e1885d5e54",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide cinematic photograph of a bright modern studio office with plants, wooden desks, and large windows, shallow depth of field, soft daylight, calm and uncluttered. The lower third of the frame is softly out of focus floor and desk surfaces with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0225,
+        "hi": 0.3329
+      },
+      {
+        "lo": 0.0398,
+        "hi": 0.888
+      },
+      {
+        "lo": 0.0751,
+        "hi": 0.868
+      },
+      {
+        "lo": 0.0383,
+        "hi": 0.8838
+      },
+      {
+        "lo": 0.0124,
+        "hi": 0.3218
+      },
+      {
+        "lo": 0.0191,
+        "hi": 0.5404
+      },
+      {
+        "lo": 0.0228,
+        "hi": 0.5556
+      },
+      {
+        "lo": 0.0094,
+        "hi": 0.5085
+      },
+      {
+        "lo": 0.018,
+        "hi": 0.2584
+      },
+      {
+        "lo": 0.1392,
+        "hi": 0.647
+      },
+      {
+        "lo": 0.0825,
+        "hi": 0.6193
+      },
+      {
+        "lo": 0.0232,
+        "hi": 0.6377
+      },
+      {
+        "lo": 0.0203,
+        "hi": 0.2578
+      },
+      {
+        "lo": 0.1909,
+        "hi": 0.3739
+      },
+      {
+        "lo": 0.0465,
+        "hi": 0.544
+      },
+      {
+        "lo": 0.061,
+        "hi": 0.6573
+      }
+    ]
+  },
+  {
+    "id": "stage",
+    "label": "Event stage",
+    "file": "stage.webp",
+    "width": 1920,
+    "height": 1280,
+    "sha256": "eb5753b04058e2e2db1bae556e2b3f0a16967ae957316c68df091eaa36664f38",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Wide cinematic photograph of an empty conference stage with warm spotlights, a dark auditorium, and soft haze in the light beams. The lower third of the frame is dark stage floor with little detail. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1536x1024",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0007,
+        "hi": 0.0515
+      },
+      {
+        "lo": 0.0023,
+        "hi": 0.0953
+      },
+      {
+        "lo": 0.0024,
+        "hi": 0.0823
+      },
+      {
+        "lo": 0.0007,
+        "hi": 0.0563
+      },
+      {
+        "lo": 0.0006,
+        "hi": 0.08
+      },
+      {
+        "lo": 0.0074,
+        "hi": 0.2343
+      },
+      {
+        "lo": 0.0107,
+        "hi": 0.1035
+      },
+      {
+        "lo": 0.0005,
+        "hi": 0.0596
+      },
+      {
+        "lo": 0.0004,
+        "hi": 0.0346
+      },
+      {
+        "lo": 0.0019,
+        "hi": 0.1382
+      },
+      {
+        "lo": 0.0022,
+        "hi": 0.1188
+      },
+      {
+        "lo": 0.0004,
+        "hi": 0.0304
+      },
+      {
+        "lo": 0.0014,
+        "hi": 0.0084
+      },
+      {
+        "lo": 0.0054,
+        "hi": 0.0354
+      },
+      {
+        "lo": 0.0053,
+        "hi": 0.0226
+      },
+      {
+        "lo": 0.0014,
+        "hi": 0.009
+      }
+    ]
+  }
+]

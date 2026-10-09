@@ -67,6 +67,23 @@ import {ticketsMeta} from './tickets/meta.ts';
 import {webinarMeta} from './webinar/meta.ts';
 import {orbit3dMeta} from './orbit3d/meta.ts';
 import {phototitleMeta} from './phototitle/meta.ts';
+import {portraitcardMeta} from './portraitcard/meta.ts';
+import {travelintroMeta} from './travelintro/meta.ts';
+import {beforeafterphotoMeta} from './beforeafterphoto/meta.ts';
+import {slideshowMeta} from './slideshow/meta.ts';
+import {photolowerMeta} from './photolower/meta.ts';
+import {glitchMeta} from './glitch/meta.ts';
+import {liquidMeta} from './liquid/meta.ts';
+import {magazineMeta} from './magazine/meta.ts';
+import {doodleMeta} from './doodle/meta.ts';
+import {pixelMeta} from './pixel/meta.ts';
+import {papercutMeta} from './papercut/meta.ts';
+import {clayMeta} from './clay/meta.ts';
+import {iso3dMeta} from './iso3d/meta.ts';
+import {chrome3dMeta} from './chrome3d/meta.ts';
+import {countdown3dMeta} from './countdown3d/meta.ts';
+import {turntableMeta} from './turntable/meta.ts';
+import {title3dMeta} from './title3d/meta.ts';
 import {photoquoteMeta} from './photoquote/meta.ts';
 import {vhsintroMeta} from './vhsintro/meta.ts';
 import {logo3dMeta} from './logo3d/meta.ts';
@@ -140,6 +157,23 @@ export const templateMeta: Record<string, TemplateMeta> = {
   [webinarMeta.id]: webinarMeta,
   [orbit3dMeta.id]: orbit3dMeta,
   [phototitleMeta.id]: phototitleMeta,
+  [portraitcardMeta.id]: portraitcardMeta,
+  [travelintroMeta.id]: travelintroMeta,
+  [beforeafterphotoMeta.id]: beforeafterphotoMeta,
+  [slideshowMeta.id]: slideshowMeta,
+  [photolowerMeta.id]: photolowerMeta,
+  [glitchMeta.id]: glitchMeta,
+  [liquidMeta.id]: liquidMeta,
+  [magazineMeta.id]: magazineMeta,
+  [doodleMeta.id]: doodleMeta,
+  [pixelMeta.id]: pixelMeta,
+  [papercutMeta.id]: papercutMeta,
+  [clayMeta.id]: clayMeta,
+  [iso3dMeta.id]: iso3dMeta,
+  [chrome3dMeta.id]: chrome3dMeta,
+  [countdown3dMeta.id]: countdown3dMeta,
+  [turntableMeta.id]: turntableMeta,
+  [title3dMeta.id]: title3dMeta,
   [photoquoteMeta.id]: photoquoteMeta,
   [vhsintroMeta.id]: vhsintroMeta,
   [logo3dMeta.id]: logo3dMeta,

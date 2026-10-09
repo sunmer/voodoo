@@ -722,5 +722,141 @@
       "sha256": "8bf5aa053ad4a9262988be440a08d34610a0f54bd5fa6be875ac51a4522f2357",
       "createdAt": "2026-10-09"
     }
+  ],
+  "turntable": [
+    {
+      "version": 1,
+      "hash": "33b3540c21e2eac7",
+      "sha256": "9b1444f262b959accfa06c6138e2720f094f66f69755cd4b11679ae41aae74d2",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "chrome3d": [
+    {
+      "version": 1,
+      "hash": "24eb63695bb49fd6",
+      "sha256": "f5d5e8f87f4e23316cade8bdb19801182a74bd84294d75bf32b07ac771097f33",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "iso3d": [
+    {
+      "version": 1,
+      "hash": "9258f885f12c2b30",
+      "sha256": "6cb31a68c2cbf67d4a5f3b1cd74d3823e4ca7792bc1a1b7f46b9bf86f0098ec6",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "clay": [
+    {
+      "version": 1,
+      "hash": "dcd0b86ee1577ae6",
+      "sha256": "65c3c4f7218192e37915578e491db897b0cfc6c1d39987b96f1257cfefd84883",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "papercut": [
+    {
+      "version": 1,
+      "hash": "b1314bb5a161d36b",
+      "sha256": "adbd92459825214839f427958a24536f2bf674bc2bab61a1b1c8b030ec103429",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "doodle": [
+    {
+      "version": 1,
+      "hash": "2e23b9903ce6f0d7",
+      "sha256": "82970a77f83a3228d3202614c8537d2ebed4330d8ea3a962a78e59ab432187ff",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "magazine": [
+    {
+      "version": 1,
+      "hash": "dcbdd04858d8d835",
+      "sha256": "456afe1a908672e3e7b1d15e51dea610cb55e784237098b158039fe559b5a481",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "liquid": [
+    {
+      "version": 1,
+      "hash": "737e60eec5cf1e62",
+      "sha256": "04b6a63086fb2d7314567610d4bc67126980ad1a79e68bf21880755d4f729e33",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "glitch": [
+    {
+      "version": 1,
+      "hash": "78c9a771e2974016",
+      "sha256": "c988116a6c617eda5ac0229d0bf9146640c8c0deb2d9b51dd36936717eadf6f9",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "slideshow": [
+    {
+      "version": 1,
+      "hash": "1746252ec2d3efc5",
+      "sha256": "a6c044636be0d854206f1c91bff6f207df5327c3e0eabad925dc86f4aa4f1e84",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "beforeafterphoto": [
+    {
+      "version": 1,
+      "hash": "e2d12fd41f828168",
+      "sha256": "446be09980f41f312b5355cc5afb9266a3209cd91a9a710bcfa5053417ef79dc",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "title3d": [
+    {
+      "version": 1,
+      "hash": "92acf4295e5580e4",
+      "sha256": "b4148914bf94b3d372286f8cb6c961cf03d9cc09289d1f7cd7a9b517bfb679d9",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "countdown3d": [
+    {
+      "version": 1,
+      "hash": "88fb80e171cd698b",
+      "sha256": "cbb53e877df3272a0e50452e32fac318e09aa87e2f7933689818105a22b53557",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "pixel": [
+    {
+      "version": 1,
+      "hash": "f64d6100b886d6a2",
+      "sha256": "d3357bbeb6b4764c26442a84ab7ab997e2c94c0a0dc9713c94327ca494cbde42",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "photolower": [
+    {
+      "version": 1,
+      "hash": "b5313714713411c8",
+      "sha256": "54cc26556ab37d674eb198522da0463104be573989e7b9c301bee42dcb6a2110",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "travelintro": [
+    {
+      "version": 1,
+      "hash": "b399721ae2053f67",
+      "sha256": "cdbf243fc3d443430b4ad258542aaec5c16914973d3e37242c9abea691d8d13c",
+      "createdAt": "2026-10-09"
+    }
+  ],
+  "portraitcard": [
+    {
+      "version": 1,
+      "hash": "3ddd94c3e5425c5f",
+      "sha256": "1a2651c74d398bed50ee5b32f77c951d531646303207282f1f3c8e4ab81819a1",
+      "createdAt": "2026-10-09"
+    }
   ]
 }

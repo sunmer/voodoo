@@ -67,6 +67,23 @@ import {ticketsSchema} from './tickets/schema.ts';
 import {webinarSchema} from './webinar/schema.ts';
 import {orbit3dSchema} from './orbit3d/schema.ts';
 import {phototitleSchema} from './phototitle/schema.ts';
+import {portraitcardSchema} from './portraitcard/schema.ts';
+import {travelintroSchema} from './travelintro/schema.ts';
+import {beforeafterphotoSchema} from './beforeafterphoto/schema.ts';
+import {slideshowSchema} from './slideshow/schema.ts';
+import {photolowerSchema} from './photolower/schema.ts';
+import {glitchSchema} from './glitch/schema.ts';
+import {liquidSchema} from './liquid/schema.ts';
+import {magazineSchema} from './magazine/schema.ts';
+import {doodleSchema} from './doodle/schema.ts';
+import {pixelSchema} from './pixel/schema.ts';
+import {papercutSchema} from './papercut/schema.ts';
+import {claySchema} from './clay/schema.ts';
+import {iso3dSchema} from './iso3d/schema.ts';
+import {chrome3dSchema} from './chrome3d/schema.ts';
+import {countdown3dSchema} from './countdown3d/schema.ts';
+import {turntableSchema} from './turntable/schema.ts';
+import {title3dSchema} from './title3d/schema.ts';
 import {photoquoteSchema} from './photoquote/schema.ts';
 import {vhsintroSchema} from './vhsintro/schema.ts';
 import {logo3dSchema} from './logo3d/schema.ts';
@@ -102,6 +119,23 @@ export const schemas = {
   webinar: webinarSchema,
   orbit3d: orbit3dSchema,
   phototitle: phototitleSchema,
+  portraitcard: portraitcardSchema,
+  travelintro: travelintroSchema,
+  beforeafterphoto: beforeafterphotoSchema,
+  slideshow: slideshowSchema,
+  photolower: photolowerSchema,
+  glitch: glitchSchema,
+  liquid: liquidSchema,
+  magazine: magazineSchema,
+  doodle: doodleSchema,
+  pixel: pixelSchema,
+  papercut: papercutSchema,
+  clay: claySchema,
+  iso3d: iso3dSchema,
+  chrome3d: chrome3dSchema,
+  countdown3d: countdown3dSchema,
+  turntable: turntableSchema,
+  title3d: title3dSchema,
   photoquote: photoquoteSchema,
   vhsintro: vhsintroSchema,
   logo3d: logo3dSchema,

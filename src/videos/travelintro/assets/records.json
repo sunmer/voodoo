@@ -1,0 +1,160 @@
+[
+  {
+    "id": "coastroad",
+    "label": "Coastal road",
+    "file": "coastroad.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "16489ea851eba8d78815f8d71f9542a96074811aef3cf4a0314ea6fbc673bc38",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical aerial photograph of a winding coastal road along turquoise water and white cliffs on a sunny day, the road curving from the bottom to the top of the frame. The center band of the frame has open water with little detail. No text, no readable signs, no logos, no watermark. No people, no cars.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0255,
+        "hi": 0.6096
+      },
+      {
+        "lo": 0.0627,
+        "hi": 0.5158
+      },
+      {
+        "lo": 0.1655,
+        "hi": 0.5533
+      },
+      {
+        "lo": 0.2227,
+        "hi": 0.5713
+      },
+      {
+        "lo": 0.0448,
+        "hi": 0.614
+      },
+      {
+        "lo": 0.1166,
+        "hi": 0.2623
+      },
+      {
+        "lo": 0.1207,
+        "hi": 0.1848
+      },
+      {
+        "lo": 0.1232,
+        "hi": 0.2092
+      },
+      {
+        "lo": 0.0306,
+        "hi": 0.748
+      },
+      {
+        "lo": 0.0586,
+        "hi": 0.4215
+      },
+      {
+        "lo": 0.0788,
+        "hi": 0.1203
+      },
+      {
+        "lo": 0.0783,
+        "hi": 0.1169
+      },
+      {
+        "lo": 0.0389,
+        "hi": 0.7098
+      },
+      {
+        "lo": 0.0309,
+        "hi": 0.6983
+      },
+      {
+        "lo": 0.0603,
+        "hi": 0.6817
+      },
+      {
+        "lo": 0.0469,
+        "hi": 0.2196
+      }
+    ]
+  },
+  {
+    "id": "oldtown",
+    "label": "Old town street",
+    "file": "oldtown.webp",
+    "width": 1280,
+    "height": 1920,
+    "sha256": "3c9e6207cbb128b8cfffdea131b90bb4e7319bdd590b4a997753f92f64ca4461",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "Tall vertical photograph of a narrow cobblestone street in a sunlit old European town, pastel buildings, flower boxes, a bright sky strip at the top. The center of the frame is the open street with soft shadows. No text, no readable signs, no logos, no watermark. No people.",
+    "size": "1024x1536",
+    "quality": "high",
+    "createdAt": "2026-10-09",
+    "tones": [
+      {
+        "lo": 0.0265,
+        "hi": 0.4027
+      },
+      {
+        "lo": 0.0568,
+        "hi": 0.7334
+      },
+      {
+        "lo": 0.0773,
+        "hi": 0.6975
+      },
+      {
+        "lo": 0.0352,
+        "hi": 0.7051
+      },
+      {
+        "lo": 0.0241,
+        "hi": 0.4053
+      },
+      {
+        "lo": 0.032,
+        "hi": 0.4314
+      },
+      {
+        "lo": 0.0359,
+        "hi": 0.4953
+      },
+      {
+        "lo": 0.0333,
+        "hi": 0.753
+      },
+      {
+        "lo": 0.0139,
+        "hi": 0.2719
+      },
+      {
+        "lo": 0.046,
+        "hi": 0.3633
+      },
+      {
+        "lo": 0.0467,
+        "hi": 0.7396
+      },
+      {
+        "lo": 0.0145,
+        "hi": 0.3814
+      },
+      {
+        "lo": 0.1291,
+        "hi": 0.2593
+      },
+      {
+        "lo": 0.1404,
+        "hi": 0.324
+      },
+      {
+        "lo": 0.1445,
+        "hi": 0.4597
+      },
+      {
+        "lo": 0.0967,
+        "hi": 0.7196
+      }
+    ]
+  }
+]

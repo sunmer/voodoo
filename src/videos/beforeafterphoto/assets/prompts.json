@@ -1,0 +1,22 @@
+[
+  {
+    "id": "roombefore",
+    "label": "Room, before",
+    "prompt": "Wide interior photograph of an empty, worn living room before renovation: bare concrete floor, patchy grey walls, a single bare bulb, dusty window, flat dull light. Straight-on view from the doorway, eye level, centered window. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "roomafter",
+    "label": "Room, after",
+    "prompt": "Wide interior photograph of a bright renovated living room: light oak floor, warm white walls, a linen sofa, a plant, soft daylight through a clean window. Straight-on view from the doorway, eye level, centered window, same framing as a before photo of an empty room. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "yardbefore",
+    "label": "Garden, before",
+    "prompt": "Wide photograph of an overgrown neglected backyard: patchy dry grass, weeds, a broken fence, grey overcast light. Straight-on view from the back door at eye level, fence centered at the back. No text, no readable signs, no logos, no watermark. No people."
+  },
+  {
+    "id": "yardafter",
+    "label": "Garden, after",
+    "prompt": "Wide photograph of a beautifully landscaped backyard: green lawn, stone path, flower beds, a new wooden fence, warm late afternoon sun. Straight-on view from the back door at eye level, fence centered at the back, same framing as a before photo. No text, no readable signs, no logos, no watermark. No people."
+  }
+]
