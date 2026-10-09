@@ -26,7 +26,7 @@ async function check(browser, viewport, prefix) {
   const timings = await (await context.request.get(`${base}benchmark/timings.json`)).json();
   const results = {...original, entries: original.entries.map((entry) => {
     const repair = recoveries.entries.find((item) => item.model === entry.model && item.brief === entry.brief && item.run === entry.run);
-    return repair ? {...entry, ...repair} : entry;
+    return repair ? {...entry, ...repair, generationMs: entry.generationMs + repair.generationMs, renderMs: entry.renderMs + repair.renderMs} : entry;
   })};
   await page.locator('.benchmark-card').first().waitFor();
   assert.equal(await page.locator('.benchmark-card').count(), 10);
@@ -39,8 +39,9 @@ async function check(browser, viewport, prefix) {
   assert.equal(columns, viewport.width > 1000 ? 3 : viewport.width > 600 ? 2 : 1);
   for (const {id: brief, name} of protocol.briefs) {
     await page.getByRole('button', {name, exact: true}).click();
-    assert.equal(await page.locator('.benchmark-prompt summary').innerText(), `${name} - full brief`);
-    assert.equal(await page.locator('.benchmark-prompt pre').textContent(), protocol.briefs.find(item => item.id === brief).prompt);
+    assert.equal(await page.locator('.benchmark-prompt summary').innerText(), `${name} - full prompt`);
+    assert.equal(await page.locator('.benchmark-prompt pre').nth(1).textContent(), protocol.briefs.find(item => item.id === brief).prompt);
+    assert.match(await page.locator('.benchmark-prompt pre').first().textContent(), /Remotion 4 composition/);
     assert.ok(await page.locator('#briefs').evaluate(el => Boolean(el.compareDocumentPosition(document.querySelector('.benchmark-grid')) & Node.DOCUMENT_POSITION_FOLLOWING)));
     for (const run of [1, 2]) {
       await page.getByRole('button', {name: `Run ${run}`, exact: true}).click();
@@ -56,9 +57,8 @@ async function check(browser, viewport, prefix) {
       for (const entry of entries) {
         const model = protocol.models.find(model => model.key === entry.model);
         const card = page.locator('.benchmark-card').filter({has: page.getByRole('heading', {name: model.name, exact: true})});
-        const timing = timings.entries.find(timing => timing.video === entry.video);
-        const expected = entry.status === 'failed' ? 'Not generated' : timing?.generationTimeMs == null ? 'Unavailable' : `${(timing.generationTimeMs / 1000).toFixed(1)}s`;
-        assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('Generation', {exact: true})}).locator('dd').textContent(), expected, `${model.name}: uses successful request metadata`);
+        const expected = entry.status === 'failed' ? 'No video' : `~${((entry.generationMs + entry.renderMs) / 1000).toFixed(1)}s`;
+        assert.equal(await card.locator('.benchmark-metrics > div').filter({has: page.getByText('Time to video', {exact: true})}).locator('dd').textContent(), expected, `${model.name}: uses all attempts`);
       }
     }
   }
@@ -71,7 +71,7 @@ async function check(browser, viewport, prefix) {
   assert.equal(new URL(page.url()).searchParams.get('brief'), 'data-story');
   assert.equal(new URL(page.url()).searchParams.get('run'), '2');
   assert.equal(await page.locator('.benchmark-prompt[open]').count(), 0);
-  await page.getByText('Data story - full brief', {exact: true}).click();
+  await page.getByText('Data story - full prompt', {exact: true}).click();
   assert.equal(await page.locator('.benchmark-prompt[open]').count(), 1);
   assert.match(await page.locator('.benchmark-prompt[open]').innerText(), /Monday.*2/);
   await page.reload({waitUntil: 'networkidle'});

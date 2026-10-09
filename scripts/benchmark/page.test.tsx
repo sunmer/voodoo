@@ -26,8 +26,9 @@ test('real rendered entry shows video, actual metrics, and base-aware downloads'
   assert.match(html, /data-video-src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
   assert.doesNotMatch(html, /<video[^>]*\ssrc=/);
   assert.match(html, /\$0.123/);
-  assert.match(html, /5.2s/);
-  assert.doesNotMatch(html, /12.3s/);
+  assert.match(html, /Time to video/);
+  assert.match(html, /~16.4s/);
+  assert.match(html, /5.2s, successful attempt only/);
   assert.match(html, /gen-test/);
   assert.doesNotMatch(html, /Visual score|Review pending|Generation complete|Original runs/);
   assert.match(html, /href="\/voodoo\/benchmark\/media\/test\/source.tsx"/);
@@ -38,8 +39,8 @@ test('failed entry is not a pending run or a fabricated video', () => {
   const html = render(entry);
   assert.match(html, /Render failed/);
   assert.match(html, /2 attempts/);
-  assert.match(html, /Not generated/);
-  assert.doesNotMatch(html, /5.2s/);
+  assert.match(html, /No video/);
+  assert.doesNotMatch(html, /~16.4s/);
   assert.doesNotMatch(html, /src="\/voodoo\/benchmark\/media\/test\/video.mp4"/);
   assert.match(html, /&lt;script&gt;unsafe&lt;\/script&gt;/);
 });
@@ -68,7 +69,10 @@ test('a truncated generation is identified separately from a render failure', ()
 });
 test('the expandable selected brief precedes its results', () => {
   const html = render(sample());
-  assert.match(html, /Product launch - full brief/);
+  assert.match(html, /Product launch - full prompt/);
+  assert.match(html, /System instructions/);
+  assert.match(html, /You write a complete Remotion 4 composition/);
+  assert.doesNotMatch(html, /We give ten leading models|Storytelling, composition/);
   assert.ok(html.indexOf('id="briefs"') < html.indexOf('class="benchmark-grid"'));
   assert.equal((html.match(/class="benchmark-prompt"/g) ?? []).length, 1);
 });
@@ -93,20 +97,20 @@ test('recovery keeps original failure and adds costs without claiming first-atte
   assert.match(html, /Recovered in automated repair pass R1/);
   assert.match(html, /Additional repair cost/);
   assert.match(html, /Original outcome/);
-  assert.match(html, /5.2s/);
-  assert.doesNotMatch(html, /24.6s/);
+  assert.match(html, /~32.8s/);
+  assert.match(html, /5.2s, successful attempt only/);
 });
-test('missing OpenRouter timing never falls back to local elapsed time', () => {
+test('missing OpenRouter timing does not replace the estimated time to video', () => {
   for (const entries of [[], [{...timingFixture.entries[0], generationTimeMs: null, unavailableReason: 'Not reported'}]]) {
     const html = render(sample(), {...timingFixture, entries});
-    assert.match(html, /Unavailable/);
-    assert.doesNotMatch(html, /12.3s/);
+    assert.match(html, /OpenRouter generation.*Unavailable/);
+    assert.match(html, /~16.4s/);
   }
   const html = render(sample(), {...timingFixture, entries: [{...timingFixture.entries[0], video: 'benchmark/media/another/video.mp4'}]});
-  assert.match(html, /Unavailable/);
-  assert.doesNotMatch(html, /5.2s/);
+  assert.match(html, /OpenRouter generation.*Unavailable/);
+  assert.doesNotMatch(html, /5.2s, successful/);
 });
 test('zero reported generation time remains zero', () => {
   const html = render(sample(), {...timingFixture, entries: [{...timingFixture.entries[0], generationTimeMs: 0}]});
-  assert.match(html, /0.0s/);
+  assert.match(html, /0.0s, successful attempt only/);
 });

@@ -63,7 +63,7 @@ Content roles hold text that belongs to one video, so the brand kit never fills 
 
 - Mobile uses a screen-filling stage with overlay controls. Landscape compositions fill the phone when it rotates to landscape. The expand button requests native fullscreen and landscape orientation where supported; otherwise it uses the browser viewport. Desktop keeps a contained preview.
 - Click or tap visible text to pause and edit that role in place. Confirm to save one undo step, or cancel. Scene buttons expose later text without a separate text panel.
-- Theme controls sit below the video. Descriptions, template prompts, related videos, and taxonomy are not part of the editor.
+- Theme controls sit below the video. Video details show the original creative brief with a copy action. Related videos and taxonomy are not part of the editor.
 - Saved props are validated before loading. Invalid text cannot be committed. Changes remain available after reloading.
 - Share replaces the JSON download. Publishing requires Google sign-in; recipients can view without it. Live publishing stays unavailable until the rendering service is configured.
 

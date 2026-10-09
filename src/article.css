@@ -50,8 +50,8 @@ h1, h2, h3, button, a { letter-spacing: 0; }
 .benchmark-section h2, .benchmark-comparison h2 { font-size: 29px; font-weight: 580; line-height: 1.2; }
 .benchmark-small { font-size: 12px; color: var(--article-muted); }
 .benchmark-controls { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center; padding: 8px 0 0; }
-.benchmark-tabs { display: flex; gap: 4px; }
-.benchmark-tabs button { min-height: 36px; padding: 0 13px; border: 1px solid transparent; background: transparent; border-radius: 5px; font-size: 12px; color: var(--article-muted); }
+.benchmark-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(100%, 720px); }
+.benchmark-tabs button { min-height: 52px; padding: 0 18px; border: 1px solid var(--article-line); background: #15171b; border-radius: 6px; font-size: 16px; font-weight: 600; color: #d8dce1; }
 .benchmark-tabs button[aria-pressed=true] { background: #242b20; color: var(--article-green); border-color: #46523b; }
 .benchmark-tabs button:hover { color: #f1f3f5; }
 .benchmark-secondary-controls { display: flex; gap: 16px; align-items: center; }
@@ -117,6 +117,7 @@ details[open] > summary > svg { transform: rotate(180deg); }
 .benchmark-prompt summary { cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 19px 0; font-size: 16px; list-style: none; }
 .benchmark-prompt summary small { display: block; font-size: 12px; color: var(--article-muted); font-weight: 400; margin-top: 6px; line-height: 1.5; }
 .benchmark-prompt summary svg { flex: none; }
+.benchmark-prompt h3 { font-size: 12px; font-weight: 650; color: var(--article-green); margin: 8px 0 10px; }
 .benchmark-prompt pre { white-space: pre-wrap; overflow-wrap: anywhere; max-width: 920px; font-size: 12px; line-height: 1.85; color: #c9ced5; font-family: ui-monospace, Menlo, monospace; margin: 0 0 24px; padding: 8px 0 8px 18px; border-left: 2px solid #687e4d; }
 .benchmark-prompt-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; margin: 18px 0; }
 .benchmark-prompt-footer p { color: var(--article-muted); font-size: 12px; line-height: 1.6; }
@@ -162,7 +163,8 @@ details[open] > summary > svg { transform: rotate(180deg); }
   .benchmark-section h2, .benchmark-comparison h2 { font-size: 26px; }
   .benchmark-controls { gap: 14px; }
   .benchmark-tabs { width: 100%; justify-content: space-between; gap: 2px; }
-  .benchmark-tabs button { font-size: 11px; padding: 0 8px; flex: 1; }
+  .benchmark-tabs { gap: 6px; }
+  .benchmark-tabs button { min-height: 48px; font-size: 14px; padding: 0 8px; line-height: 1.2; }
   .benchmark-secondary-controls { width: 100%; justify-content: space-between; }
   .benchmark-brief-line { flex-direction: column; align-items: flex-start; gap: 4px; }
   .benchmark-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -182,6 +184,6 @@ details[open] > summary > svg { transform: rotate(180deg); }
   .article-header { padding: 0 14px; gap: 10px; }
   .benchmark-intro h1 { font-size: 36px; }
   .benchmark-kicker { gap: 6px; }
-  .benchmark-tabs button { font-size: 10px; padding: 0 5px; }
+  .benchmark-tabs button { font-size: 13px; padding: 0 5px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

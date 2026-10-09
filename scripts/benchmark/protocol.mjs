@@ -6,20 +6,7 @@ import {z} from 'zod';
 export const root = path.resolve(import.meta.dirname, '../..');
 export const protocol = JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/protocol.json'), 'utf8'));
 export const hash = (value) => createHash('sha256').update(value).digest('hex');
-export const contract = `You write a complete Remotion 4 composition.
-Return one JSON object with exactly one string property: "source".
-The source must be a complete TSX module exporting a named React component called BenchmarkVideo.
-Only import from "react", "remotion", and "./contract".
-Do not register a composition or change the project configuration.
-The wrapper supplies 1920 x 1080, 30 fps, and 360 frames.
-Use useCurrentFrame(), interpolate(), spring(), and Sequence for frame-based motion.
-Every frame must be deterministic. No Math.random(), dates, timers, network requests, audio, or external assets.
-The wrapper loads Archivo locally. Use the font family "Archivo" for all text.
-Import palette from "./contract": background #101114, foreground #F5F5F2, accent #B8F36B, secondary #78B9ED, muted #B1B4BC.
-Use these colors. Alpha variants are permitted.
-Keep text inside an 80-pixel safe margin on every side.
-No existing video examples are provided. Make all design decisions yourself.
-Do not include model names, provider names, explanations, markdown fences, or other files.`;
+export const contract = JSON.parse(fs.readFileSync(path.join(root, 'src/benchmark/contract.json'), 'utf8')).system;
 
 export const digest = hash(JSON.stringify(protocol) + contract);
 const localAsset = z.string().regex(/^benchmark\/media\/[a-z0-9-]+\/[a-z0-9-]+\.(mp4|jpg|tsx|json)$/);

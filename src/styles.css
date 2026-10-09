@@ -136,6 +136,10 @@ h1, h2, h3 { margin: 0; }
 .editor-page { min-height: 100dvh; letter-spacing: 0; }
 .video-details { max-width: 1200px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .video-details h2 { font-size: 14px; margin: 0; }
+.creative-brief { border-top: 1px solid var(--line); padding-top: 10px; }
+.creative-brief > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.creative-brief h3 { font-size: 13px; margin: 0; }
+.creative-brief .link-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; }
 .video-details p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
 .immersive-editor { position: relative; max-width: 1200px; height: min(76vh, 760px); min-height: 380px; margin: 20px auto 0; background: #08090b; }
 .editor-top { position: absolute; top: 12px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; z-index: 4; pointer-events: none; }

@@ -7,6 +7,7 @@ import resultsData from './results.json';
 import recoveryData from './recovery.json';
 import recoveryProtocol from './recovery-protocol.json';
 import timingsData from './timings.json';
+import contractData from './contract.json';
 import {withRecovery, type BenchmarkModel, type BenchmarkResult, type BenchmarkResults, type BenchmarkRecoveries, type BenchmarkTiming, type BenchmarkTimings} from './types';
 
 // The publication build validates this JSON against the result schema.
@@ -15,6 +16,7 @@ const month = 'October 2026';
 const dateLabel = 'October 8, 2026';
 const money = (value: number) => `$${value.toFixed(value < 0.01 ? 4 : 3)}`;
 const seconds = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
+const fullPrompt = (prompt: string) => `System instructions\n${contractData.system}\n\nBrief\n${prompt}`;
 
 function ResultVideo({entry, base, label}: {entry: BenchmarkResult; base: string; label: string}) {
   const [failed, setFailed] = useState(false);
@@ -45,15 +47,17 @@ function ResultCard({model, entry, timing, base, run, brief}: {model: BenchmarkM
       {entry?.recovery && <p className="benchmark-recovery-label">{entry.status === 'rendered' ? 'Recovered' : 'Repair limit reached'} / R1 &middot; {entry.recovery.attempts} additional attempt{entry.recovery.attempts === 1 ? '' : 's'}</p>}
       <dl className="benchmark-metrics">
         <div><dt>API cost</dt><dd>{entry ? money(entry.costUsd) : <span className="metric-pending">Pending</span>}</dd></div>
-        <div><dt title="OpenRouter generation_time for the successful attempt only">Generation</dt><dd>{entry?.status === 'rendered' && timing?.generationTimeMs != null
-          ? seconds(timing.generationTimeMs)
-          : <span className="metric-pending">{!entry ? 'Pending' : entry.status === 'failed' ? 'Not generated' : 'Unavailable'}</span>}</dd></div>
+        <div><dt title="Estimated time from prompt submission until the video was ready">Time to video</dt><dd>{entry?.status === 'rendered'
+          ? `~${seconds(entry.generationMs + entry.renderMs)}`
+          : <span className="metric-pending">{!entry ? 'Pending' : 'No video'}</span>}</dd></div>
       </dl>
       <details className="benchmark-entry-details">
         <summary>Run details <ChevronDown size={14} aria-hidden="true" /></summary>
         <dl><div><dt>Model ID</dt><dd><code>{model.id}</code></dd></div>
           <div><dt>Reasoning effort</dt><dd>{model.reasoning}</dd></div>
-          {entry?.status === 'rendered' && <><div><dt>Timing source</dt><dd>OpenRouter <code>generation_time</code>, successful attempt only</dd></div>
+          {entry?.status === 'rendered' && <><div><dt>Model response time</dt><dd>{seconds(entry.generationMs)} across all attempts</dd></div>
+            <div><dt>Render time</dt><dd>{seconds(entry.renderMs)} across all attempts</dd></div>
+            <div><dt>OpenRouter generation</dt><dd>{timing?.generationTimeMs != null ? `${seconds(timing.generationTimeMs)}, successful attempt only` : 'Unavailable'}</dd></div>
             {timing && <div><dt>Generation ID</dt><dd><code>{timing.generationId}</code></dd></div>}
             {timing?.unavailableReason && <div><dt>Timing unavailable</dt><dd>{timing.unavailableReason}</dd></div>}</>}
           <div><dt>Status</dt><dd>{entry ? entry.recovery ? entry.status === 'rendered' ? 'Recovered in automated repair pass R1' : 'Still failed after repair pass R1' : entry.firstAttemptPassed ? 'Passed on first attempt' : entry.status === 'rendered' ? 'Passed after repair' : 'Failed' : 'Awaiting generation'}</dd></div>
@@ -61,7 +65,7 @@ function ResultCard({model, entry, timing, base, run, brief}: {model: BenchmarkM
             <div><dt>Original API cost</dt><dd>{money(entry.recovery.originalCostUsd)}</dd></div>
             <div><dt>Additional repair cost</dt><dd>{money(entry.recovery.costUsd)}</dd></div>
             <div><dt>Total attempts</dt><dd>{entry.attempts}</dd></div></>}
-          {entry && <><div><dt>Provider</dt><dd>{entry.provider}</dd></div><div><dt>Generated</dt><dd>{entry.generatedAt}</dd></div><div><dt>Render time</dt><dd>{seconds(entry.renderMs)}</dd></div></>}
+          {entry && <><div><dt>Provider</dt><dd>{entry.provider}</dd></div><div><dt>Generated</dt><dd>{entry.generatedAt}</dd></div></>}
         </dl>
         {entry?.error && <p>{entry.error}</p>}
         <div className="benchmark-source-links">
@@ -117,7 +121,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
   }
   async function copyPrompt() {
     try {
-      await navigator.clipboard.writeText(brief.prompt);
+      await navigator.clipboard.writeText(fullPrompt(brief.prompt));
       setCopied(true);
       setCopyError(false);
     } catch { setCopyError(true); }
@@ -128,7 +132,6 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
         <div className="benchmark-kicker"><FlaskConical size={15} aria-hidden="true" /><span>Cliphouse Research</span><span className="benchmark-edition">{month} / v{protocol.version}</span></div>
         <h1>Motion Graphics<br />Benchmark<span className="benchmark-period">.</span></h1>
         <p className="benchmark-deck">Find the right AI model for motion graphics<br className="mobile-break" /> without testing every model yourself.</p>
-        <p className="benchmark-description">We give ten leading models the same three Remotion briefs and render every result. Compare the videos side by side, see which models work on the first attempt, and check the actual API cost before you choose.</p>
         <div className="benchmark-byline"><span>By cliphou.se</span><span>{dateLabel}</span><span>{edition ? 'Monthly edition' : 'Live comparison'}</span></div>
         <nav className="benchmark-contents" aria-label="In this article">
           <a href="#comparison">Compare models <ArrowDown size={14} /></a>
@@ -153,16 +156,19 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
             </select><ChevronDown size={13} aria-hidden="true" /></label>
           </div>
         </div>
-        <div className="benchmark-brief-line"><p>{brief.focus}</p><span>12 seconds &middot; 1080p &middot; 30 fps &middot; Silent</span></div>
+        <div className="benchmark-brief-line"><span>12 seconds &middot; 1080p &middot; 30 fps &middot; Silent</span></div>
         <div id="briefs" className="benchmark-prompt-list">
           <details key={brief.id} className="benchmark-prompt">
-            <summary><span>{`${brief.name} - full brief`}</span><ChevronDown size={18} aria-hidden="true" /></summary>
+            <summary><span>{`${brief.name} - full prompt`}</span><ChevronDown size={18} aria-hidden="true" /></summary>
+            <h3>System instructions</h3>
+            <pre>{contractData.system}</pre>
+            <h3>Brief</h3>
             <pre>{brief.prompt}</pre>
             <div className="benchmark-prompt-footer">
-              <p><a href={`${base}benchmark/contract.txt`}>Component contract</a> &middot; <a href={`${base}benchmark/protocol.json`} download>Full protocol <ArrowDownToLine size={13} /></a></p>
-              <button className="benchmark-copy" onClick={copyPrompt} title="Copy the selected brief" aria-label={copied ? 'Brief copied' : 'Copy selected brief'}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? 'Copied' : 'Copy brief'}</span></button>
+              <p><a href={`${base}benchmark/protocol.json`} download>Full protocol <ArrowDownToLine size={13} /></a></p>
+              <button className="benchmark-copy" onClick={copyPrompt} title="Copy the full prompt" aria-label={copied ? 'Prompt copied' : 'Copy full prompt'}>{copied ? <Check size={16} /> : <Copy size={16} />}<span>{copied ? 'Copied' : 'Copy prompt'}</span></button>
             </div>
-            {copyError && <p role="status">Clipboard access is unavailable. The complete brief is selectable above.</p>}
+            {copyError && <p role="status">Clipboard access is unavailable. The full prompt is selectable above.</p>}
           </details>
         </div>
         <p className="article-sr-only" aria-live="polite">{brief.name}, run {run}. {entries.length} completed entries.</p>
@@ -172,7 +178,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
           return <ResultCard key={`${model.key}-${briefId}-${run}`} model={model} entry={entry} timing={timing} base={base} run={run} brief={brief.name} />;
         })}</div>
         <p className="benchmark-footnote">A curated selection across price tiers, not a popularity ranking. Empty entries are untested, not failed.</p>
-        <p className="benchmark-footnote">Generation is OpenRouter&apos;s reported time for the successful attempt that produced the video. It excludes previous failed attempts and local rendering. Missing OpenRouter timings are marked unavailable, never estimated. <a href={`${base}benchmark/timings.json`}>Timing records</a></p>
+        <p className="benchmark-footnote">Time to video is an estimate from prompt submission until the MP4 was ready. It adds every model response and render attempt, including repairs. It excludes waiting in the render queue and small file-handling overhead. <a href={`${base}benchmark/timings.json`}>OpenRouter timing records</a></p>
         {recoveries.entries.length > 0 && <p className="benchmark-footnote">Recovered entries show total API cost, including original attempts. The additional repair cost is itemized in run details. Recovery means the code compiled and rendered. It is not first-attempt success.</p>}
       </section>
 
@@ -189,7 +195,7 @@ export function BenchmarkPage({base = '/', edition = false, data = defaultResult
               <p>{recoveryProtocol.policy} Recovery uses a {recoveryProtocol.maxTokens.toLocaleString('en-US')}-token limit and direct TSX output instead of the original JSON-only format. These are additional repair results, not replacement first attempts.</p>
               <p><a href={`${base}benchmark/recovery.json`}>Repair results</a> &middot; <a href={`${base}benchmark/recovery-protocol.json`}>Repair protocol</a> &middot; <a href={`${base}benchmark/results.json`}>Original results</a></p></>}
             <h3>What we disclose</h3>
-            <p>The exact model ID, provider, request, reasoning setting, source code, OpenRouter generation time, and API cost. Generation time comes from the successful request&apos;s <code>generation_time</code> field in OpenRouter&apos;s generation metadata, converted from milliseconds to seconds. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
+            <p>The exact model ID, provider, request, reasoning setting, source code, estimated time to video, OpenRouter generation time, and API cost. Time to video adds local response and render times for all attempts. OpenRouter generation time is shown separately for the successful request. Providers are pinned and fallback is disabled. Up to four API requests overlap; renders remain sequential. Reasoning labels are not equivalent compute budgets across models.</p>
           </div>
           <div className="benchmark-reference">
             <figure><ViewportVideo src={`${base}previews/bento-launch.mp4`} poster={`${base}previews/bento-launch.jpg`} label="Existing Cliphouse motion graphics example" style={{aspectRatio: '16 / 9'}} />
