@@ -9,8 +9,8 @@ import type {PhototitleProps} from './schema';
 
 loadTemplateFonts();
 
-// Where the title sits, as [left, top, right, bottom] fractions of the frame. The backdrop keeps it readable.
-const TEXT_ZONE = [0, 0.2, 0.55, 0.8] as const;
+// Where the title block sits, as [left, top, right, bottom] fractions of the frame. The backdrop keeps it readable.
+const TEXT_ZONES = [[0.05, 0.3, 0.55, 0.7]] as const;
 
 const Role: React.FC<{role: string; children: React.ReactNode}> = ({role, children}) => (
   <span data-text-role={role} style={{display: 'contents'}}>{children}</span>
@@ -26,10 +26,8 @@ export const Phototitle: React.FC<PhototitleProps> = ({texts, theme, media}) => 
   const rest = interpolate(frame, [70, 104], [0, 1], {...clamp, easing: easeOut});
   return (
     <AbsoluteFill style={{background: theme.background, fontFamily: SANS_FONT, overflow: 'hidden'}}>
-      <AbsoluteFill style={{transform: `scale(${zoom}) translateX(${drift}px)`}}>
-        <Backdrop src={phototitleFiles[media.background]} asset={phototitleAssets.find((a) => a.id === media.background)!}
-          background={theme.background} foreground={[theme.foreground, theme.accent]} zone={TEXT_ZONE} fade="left" />
-      </AbsoluteFill>
+      <Backdrop src={phototitleFiles[media.background]} asset={phototitleAssets.find((a) => a.id === media.background)!}
+        background={theme.background} foreground={[theme.foreground, theme.accent]} zones={TEXT_ZONES} motion={`scale(${zoom}) translateX(${drift}px)`} />
       <div style={{position: 'absolute', left: 120, top: 0, bottom: 0, width: 10, background: theme.accent, transformOrigin: 'top', transform: `scaleY(${wipe})`}} />
       <AbsoluteFill style={{justifyContent: 'center', padding: '0 0 0 180px', width: 1180}}>
         <div style={{fontFamily: MONO_FONT, fontSize: fit(texts.brand, 28, 900, 0.62), color: theme.accent, textTransform: 'uppercase', opacity: rest, marginBottom: 26}}>

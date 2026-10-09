@@ -2,28 +2,43 @@ import React from 'react';
 import {AbsoluteFill, Img} from 'remotion';
 import {overlayFor, zoneTones, type AssetRecord} from './catalog';
 
-type Zone = readonly [number, number, number, number];
+/** A text area as [left, top, right, bottom] fractions of the frame. */
+export type Zone = readonly [number, number, number, number];
+
+const hex = (a: number) => Math.round(Math.min(1, Math.max(0, a)) * 255).toString(16).padStart(2, '0');
 
 /**
- * A full-frame photo with a theme-colored overlay. The overlay is as light as possible while
- * keeping `foreground` text readable over the photo inside `zone`, for any theme colors.
- * `fade` adds a gradient from the text side so the rest of the photo stays vivid.
+ * A full-frame photo with theme-colored scrims behind each text zone. Each scrim is as light as
+ * possible while keeping `foreground` colors readable over the photo under it, for any theme.
+ * Scrims ease out around each zone, so the rest of the photo stays vivid. Pass one zone per
+ * large text block. For small labels (brand, date) use labelShadow() on the text instead of a zone.
+ * `motion` moves only the photo (for push-ins and drifts); the scrims stay fixed under the text.
  */
 export const Backdrop: React.FC<{
-  src: string; asset: AssetRecord; background: string; foreground: string | string[]; zone: Zone;
-  fade?: 'left' | 'right' | 'bottom' | 'none'; style?: React.CSSProperties; position?: string;
-}> = ({src, asset, background, foreground, zone, fade = 'none', style, position = 'center'}) => {
-  const alpha = overlayFor(zoneTones(asset.tones, zone), background, foreground);
-  const hex = (a: number) => Math.round(a * 255).toString(16).padStart(2, '0');
-  const dir = {left: '90deg', right: '270deg', bottom: '0deg', none: ''}[fade];
-  // Keep the full overlay across the text zone, then let the photo show through beyond it.
-  const reach = Math.round(100 * (fade === 'left' ? zone[2] : fade === 'right' ? 1 - zone[0] : 1 - zone[1]));
-  const overlay = fade === 'none' ? `${background}${hex(alpha)}`
-    : `linear-gradient(${dir}, ${background}${hex(alpha)} 0%, ${background}${hex(alpha)} ${reach}%, ${background}${hex(alpha * 0.25)} ${Math.min(100, reach + 25)}%, ${background}${hex(alpha * 0.15)} 100%)`;
-  return (
-    <AbsoluteFill style={style}>
+  src: string; asset: AssetRecord; background: string; foreground: string | string[];
+  zones: readonly Zone[]; motion?: string; style?: React.CSSProperties; position?: string;
+}> = ({src, asset, background, foreground, zones, motion, style, position = 'center'}) => (
+  <AbsoluteFill style={style}>
+    <AbsoluteFill style={{transform: motion}}>
       <Img src={src} alt={asset.label} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: position, display: 'block'}} />
-      <AbsoluteFill style={{background: overlay}} />
     </AbsoluteFill>
-  );
-};
+    {zones.map((zone, i) => {
+      const alpha = overlayFor(zoneTones(asset.tones, zone), background, foreground);
+      const [l, t, r, b] = zone.map((v) => v * 100);
+      const color = `${background}${hex(alpha)}`;
+      // Full strength across the zone, easing to clear over a band that scales with the zone, on both axes.
+      const fx = Math.max(10, (r - l) * 0.35);
+      const fy = Math.max(10, (b - t) * 0.35);
+      const x = `linear-gradient(90deg, transparent ${l - fx}%, #000 ${l}%, #000 ${r}%, transparent ${r + fx}%)`;
+      const y = `linear-gradient(180deg, transparent ${t - fy}%, #000 ${t}%, #000 ${b}%, transparent ${b + fy}%)`;
+      return (
+        <AbsoluteFill key={i} style={{maskImage: y, WebkitMaskImage: y}}>
+          <AbsoluteFill style={{background: color, maskImage: x, WebkitMaskImage: x}} />
+        </AbsoluteFill>
+      );
+    })}
+  </AbsoluteFill>
+);
+
+/** A soft halo that keeps a small label readable on any photo, without a visible box. */
+export const labelShadow = (background: string) => `0 0 18px ${background}, 0 0 6px ${background}, 0 1px 2px ${background}`;

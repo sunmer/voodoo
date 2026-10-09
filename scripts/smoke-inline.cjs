@@ -59,23 +59,25 @@ async function clickText(page, label, optional = false) {
         }
       }
       for (const role of Object.keys(v.props.texts)) assert(seen.has(`Edit ${ROLES[role].label}`), `${v.id}: missing inline target ${role}`);
-      const sceneIndex = meta.scenes.filter((s) => s.type !== 'transition').findIndex((s) => s.roles.includes('headline'));
+      // The main text role: headline when present, otherwise the first role (quote templates have none).
+      const main = 'headline' in v.props.texts ? 'headline' : Object.keys(v.props.texts)[0];
+      const sceneIndex = meta.scenes.filter((s) => s.type !== 'transition').findIndex((s) => s.roles.includes(main));
       await page.locator('.scene').nth(sceneIndex).click();
       await page.waitForTimeout(200);
-      await clickText(page, 'Edit Headline');
-      const input = page.getByRole('textbox', {name: 'Headline', exact: true});
-      assert.equal(await input.inputValue(), v.props.texts.headline);
+      await clickText(page, `Edit ${ROLES[main].label}`);
+      const input = page.getByRole('textbox', {name: ROLES[main].label, exact: true});
+      assert.equal(await input.inputValue(), v.props.texts[main]);
       assert(await input.evaluate((el) => document.activeElement === el));
       await input.fill('Made for motion');
       await page.screenshot({path: `/tmp/voodoo-inline-${template.id}-${ios ? 'ios' : 'desktop'}.png`, scale: 'css'});
       await page.getByRole('button', {name: 'Save text', exact: true}).click();
-      assert.equal(await page.evaluate((id) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts.headline, v.id), 'Made for motion');
+      assert.equal(await page.evaluate(({id, main}) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts[main], {id: v.id, main}), 'Made for motion');
       await page.getByRole('button', {name: 'Undo', exact: true}).click();
-      assert.equal(await page.evaluate((id) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts.headline, v.id), v.props.texts.headline);
+      assert.equal(await page.evaluate(({id, main}) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts[main], {id: v.id, main}), v.props.texts[main]);
       await page.getByRole('button', {name: 'Redo', exact: true}).click();
       await page.reload();
       await page.getByRole('button', {name: 'Pause', exact: true}).click();
-      assert.equal(await page.evaluate((id) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts.headline, v.id), 'Made for motion');
+      assert.equal(await page.evaluate(({id, main}) => JSON.parse(localStorage.getItem(`voodoo:v2:${id}`)).texts[main], {id: v.id, main}), 'Made for motion');
       const width = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1);
       assert(width, `${v.id}: horizontal overflow`);
       if (!ios) {
